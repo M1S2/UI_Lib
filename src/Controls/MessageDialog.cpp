@@ -1,0 +1,49 @@
+/*
+ * MessageDialog.cpp
+ */ 
+
+#include "Controls/MessageDialog.h"
+#include "../Indicators/Label.cpp"
+#include "../Controls/ButtonControl.cpp"
+
+template <int messageLength>
+MessageDialog<messageLength>::MessageDialog(unsigned char locX, unsigned char locY, unsigned char width, unsigned char height, const char* message, MessageSeverity_t severity, MessageButtons_t buttons, void* controlContext, void(*onOkClick)(void* controlContext), void(*onCancelClick)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL),
+	_page(),
+	_severityIcon(locX, locY, icon_info_width, icon_info_height, (severity == MSG_INFO ? icon_info_bits : (severity == MSG_WARNING ? icon_warning_bits : icon_error_bits))),
+	_message(locX + icon_info_width + 5, locY, message),
+	_buttonOk(locX + width / 2 - 20 - (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_FONT_OFFSET_Y_BASELINE - 4, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "OK", controlContext, onOkClick),
+	_buttonCancel(locX + width / 2 - 20 + (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_FONT_OFFSET_Y_BASELINE - 4, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "Cancel", controlContext, onCancelClick)
+{
+	Width = width;
+	Height = height;	
+	_severity = severity;
+	_page.AddItem(&_severityIcon);
+	_page.AddItem(&_message);
+
+	if (buttons == MSG_BTN_OK || buttons == MSG_BTN_OK_CANCEL) 
+	{
+		_buttonOk.Visible = true;
+		_page.AddItem(&_buttonOk); 
+	}
+	if (buttons == MSG_BTN_OK_CANCEL)
+	{
+		_buttonCancel.Visible = true;
+		_page.AddItem(&_buttonCancel);
+	}
+
+	_page.Parent = this;
+	_page.InitItems();
+	ActiveChild = &_page;
+}
+
+template <int messageLength>
+void MessageDialog<messageLength>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+{
+	_page.Draw(gfx, isFirstPage);
+}
+
+template <int messageLength>
+bool MessageDialog<messageLength>::KeyInput(Keys_t key)
+{
+	return _page.KeyInput(key);
+}
