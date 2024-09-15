@@ -4,7 +4,7 @@
 
 #include "Containers/ContainerList.h"
 
-ContainerList::ContainerList(unsigned char locX, unsigned char locY, unsigned char width, unsigned char height)
+ContainerList::ContainerList(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
 {
 	Type = UI_CONTAINER;
 	LocX = locX;
@@ -28,9 +28,9 @@ void ContainerList::Draw(Adafruit_GFX* gfx, bool isFirstPage)
 	}
 	
 	// Draw scroll bar
-	unsigned char scrollBarLeft = LocX + Width - SCROLLBAR_WIDTH - SCROLLBAR_MARGIN;
-	unsigned char scrollBarBoxHeight = Height - 2 * SCROLLBAR_MARGIN;
-	unsigned char scrollBarHeight = scrollBarBoxHeight / _numVisibleItems;
+	uint16_t scrollBarLeft = LocX + Width - SCROLLBAR_WIDTH - SCROLLBAR_MARGIN;
+	uint16_t scrollBarBoxHeight = Height - 2 * SCROLLBAR_MARGIN;
+	uint16_t scrollBarHeight = scrollBarBoxHeight / _numVisibleItems;
 	gfx->drawRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN, SCROLLBAR_WIDTH, scrollBarBoxHeight, DEFAULT_UI_ELEMENT_COLOR);
 	gfx->fillRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN + ((_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), SCROLLBAR_WIDTH, scrollBarHeight, DEFAULT_UI_ELEMENT_COLOR);
 }

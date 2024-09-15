@@ -65,7 +65,7 @@ class MessageDialog : public UIElement
 		 * @param onOkClick Function pointer for onOkClick event. This function is called when the Ok button is clicked.
 		 * @param onCancelClick Function pointer for onCancelClick event. This function is called when the Cancel button is clicked.
 		 */
-		MessageDialog(unsigned char locX, unsigned char locY, unsigned char width, unsigned char height, const char* message, MessageSeverity_t severity, MessageButtons_t buttons = MSG_BTN_OK, void* controlContext = NULL, void(*onOkClick)(void* controlContext) = NULL, void(*onCancelClick)(void* controlContext) = NULL);
+		MessageDialog(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* message, MessageSeverity_t severity, MessageButtons_t buttons = MSG_BTN_OK, void* controlContext = NULL, void(*onOkClick)(void* controlContext) = NULL, void(*onCancelClick)(void* controlContext) = NULL);
 		
 		/**
 		 * Method used for drawing of the MessageDialog.

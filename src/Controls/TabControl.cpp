@@ -5,7 +5,7 @@
 #include "Controls/TabControl.h"
 #include <string.h>
 
-TabControl::TabControl(unsigned char locX, unsigned char locY, unsigned char width, unsigned char height, unsigned char tabWidth, void* controlContext, void(*onSelectedTabChanged)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL)
+TabControl::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint16_t tabWidth, void* controlContext, void(*onSelectedTabChanged)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL)
 {
 	Width = width;
 	Height = height;

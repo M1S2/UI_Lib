@@ -35,7 +35,7 @@ class ButtonControl : public UIElement
 		 * @param controlContext Context pointer that is returned with the _onClick function pointer
 		 * @param onClick Function pointer for _onClick event. This function is called when the button is clicked.
 		 */
-		ButtonControl(unsigned char locX, unsigned char locY, unsigned char width, unsigned char height, const char* buttonText, void* controlContext = NULL, void(*onClick)(void* controlContext) = NULL);
+		ButtonControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* buttonText, void* controlContext = NULL, void(*onClick)(void* controlContext) = NULL);
 
 		/**
 		 * Method used for drawing of the ButtonControl.

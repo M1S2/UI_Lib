@@ -54,7 +54,7 @@ class NumericControl : public NumericIndicator<T, stringBufferLength>
 		 * @param controlContext Context pointer that is returned with the _onValueChanged function pointer
 		 * @param onValueChanged Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed.
 		 */
-		NumericControl(unsigned char locX, unsigned char locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL);
+		NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL);
 		
 		/**
 		 * Method used for drawing of the NumericControl.

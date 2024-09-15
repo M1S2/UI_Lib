@@ -6,15 +6,15 @@
 #include <math.h>
 
 template <class T>
-unsigned char ProgressBar<T>::xCoordinateFromValue(T value)
+uint16_t ProgressBar<T>::xCoordinateFromValue(T value)
 {
-	return LocX + (unsigned char)(((value - _minValue) / (float)(_maxValue - _minValue)) * (Width - 1));
+	return LocX + (uint16_t)(((value - _minValue) / (float)(_maxValue - _minValue)) * (Width - 1));
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
 template <class T>
-ProgressBar<T>::ProgressBar(unsigned char locX, unsigned char locY, unsigned char width, unsigned char height, T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement): UIElement(locX, locY, UI_INDICATOR)
+ProgressBar<T>::ProgressBar(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement): UIElement(locX, locY, UI_INDICATOR)
 {
 	Width = width;
 	Height = height;
@@ -39,7 +39,7 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
 			else if (_valueDraw < _minValue) { _valueDraw = _minValue; }
 		}
 
-		unsigned char valueXCoord = xCoordinateFromValue(_valueDraw);
+		uint16_t valueXCoord = xCoordinateFromValue(_valueDraw);
 		
 		// Draw outer border of progress bar
 		gfx->drawRect(xCoordinateFromValue(_minValue), LocY, Width, Height, DEFAULT_UI_ELEMENT_COLOR);
@@ -60,7 +60,7 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
 		// Change back font to previous font
 		//gfx->setFont(DEFAULT_FONT);
 
-		gfx->drawRect((unsigned char)fmin(valueXCoord, _originXCoord), LocY, (unsigned char)fabs(valueXCoord - _originXCoord), Height, DEFAULT_UI_ELEMENT_COLOR);
+		gfx->drawRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, DEFAULT_UI_ELEMENT_COLOR);
 		
 		if(_tickIncrement > 0)			// Use _tickIncrement<=0 to disable ticks
 		{

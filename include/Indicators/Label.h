@@ -29,7 +29,7 @@ class Label : public UIElement
 		 * @param locY Y Location of the upper left corner of the Label
 		 * @param text String that is draw to the screen by the label.
 		 */
-		Label(unsigned char locX, unsigned char locY, const char* text);
+		Label(uint16_t locX, uint16_t locY, const char* text);
 		
 		/**
 		 * Constructor of the Label including a font parameter.
@@ -38,7 +38,7 @@ class Label : public UIElement
 		 * @param text String that is draw to the screen by the label.
 		 * @param font Font that is used to draw the Label. The font is only used to draw this Label. All other UIElements are using the default font again.
 		 */
-		Label(unsigned char locX, unsigned char locY, const char* text, const GFXfont* font);
+		Label(uint16_t locX, uint16_t locY, const char* text, const GFXfont* font);
 		
 		/**
 		 * Method used for drawing of the Label.

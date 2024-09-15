@@ -27,7 +27,7 @@ class BoolControl : public BoolIndicator
 		 * @param controlContext Context pointer that is returned with the _onValueChanged function pointer
 		 * @param onValueChanged Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed.
 		 */
-		BoolControl(unsigned char locX, unsigned char locY, bool* valuePointer, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL);
+		BoolControl(uint16_t locX, uint16_t locY, bool* valuePointer, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL);
 		
 		/**
 		 * Method used for drawing of the BoolControl.

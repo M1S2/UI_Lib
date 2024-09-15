@@ -6,14 +6,14 @@
 #include <string.h>
 
 template <int StringLength>
-Label<StringLength>::Label(unsigned char locX, unsigned char locY, const char* text) : UIElement(locX, locY, UI_INDICATOR)
+Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text) : UIElement(locX, locY, UI_INDICATOR)
 {
 	SetText(text);
 	_font = NULL;
 }
 
 template <int StringLength>
-Label<StringLength>::Label(unsigned char locX, unsigned char locY, const char* text, const GFXfont* font) : UIElement(locX, locY, UI_INDICATOR)
+Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, const GFXfont* font) : UIElement(locX, locY, UI_INDICATOR)
 {
 	SetText(text);
 	_font = font;

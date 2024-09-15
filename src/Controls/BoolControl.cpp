@@ -4,7 +4,7 @@
 
 #include "Controls/BoolControl.h"
 
-BoolControl::BoolControl(unsigned char locX, unsigned char locY, bool* valuePointer, void* controlContext, void(*onValueChanged)(void* controlContext)) : BoolIndicator(locX, locY, valuePointer)
+BoolControl::BoolControl(uint16_t locX, uint16_t locY, bool* valuePointer, void* controlContext, void(*onValueChanged)(void* controlContext)) : BoolIndicator(locX, locY, valuePointer)
 {
 	Type = UI_CONTROL;
 	_controlContext = controlContext;

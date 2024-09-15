@@ -8,6 +8,7 @@
 
 #include "UIElementType.h"
 #include "Keys.h"
+#include <stdint.h>
 #include <Adafruit_GFX.h>
 
 #include "Fonts/FreeSans12pt7b.h"
@@ -29,10 +30,10 @@ class UIElement
 {
 	public:
 		UIElementType Type;			/**< Element type (control, indicator, container) */
-		unsigned char LocX;			/**< X Location of the upper left corner of the UIElement */
-		unsigned char LocY;			/**< Y Location of the upper left corner of the UIElement */
-		unsigned char Width;		/**< Drawing width of the UIElement */
-		unsigned char Height;		/**< Drawing height of the UIElement */
+		uint16_t LocX;				/**< X Location of the upper left corner of the UIElement */
+		uint16_t LocY;				/**< Y Location of the upper left corner of the UIElement */
+		uint16_t Width;				/**< Drawing width of the UIElement */
+		uint16_t Height;			/**< Drawing height of the UIElement */
 		bool Visible;				/**< The UIElement is only drawn if the visibility is set to true */
 		UIElement* Parent;			/**< Parent UIElement that this UIElement belongs to */
 		UIElement* ActiveChild;		/**< Child element that is currently active (receiving all key inputs). This property is only set for elements that contain children (mostly containers). Simple controls or indicators should set this to NULL. */
@@ -54,7 +55,7 @@ class UIElement
 		 * @param locY Y Location of the upper left corner of the UIElement
 		 * @param type Element type (control, indicator, container)
 		 */
-		UIElement(unsigned char locX, unsigned char locY, UIElementType type)
+		UIElement(uint16_t locX, uint16_t locY, UIElementType type)
 		{
 			LocX = locX;
 			LocY = locY;

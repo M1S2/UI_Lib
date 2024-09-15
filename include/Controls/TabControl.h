@@ -22,7 +22,7 @@ class TabControl : public UIElement
 		char _headers[MAX_TABCONTROL_TABS][MAX_HEADER_LENGTH];		/**< Array with all tab page tab header strings. */
 		int _numTabs;												/**< Number of Tabs. */
 		int _selectedTabIndex;										/**< Index of the currently selected tab. */
-		unsigned char _tabWidth;									/**< Width of the Tabs in pixel. */
+		uint16_t _tabWidth;											/**< Width of the Tabs in pixel. */
 		
 		void* _controlContext;										/**< Context pointer that is returned with the _onSelectedTabChanged function pointer */
 		void(*_onSelectedTabChanged)(void* controlContext);			/**< Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed. */
@@ -39,7 +39,7 @@ class TabControl : public UIElement
 		 * @param controlContext Context pointer that is returned with the _onSelectedTabChanged function pointer
 		 * @param onSelectedTabChanged Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed.
 		 */
-		TabControl(unsigned char locX, unsigned char locY, unsigned char width, unsigned char height, unsigned char tabWidth, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL);
+		TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint16_t tabWidth, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL);
 	
 		/**
 		 * Method used for drawing of the TabControl.

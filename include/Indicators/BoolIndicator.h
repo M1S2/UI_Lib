@@ -25,7 +25,7 @@ class BoolIndicator : public UIElement
 		 * @param locY Y Location of the upper left corner of the BooleanIndicator
 		 * @param valuePointer Pointer to the boolean variable that is shown by this indicator.
 		 */
-		BoolIndicator(unsigned char locX, unsigned char locY, bool* valuePointer);
+		BoolIndicator(uint16_t locX, uint16_t locY, bool* valuePointer);
 		
 		/**
 		 * Method used for drawing of the BooleanIndicator.

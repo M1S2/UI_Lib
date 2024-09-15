@@ -4,7 +4,7 @@
 
 #include "Indicators/Icon.h"
 
-Icon::Icon(unsigned char locX, unsigned char locY, unsigned char iconWidth, unsigned char iconHeight, const uint8_t* iconBits) : UIElement(locX, locY, UI_INDICATOR)
+Icon::Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits) : UIElement(locX, locY, UI_INDICATOR)
 {
 	Width = iconWidth;
 	Height = iconHeight;

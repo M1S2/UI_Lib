@@ -31,7 +31,7 @@ class EnumIndicator : public UIElement
 		 * @param enumNames Pointer to an array of char pointers containing the display names for all enumeration values. The number of elements in this array must be at least the number of enum values.
 		 * @param numEnumValues Number of enumeration values. This number must match the real number of enum values in T.
 		 */
-		EnumIndicator(unsigned char locX, unsigned char locY, T* valuePointer, const char** enumNames, uint8_t numEnumValues);
+		EnumIndicator(uint16_t locX, uint16_t locY, T* valuePointer, const char** enumNames, uint8_t numEnumValues);
 		
 		/**
 		 * Method used for drawing of the EnumIndicator.

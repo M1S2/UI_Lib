@@ -24,7 +24,7 @@ class ContainerList : public Container
 		 * @param width Drawing width of the ContainerList
 		 * @param height Drawing height of the ContainerList
 		 */
-		ContainerList(unsigned char locX, unsigned char locY, unsigned char width, unsigned char height);
+		ContainerList(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height);
 		
 		/**
 		 * Method used for drawing of the ContainerList.

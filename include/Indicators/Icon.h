@@ -26,7 +26,7 @@ class Icon : public UIElement
  		 * @param iconHeight Drawing height of the Icon
 		 * @param iconBits Pointer to the array containing the icon data. This must be stored in Progmem. Use the following declaration: `unsigned char icon_<iconName>_bits[] PROGMEM = { ... }`
 		 */
-		Icon(unsigned char locX, unsigned char locY, unsigned char iconWidth, unsigned char iconHeight, const uint8_t* iconBits);
+		Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits);
 		
 		/**
 		 * Method used for drawing of the Icon.

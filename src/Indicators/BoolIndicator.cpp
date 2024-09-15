@@ -4,9 +4,9 @@
 
 #include "Indicators/BoolIndicator.h"
 
-BoolIndicator::BoolIndicator(unsigned char locX, unsigned char locY, bool* valuePointer) : UIElement(locX, locY, UI_INDICATOR)
+BoolIndicator::BoolIndicator(uint16_t locX, uint16_t locY, bool* valuePointer) : UIElement(locX, locY, UI_INDICATOR)
 {
-	Width = 25;
+	Width = 50;
 	_valuePointer = valuePointer;
 }
 

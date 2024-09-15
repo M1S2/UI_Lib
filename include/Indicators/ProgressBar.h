@@ -33,7 +33,7 @@ class ProgressBar : public UIElement
 		ProgressBarOrigin_t _origin;	/**< Origin position of this progress bar. See the ProgressBarOrigin enumeration for more details on the different options. */
 		T _tickIncrement;				/**< Distance between tick lines drawn above the progress bar. Set this to 0 (or negative) to disable ticks. */
 
-		unsigned char _originXCoord;	/**< X coordinate of the origin calculated on construction. */
+		uint16_t _originXCoord;	/**< X coordinate of the origin calculated on construction. */
 		
 		/**
 		 * Calculate the X coordinate of the value on the progress bar.
@@ -41,7 +41,7 @@ class ProgressBar : public UIElement
 		 * @param value value for which the X coordinate should be calculated.
 		 * @return Calculated X coordinate
 		 */
-		unsigned char xCoordinateFromValue(T value);
+		uint16_t xCoordinateFromValue(T value);
 
 	public:
 	
@@ -57,7 +57,7 @@ class ProgressBar : public UIElement
 		 * @param origin Origin position of this progress bar. See the ProgressBarOrigin enumeration for more details on the different options.
 		 * @param tickIncrement Distance between tick lines drawn above the progress bar. Set this to 0 (or negative) to disable ticks.
 		 */
-		ProgressBar(unsigned char locX, unsigned char locY, unsigned char width, unsigned char height, T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement);
+		ProgressBar(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement);
 		
 		/**
 		 * Method used for drawing of the ProgressBar.

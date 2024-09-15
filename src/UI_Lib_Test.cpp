@@ -26,7 +26,7 @@ void OnButtonReset(void* context);
 void OnMsgOk(void* context);
 void OnShowError(void* context);
 
-#define DISPLAY_WIDTH	250
+#define DISPLAY_WIDTH	320
 #define DISPLAY_HEIGHT	240
 
 #define TAB_WIDTH	70
