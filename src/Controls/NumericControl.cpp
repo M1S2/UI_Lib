@@ -34,10 +34,17 @@ void NumericControl<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool isFirst
 		NumericIndicator<T, stringBufferLength>::Draw(gfx, isFirstPage);
 		
 		if(IsEditMode)
-		{																								 
-			uint8_t cursorDigitIndex = (-CurrentDigitPosition + (this->_numDigits - this->_numFractionalDigits)) + (((this->_numFractionalDigits + this->_unitPrefixPower) == 0 && this->_numFractionalDigits != 0) ? 1 : 0);	// if (this->_numFractionalDigits + this->_unitPrefixPower) == 0,  no comma is available
-			uint8_t cursorXpos = this->LocX + cursorDigitIndex * 6 + (CurrentDigitPosition < this->_unitPrefixPower ? 3 : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
-			gfx->drawFastHLine(cursorXpos, this->LocY + this->Height, 5, DEFAULT_UI_ELEMENT_COLOR_CONTRAST);		// Draw cursor
+		{	
+			uint16_t character_width, dot_width;
+			gfx->getTextBounds("0", 0, 0, nullptr, nullptr, &character_width, nullptr);
+			gfx->getTextBounds(".", 0, 0, nullptr, nullptr, &dot_width, nullptr);
+			character_width += 2;	// some space between the characters
+			dot_width += 4;			// some space between the dot and the characters
+
+			uint8_t cursorDigitIndex = (-CurrentDigitPosition + (this->_numDigits - this->_numFractionalDigits)) + (((this->_numFractionalDigits + this->_unitPrefixPower) == 0 && this->_numFractionalDigits != 0) ? 1 : 0) - 1;	// if (this->_numFractionalDigits + this->_unitPrefixPower) == 0,  no comma is available
+			uint16_t cursorXpos = this->LocX + 5 + cursorDigitIndex * character_width + (CurrentDigitPosition < this->_unitPrefixPower ? dot_width : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
+
+			gfx->fillRect(cursorXpos, this->LocY + this->Height - 1, character_width, 2, DEFAULT_UI_ELEMENT_COLOR_CONTRAST);		// Draw cursor
 
 			gfx->setTextColor(DEFAULT_UI_ELEMENT_COLOR);
 		}

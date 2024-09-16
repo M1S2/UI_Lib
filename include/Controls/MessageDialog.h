@@ -15,6 +15,10 @@
 
 #define MAX_MESSAGEDIALOG_STRING_LENGTH		55			/**< Default string length for the message dialog text. */
 
+#define MSG_INFO_COLOR		RGB565(0x00, 0x66, 0xCC)
+#define MSG_WARNING_COLOR	RGB565(0xFF, 0xFF, 0x00)
+#define MSG_ERR_COLOR		RGB565(0xFF, 0x00, 0x00)
+
 /**
  * Available message dialog severity types.
  */

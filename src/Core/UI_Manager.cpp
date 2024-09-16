@@ -13,6 +13,7 @@ UI_Manager::UI_Manager()
 
 void UI_Manager::Init(Adafruit_GFX* gfx)
 {
+	gfx->fillScreen(BACKGROUND_COLOR);
 	gfx->setTextColor(DEFAULT_UI_ELEMENT_COLOR);
 	gfx->setFont(DEFAULT_FONT);
 }

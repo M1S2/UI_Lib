@@ -71,6 +71,14 @@ void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool isFir
 {
 	if (Visible)
 	{
+		if(_firstDraw)
+		{
+			uint16_t character_width, base_unit_width;
+			gfx->getTextBounds("0", 0, 0, nullptr, nullptr, &character_width, nullptr);
+			gfx->getTextBounds(_baseUnit, 0, 0, nullptr, nullptr, &base_unit_width, nullptr);
+			Width = (_numDigits + 2) * character_width + base_unit_width + 10;		// + 2 because (dot between digits and one unit prefix), + 10 as margin
+		}
+
 		if (isFirstPage)
 		{
 			_valueDraw = *_valuePointer;

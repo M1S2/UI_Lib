@@ -17,7 +17,7 @@ const char* TestEnumNames[] = { "Test A", "Test B", "Test C" };
 UI_Manager ui_Manager;
 bool boolVal1;
 TestEnum enumVal1;
-float numVal1 = 23.456;
+float numVal1 = 223.456;
 int numVal2 = 123;
 
 void OnBoolVal1Changed(void* context);
@@ -52,7 +52,7 @@ Label<10> labelNum(X_COLUMN1, Y_ROW1, "Numerics");
 NumericIndicator<int> numInd2(X_COLUMN1, Y_ROW2, &numVal2, "A", 5000, 0);
 NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 3);
 NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -10, 2000, 3, &numVal1, &OnNumVal1Changed);
-ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, 100, 10, &numVal1, -10, 2000, PROGRESSBAR_ORIGIN_ZERO, 0);
+ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, 70, 20, &numVal1, -10, 2000, PROGRESSBAR_ORIGIN_ZERO, 0);
 ContainerPage page_numeric;
 
 ButtonControlDefault buttonReset(X_COLUMN1, Y_ROW1, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "Reset", NULL, &OnButtonReset);
@@ -65,7 +65,7 @@ ContainerPage page_dialogs;
 TabControl tabControl(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_WIDTH);
 
 ContainerPage mainPage;
-LabelDefault labelUILib(185, Y_ROW1, "UI LIB", &FreeMono18pt7b);
+LabelDefault labelUILib(185, Y_ROW1, "UI LIB", &FreeMono18pt7b, RGB565(0xFF, 0x88, 00));
 Icon speedIcon(DISPLAY_WIDTH - 25, Y_ROW3, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 
 void OnBoolVal1Changed(void* context)

@@ -53,14 +53,17 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
 		itoa(_maxValue, buffer, 10);
 		gfx->setCursor(xCoordinateFromValue(_maxValue) + 3, LocY + DEFAULT_FONT_OFFSET_Y_BASELINE);
 		gfx->print(buffer);
+
 		itoa(_minValue, buffer, 10);
-		gfx->setCursor(xCoordinateFromValue(_minValue) - 15, LocY + DEFAULT_FONT_OFFSET_Y_BASELINE);
+		uint16_t minValueTextWidth;
+		gfx->getTextBounds(buffer, 0, 0, nullptr, nullptr, &minValueTextWidth, nullptr);
+		gfx->setCursor(xCoordinateFromValue(_minValue) - 3 - minValueTextWidth, LocY + DEFAULT_FONT_OFFSET_Y_BASELINE);
 		gfx->print(buffer);
 
 		// Change back font to previous font
 		//gfx->setFont(DEFAULT_FONT);
 
-		gfx->drawRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, DEFAULT_UI_ELEMENT_COLOR);
+		gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, DEFAULT_UI_ELEMENT_COLOR);
 		
 		if(_tickIncrement > 0)			// Use _tickIncrement<=0 to disable ticks
 		{

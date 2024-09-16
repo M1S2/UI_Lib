@@ -16,9 +16,12 @@
 #define DEFAULT_UI_ELEMENT_WIDTH	70			/**< Default width for an UIElement */
 #define DEFAULT_UI_ELEMENT_HEIGHT	20			/**< Default height for an UIElement */
 
-#define BACKGROUND_COLOR					0x0000				/**< Background color (black) */
-#define DEFAULT_UI_ELEMENT_COLOR			0xFFFF				/**< Default UIElement color (white) */	
-#define DEFAULT_UI_ELEMENT_COLOR_CONTRAST	BACKGROUND_COLOR	/**< Default UIElement contrast color (black) */	
+// https://forum.arduino.cc/t/solved-rgb-in-rgb565-umwandeln-und-mit-0x-in-eine-variable-schreiben/1146991/2
+#define RGB565(r, g, b) ((((r)& 0xF8) << 8) | (((g) & 0xFC) << 3) | (((b) & 0xF8) >> 3))
+
+#define BACKGROUND_COLOR					RGB565(0, 0, 0)				/**< Background color (black) */
+#define DEFAULT_UI_ELEMENT_COLOR			RGB565(0, 0xF7, 0)			/**< Default UIElement color (white) */	
+#define DEFAULT_UI_ELEMENT_COLOR_CONTRAST	BACKGROUND_COLOR			/**< Default UIElement contrast color (black) */	
 
 #define DEFAULT_FONT 						&FreeSans12pt7b
 #define DEFAULT_FONT_OFFSET_Y_BASELINE		18

@@ -10,13 +10,15 @@ Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text) : UIE
 {
 	SetText(text);
 	_font = NULL;
+	_color = DEFAULT_UI_ELEMENT_COLOR;
 }
 
 template <int StringLength>
-Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, const GFXfont* font) : UIElement(locX, locY, UI_INDICATOR)
+Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, const GFXfont* font, uint16_t color) : UIElement(locX, locY, UI_INDICATOR)
 {
 	SetText(text);
 	_font = font;
+	_color = color;
 }
 
 template <int StringLength>
@@ -33,14 +35,15 @@ void Label<StringLength>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
 			gfx->getTextBounds("A", 0, 0, &x, &y, &w, &h);
 			font_y_offset = h;
 		}
-		
 		gfx->setCursor(LocX, LocY + font_y_offset);
+		gfx->setTextColor(_color);
 		gfx->print(Text);
 		
 		if(_font !=NULL) 
 		{ 
 			gfx->setFont(DEFAULT_FONT);
 		}
+		gfx->setTextColor(DEFAULT_UI_ELEMENT_COLOR);
 	}
 }
 

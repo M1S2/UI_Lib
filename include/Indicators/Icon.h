@@ -15,6 +15,7 @@ class Icon : public UIElement
 {
 	private:
 		const uint8_t* _iconBits;			/**< Pointer to the array containing the icon data. This must be stored in Progmem. Use the following declaration: `unsigned char icon_<iconName>_bits[] PROGMEM = { ... }` */
+		uint16_t _color;					/**< Color that is used to draw the Icon. The color is only used to draw this Icon. All other UIElements are using the default color again. */
 	
 	public:
 	
@@ -25,8 +26,9 @@ class Icon : public UIElement
 		 * @param iconWidth Drawing width of the Icon
  		 * @param iconHeight Drawing height of the Icon
 		 * @param iconBits Pointer to the array containing the icon data. This must be stored in Progmem. Use the following declaration: `unsigned char icon_<iconName>_bits[] PROGMEM = { ... }`
+		 * @param color Color that is used to draw the Icon. The color is only used to draw this Icon. All other UIElements are using the default color again.
 		 */
-		Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits);
+		Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits, uint16_t color = DEFAULT_UI_ELEMENT_COLOR);
 		
 		/**
 		 * Method used for drawing of the Icon.
