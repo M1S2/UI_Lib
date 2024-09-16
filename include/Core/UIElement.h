@@ -19,12 +19,12 @@
 // https://forum.arduino.cc/t/solved-rgb-in-rgb565-umwandeln-und-mit-0x-in-eine-variable-schreiben/1146991/2
 #define RGB565(r, g, b) ((((r)& 0xF8) << 8) | (((g) & 0xFC) << 3) | (((b) & 0xF8) >> 3))
 
-#define BACKGROUND_COLOR					RGB565(0, 0, 0)				/**< Background color (black) */
-#define DEFAULT_UI_ELEMENT_COLOR			RGB565(0, 0xF7, 0)			/**< Default UIElement color (white) */	
-#define DEFAULT_UI_ELEMENT_COLOR_CONTRAST	BACKGROUND_COLOR			/**< Default UIElement contrast color (black) */	
+#define UI_LIB_COLOR_BACKGROUND					RGB565(0x00, 0x00, 0x00)	/**< Background color (black) */
+#define UI_LIB_COLOR_FOREGROUND					RGB565(0x00, 0xF7, 0x00)	/**< Default UIElement color (white) */	
+#define UI_LIB_COLOR_CONTRAST					UI_LIB_COLOR_BACKGROUND		/**< Default UIElement contrast color (black) */	
 
-#define DEFAULT_FONT 						&FreeSans12pt7b
-#define DEFAULT_FONT_OFFSET_Y_BASELINE		18
+#define UI_LIB_DEFAULT_FONT 					&FreeSans12pt7b
+#define UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE	18
 
 /**
  * Abstract base class for all user interface elements (controls, indicators, containers).
@@ -73,9 +73,9 @@ class UIElement
 		 * Virtual method used for drawing of the UIElement.
 		 * This method must be overwritten in all derived classes.
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
-		 * @param isFirstPage This parameter should be only set to true on the first iteration of the u8g_lib picture loop. It is used internally by the controls and indicators to update some variables on each redraw.
+		 * @param wasScreenCleared This parameter indicates that the complete screen was cleared. Draw everything again.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx, bool isFirstPage) = 0;
+		virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) = 0;
 		
 		/**
 		 * Process the given key.

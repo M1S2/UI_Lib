@@ -40,14 +40,14 @@ class Label : public UIElement
 		 * @param font Font that is used to draw the Label. The font is only used to draw this Label. All other UIElements are using the default font again.
 		 * @param color Text color that is used to draw the Label. The color is only used to draw this Label. All other UIElements are using the default color again.
 		 */
-		Label(uint16_t locX, uint16_t locY, const char* text, const GFXfont* font, uint16_t color = DEFAULT_UI_ELEMENT_COLOR);
+		Label(uint16_t locX, uint16_t locY, const char* text, const GFXfont* font, uint16_t color = UI_LIB_COLOR_FOREGROUND);
 		
 		/**
 		 * Method used for drawing of the Label.
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
-		 * @param isFirstPage This parameter should be only set to true on the first iteration of the u8g_lib picture loop. It is used internally by the controls and indicators to update some variables on each redraw.
+		 * @param wasScreenCleared This parameter indicates that the complete screen was cleared. Draw everything again.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx, bool isFirstPage) override;
+		virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) override;
 		
 		/**
 		 * Change the string that is drawn to the screen by this Label. 

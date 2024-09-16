@@ -11,8 +11,8 @@ MessageDialog<messageLength>::MessageDialog(uint16_t locX, uint16_t locY, uint16
 	_page(),
 	_severityIcon(locX, locY, icon_info_width, icon_info_height, (severity == MSG_INFO ? icon_info_bits : (severity == MSG_WARNING ? icon_warning_bits : icon_error_bits)), (severity == MSG_INFO ? MSG_INFO_COLOR : (severity == MSG_WARNING ? MSG_WARNING_COLOR : MSG_ERR_COLOR))),
 	_message(locX + icon_info_width + 5, locY, message),
-	_buttonOk(locX + width / 2 - 20 - (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_FONT_OFFSET_Y_BASELINE - 4, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "OK", controlContext, onOkClick),
-	_buttonCancel(locX + width / 2 - 20 + (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_FONT_OFFSET_Y_BASELINE - 4, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "Cancel", controlContext, onCancelClick)
+	_buttonOk(locX + width / 2 - 20 - (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE - 4, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "OK", controlContext, onOkClick),
+	_buttonCancel(locX + width / 2 - 20 + (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE - 4, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "Cancel", controlContext, onCancelClick)
 {
 	Width = width;
 	Height = height;	
@@ -37,9 +37,10 @@ MessageDialog<messageLength>::MessageDialog(uint16_t locX, uint16_t locY, uint16
 }
 
 template <int messageLength>
-void MessageDialog<messageLength>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void MessageDialog<messageLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
-	_page.Draw(gfx, isFirstPage);
+	gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UI_LIB_COLOR_BACKGROUND);
+	_page.Draw(gfx, wasScreenCleared);
 }
 
 template <int messageLength>

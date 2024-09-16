@@ -17,21 +17,23 @@ NumericControl<T, stringBufferLength>::NumericControl(uint16_t locX, uint16_t lo
 }
 
 template <class T, int stringBufferLength>
-void NumericControl<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void NumericControl<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	if (this->Visible)
 	{
+		gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UI_LIB_COLOR_BACKGROUND);
+
 		if (IsEditMode)
 		{
-			gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, DEFAULT_UI_ELEMENT_COLOR);
-			gfx->setTextColor(DEFAULT_UI_ELEMENT_COLOR_CONTRAST);
+			gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UI_LIB_COLOR_FOREGROUND);
+			gfx->setTextColor(UI_LIB_COLOR_CONTRAST);
 		}	
 		else 
 		{
-			gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, DEFAULT_UI_ELEMENT_COLOR); 
+			gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UI_LIB_COLOR_FOREGROUND); 
 		}
 		
-		NumericIndicator<T, stringBufferLength>::Draw(gfx, isFirstPage);
+		NumericIndicator<T, stringBufferLength>::Draw(gfx, wasScreenCleared);
 		
 		if(IsEditMode)
 		{	
@@ -44,9 +46,9 @@ void NumericControl<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool isFirst
 			uint8_t cursorDigitIndex = (-CurrentDigitPosition + (this->_numDigits - this->_numFractionalDigits)) + (((this->_numFractionalDigits + this->_unitPrefixPower) == 0 && this->_numFractionalDigits != 0) ? 1 : 0) - 1;	// if (this->_numFractionalDigits + this->_unitPrefixPower) == 0,  no comma is available
 			uint16_t cursorXpos = this->LocX + 5 + cursorDigitIndex * character_width + (CurrentDigitPosition < this->_unitPrefixPower ? dot_width : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
 
-			gfx->fillRect(cursorXpos, this->LocY + this->Height - 1, character_width, 2, DEFAULT_UI_ELEMENT_COLOR_CONTRAST);		// Draw cursor
+			gfx->fillRect(cursorXpos, this->LocY + this->Height - 1, character_width, 2, UI_LIB_COLOR_CONTRAST);		// Draw cursor
 
-			gfx->setTextColor(DEFAULT_UI_ELEMENT_COLOR);
+			gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
 		}
 	}
 }

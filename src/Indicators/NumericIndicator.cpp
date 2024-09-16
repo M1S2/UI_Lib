@@ -67,7 +67,7 @@ NumericIndicator<T, stringBufferLength>::NumericIndicator(uint16_t locX, uint16_
 }
 
 template <class T, int stringBufferLength>
-void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	if (Visible)
 	{
@@ -79,29 +79,37 @@ void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool isFir
 			Width = (_numDigits + 2) * character_width + base_unit_width + 10;		// + 2 because (dot between digits and one unit prefix), + 10 as margin
 		}
 
-		if (isFirstPage)
+		// If the Draw() is called on a object of the NumericIndicator, the Type is UI_INDICATOR
+		// If the Draw() is called from an NumericControl object, the Type was set to UI_CONTROL there
+		if(this->Type == UI_INDICATOR)
 		{
-			_valueDraw = *_valuePointer;
-			if (_lastValueDraw != _valueDraw || _firstDraw)
-			{
-				_lastValueDraw = _valueDraw;
-				calculateDisplayValue();
-
-				//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item
-				char formatStringBuffer[10];
-				sprintf(formatStringBuffer, "%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
-				sprintf(_stringDrawBuffer, formatStringBuffer, fabs(_displayValue));
-				_firstDraw = false;
-			}
+			gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
 		}
 
-		gfx->setCursor(LocX + 5, LocY + DEFAULT_FONT_OFFSET_Y_BASELINE);
+		_valueDraw = *_valuePointer;
+		if (_lastValueDraw != _valueDraw || _firstDraw)
+		{
+			_lastValueDraw = _valueDraw;
+			calculateDisplayValue();
+
+			//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item
+			char formatStringBuffer[10];
+			sprintf(formatStringBuffer, "%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
+			sprintf(_stringDrawBuffer, formatStringBuffer, fabs(_displayValue));
+			_firstDraw = false;
+		}
+
+		gfx->setCursor(LocX + 5, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
 		gfx->print(_stringDrawBuffer);				// Draw value without minus sign
 		if (_displayValue < 0) 
 		{ 
 			// Draw minus sign
-			gfx->setCursor(LocX, LocY + DEFAULT_FONT_OFFSET_Y_BASELINE);
+			gfx->setCursor(LocX, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
 			gfx->print("-"); 
 		}
+	}
+	else
+	{
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
 	}
 }

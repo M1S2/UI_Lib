@@ -22,6 +22,7 @@ class TabControl : public UIElement
 		char _headers[MAX_TABCONTROL_TABS][MAX_HEADER_LENGTH];		/**< Array with all tab page tab header strings. */
 		int _numTabs;												/**< Number of Tabs. */
 		int _selectedTabIndex;										/**< Index of the currently selected tab. */
+		int _lastDrawnTabIndex;										/**< Index of the last drawn tab */
 		uint16_t _tabWidth;											/**< Width of the Tabs in pixel. */
 		
 		void* _controlContext;										/**< Context pointer that is returned with the _onSelectedTabChanged function pointer */
@@ -44,9 +45,9 @@ class TabControl : public UIElement
 		/**
 		 * Method used for drawing of the TabControl.
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
-		 * @param isFirstPage This parameter should be only set to true on the first iteration of the u8g_lib picture loop. It is used internally by the controls and indicators to update some variables on each redraw.
+		 * @param wasScreenCleared This parameter indicates that the complete screen was cleared. Draw everything again.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx, bool isFirstPage) override;
+		virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) override;
 		
 		/**
 		 * Process the given key.

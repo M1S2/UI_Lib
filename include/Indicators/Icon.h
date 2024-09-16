@@ -28,14 +28,14 @@ class Icon : public UIElement
 		 * @param iconBits Pointer to the array containing the icon data. This must be stored in Progmem. Use the following declaration: `unsigned char icon_<iconName>_bits[] PROGMEM = { ... }`
 		 * @param color Color that is used to draw the Icon. The color is only used to draw this Icon. All other UIElements are using the default color again.
 		 */
-		Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits, uint16_t color = DEFAULT_UI_ELEMENT_COLOR);
+		Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits, uint16_t color = UI_LIB_COLOR_FOREGROUND);
 		
 		/**
 		 * Method used for drawing of the Icon.
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
-		 * @param isFirstPage This parameter should be only set to true on the first iteration of the u8g_lib picture loop. It is used internally by the controls and indicators to update some variables on each redraw.
+		 * @param wasScreenCleared This parameter indicates that the complete screen was cleared. Draw everything again.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx, bool isFirstPage) override;
+		virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) override;
 };
 
 #endif /* ICON_H_ */

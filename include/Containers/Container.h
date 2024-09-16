@@ -29,9 +29,9 @@ class Container : public UIElement
 		/**
 		 * Virtual method used for drawing of the container UIElement.
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
-		 * @param isFirstPage This parameter should be only set to true on the first iteration of the u8g_lib picture loop. It is used internally by the controls and indicators to update some variables on each redraw.
+		 * @param wasScreenCleared This parameter indicates that the complete screen was cleared. Draw everything again.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx, bool isFirstPage) { }  //= 0;
+		virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) { }  //= 0;
 			
 		/**
 		 * Process the given key.

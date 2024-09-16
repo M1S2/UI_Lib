@@ -17,21 +17,27 @@ ButtonControl<StringLength>::ButtonControl(uint16_t locX, uint16_t locY, uint16_
 }
 
 template <int StringLength>
-void ButtonControl<StringLength>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void ButtonControl<StringLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	if (Visible)
 	{
-		gfx->drawFastHLine(LocX - 1, LocY - 1, 3, DEFAULT_UI_ELEMENT_COLOR);					// Upper left corner
-		gfx->drawFastVLine(LocX - 1, LocY - 1, 3, DEFAULT_UI_ELEMENT_COLOR);
-		gfx->drawFastHLine(LocX + Width - 2, LocY - 1, 3, DEFAULT_UI_ELEMENT_COLOR);			// Upper right corner
-		gfx->drawFastVLine(LocX + Width, LocY - 1, 3, DEFAULT_UI_ELEMENT_COLOR);
-		gfx->drawFastHLine(LocX - 1, LocY + Height, 3, DEFAULT_UI_ELEMENT_COLOR);				// Lower left corner
-		gfx->drawFastVLine(LocX - 1, LocY + Height - 2, 3, DEFAULT_UI_ELEMENT_COLOR);
-		gfx->drawFastHLine(LocX + Width - 2, LocY + Height, 3, DEFAULT_UI_ELEMENT_COLOR);		// Lower right corner		
-		gfx->drawFastVLine(LocX + Width, LocY + Height - 2, 3, DEFAULT_UI_ELEMENT_COLOR);
-		gfx->setTextColor(DEFAULT_UI_ELEMENT_COLOR);
-		gfx->setCursor(LocX, LocY + DEFAULT_FONT_OFFSET_Y_BASELINE);
+		gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UI_LIB_COLOR_BACKGROUND);
+		
+		gfx->drawFastHLine(LocX - 1, LocY - 1, 5, UI_LIB_COLOR_FOREGROUND);					// Upper left corner
+		gfx->drawFastVLine(LocX - 1, LocY - 1, 5, UI_LIB_COLOR_FOREGROUND);
+		gfx->drawFastHLine(LocX + Width - 4, LocY - 1, 5, UI_LIB_COLOR_FOREGROUND);			// Upper right corner
+		gfx->drawFastVLine(LocX + Width, LocY - 1, 5, UI_LIB_COLOR_FOREGROUND);
+		gfx->drawFastHLine(LocX - 1, LocY + Height, 5, UI_LIB_COLOR_FOREGROUND);				// Lower left corner
+		gfx->drawFastVLine(LocX - 1, LocY + Height - 4, 5, UI_LIB_COLOR_FOREGROUND);
+		gfx->drawFastHLine(LocX + Width - 4, LocY + Height, 5, UI_LIB_COLOR_FOREGROUND);		// Lower right corner		
+		gfx->drawFastVLine(LocX + Width, LocY + Height - 4, 5, UI_LIB_COLOR_FOREGROUND);
+		gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
+		gfx->setCursor(LocX, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
 		gfx->print(_buttonText);
+	}
+	else
+	{
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
 	}
 }
 

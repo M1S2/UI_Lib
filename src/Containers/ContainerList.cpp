@@ -11,12 +11,19 @@ ContainerList::ContainerList(uint16_t locX, uint16_t locY, uint16_t width, uint1
 	LocY = locY;
 	Width = width;
 	Height = height;
+	_lastDrawnItemIndex = -1;
 }
 
-void ContainerList::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void ContainerList::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
+	if(_lastDrawnItemIndex != _selectedItemIndex || wasScreenCleared)
+	{
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		_lastDrawnItemIndex = _selectedItemIndex;
+	}
+
 	UIElement* item = GetSelectedItem();
-	if(item != NULL) { item->Draw(gfx, isFirstPage); }
+	if(item != NULL) { item->Draw(gfx, wasScreenCleared); }
 	
 	// Count visible items
 	int _numVisibleItems = 0;
@@ -31,8 +38,9 @@ void ContainerList::Draw(Adafruit_GFX* gfx, bool isFirstPage)
 	uint16_t scrollBarLeft = LocX + Width - SCROLLBAR_WIDTH - SCROLLBAR_MARGIN;
 	uint16_t scrollBarBoxHeight = Height - 2 * SCROLLBAR_MARGIN;
 	uint16_t scrollBarHeight = scrollBarBoxHeight / _numVisibleItems;
-	gfx->drawRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN, SCROLLBAR_WIDTH, scrollBarBoxHeight, DEFAULT_UI_ELEMENT_COLOR);
-	gfx->fillRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN + ((_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), SCROLLBAR_WIDTH, scrollBarHeight, DEFAULT_UI_ELEMENT_COLOR);
+	
+	gfx->drawRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN, SCROLLBAR_WIDTH, scrollBarBoxHeight, UI_LIB_COLOR_FOREGROUND);
+	gfx->fillRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN + ((_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), SCROLLBAR_WIDTH, scrollBarHeight, UI_LIB_COLOR_FOREGROUND);
 }
 
 bool ContainerList::KeyInput(Keys_t key)

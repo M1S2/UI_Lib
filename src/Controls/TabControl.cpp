@@ -11,41 +11,52 @@ TabControl::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t he
 	Height = height;
 	_numTabs = 0;
 	_selectedTabIndex = 0;
+	_lastDrawnTabIndex = -1;
 	_tabWidth = tabWidth;
 	_controlContext = controlContext;
 	_onSelectedTabChanged = onSelectedTabChanged;
 }
 
-void TabControl::Draw(Adafruit_GFX* gfx, bool isFirstPage) 
+void TabControl::Draw(Adafruit_GFX* gfx, bool wasScreenCleared) 
 {
 	if (Visible)
 	{
-		gfx->drawRect(LocX + _tabWidth - 1, LocY, Width - _tabWidth + 1, Height, DEFAULT_UI_ELEMENT_COLOR);
-		int yTab = LocY;
-		
-		int16_t x, y;
-		uint16_t w, h;
-		gfx->getTextBounds("A", 0, 0, &x, &y, &w, &h);
-		int tabFontHeight = h;
-		int tabHeight = tabFontHeight + 8;
-		
-		for(int i = 0; i < _numTabs; i++)
+		if(_lastDrawnTabIndex != _selectedTabIndex || wasScreenCleared)
 		{
-			if(i == _selectedTabIndex)
-			{
-				gfx->drawRect(LocX, yTab, _tabWidth, tabHeight, DEFAULT_UI_ELEMENT_COLOR);
-				gfx->drawFastVLine(LocX + _tabWidth - 1, yTab + 1, tabHeight - 2, DEFAULT_UI_ELEMENT_COLOR_CONTRAST);
-			}
+			gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+			_lastDrawnTabIndex = _selectedTabIndex;
+
+			gfx->drawRect(LocX + _tabWidth - 1, LocY, Width - _tabWidth + 1, Height, UI_LIB_COLOR_FOREGROUND);
+			int yTab = LocY;
 			
-			if(_headers[i] != NULL) 
+			int16_t x, y;
+			uint16_t w, h;
+			gfx->getTextBounds("A", 0, 0, &x, &y, &w, &h);
+			int tabFontHeight = h;
+			int tabHeight = tabFontHeight + 8;
+			
+			for(int i = 0; i < _numTabs; i++)
 			{
-				gfx->setCursor(LocX + 2, yTab + ((tabHeight - tabFontHeight) / 2) + DEFAULT_FONT_OFFSET_Y_BASELINE);
-				gfx->print(_headers[i]);
+				if(i == _selectedTabIndex)
+				{
+					gfx->drawRect(LocX, yTab, _tabWidth, tabHeight, UI_LIB_COLOR_FOREGROUND);
+					gfx->drawFastVLine(LocX + _tabWidth - 1, yTab + 1, tabHeight - 2, UI_LIB_COLOR_CONTRAST);
+				}
+				
+				if(_headers[i] != NULL) 
+				{
+					gfx->setCursor(LocX + 2, yTab + ((tabHeight - tabFontHeight) / 2) + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
+					gfx->print(_headers[i]);
+				}
+				yTab+=(tabHeight + TABCONTROL_TABPAGE_MARGIN);
 			}
-			yTab+=(tabHeight + TABCONTROL_TABPAGE_MARGIN);
 		}
 		
-		if(_tabContents[_selectedTabIndex] != NULL) { _tabContents[_selectedTabIndex]->Draw(gfx, isFirstPage); }
+		if(_tabContents[_selectedTabIndex] != NULL) { _tabContents[_selectedTabIndex]->Draw(gfx, wasScreenCleared); }
+	}
+	else
+	{
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
 	}
 }
 

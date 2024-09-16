@@ -13,28 +13,38 @@ UI_Manager::UI_Manager()
 
 void UI_Manager::Init(Adafruit_GFX* gfx)
 {
-	gfx->fillScreen(BACKGROUND_COLOR);
-	gfx->setTextColor(DEFAULT_UI_ELEMENT_COLOR);
-	gfx->setFont(DEFAULT_FONT);
+	gfx->fillScreen(UI_LIB_COLOR_BACKGROUND);
+	gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
+	gfx->setFont(UI_LIB_DEFAULT_FONT);
 }
 
-void UI_Manager::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void UI_Manager::Draw(Adafruit_GFX* gfx)
 {
-	gfx->fillScreen(BACKGROUND_COLOR);
+	if(_wasTreeRootChanged)
+	{
+		gfx->fillScreen(UI_LIB_COLOR_BACKGROUND);
+	}
 
 	if (_visualTreeRoot == NULL) { return; }
 	
+	_visualTreeRoot->Draw(gfx, _wasTreeRootChanged);
+	
 	if(_focusElement != NULL && _focusElement->Visible && _focusElement->Type != UI_INDICATOR) 
 	{ 
-		gfx->drawRect(_focusElement->LocX - 1, _focusElement->LocY - 1, _focusElement->Width + 2, _focusElement->Height + 2, DEFAULT_UI_ELEMENT_COLOR); 
+		gfx->drawRect(_focusElement->LocX - 1, _focusElement->LocY - 1, _focusElement->Width + 2, _focusElement->Height + 2, UI_LIB_COLOR_FOREGROUND); 
 	}
-	_visualTreeRoot->Draw(gfx, isFirstPage);
+
+	if(_wasTreeRootChanged)
+	{
+		_wasTreeRootChanged = false;
+	}
 }
 
 void UI_Manager::ChangeVisualTreeRoot(UIElement* visualTreeRoot)
 {
 	_visualTreeRoot = visualTreeRoot;
 	setFocusToLeaf();
+	_wasTreeRootChanged = true;
 }
 
 void UI_Manager::setFocusToLeaf()

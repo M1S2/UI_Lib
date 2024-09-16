@@ -16,7 +16,8 @@ class UI_Manager
 	private:
 		UIElement* _visualTreeRoot;					/**< Root element of the visual tree. This element and all children are drawn to the screen. */
 		UIElement* _focusElement;					/**< Element that has the focus (it is highlited and receives all key inputs). */
-
+		bool _wasTreeRootChanged;					/**< True, if the tree root was currently changed. This is set to false on the first draw then. */
+		
 		/**
 		 * Traverse down the visual tree until an element without a child is reached and focus this element.
 		 */
@@ -36,10 +37,9 @@ class UI_Manager
 
 		/**
 		 * Draw the complete visual tree (_visualTreeRoot and all of its children).
-		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
-		 * @param isFirstPage This parameter should be only set to true on the first iteration of the u8g_lib picture loop. It is used internally by the controls and indicators to update some variables on each redraw.  
+		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing. 
 		 */
-		void Draw(Adafruit_GFX* gfx, bool isFirstPage);
+		void Draw(Adafruit_GFX* gfx);
 
 		/**
 		 * Change the root element of the visual tree. 

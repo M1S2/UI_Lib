@@ -8,7 +8,7 @@
 
 #include "Container.h"
 
-#define SCROLLBAR_WIDTH			4		/**< Width in pixel of the scroll bar on the right side of the container */
+#define SCROLLBAR_WIDTH			6		/**< Width in pixel of the scroll bar on the right side of the container */
 #define SCROLLBAR_MARGIN		2		/**< Margin in pixel between the scroll bar frame and the scroll bar slider */
 
 /**
@@ -16,6 +16,9 @@
  */
 class ContainerList : public Container
 {
+	private:
+		int _lastDrawnItemIndex;		/**< Index of the last item */
+
 	public:
 		/**
 		 * Constructor of the ContainerList.
@@ -29,9 +32,9 @@ class ContainerList : public Container
 		/**
 		 * Method used for drawing of the ContainerList.
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
-		 * @param isFirstPage This parameter should be only set to true on the first iteration of the u8g_lib picture loop. It is used internally by the controls and indicators to update some variables on each redraw.
+		 * @param wasScreenCleared This parameter indicates that the complete screen was cleared. Draw everything again.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx, bool isFirstPage) override;
+		virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) override;
 			
 		/**
 		 * Process the given key.

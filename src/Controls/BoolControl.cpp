@@ -11,12 +11,18 @@ BoolControl::BoolControl(uint16_t locX, uint16_t locY, bool* valuePointer, void*
 	_onValueChanged = onValueChanged;
 }
 
-void BoolControl::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void BoolControl::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	if (Visible)
 	{
-		BoolIndicator::Draw(gfx, isFirstPage);
-		gfx->drawFastHLine(LocX, LocY + Height, Width, DEFAULT_UI_ELEMENT_COLOR);
+		gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UI_LIB_COLOR_BACKGROUND);
+
+		BoolIndicator::Draw(gfx, wasScreenCleared);
+		gfx->drawFastHLine(LocX, LocY + Height, Width, UI_LIB_COLOR_FOREGROUND);
+	}
+	else
+	{
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
 	}
 }
 

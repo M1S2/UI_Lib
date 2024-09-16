@@ -13,13 +13,24 @@ EnumIndicator<T>::EnumIndicator(uint16_t locX, uint16_t locY, T* valuePointer, c
 }
 
 template <class T>
-void EnumIndicator<T>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void EnumIndicator<T>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	if (Visible)
 	{
-		if (isFirstPage) { _valueDraw = *_valuePointer; }
+		// If the Draw() is called on a object of the EnumIndicator, the Type is UI_INDICATOR
+		// If the Draw() is called from an EnumControl object, the Type was set to UI_CONTROL there
+		if(this->Type == UI_INDICATOR)
+		{
+			gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		}
+
+		_valueDraw = *_valuePointer; 
 			
-		gfx->setCursor(LocX, LocY + DEFAULT_FONT_OFFSET_Y_BASELINE);
+		gfx->setCursor(LocX, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
 		gfx->print(_enumNames[_valueDraw]);
+	}
+	else
+	{
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
 	}
 }

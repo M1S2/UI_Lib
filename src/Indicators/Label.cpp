@@ -10,7 +10,7 @@ Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text) : UIE
 {
 	SetText(text);
 	_font = NULL;
-	_color = DEFAULT_UI_ELEMENT_COLOR;
+	_color = UI_LIB_COLOR_FOREGROUND;
 }
 
 template <int StringLength>
@@ -22,11 +22,13 @@ Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, const
 }
 
 template <int StringLength>
-void Label<StringLength>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void Label<StringLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	if (Visible)
 	{
-		int font_y_offset = DEFAULT_FONT_OFFSET_Y_BASELINE;
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+
+		int font_y_offset = UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE;
 		if(_font != NULL) 
 		{
 			gfx->setFont(_font);
@@ -41,9 +43,13 @@ void Label<StringLength>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
 		
 		if(_font !=NULL) 
 		{ 
-			gfx->setFont(DEFAULT_FONT);
+			gfx->setFont(UI_LIB_DEFAULT_FONT);
 		}
-		gfx->setTextColor(DEFAULT_UI_ELEMENT_COLOR);
+		gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
+	}
+	else
+	{
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
 	}
 }
 

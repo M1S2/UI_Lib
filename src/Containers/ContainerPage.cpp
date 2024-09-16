@@ -9,11 +9,11 @@ ContainerPage::ContainerPage()
 	Type = UI_CONTAINER;
 }
 
-void ContainerPage::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void ContainerPage::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	for (int i = 0; i < _numItems; i++)
 	{
-		_items[i]->Draw(gfx, isFirstPage);
+		_items[i]->Draw(gfx, wasScreenCleared);
 	}
 }
 

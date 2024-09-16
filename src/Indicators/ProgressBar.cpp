@@ -28,21 +28,20 @@ ProgressBar<T>::ProgressBar(uint16_t locX, uint16_t locY, uint16_t width, uint16
 }
 
 template <class T>
-void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
+void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	if (Visible)
 	{
-		if (isFirstPage) 
-		{ 
-			_valueDraw = *_valuePointer; 
-			if (_valueDraw > _maxValue) { _valueDraw = _maxValue; }			// Coerce value to be between _minValue and _maxValue
-			else if (_valueDraw < _minValue) { _valueDraw = _minValue; }
-		}
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		
+		_valueDraw = *_valuePointer; 
+		if (_valueDraw > _maxValue) { _valueDraw = _maxValue; }			// Coerce value to be between _minValue and _maxValue
+		else if (_valueDraw < _minValue) { _valueDraw = _minValue; }
 
 		uint16_t valueXCoord = xCoordinateFromValue(_valueDraw);
 		
 		// Draw outer border of progress bar
-		gfx->drawRect(xCoordinateFromValue(_minValue), LocY, Width, Height, DEFAULT_UI_ELEMENT_COLOR);
+		gfx->drawRect(xCoordinateFromValue(_minValue), LocY, Width, Height, UI_LIB_COLOR_FOREGROUND);
 
 		// Change font for min and max value strings
 		//const u8g_fntpgm_uint8_t* tmp_font;
@@ -51,19 +50,19 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
 				
 		char buffer[6];
 		itoa(_maxValue, buffer, 10);
-		gfx->setCursor(xCoordinateFromValue(_maxValue) + 3, LocY + DEFAULT_FONT_OFFSET_Y_BASELINE);
+		gfx->setCursor(xCoordinateFromValue(_maxValue) + 3, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
 		gfx->print(buffer);
 
 		itoa(_minValue, buffer, 10);
 		uint16_t minValueTextWidth;
 		gfx->getTextBounds(buffer, 0, 0, nullptr, nullptr, &minValueTextWidth, nullptr);
-		gfx->setCursor(xCoordinateFromValue(_minValue) - 3 - minValueTextWidth, LocY + DEFAULT_FONT_OFFSET_Y_BASELINE);
+		gfx->setCursor(xCoordinateFromValue(_minValue) - 3 - minValueTextWidth, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
 		gfx->print(buffer);
 
 		// Change back font to previous font
-		//gfx->setFont(DEFAULT_FONT);
+		//gfx->setFont(UI_LIB_DEFAULT_FONT);
 
-		gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, DEFAULT_UI_ELEMENT_COLOR);
+		gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, UI_LIB_COLOR_FOREGROUND);
 		
 		if(_tickIncrement > 0)			// Use _tickIncrement<=0 to disable ticks
 		{
@@ -71,8 +70,12 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool isFirstPage)
 			{
 				int xCoord = xCoordinateFromValue(xVal);
 				int tickLength = (((int)xVal) % 10 == 0 ? 3 : (((int)xVal) % 5 == 0 ? 2 : 1));
-				gfx->drawFastVLine(xCoord, LocY - tickLength, tickLength, DEFAULT_UI_ELEMENT_COLOR);
+				gfx->drawFastVLine(xCoord, LocY - tickLength, tickLength, UI_LIB_COLOR_FOREGROUND);
 			}
 		}
+	}
+	else
+	{
+		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
 	}
 }
