@@ -1,57 +1,48 @@
-/*! @page pageuilib UI_Lib
+# UI_Lib
 
 This is a user interface library for graphical LCDs. 
 It offers many different controls and indicators that can be nested depending on the element types. 
-This readme gives an overview of the available components, the usage of the library and some implementation details.
+This Readme gives an overview of the available components, the usage of the library and some implementation details.
 
 The library uses a Visual Tree concept that is similar to the C# WPF UI organization. 
 There is always one single tree root element that has nested children. 
 There are UI elements that can have multiple children (e.g. pages) or elements that are "leaf" elements not supporting nested children (e.g. numeric controls).
 
-@image html VisualTree.jpg "VisualTree"
+![Visual Tree](Doc/VisualTree.jpg)
 
-@section ui_lib_init_sec Initialization / Setup
-The u8glib library is used for GLCD handling:
+## Initialization / Setup
+The Adafruit GFX library is used for LCD handling:
 
-[GitHub - olikraus/u8glib: Arduino Monochrom Graphics Library for LCDs and OLEDs](https://github.com/olikraus/u8glib)
-
-So the u8glib library must be available in the project. 
+[GitHub - adafruit/Adafruit-GFX-Library](https://github.com/adafruit/Adafruit-GFX-Library)
 
 To initialize the UI_Lib:
-- Create an u8g_t object from the u8glib and call the u8g_InitSPI with the appropriate device and pins.
-- Create an UI_Manager object from the UI_Lib.
-- Call the UI_Manager::Init function of the UI_Manager with the created u8g_t object. 
+- Create an Adafruit display object depending on the used display.
+- Init the display object accordingly.
+- Create an `UI_Manager` object from the UI_Lib.
+- Call the `UI_Manager::Init` function of the UI_Manager with the created Adafruit_GFX object. 
 
 At this point, nothing is displayed yet. There is no visual tree assigned (and created) that can be shown, so create one:
 - Create objects of all UI elements that you want to use to build the user interface.
 - Link all objects to their parent objects (e.g. add a numeric control to the item collection of a page, add the page to a tab control, ...) by using the appropriate functions of the parent controls.
-- Connect the root of the visual tree to the UI_Manager by using the UI_Manager::ChangeVisualTreeRoot method.
-- Call the following construct from the main loop whenever you want to redraw the screen (with `_u8g` being the u8glib handle created above):
-    @code{.cpp}
-    bool isFirstPage = true;
-    u8g_FirstPage(&_u8g);
-    do
-    {
-        UiManager.Draw(&_u8g, isFirstPage);
-        isFirstPage = false;
-    } while ( u8g_NextPage(&_u8g) ); 
-    @endcode
-Now the user interface is shown but no user inputs are processed. You have to feed the UI_Manager::KeyInput function of the UI_Manager whenever a key was pressed. Rotary encoder inputs should also be encoded as key presses (KEYUP, KEYDOWN, KEYOK).
+- Connect the root of the visual tree to the `UI_Manager` by using the `UI_Manager::ChangeVisualTreeRoot` method.
+- Call the `UI_Manager::Draw` method with the previously created display object. You can also draw to a canvas here.
 
-@section ui_lib_available_components_sec Available components
+Now the user interface is shown but no user inputs are processed. You have to feed the `UI_Manager::KeyInput` function of the `UI_Manager` whenever a key was pressed. Rotary encoder inputs should also be encoded as key presses (KEYUP, KEYDOWN, KEYOK).
+
+## Available components
 This section lists all available UI elements (containers, controls, indicators). Base classes are not listed here.
 
-@subsection ui_lib_available_components_containers_sec Containers
+### Containers
 - ContainerList: This container can be used to show one children at a time. The user can scroll though all items one by one. A scroll bar is indicating the position of the currently shown item in the list of items.  
-	- Supports children: Yes (adding with ContainerList::AddItem function)
+	- Supports children: Yes (adding with `ContainerList::AddItem` function)
 	- Supported user inputs: 
 		- KEYUP and KEYDOWN to scroll though the items. 
 - ContainerPage: This container can be used to show all children at the same time. This can be used to draw e.g. multiple controls and indicators on the same page.
-	- Supports children: Yes (adding with ContainerPage::AddItem function)
+	- Supports children: Yes (adding with `ContainerPage::AddItem` function)
 	- Supported user inputs: 
 		- KEYUP and KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
 
-@subsection ui_lib_available_components_controls_sec Controls
+### Controls
 - BoolControl: This control can be used to toggle the value of an boolean variable. 
 	- Supports children: No
 	- Supported user inputs: 
@@ -83,12 +74,12 @@ This section lists all available UI elements (containers, controls, indicators).
 	- Supported user inputs:
 		- KEYLEFT and KEYRIGHT to go to the previous/next tab page. 
 
-@subsection ui_lib_available_components_indicators_sec Indicators
+### Indicators
 - BoolIndicator: This indicator can be used to display the value of an boolean variable ("ON" or "OFF"). 
 	- Supports children: No
 - EnumIndicator: This indicator can be used to display the value from an enumeration variable.
 	- Supports children: No
-- Icon: This indicator can be used to show an icon on the user interface. The icons must be in the .xbm format and located in the program memory (using the U8G_PROGMEM attribute).
+- Icon: This indicator can be used to show an icon on the user interface. The icons must be in the .xbm format and located in the program memory (using the PROGMEM attribute).
 	- Supports children: No
 - Label: This indicator can be used to show a string on the user interface. The Label supports multiline strings (containing line breaks) and different fonts.
 	- Supports children: No
@@ -97,15 +88,15 @@ This section lists all available UI elements (containers, controls, indicators).
 - ProgressBar: This indicator can be used to display a progress bar. It supports different fill modes (origin left, origin right, origin zero) and ticks.
 	- Supports children: No
 
-@section ui_lib_new_component_sec Adding a new component
+## Adding a new component
 Before adding a new component, decide if it will be a container, control or indicator. Then create new .cpp and .h files in the corresponding folder inside the `UI_Lib` folder.
-Also add an include for the .h file to the UI_Elements.h file.
+Also add an include for the .h file to the `UI_Elements.h` file.
 
-@subsection ui_lib_new_component_h_sec .h file
-All user interface elements must be derived from the UIElement class that contains some common parameters like location and size of the element. This class also requires the new element to implement a UI_Manager::Draw function that is used to display the element on screen. Also a UI_Manager::KeyInput function is defined that can be implemented optional (for controls, indicators don't need user interaction).
+### .h file
+All user interface elements must be derived from the `UIElement` class that contains some common parameters like location and size of the element. This class also requires the new element to implement a `UI_Manager::Draw` function that is used to display the element on screen. Also a `UI_Manager::KeyInput` function is defined that can be implemented optional (for controls, indicators don't need user interaction).
 
 The following code snippet shows an example class declaration for an new empty UI element (control).
-@code{.cpp}
+```C++
 #ifndef NEWCONTROL_H_
 #define NEWCONTROL_H_
 #include "../Core/UIElement.h"
@@ -113,26 +104,26 @@ The following code snippet shows an example class declaration for an new empty U
 class NewControl : public UIElement
 {
 protected:
-bool* _valuePointer;
-bool _valueDraw;
+	bool* _valuePointer;
+	bool _valueDraw;
 
 public:
 	NewControl(unsigned char locX, unsigned char locY, bool* valuePointer);
-	virtual void Draw(u8g_t *u8g, bool wasScreenCleared) override;
+	virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) override;
 	virtual bool KeyInput(Keys_t key) override;
 };
 
 #endif /* NEWCONTROL_H_ */ 
-@endcode
+```
 
-@subsection ui_lib_new_component_cpp_sec .cpp file
+### .cpp file
 
 The following code snippet shows an example class definition for the new empty UIElement (control) from above.
 
-Call the UIElement  constructor from this constructor and decide if the element is a container, control or indicator.
-In the UI_Manager::KeyInput function handle each key that is supported by the element and return true to indicate that the key was handled. If you return false from UI_Manager::KeyInput function, the key is propagated to the parent element by the UI_Lib Core.
+Call the `UIElement` constructor from this constructor and decide if the element is a container, control or indicator.
+In the `UI_Manager::KeyInput` function handle each key that is supported by the element and return true to indicate that the key was handled. If you return false from `UI_Manager::KeyInput` function, the key is propagated to the parent element by the UI_Lib Core.
 
-@code{.cpp}
+```C++
 #include "NewControl.h"
 
 NewControl::NewControl(unsigned char locX, unsigned char locY, bool* valuePointer) : UIElement(locX, locY, UI_CONTROL)
@@ -140,11 +131,11 @@ NewControl::NewControl(unsigned char locX, unsigned char locY, bool* valuePointe
 	// Do further constructor tasks here
 }
 
-void NewControl::Draw(u8g_t *u8g, bool wasScreenCleared)
+void NewControl::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	if (Visible)
 	{
-		// Draw the UI element using the u8glib functions
+		// Draw the UI element using the Adafruit_GFX functions
 	}
 }
 
@@ -160,31 +151,31 @@ bool NewControl::KeyInput(Keys_t key)
 			return false;
 	}
 }
-@endcode
+```
 
-@section ui_lib_core_implementation_sec Core Implementation details
-This section gives a short overview of the UI_Manager implementation.
+## Core Implementation details
+This section gives a short overview of the `UI_Manager` implementation.
 
 There are two private variables:
-- UI_Manager::_visualTreeRoot: This is the entry point into the visual tree (representing the layout of the user interface). It can be any object of type UIElement (no matter if it is a container, control or indicator).
-- UI_Manager::_focusElement: Each UIElement has a property UIElement::ActiveChild which is a pointer to the active child element of the element. Only elements with children use this property to track which item should be displayed or operated. Simple controls and indicators (without children support) have set this property to NULL (they are called leaf elements). The UI_Manager::_focusElement is found by traversing down the visual tree trough all active childs until an element without a child (UIElement::ActiveChild == NULL, leaf element) is reached.
+- `UI_Manager::_visualTreeRoot`: This is the entry point into the visual tree (representing the layout of the user interface). It can be any object of type UIElement (no matter if it is a container, control or indicator).
+- `UI_Manager::_focusElement`: Each `UIElement` has a property `UIElement::ActiveChild` which is a pointer to the active child element of the element. Only elements with children use this property to track which item should be displayed or operated. Simple controls and indicators (without children support) have set this property to NULL (they are called leaf elements). The `UI_Manager::_focusElement` is found by traversing down the visual tree trough all active childs until an element without a child (`UIElement::ActiveChild == NULL`, leaf element) is reached.
 
-@subsection ui_lib_core_implementation_drawing_sec Drawing
-If the visual tree root of the UI_Manager is NULL (not set by UI_Manager::ChangeVisualTreeRoot) nothing is drawn by the UI_Manager::Draw function.
+### Drawing
+If the visual tree root of the `UI_Manager` is NULL (not set by `UI_Manager::ChangeVisualTreeRoot`) nothing is drawn by the `UI_Manager::Draw` function.
 
-Otherwise a frame is drawn around the UI_Manager::_focusElement (only if it is visible and is no indicator). Then the UI_Manager::Draw function of the UIElement assigned to UI_Manager::_visualTreeRoot is called. The element draws itself and (if it's not a leaf element, e.g. if it's a container) calls the UI_Manager::Draw functions of one or multiple child elements (depending on the container type). These child elements also draw themselves and possible further child elements. So the visual tree is traversed down until no child elements are left.
+Otherwise a frame is drawn around the `UI_Manager::_focusElement` (only if it is visible and is no indicator). Then the `UI_Manager::Draw` function of the `UIElement` assigned to `UI_Manager::_visualTreeRoot` is called. The element draws itself and (if it's not a leaf element, e.g. if it's a container) calls the `UI_Manager::Draw` functions of one or multiple child elements (depending on the container type). These child elements also draw themselves and possible further child elements. So the visual tree is traversed down until no child elements are left.
 
-@image html VisualTreeDrawing.jpg "VisualTreeDrawing"
+![VisualTreeDrawing](Doc/VisualTreeDrawing.jpg)
 
-@subsection ui_lib_core_implementation_key_input_sec Key Input Handling
-If the UI_Manager::KeyInput function is called, the received key is first send to the UI_Manager::KeyInput function of the UI_Manager::_focusElement. If this function returns true, the key was handled (and supported) by the control and nothing has to be done. If the function returns false, the key wasn't handled (not supported or no UI_Manager::KeyInput function wasn't defined like with indicators). The key is then send to the UI_Manager::KeyInput function of the parent element of the UI_Manager::_focusElement. If this returns true nothing must be done, otherwise the key is again send to the parent element. The key bubbles up the tree until the key is handled or the root of the visual tree is reached.
+### Key Input Handling
+If the `UI_Manager::KeyInput` function is called, the received key is first send to the `UI_Manager::KeyInput` function of the `UI_Manager::_focusElement`. If this function returns true, the key was handled (and supported) by the control and nothing has to be done. If the function returns false, the key wasn't handled (not supported or no `UI_Manager::KeyInput` function wasn't defined like with indicators). The key is then send to the `UI_Manager::KeyInput` function of the parent element of the `UI_Manager::_focusElement`. If this returns true nothing must be done, otherwise the key is again send to the parent element. The key bubbles up the tree until the key is handled or the root of the visual tree is reached.
 
-After each key input, the UI_Manager::_focusElement is recalculated.
+After each key input, the `UI_Manager::_focusElement` is recalculated.
 
-@image html VisualTreeKeyHandling.jpg "VisualTreeKeyHandling"
+![VisualTreeKeyHandling](Doc/VisualTreeKeyHandling.jpg)
 
-@section ui_lib_example_sec Example
-@code{.cpp}
+## Example
+```C++
 #include "Core/UI_Manager.h"
 #include "Core/UI_Elements.h"
 
@@ -206,21 +197,15 @@ void UI_Test_BuildTree()
 }
 
 // Call this method from outside to initialize the UI_Lib
-void UI_Test_Init(u8g_t *u8g)
+void UI_Test_Init(Adafruit_GFX* gfx)
 {
-	ui_Manager.Init(u8g);
+	ui_Manager.Init(gfx);
 }
 
 // Call this method to redraw the screen
-void UI_Test_Draw(u8g_t *u8g)
+void UI_Test_Draw(Adafruit_GFX* gfx)
 {
-	bool isFirstPage = true;
-    u8g_FirstPage(u8g);
-    do
-    {
-        ui_Manager.Draw(u8g, isFirstPage);
-        isFirstPage = false;
-    } while ( u8g_NextPage(u8g) ); 
+	ui_Manager.Draw(gfx);
 }
 
 // Call this method to send user inputs (keys, encoder actions) to the UI_Manager
@@ -228,8 +213,6 @@ void UI_Test_KeyInput(Keys_t key)
 {
 	ui_Manager.KeyInput(key);
 }
-@endcode
+```
 
-A more detailed example can be found in UI_Lib_Test.h
-
- */
+A more detailed example can be found in `UI_Lib_Test.cpp`
