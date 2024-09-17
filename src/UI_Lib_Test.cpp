@@ -70,6 +70,17 @@ MessageDialogDefault msgTestWarning(5, Y_ROW1, DISPLAY_WIDTH - 5, DISPLAY_HEIGHT
 MessageDialogDefault msgTestError(5, Y_ROW1, DISPLAY_WIDTH - 5, DISPLAY_HEIGHT - Y_ROW1, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
 ContainerPage page_dialogs;
 
+Icon icon1(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon2(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon3(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon4(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon5(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon6(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon7(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon8(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon9(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+ContainerGrid grid_icons(X_COLUMN1 - 1, 2, DISPLAY_WIDTH - X_COLUMN1 - 2, DISPLAY_HEIGHT - 4);
+
 TabControl tabControl(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_WIDTH);
 
 ContainerPage mainPage;
@@ -139,10 +150,28 @@ void UI_Test_BuildTree()
 	page_dialogs.AddItem(&buttonShowTestError);
 	page_dialogs.InitItems();
 	
+	grid_icons.SetRowHeight(0, 30);
+	grid_icons.SetRowHeight(1, 30);
+	grid_icons.SetRowHeight(2, 40);
+	grid_icons.SetColumnWidth(0, 80);
+	grid_icons.SetColumnWidth(1, 60);
+	grid_icons.SetColumnWidth(2, 40);
+	grid_icons.AddItemToCell(&icon1, 0, 0, GRID_CELL_ALIGNMENT_TOP_LEFT);
+	grid_icons.AddItemToCell(&icon2, 0, 1, GRID_CELL_ALIGNMENT_LEFT);
+	grid_icons.AddItemToCell(&icon3, 0, 2, GRID_CELL_ALIGNMENT_BOTTOM_LEFT);
+	grid_icons.AddItemToCell(&icon4, 1, 0, GRID_CELL_ALIGNMENT_TOP);
+	grid_icons.AddItemToCell(&icon5, 1, 1, GRID_CELL_ALIGNMENT_MIDDLE);
+	grid_icons.AddItemToCell(&icon6, 1, 2, GRID_CELL_ALIGNMENT_BOTTOM);
+	grid_icons.AddItemToCell(&icon7, 2, 0, GRID_CELL_ALIGNMENT_TOP_RIGHT);
+	grid_icons.AddItemToCell(&icon8, 2, 1, GRID_CELL_ALIGNMENT_RIGHT);
+	grid_icons.AddItemToCell(&icon9, 2, 2, GRID_CELL_ALIGNMENT_BOTTOM_RIGHT);
+	grid_icons.InitItems();
+
 	tabControl.AddTab("Tab1", &list1);
 	tabControl.AddTab("Tab2", &page_numeric);
 	tabControl.AddTab("Tab3", &page_dialogs);
-	tabControl.SelectTab(0);
+	tabControl.AddTab("Tab4", &grid_icons);
+	tabControl.SelectTab(3);
 	
 	mainPage.AddItem(&tabControl);
 	mainPage.AddItem(&labelUILib);

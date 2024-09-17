@@ -52,9 +52,10 @@ class Container : public UIElement
 		
 		/**
 		 * Add a new element to the container and activate it as active child.
-		 * @param item Pointer to the UIElement that should be added to the container. 
+		 * @param item Pointer to the UIElement that should be added to the container.
+		 * @return true, if added; otherwise false (if container is full) 
 		 */
-		void AddItem(UIElement* item);
+		bool AddItem(UIElement* item);
 };
 
 #endif /* CONTAINER_H_ */
