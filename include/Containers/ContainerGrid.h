@@ -40,6 +40,12 @@ class ContainerGrid : public ContainerPage
 		uint16_t _columnWidths[MAX_CONTAINER_GRID_COLUMNS];		/**< Widths for the individual columns. 0 if not used. */
 		
 	public:
+
+		/**
+		 * Constructor of the ContainerGrid.
+		 */
+		ContainerGrid();
+
 		/**
 		 * Constructor of the ContainerGrid.
 		 * @param locX X Location of the upper left corner of the ContainerGrid 

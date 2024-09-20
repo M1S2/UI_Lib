@@ -53,7 +53,7 @@ EnumIndicator<TestEnum> enumInd1(X_COLUMN1 + 16, Y_ROW2, &enumVal1, TestEnumName
 EnumControl<TestEnum> enumCtrl1(X_COLUMN1 + 16, Y_ROW3, &enumVal1, TestEnumNames, 3);
 Icon enumCtrl1Icon(X_COLUMN1, Y_ROW3, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 ContainerPage page_enum;
-ContainerList list1(X_COLUMN1 - 1, 2, DISPLAY_WIDTH - X_COLUMN1 - 2, DISPLAY_HEIGHT - 4);
+ContainerList list1;
 
 Label<10> labelNum(X_COLUMN1, Y_ROW1, "Numerics", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
 NumericIndicator<int> numInd2(X_COLUMN1, Y_ROW2, &numVal2, "A", 5000, 0);
@@ -70,16 +70,16 @@ MessageDialogDefault msgTestWarning(5, Y_ROW1, DISPLAY_WIDTH - 5, DISPLAY_HEIGHT
 MessageDialogDefault msgTestError(5, Y_ROW1, DISPLAY_WIDTH - 5, DISPLAY_HEIGHT - Y_ROW1, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
 ContainerPage page_dialogs;
 
-Icon icon1(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-Icon icon2(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-Icon icon3(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-Icon icon4(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-Icon icon5(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-Icon icon6(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-Icon icon7(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-Icon icon8(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-Icon icon9(0, 0, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-ContainerGrid grid_icons(X_COLUMN1 - 1, 2, DISPLAY_WIDTH - X_COLUMN1 - 2, DISPLAY_HEIGHT - 4);
+Icon icon1(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon2(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon3(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon4(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon5(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon6(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon7(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon8(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Icon icon9(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+ContainerGrid grid_icons;
 
 TabControl tabControl(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_WIDTH);
 
@@ -125,6 +125,19 @@ void OnMsgOk(void* context)
 
 void UI_Test_BuildTree()
 {
+	mainPage.AddItem(&tabControl);
+	mainPage.AddItem(&labelUILib);
+	mainPage.AddItem(&globalIcon);
+	
+	tabControl.AddTab("Tab1", &list1);
+	tabControl.AddTab("Tab2", &page_numeric);
+	tabControl.AddTab("Tab3", &page_dialogs);
+	tabControl.AddTab("Tab4", &grid_icons);
+	tabControl.SelectTab(0);
+
+	list1.AddItem(&page_boolean);
+	list1.AddItem(&page_enum);
+
 	page_boolean.AddItem(&labelBool);
 	page_boolean.AddItem(&boolInd1);
 	page_boolean.AddItem(&boolCtrl1);
@@ -135,8 +148,6 @@ void UI_Test_BuildTree()
 	page_enum.AddItem(&enumCtrl1);
 	page_enum.AddItem(&enumCtrl1Icon);
 	page_enum.InitItems();	
-	list1.AddItem(&page_boolean);
-	list1.AddItem(&page_enum);
 	
 	page_numeric.AddItem(&labelNum);
 	page_numeric.AddItem(&numInd1);
@@ -166,16 +177,7 @@ void UI_Test_BuildTree()
 	grid_icons.AddItemToCell(&icon8, 2, 1, GRID_CELL_ALIGNMENT_RIGHT);
 	grid_icons.AddItemToCell(&icon9, 2, 2, GRID_CELL_ALIGNMENT_BOTTOM_RIGHT);
 	grid_icons.InitItems();
-
-	tabControl.AddTab("Tab1", &list1);
-	tabControl.AddTab("Tab2", &page_numeric);
-	tabControl.AddTab("Tab3", &page_dialogs);
-	tabControl.AddTab("Tab4", &grid_icons);
-	tabControl.SelectTab(3);
 	
-	mainPage.AddItem(&tabControl);
-	mainPage.AddItem(&labelUILib);
-	mainPage.AddItem(&globalIcon);
 	mainPage.InitItems();
 	
 	ui_Manager.ChangeVisualTreeRoot(&mainPage);	

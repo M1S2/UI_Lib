@@ -85,6 +85,18 @@ void TabControl::AddTab(const char* header, UIElement* tabContent)
 	_headers[_numTabs][MAX_HEADER_LENGTH - 1] = '\0';			// The _header buffer must contain at least one termination character ('\0') at the end to protect from overflow.
 	_numTabs++;
 
+	// Move tabContent inside tab content region
+	tabContent->LocX += LocX + _tabWidth + TABCONTROL_CONTENT_PADDING;
+	tabContent->LocY += LocY + TABCONTROL_CONTENT_PADDING;
+	if(tabContent->Type == UI_CONTAINER && tabContent->Width == 0)
+	{
+		tabContent->Width = Width - _tabWidth - 2 * TABCONTROL_CONTENT_PADDING;	
+	}
+	if(tabContent->Type == UI_CONTAINER && tabContent->Height == 0)
+	{
+		tabContent->Height = Height - 2 * TABCONTROL_CONTENT_PADDING;
+	}
+
 	if (ActiveChild == NULL) { ActiveChild = tabContent; }
 }
 

@@ -4,6 +4,11 @@
 
 #include "Containers/ContainerGrid.h"
 
+ContainerGrid::ContainerGrid()
+{
+	Type = UI_CONTAINER;
+}
+
 ContainerGrid::ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
 {
 	Type = UI_CONTAINER;

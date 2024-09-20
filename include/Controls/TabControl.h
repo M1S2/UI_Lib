@@ -11,6 +11,7 @@
 #define MAX_TABCONTROL_TABS			5		/**< Maximum number of tabs that are supported. */
 #define MAX_HEADER_LENGTH			8		/**< Maximum string length of the tab headers. */
 #define TABCONTROL_TABPAGE_MARGIN	0		/**< Margin around the tab page tabs. */
+#define TABCONTROL_CONTENT_PADDING	2		/**< Padding between the content region and the tab content */
 
 /**
  * Class for a tab control that is showing a tab layout and can hold child elements.

@@ -21,6 +21,15 @@ class Icon : public UIElement
 	
 		/**
 		 * Constructor of the Icon.
+		 * @param iconWidth Drawing width of the Icon
+ 		 * @param iconHeight Drawing height of the Icon
+		 * @param iconBits Pointer to the array containing the icon data. This must be stored in Progmem. Use the following declaration: `unsigned char icon_<iconName>_bits[] PROGMEM = { ... }`
+		 * @param color Color that is used to draw the Icon. The color is only used to draw this Icon. All other UIElements are using the default color again.
+		 */
+		Icon(uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits, uint16_t color = UI_LIB_COLOR_FOREGROUND);
+
+		/**
+		 * Constructor of the Icon.
 		 * @param locX X Location of the upper left corner of the Icon 
 		 * @param locY Y Location of the upper left corner of the Icon
 		 * @param iconWidth Drawing width of the Icon

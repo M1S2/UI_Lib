@@ -22,6 +22,11 @@ class ContainerList : public Container
 	public:
 		/**
 		 * Constructor of the ContainerList.
+		 */
+		ContainerList();
+
+		/**
+		 * Constructor of the ContainerList.
 		 * @param locX X Location of the upper left corner of the ContainerList 
 		 * @param locY Y Location of the upper left corner of the ContainerList
 		 * @param width Drawing width of the ContainerList
