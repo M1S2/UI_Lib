@@ -9,6 +9,15 @@ ContainerPage::ContainerPage()
 	Type = UI_CONTAINER;
 }
 
+ContainerPage::ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
+{
+	Type = UI_CONTAINER;
+	LocX = locX;
+	LocY = locY;
+	Width = width;
+	Height = height;
+}
+
 void ContainerPage::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 {
 	for (int i = 0; i < _numItems; i++)

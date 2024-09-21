@@ -6,11 +6,27 @@
 #include <string.h>
 
 template <int StringLength>
+Label<StringLength>::Label(const char* text) : UIElement(UI_INDICATOR)
+{
+	SetText(text);
+	_font = NULL;
+	_color = UI_LIB_COLOR_FOREGROUND;
+}
+
+template <int StringLength>
 Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text) : UIElement(locX, locY, UI_INDICATOR)
 {
 	SetText(text);
 	_font = NULL;
 	_color = UI_LIB_COLOR_FOREGROUND;
+}
+
+template <int StringLength>
+Label<StringLength>::Label(const char* text, const GFXfont* font, uint16_t color) : UIElement(UI_INDICATOR)
+{
+	SetText(text);
+	_font = font;
+	_color = color;
 }
 
 template <int StringLength>

@@ -4,6 +4,13 @@
 
 #include "Controls/BoolControl.h"
 
+BoolControl::BoolControl(bool* valuePointer, void* controlContext, void(*onValueChanged)(void* controlContext)) : BoolIndicator(valuePointer)
+{
+	Type = UI_CONTROL;
+	_controlContext = controlContext;
+	_onValueChanged = onValueChanged;
+}
+
 BoolControl::BoolControl(uint16_t locX, uint16_t locY, bool* valuePointer, void* controlContext, void(*onValueChanged)(void* controlContext)) : BoolIndicator(locX, locY, valuePointer)
 {
 	Type = UI_CONTROL;

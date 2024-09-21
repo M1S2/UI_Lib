@@ -20,6 +20,15 @@ class ContainerPage : public Container
 		ContainerPage();
 		
 		/**
+		 * Constructor of the ContainerPage.
+		 * @param locX X Location of the upper left corner of the ContainerPage 
+		 * @param locY Y Location of the upper left corner of the ContainerPage
+		 * @param width Drawing width of the ContainerPage
+		 * @param height Drawing height of the ContainerPage
+		 */
+		ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height);
+
+		/**
 		 * Method used for drawing of the ContainerPage.
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 * @param wasScreenCleared This parameter indicates that the complete screen was cleared. Draw everything again.

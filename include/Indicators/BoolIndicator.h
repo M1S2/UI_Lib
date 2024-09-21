@@ -21,6 +21,12 @@ class BoolIndicator : public UIElement
 	
 		/**
 		 * Constructor of the BooleanIndicator.
+		 * @param valuePointer Pointer to the boolean variable that is shown by this indicator.
+		 */
+		BoolIndicator(bool* valuePointer);
+
+		/**
+		 * Constructor of the BooleanIndicator.
 		 * @param locX X Location of the upper left corner of the BooleanIndicator 
 		 * @param locY Y Location of the upper left corner of the BooleanIndicator
 		 * @param valuePointer Pointer to the boolean variable that is shown by this indicator.

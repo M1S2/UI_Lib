@@ -5,6 +5,18 @@
 #include "Controls/TabControl.h"
 #include <string.h>
 
+TabControl::TabControl(uint16_t width, uint16_t height, uint16_t tabWidth, void* controlContext, void(*onSelectedTabChanged)(void* controlContext)) : UIElement(UI_CONTROL)
+{
+	Width = width;
+	Height = height;
+	_numTabs = 0;
+	_selectedTabIndex = 0;
+	_lastDrawnTabIndex = -1;
+	_tabWidth = tabWidth;
+	_controlContext = controlContext;
+	_onSelectedTabChanged = onSelectedTabChanged;
+}
+
 TabControl::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint16_t tabWidth, void* controlContext, void(*onSelectedTabChanged)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL)
 {
 	Width = width;
@@ -88,6 +100,7 @@ void TabControl::AddTab(const char* header, UIElement* tabContent)
 	// Move tabContent inside tab content region
 	tabContent->LocX += LocX + _tabWidth + TABCONTROL_CONTENT_PADDING;
 	tabContent->LocY += LocY + TABCONTROL_CONTENT_PADDING;
+	// Strech the tabContent to fill up the full tab content region space if the tabContent Width or Height are zero
 	if(tabContent->Type == UI_CONTAINER && tabContent->Width == 0)
 	{
 		tabContent->Width = Width - _tabWidth - 2 * TABCONTROL_CONTENT_PADDING;	
@@ -96,6 +109,7 @@ void TabControl::AddTab(const char* header, UIElement* tabContent)
 	{
 		tabContent->Height = Height - 2 * TABCONTROL_CONTENT_PADDING;
 	}
+	
 
 	if (ActiveChild == NULL) { ActiveChild = tabContent; }
 }

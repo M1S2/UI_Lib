@@ -36,40 +36,43 @@ void OnShowError(void* context);
 
 #define TAB_WIDTH	70
 #define X_COLUMN1	(TAB_WIDTH + 5)
-#define X_COLUMN2	(X_COLUMN1 + 100)
+#define X_COLUMN2	(X_COLUMN1 + 30)
 #define Y_ROW1		5
 #define Y_ROW2		30
 #define Y_ROW3		55
 #define Y_ROW4		80
 #define Y_ROW5		105
 
-Label<10> labelBool(X_COLUMN1, Y_ROW1, "Boolean", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
-BoolIndicator boolInd1(X_COLUMN1, Y_ROW2, &boolVal1);
-BoolControl boolCtrl1(X_COLUMN1, Y_ROW3, &boolVal1, &boolVal1, &OnBoolVal1Changed);
-BoolControl boolCtrl2(X_COLUMN1, Y_ROW5, &boolVal2, &boolVal2, &OnBoolVal2Changed);
+#define ELEMENT_MARGIN	10
+
+Label<10> labelBool(ELEMENT_MARGIN, Y_ROW1, "Boolean", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+BoolIndicator boolInd1(ELEMENT_MARGIN, Y_ROW2, &boolVal1);
+BoolControl boolCtrl1(ELEMENT_MARGIN, Y_ROW3, &boolVal1, &boolVal1, &OnBoolVal1Changed);
+BoolControl boolCtrl2(ELEMENT_MARGIN, Y_ROW5, &boolVal2, &boolVal2, &OnBoolVal2Changed);
 ContainerPage page_boolean;
-Label<15> labelEnum(X_COLUMN1, Y_ROW1, "Enumerations", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
-EnumIndicator<TestEnum> enumInd1(X_COLUMN1 + 16, Y_ROW2, &enumVal1, TestEnumNames, 3);
-EnumControl<TestEnum> enumCtrl1(X_COLUMN1 + 16, Y_ROW3, &enumVal1, TestEnumNames, 3);
-Icon enumCtrl1Icon(X_COLUMN1, Y_ROW3, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+Label<15> labelEnum(ELEMENT_MARGIN, Y_ROW1, "Enumerations", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+EnumIndicator<TestEnum> enumInd1(ELEMENT_MARGIN + 16, Y_ROW2, &enumVal1, TestEnumNames, 3);
+EnumControl<TestEnum> enumCtrl1(ELEMENT_MARGIN + 16, Y_ROW3, &enumVal1, TestEnumNames, 3);
+Icon enumCtrl1Icon(ELEMENT_MARGIN, Y_ROW3, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 ContainerPage page_enum;
 ContainerList list1;
 
-Label<10> labelNum(X_COLUMN1, Y_ROW1, "Numerics", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
-NumericIndicator<int> numInd2(X_COLUMN1, Y_ROW2, &numVal2, "A", 5000, 0);
+Label<10> labelNum(ELEMENT_MARGIN, Y_ROW1, "Numerics", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+NumericIndicator<int> numInd2(ELEMENT_MARGIN, Y_ROW2, &numVal2, "A", 5000, 0);
 NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 3);
 NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -10, 2000, 3, &numVal1, &OnNumVal1Changed);
 ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, 70, 20, &numVal1, -10, 2000, PROGRESSBAR_ORIGIN_ZERO, 0);
 ContainerPage page_numeric;
 
-Label<10> labelButtons(X_COLUMN1, Y_ROW1, "Buttons", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
-ButtonControlDefault buttonReset(X_COLUMN1, Y_ROW2, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "Reset", NULL, &OnButtonReset);
-ButtonControlDefault buttonShowTestError(X_COLUMN1, Y_ROW4, 125, DEFAULT_UI_ELEMENT_HEIGHT, "Show Error", NULL, &OnShowError);
-MessageDialogDefault msgReset(5, Y_ROW1, DISPLAY_WIDTH - 5, DISPLAY_HEIGHT - Y_ROW1, "Reset sucessful.", MSG_INFO, MSG_BTN_OK, NULL, &OnMsgOk);
-MessageDialogDefault msgTestWarning(5, Y_ROW1, DISPLAY_WIDTH - 5, DISPLAY_HEIGHT - Y_ROW1, "Warning message.\nWith Newline.", MSG_WARNING, MSG_BTN_OK, NULL, &OnMsgOk);
-MessageDialogDefault msgTestError(5, Y_ROW1, DISPLAY_WIDTH - 5, DISPLAY_HEIGHT - Y_ROW1, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
+Label<10> labelButtons(ELEMENT_MARGIN, Y_ROW1, "Buttons", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+ButtonControlDefault buttonReset(ELEMENT_MARGIN, Y_ROW2, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "Reset", NULL, &OnButtonReset);
+ButtonControlDefault buttonShowTestError(ELEMENT_MARGIN, Y_ROW4, 125, DEFAULT_UI_ELEMENT_HEIGHT, "Show Error", NULL, &OnShowError);
+MessageDialogDefault msgReset(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Reset sucessful.", MSG_INFO, MSG_BTN_OK, NULL, &OnMsgOk);
+MessageDialogDefault msgTestWarning(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Warning message.\nWith Newline.", MSG_WARNING, MSG_BTN_OK, NULL, &OnMsgOk);
+MessageDialogDefault msgTestError(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
 ContainerPage page_dialogs;
 
+Label<10> labelGrid("Grid", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
 Icon icon1(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon2(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon3(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
@@ -81,9 +84,9 @@ Icon icon8(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon9(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 ContainerGrid grid_icons;
 
-TabControl tabControl(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_WIDTH);
+TabControl tabControl(DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_WIDTH);
 
-ContainerPage mainPage;
+ContainerPage mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 LabelDefault labelUILib(X_COLUMN1, DISPLAY_HEIGHT - settings_window_height - 10, "UI LIB", &FreeMono18pt7b, COLOR_ORANGE);
 Icon globalIcon(DISPLAY_WIDTH - settings_window_width - 15, DISPLAY_HEIGHT - settings_window_height - 10, settings_window_width, settings_window_height, settings_window_bits);
 
@@ -160,22 +163,24 @@ void UI_Test_BuildTree()
 	page_dialogs.AddItem(&buttonReset);
 	page_dialogs.AddItem(&buttonShowTestError);
 	page_dialogs.InitItems();
-	
-	grid_icons.SetRowHeight(0, 30);
+
+	grid_icons.SetRowHeight(0, 30);	
 	grid_icons.SetRowHeight(1, 30);
-	grid_icons.SetRowHeight(2, 40);
+	grid_icons.SetRowHeight(2, 30);
+	grid_icons.SetRowHeight(3, 40);
 	grid_icons.SetColumnWidth(0, 80);
 	grid_icons.SetColumnWidth(1, 60);
 	grid_icons.SetColumnWidth(2, 40);
-	grid_icons.AddItemToCell(&icon1, 0, 0, GRID_CELL_ALIGNMENT_TOP_LEFT);
-	grid_icons.AddItemToCell(&icon2, 0, 1, GRID_CELL_ALIGNMENT_LEFT);
-	grid_icons.AddItemToCell(&icon3, 0, 2, GRID_CELL_ALIGNMENT_BOTTOM_LEFT);
-	grid_icons.AddItemToCell(&icon4, 1, 0, GRID_CELL_ALIGNMENT_TOP);
-	grid_icons.AddItemToCell(&icon5, 1, 1, GRID_CELL_ALIGNMENT_MIDDLE);
-	grid_icons.AddItemToCell(&icon6, 1, 2, GRID_CELL_ALIGNMENT_BOTTOM);
-	grid_icons.AddItemToCell(&icon7, 2, 0, GRID_CELL_ALIGNMENT_TOP_RIGHT);
-	grid_icons.AddItemToCell(&icon8, 2, 1, GRID_CELL_ALIGNMENT_RIGHT);
-	grid_icons.AddItemToCell(&icon9, 2, 2, GRID_CELL_ALIGNMENT_BOTTOM_RIGHT);
+	grid_icons.AddItemToCell(&labelGrid, 0, 0, GRID_CELL_ALIGNMENT_TOP_LEFT);
+	grid_icons.AddItemToCell(&icon1, 0, 1, GRID_CELL_ALIGNMENT_TOP_LEFT);
+	grid_icons.AddItemToCell(&icon2, 0, 2, GRID_CELL_ALIGNMENT_LEFT);
+	grid_icons.AddItemToCell(&icon3, 0, 3, GRID_CELL_ALIGNMENT_BOTTOM_LEFT);
+	grid_icons.AddItemToCell(&icon4, 1, 1, GRID_CELL_ALIGNMENT_TOP);
+	grid_icons.AddItemToCell(&icon5, 1, 2, GRID_CELL_ALIGNMENT_MIDDLE);
+	grid_icons.AddItemToCell(&icon6, 1, 3, GRID_CELL_ALIGNMENT_BOTTOM);
+	grid_icons.AddItemToCell(&icon7, 2, 1, GRID_CELL_ALIGNMENT_TOP_RIGHT);
+	grid_icons.AddItemToCell(&icon8, 2, 2, GRID_CELL_ALIGNMENT_RIGHT);
+	grid_icons.AddItemToCell(&icon9, 2, 3, GRID_CELL_ALIGNMENT_BOTTOM_RIGHT);
 	grid_icons.InitItems();
 	
 	mainPage.InitItems();

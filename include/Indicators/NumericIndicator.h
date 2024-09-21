@@ -43,7 +43,16 @@ class NumericIndicator : public UIElement
 		signed char _unitPrefixPower;					/**< Current display prefix power (m = -3, k = 3, M = 6) */
 
 	public:
-			
+
+		/**
+		 * Constructor of the NumericIndicator.
+		 * @param valuePointer Pointer to the numeric variable that is shown by this indicator.
+		 * @param baseUnit Base unit that is appended to the calculated prefix. E.g. "V" for voltage values. To use the "%" sign as unit, you have to use "%%" as string.
+		 * @param maxValue Maximum value that can be shown by this numeric indicator. It is used to determine the number of non-fractional digits.
+		 * @param numFractionalDigits Number of fractional digits that are shown by this indicator. E.g. 1.234 V has 3 fractional digits.
+		 */
+		NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits);
+	
 		/**
 		 * Constructor of the NumericIndicator.
 		 * @param locX X Location of the upper left corner of the NumericIndicator 

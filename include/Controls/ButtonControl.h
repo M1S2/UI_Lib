@@ -27,6 +27,16 @@ class ButtonControl : public UIElement
 		
 		/**
 		 * Constructor of the ButtonControl.
+		 * @param width Drawing width of the ButtonControl
+		 * @param height Drawing height of the ButtonControl
+		 * @param buttonText String that is draw to the screen as button text.
+		 * @param controlContext Context pointer that is returned with the _onClick function pointer
+		 * @param onClick Function pointer for _onClick event. This function is called when the button is clicked.
+		 */
+		ButtonControl(uint16_t width, uint16_t height, const char* buttonText, void* controlContext = NULL, void(*onClick)(void* controlContext) = NULL);
+
+		/**
+		 * Constructor of the ButtonControl.
 		 * @param locX X Location of the upper left corner of the ButtonControl 
 		 * @param locY Y Location of the upper left corner of the ButtonControl
 		 * @param width Drawing width of the ButtonControl

@@ -53,6 +53,17 @@ int NumericIndicator<T, stringBufferLength>::numNonFractionalDigits(T number)
 	return digits;
 }
 
+template <class T, int stringBufferLength>
+NumericIndicator<T, stringBufferLength>::NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits) : UIElement(UI_INDICATOR)
+{
+	_valuePointer = valuePointer;
+	_baseUnit = baseUnit;
+	_unitPrefix = "";
+	_maxValue = maxValue;
+	_numFractionalDigits = numFractionalDigits;
+	_numDigits = _numFractionalDigits + numNonFractionalDigits(maxValue);
+	_firstDraw = true;
+}
 
 template <class T, int stringBufferLength>
 NumericIndicator<T, stringBufferLength>::NumericIndicator(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits) : UIElement(locX, locY, UI_INDICATOR)

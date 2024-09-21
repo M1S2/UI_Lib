@@ -6,6 +6,17 @@
 #include <string.h>
 
 template <int StringLength>
+ButtonControl<StringLength>::ButtonControl(uint16_t width, uint16_t height, const char* buttonText, void* controlContext, void(*onClick)(void* controlContext)) : UIElement(UI_CONTROL)
+{
+	Width = width;
+	Height = height;
+	strncpy(_buttonText, buttonText, StringLength);		// Copy a maximum number of StringLength characters to the _buttonText buffer. If text is shorter, the array is zero padded.
+	_buttonText[StringLength - 1] = '\0';				// The _buttonText buffer must contain at least one termination character ('\0') at the end to protect from overflow.
+	_controlContext = controlContext;
+	_onClick = onClick;
+}
+
+template <int StringLength>
 ButtonControl<StringLength>::ButtonControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* buttonText, void* controlContext, void(*onClick)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL)
 {
 	Width = width;

@@ -5,6 +5,14 @@
 #include "Indicators/EnumIndicator.h"
 
 template <class T>
+EnumIndicator<T>::EnumIndicator(T* valuePointer, const char** enumNames, uint8_t numEnumValues) : UIElement(UI_INDICATOR)
+{
+	_enumNames = enumNames;
+	_numEnumValues = numEnumValues;
+	_valuePointer = valuePointer;
+}
+
+template <class T>
 EnumIndicator<T>::EnumIndicator(uint16_t locX, uint16_t locY, T* valuePointer, const char** enumNames, uint8_t numEnumValues) : UIElement(locX, locY, UI_INDICATOR)
 {
 	_enumNames = enumNames;

@@ -21,6 +21,14 @@ class BoolControl : public BoolIndicator
 	
 		/**
 		 * Constructor of the BoolControl.
+		 * @param valuePointer Pointer to the boolean variable that is shown and manipulated by this control.
+		 * @param controlContext Context pointer that is returned with the _onValueChanged function pointer
+		 * @param onValueChanged Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed.
+		 */
+		BoolControl(bool* valuePointer, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL);
+		
+		/**
+		 * Constructor of the BoolControl.
 		 * @param locX X Location of the upper left corner of the BoolControl 
 		 * @param locY Y Location of the upper left corner of the BoolControl
 		 * @param valuePointer Pointer to the boolean variable that is shown and manipulated by this control.

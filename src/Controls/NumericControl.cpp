@@ -6,6 +6,17 @@
 #include <math.h>
 
 template <class T, int stringBufferLength>
+NumericControl<T, stringBufferLength>::NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext)) : NumericIndicator<T, stringBufferLength>(valuePointer, baseUnit, maxValue, numFractionalDigits)
+{
+	this->Type = UI_CONTROL;
+	IsEditMode = false;
+	CurrentDigitPosition = 0;
+	_minValue = minValue;
+	_controlContext = controlContext;
+	_onValueChanged = onValueChanged;
+}
+
+template <class T, int stringBufferLength>
 NumericControl<T, stringBufferLength>::NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext)) : NumericIndicator<T, stringBufferLength>(locX, locY, valuePointer, baseUnit, maxValue, numFractionalDigits)
 {
 	this->Type = UI_CONTROL;

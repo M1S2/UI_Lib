@@ -47,6 +47,11 @@ class UIElement
 		 */
 		UIElement(UIElementType type)
 		{
+			if(type != UI_CONTAINER)
+			{
+				Width = DEFAULT_UI_ELEMENT_WIDTH;
+				Height = DEFAULT_UI_ELEMENT_HEIGHT;
+			}
 			Visible = true;
 			Type = type;
 			ActiveChild = NULL;
@@ -62,8 +67,11 @@ class UIElement
 		{
 			LocX = locX;
 			LocY = locY;
-			Width = DEFAULT_UI_ELEMENT_WIDTH;
-			Height = DEFAULT_UI_ELEMENT_HEIGHT;
+			if(type != UI_CONTAINER)
+			{
+				Width = DEFAULT_UI_ELEMENT_WIDTH;
+				Height = DEFAULT_UI_ELEMENT_HEIGHT;
+			}
 			Visible = true;
 			Type = type;
 			ActiveChild = NULL;

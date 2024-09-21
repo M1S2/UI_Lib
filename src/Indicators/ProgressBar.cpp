@@ -14,6 +14,18 @@ uint16_t ProgressBar<T>::xCoordinateFromValue(T value)
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
 template <class T>
+ProgressBar<T>::ProgressBar(uint16_t width, uint16_t height, T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement): UIElement(UI_INDICATOR)
+{
+	Width = width;
+	Height = height;
+	_valuePointer = valuePointer;
+	_minValue = minValue;
+	_maxValue = maxValue;
+	_origin = origin;
+	_tickIncrement = tickIncrement;
+}
+
+template <class T>
 ProgressBar<T>::ProgressBar(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement): UIElement(locX, locY, UI_INDICATOR)
 {
 	Width = width;
@@ -23,8 +35,6 @@ ProgressBar<T>::ProgressBar(uint16_t locX, uint16_t locY, uint16_t width, uint16
 	_maxValue = maxValue;
 	_origin = origin;
 	_tickIncrement = tickIncrement;
-
-	_originXCoord = xCoordinateFromValue(_origin == PROGRESSBAR_ORIGIN_LEFT ? _minValue : (_origin == PROGRESSBAR_ORIGIN_RIGHT ? _maxValue : 0));
 }
 
 template <class T>
@@ -38,6 +48,8 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 		if (_valueDraw > _maxValue) { _valueDraw = _maxValue; }			// Coerce value to be between _minValue and _maxValue
 		else if (_valueDraw < _minValue) { _valueDraw = _minValue; }
 
+		_originXCoord = xCoordinateFromValue(_origin == PROGRESSBAR_ORIGIN_LEFT ? _minValue : (_origin == PROGRESSBAR_ORIGIN_RIGHT ? _maxValue : 0));
+		
 		uint16_t valueXCoord = xCoordinateFromValue(_valueDraw);
 		
 		// Draw outer border of progress bar

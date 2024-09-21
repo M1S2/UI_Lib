@@ -33,6 +33,16 @@ class TabControl : public UIElement
 	
 		/**
 		 * Constructor of the TabControl.
+		 * @param width Drawing width of the TabControl
+		 * @param height Drawing height of the TabControl
+		 * @param tabWidth Width of the Tabs in pixel.
+		 * @param controlContext Context pointer that is returned with the _onSelectedTabChanged function pointer
+		 * @param onSelectedTabChanged Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed.
+		 */
+		TabControl(uint16_t width, uint16_t height, uint16_t tabWidth, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL);
+	
+		/**
+		 * Constructor of the TabControl.
 		 * @param locX X Location of the upper left corner of the TabControl 
 		 * @param locY Y Location of the upper left corner of the TabControl
 		 * @param width Drawing width of the TabControl

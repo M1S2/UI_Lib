@@ -26,12 +26,26 @@ class Label : public UIElement
 
 		/**
 		 * Constructor of the Label.
+		 * @param text String that is draw to the screen by the label.
+		 */
+		Label(const char* text);
+
+		/**
+		 * Constructor of the Label.
 		 * @param locX X Location of the upper left corner of the Label 
 		 * @param locY Y Location of the upper left corner of the Label
 		 * @param text String that is draw to the screen by the label.
 		 */
 		Label(uint16_t locX, uint16_t locY, const char* text);
 		
+		/**
+		 * Constructor of the Label including a font parameter.
+		 * @param text String that is draw to the screen by the label.
+		 * @param font Font that is used to draw the Label. The font is only used to draw this Label. All other UIElements are using the default font again.
+		 * @param color Text color that is used to draw the Label. The color is only used to draw this Label. All other UIElements are using the default color again.
+		 */
+		Label(const char* text, const GFXfont* font, uint16_t color = UI_LIB_COLOR_FOREGROUND);
+
 		/**
 		 * Constructor of the Label including a font parameter.
 		 * @param locX X Location of the upper left corner of the Label 
