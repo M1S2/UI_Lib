@@ -45,11 +45,11 @@ void OnShowError(void* context);
 
 #define ELEMENT_MARGIN	10
 
-Label<10> labelBool(ELEMENT_MARGIN, Y_ROW1, "Boolean", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
-BoolIndicator boolInd1(ELEMENT_MARGIN, Y_ROW2, &boolVal1);
-BoolControl boolCtrl1(ELEMENT_MARGIN, Y_ROW3, &boolVal1, &boolVal1, &OnBoolVal1Changed);
-BoolControl boolCtrl2(ELEMENT_MARGIN, Y_ROW5, &boolVal2, &boolVal2, &OnBoolVal2Changed);
-ContainerPage page_boolean;
+Label<10> labelBool(ELEMENT_MARGIN, ELEMENT_MARGIN, "Boolean", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+BoolIndicator boolInd1(&boolVal1);
+BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
+BoolControl boolCtrl2(&boolVal2, &boolVal2, &OnBoolVal2Changed);
+ContainerStack stack_boolean(STACK_ORIENTATION_VERTICAL, ELEMENT_MARGIN);
 Label<15> labelEnum(ELEMENT_MARGIN, Y_ROW1, "Enumerations", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
 EnumIndicator<TestEnum> enumInd1(ELEMENT_MARGIN + 16, Y_ROW2, &enumVal1, TestEnumNames, 3);
 EnumControl<TestEnum> enumCtrl1(ELEMENT_MARGIN + 16, Y_ROW3, &enumVal1, TestEnumNames, 3);
@@ -138,14 +138,14 @@ void UI_Test_BuildTree()
 	tabControl.AddTab("Tab4", &grid_icons);
 	tabControl.SelectTab(0);
 
-	list1.AddItem(&page_boolean);
+	list1.AddItem(&stack_boolean);
 	list1.AddItem(&page_enum);
 
-	page_boolean.AddItem(&labelBool);
-	page_boolean.AddItem(&boolInd1);
-	page_boolean.AddItem(&boolCtrl1);
-	page_boolean.AddItem(&boolCtrl2);
-	page_boolean.InitItems();
+	stack_boolean.AddItem(&labelBool);
+	stack_boolean.AddItem(&boolInd1);
+	stack_boolean.AddItem(&boolCtrl1);
+	stack_boolean.AddItem(&boolCtrl2);
+	stack_boolean.InitItems();
 	page_enum.AddItem(&labelEnum);
 	page_enum.AddItem(&enumInd1);
 	page_enum.AddItem(&enumCtrl1);
@@ -171,16 +171,16 @@ void UI_Test_BuildTree()
 	grid_icons.SetColumnWidth(0, 80);
 	grid_icons.SetColumnWidth(1, 60);
 	grid_icons.SetColumnWidth(2, 40);
-	grid_icons.AddItemToCell(&labelGrid, 0, 0, GRID_CELL_ALIGNMENT_TOP_LEFT);
-	grid_icons.AddItemToCell(&icon1, 0, 1, GRID_CELL_ALIGNMENT_TOP_LEFT);
-	grid_icons.AddItemToCell(&icon2, 0, 2, GRID_CELL_ALIGNMENT_LEFT);
-	grid_icons.AddItemToCell(&icon3, 0, 3, GRID_CELL_ALIGNMENT_BOTTOM_LEFT);
-	grid_icons.AddItemToCell(&icon4, 1, 1, GRID_CELL_ALIGNMENT_TOP);
-	grid_icons.AddItemToCell(&icon5, 1, 2, GRID_CELL_ALIGNMENT_MIDDLE);
-	grid_icons.AddItemToCell(&icon6, 1, 3, GRID_CELL_ALIGNMENT_BOTTOM);
-	grid_icons.AddItemToCell(&icon7, 2, 1, GRID_CELL_ALIGNMENT_TOP_RIGHT);
-	grid_icons.AddItemToCell(&icon8, 2, 2, GRID_CELL_ALIGNMENT_RIGHT);
-	grid_icons.AddItemToCell(&icon9, 2, 3, GRID_CELL_ALIGNMENT_BOTTOM_RIGHT);
+	grid_icons.AddItem(&labelGrid, 0, 0, GRID_CELL_ALIGNMENT_TOP_LEFT);
+	grid_icons.AddItem(&icon1, 0, 1, GRID_CELL_ALIGNMENT_TOP_LEFT);
+	grid_icons.AddItem(&icon2, 0, 2, GRID_CELL_ALIGNMENT_LEFT);
+	grid_icons.AddItem(&icon3, 0, 3, GRID_CELL_ALIGNMENT_BOTTOM_LEFT);
+	grid_icons.AddItem(&icon4, 1, 1, GRID_CELL_ALIGNMENT_TOP);
+	grid_icons.AddItem(&icon5, 1, 2, GRID_CELL_ALIGNMENT_MIDDLE);
+	grid_icons.AddItem(&icon6, 1, 3, GRID_CELL_ALIGNMENT_BOTTOM);
+	grid_icons.AddItem(&icon7, 2, 1, GRID_CELL_ALIGNMENT_TOP_RIGHT);
+	grid_icons.AddItem(&icon8, 2, 2, GRID_CELL_ALIGNMENT_RIGHT);
+	grid_icons.AddItem(&icon9, 2, 3, GRID_CELL_ALIGNMENT_BOTTOM_RIGHT);
 	grid_icons.InitItems();
 	
 	mainPage.InitItems();

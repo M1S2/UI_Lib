@@ -20,6 +20,7 @@
 #include "../Containers/ContainerPage.h"
 #include "../Containers/ContainerList.h"
 #include "../Containers/ContainerGrid.h"
+#include "../Containers/ContainerStack.h"
 #include "../Controls/TabControl.h"
 #include "../Controls/ButtonControl.h"
 #include "../Controls/MessageDialog.h"

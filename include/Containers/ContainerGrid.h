@@ -86,7 +86,7 @@ class ContainerGrid : public ContainerPage
 		 * @param cellAlignment Alignment for the cell.
 		 * @return true, if added; otherwise false (if container is full) 
 		 */
-		bool AddItemToCell(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment);
+		bool AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment);
 };
 
 #endif /* CONTAINERGRID_H_ */

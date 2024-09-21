@@ -68,10 +68,10 @@ bool ContainerGrid::SetColumnWidth(uint8_t columnIndex, uint16_t columnWidth)
 	return true;
 }
 
-bool ContainerGrid::AddItemToCell(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment)
+bool ContainerGrid::AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment)
 {
 	if(columnIndex >= MAX_CONTAINER_GRID_COLUMNS || rowIndex >= MAX_CONTAINER_GRID_ROWS) { return false; }
-	if(!AddItem(item)) { return false; }
+	if(!Container::AddItem(item)) { return false; }
 
 	// adapt location accordingly
 
