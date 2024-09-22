@@ -48,30 +48,6 @@ class ContainerPage : public Container
 		 * This method selects the first UIElement in the container that is of UI_CONTROL type.
 		 */
 		void InitItems();
-		
-		/**
-		 * Select the next item in the container.
-		 * @return true if there was a next item (if the selected item wasn't the last one).
-		 */
-		bool NextItem();
-		
-		/**
-		 * Select the previous item in the container.
-		 * @return true if there was a previous item (if the selected item wasn't the first one).
-		 */
-		bool PreviousItem();
-		
-		/**
-		 * Select the next item in the container that is of UI_CONTROL type.
-		 * @return true if there was a next control item (if the selected item wasn't the last one).
-		 */
-		bool NextControlItem();
-		
-		/**
-		 * Select the previous item in the container that is of UI_CONTROL type.
-		 * @return true if there was a previous control item (if the selected item wasn't the first one).
-		 */
-		bool PreviousControlItem();
 };
 
 #endif /* CONTAINERPAGE_H_ */

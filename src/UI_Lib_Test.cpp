@@ -50,11 +50,15 @@ BoolIndicator boolInd1(&boolVal1);
 BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
 BoolControl boolCtrl2(&boolVal2, &boolVal2, &OnBoolVal2Changed);
 ContainerStack stack_boolean(STACK_ORIENTATION_VERTICAL, ELEMENT_MARGIN);
-Label<15> labelEnum(ELEMENT_MARGIN, Y_ROW1, "Enumerations", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
-EnumIndicator<TestEnum> enumInd1(ELEMENT_MARGIN + 16, Y_ROW2, &enumVal1, TestEnumNames, 3);
-EnumControl<TestEnum> enumCtrl1(ELEMENT_MARGIN + 16, Y_ROW3, &enumVal1, TestEnumNames, 3);
-Icon enumCtrl1Icon(ELEMENT_MARGIN, Y_ROW3, ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-ContainerPage page_enum;
+Label<15> labelEnum(ELEMENT_MARGIN, ELEMENT_MARGIN, "Enumerations", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+EnumIndicator<TestEnum> enumInd1(&enumVal1, TestEnumNames, 3);
+EnumControl<TestEnum> enumCtrl1(&enumVal1, TestEnumNames, 3);
+Icon enumCtrl1Icon(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
+ContainerStack stack_enumCtrl1(STACK_ORIENTATION_HORIZONTAL, ELEMENT_MARGIN);
+EnumControl<TestEnum> enumCtrl2(&enumVal1, TestEnumNames, 3);
+Icon enumCtrl2Icon(icon_info_width, icon_info_height, icon_info_bits);
+ContainerStack stack_enumCtrl2(STACK_ORIENTATION_HORIZONTAL, ELEMENT_MARGIN);
+ContainerStack stack_enum(STACK_ORIENTATION_VERTICAL, ELEMENT_MARGIN);
 ContainerList list1;
 
 Label<10> labelNum(ELEMENT_MARGIN, Y_ROW1, "Numerics", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
@@ -139,18 +143,25 @@ void UI_Test_BuildTree()
 	tabControl.SelectTab(0);
 
 	list1.AddItem(&stack_boolean);
-	list1.AddItem(&page_enum);
+	list1.AddItem(&stack_enum);
 
 	stack_boolean.AddItem(&labelBool);
 	stack_boolean.AddItem(&boolInd1);
 	stack_boolean.AddItem(&boolCtrl1);
 	stack_boolean.AddItem(&boolCtrl2);
 	stack_boolean.InitItems();
-	page_enum.AddItem(&labelEnum);
-	page_enum.AddItem(&enumInd1);
-	page_enum.AddItem(&enumCtrl1);
-	page_enum.AddItem(&enumCtrl1Icon);
-	page_enum.InitItems();	
+
+	stack_enum.AddItem(&labelEnum);
+	stack_enum.AddItem(&enumInd1);
+	stack_enum.AddItem(&stack_enumCtrl1);		// The order of these elements is crucial: First add the child container to the parent container (to init the location of the child container)
+	stack_enumCtrl1.AddItem(&enumCtrl1Icon);	// Then add the child elements (each of these adds is changing the size of the parent stack)
+	stack_enumCtrl1.AddItem(&enumCtrl1);
+	stack_enumCtrl1.InitItems();	
+	stack_enum.AddItem(&stack_enumCtrl2);		// First add all elements of the previous stack, then add this stack to it's parent (otherwise the location and size of the previous stack isn't fully determined)
+	stack_enumCtrl2.AddItem(&enumCtrl2Icon);
+	stack_enumCtrl2.AddItem(&enumCtrl2);
+	stack_enumCtrl2.InitItems();
+	stack_enum.InitItems();
 	
 	page_numeric.AddItem(&labelNum);
 	page_numeric.AddItem(&numInd1);

@@ -3,6 +3,10 @@
 #include "Adafruit_ILI9341.h"
 #include "UI_Lib_Test.h"
 
+#ifdef DEBUG
+#include "avr8-stub.h"
+#endif
+
 #define TFT_DC 9
 #define TFT_CS 10
 
@@ -18,6 +22,10 @@ Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
 
 void setup()
 {
+  #ifdef DEBUG
+    debug_init();
+  #endif
+
   Serial.begin(9600);
   Serial.println("ILI9341 Test!"); 
  

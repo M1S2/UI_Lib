@@ -16,6 +16,7 @@ void UI_Manager::Init(Adafruit_GFX* gfx)
 	gfx->fillScreen(UI_LIB_COLOR_BACKGROUND);
 	gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
 	gfx->setFont(UI_LIB_DEFAULT_FONT);
+	gfx->setTextWrap(false);
 }
 
 void UI_Manager::Draw(Adafruit_GFX* gfx)

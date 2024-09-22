@@ -53,9 +53,35 @@ class Container : public UIElement
 		/**
 		 * Add a new element to the container and activate it as active child.
 		 * @param item Pointer to the UIElement that should be added to the container.
+		 * @param stretchWidthEnabled If true, the items Width is changed to fill the parent container (if the item is a UI_CONTAINER and the item Width is 0)
+		 * @param strechHeightEnabled If true, the items Height is changed to fill the parent container (if the item is a UI_CONTAINER and the item Height is 0)
 		 * @return true, if added; otherwise false (if container is full) 
 		 */
-		bool AddItem(UIElement* item);
+		bool AddItem(UIElement* item, bool stretchWidthEnabled = true, bool strechHeightEnabled = true);
+
+		/**
+		 * Select the next item in the container.
+		 * @return true if there was a next item (if the selected item wasn't the last one).
+		 */
+		bool NextItem();
+		
+		/**
+		 * Select the previous item in the container.
+		 * @return true if there was a previous item (if the selected item wasn't the first one).
+		 */
+		bool PreviousItem();
+		
+		/**
+		 * Select the next item in the container that is of UI_CONTROL type.
+		 * @return true if there was a next control item (if the selected item wasn't the last one).
+		 */
+		bool NextControlItem();
+		
+		/**
+		 * Select the previous item in the container that is of UI_CONTROL type.
+		 * @return true if there was a previous control item (if the selected item wasn't the first one).
+		 */
+		bool PreviousControlItem();
 };
 
 #endif /* CONTAINER_H_ */

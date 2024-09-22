@@ -61,39 +61,3 @@ bool ContainerList::KeyInput(Keys_t key)
 			return false;
 	}
 }
-
-bool ContainerList::NextItem()
-{
-	if (_selectedItemIndex >= _numItems - 1)
-	{
-		return false;
-	} 	
-	
-	while (_selectedItemIndex < _numItems - 1) 
-	{
-		_selectedItemIndex++;
-		ActiveChild = GetSelectedItem();
-		if(ActiveChild != NULL && ActiveChild->Visible == true) { return true; }
-	}
-	_selectedItemIndex--;	// Decrement index to stay in range (was incremented in the loop before)
-	ActiveChild = GetSelectedItem();
-	return false;
-}
-
-bool ContainerList::PreviousItem()
-{
-	if (_selectedItemIndex <= 0)
-	{
-		return false;
-	}
-	
-	while (_selectedItemIndex > 0)
-	{
-		_selectedItemIndex--;
-		ActiveChild = GetSelectedItem();
-		if(ActiveChild != NULL && ActiveChild->Visible == true) { return true; }
-	}
-	_selectedItemIndex++;	// Increment index to stay in range (was decremented in the loop before)
-	ActiveChild = GetSelectedItem();
-	return false;
-}

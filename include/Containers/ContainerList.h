@@ -49,18 +49,6 @@ class ContainerList : public Container
 		 * @return true if the key was processed; false if not.
 		 */
 		virtual bool KeyInput(Keys_t key) override;
-
-		/**
-		 * Scroll to the next item in the container.
-		 * @return true if there was a next item (if the selected item wasn't the last one).
-		 */
-		bool NextItem();
-		
-		/**
-		 * Scroll to the previous item in the container.
-		 * @return true if there was a previous item (if the selected item wasn't the first one).
-		 */
-		bool PreviousItem();
 };
 
 #endif /* CONTAINERLIST_H_ */
