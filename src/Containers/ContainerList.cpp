@@ -3,6 +3,7 @@
  */ 
 
 #include "Containers/ContainerList.h"
+#include "Core/UI_Manager.h"
 
 ContainerList::ContainerList()
 {
@@ -20,16 +21,16 @@ ContainerList::ContainerList(uint16_t locX, uint16_t locY, uint16_t width, uint1
 	_lastDrawnItemIndex = -1;
 }
 
-void ContainerList::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void ContainerList::Draw(Adafruit_GFX* gfx)
 {
-	if(_lastDrawnItemIndex != _selectedItemIndex || wasScreenCleared)
+	if(_lastDrawnItemIndex != _selectedItemIndex || UiManager.WasTreeRootChanged)
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 		_lastDrawnItemIndex = _selectedItemIndex;
 	}
 
 	UIElement* item = GetSelectedItem();
-	if(item != NULL) { item->Draw(gfx, wasScreenCleared); }
+	if(item != NULL) { item->Draw(gfx); }
 	
 	// Count visible items
 	int _numVisibleItems = 0;
@@ -45,8 +46,8 @@ void ContainerList::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 	uint16_t scrollBarBoxHeight = Height - 2 * SCROLLBAR_MARGIN;
 	uint16_t scrollBarHeight = scrollBarBoxHeight / _numVisibleItems;
 
-	gfx->drawRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN, SCROLLBAR_WIDTH, scrollBarBoxHeight, UI_LIB_COLOR_FOREGROUND);
-	gfx->fillRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN + ((_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), SCROLLBAR_WIDTH, scrollBarHeight, UI_LIB_COLOR_FOREGROUND);
+	gfx->drawRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN, SCROLLBAR_WIDTH, scrollBarBoxHeight, UiManager.ColorForeground);
+	gfx->fillRect(scrollBarLeft, LocY + SCROLLBAR_MARGIN + ((_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), SCROLLBAR_WIDTH, scrollBarHeight, UiManager.ColorForeground);
 }
 
 bool ContainerList::KeyInput(Keys_t key)

@@ -3,6 +3,7 @@
  */ 
 
 #include "Controls/ButtonControl.h"
+#include "Core/UI_Manager.h"
 #include <string.h>
 
 template <int StringLength>
@@ -28,27 +29,27 @@ ButtonControl<StringLength>::ButtonControl(uint16_t locX, uint16_t locY, uint16_
 }
 
 template <int StringLength>
-void ButtonControl<StringLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void ButtonControl<StringLength>::Draw(Adafruit_GFX* gfx)
 {
 	if (Visible)
 	{
-		gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
 		
-		gfx->drawFastHLine(LocX - 1, LocY - 1, 5, UI_LIB_COLOR_FOREGROUND);					// Upper left corner
-		gfx->drawFastVLine(LocX - 1, LocY - 1, 5, UI_LIB_COLOR_FOREGROUND);
-		gfx->drawFastHLine(LocX + Width - 4, LocY - 1, 5, UI_LIB_COLOR_FOREGROUND);			// Upper right corner
-		gfx->drawFastVLine(LocX + Width, LocY - 1, 5, UI_LIB_COLOR_FOREGROUND);
-		gfx->drawFastHLine(LocX - 1, LocY + Height, 5, UI_LIB_COLOR_FOREGROUND);				// Lower left corner
-		gfx->drawFastVLine(LocX - 1, LocY + Height - 4, 5, UI_LIB_COLOR_FOREGROUND);
-		gfx->drawFastHLine(LocX + Width - 4, LocY + Height, 5, UI_LIB_COLOR_FOREGROUND);		// Lower right corner		
-		gfx->drawFastVLine(LocX + Width, LocY + Height - 4, 5, UI_LIB_COLOR_FOREGROUND);
-		gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
+		gfx->drawFastHLine(LocX - 1, LocY - 1, 5, UiManager.ColorForeground);					// Upper left corner
+		gfx->drawFastVLine(LocX - 1, LocY - 1, 5, UiManager.ColorForeground);
+		gfx->drawFastHLine(LocX + Width - 4, LocY - 1, 5, UiManager.ColorForeground);			// Upper right corner
+		gfx->drawFastVLine(LocX + Width, LocY - 1, 5, UiManager.ColorForeground);
+		gfx->drawFastHLine(LocX - 1, LocY + Height, 5, UiManager.ColorForeground);				// Lower left corner
+		gfx->drawFastVLine(LocX - 1, LocY + Height - 4, 5, UiManager.ColorForeground);
+		gfx->drawFastHLine(LocX + Width - 4, LocY + Height, 5, UiManager.ColorForeground);		// Lower right corner		
+		gfx->drawFastVLine(LocX + Width, LocY + Height - 4, 5, UiManager.ColorForeground);
+		gfx->setTextColor(UiManager.ColorForeground);
 		gfx->setCursor(LocX, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
 		gfx->print(_buttonText);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

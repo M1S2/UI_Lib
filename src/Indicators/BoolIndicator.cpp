@@ -3,6 +3,7 @@
  */ 
 
 #include "Indicators/BoolIndicator.h"
+#include "Core/UI_Manager.h"
 
 BoolIndicator::BoolIndicator(bool* valuePointer) : UIElement(UI_INDICATOR)
 {
@@ -16,7 +17,7 @@ BoolIndicator::BoolIndicator(uint16_t locX, uint16_t locY, bool* valuePointer) :
 	_valuePointer = valuePointer;
 }
 
-void BoolIndicator::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void BoolIndicator::Draw(Adafruit_GFX* gfx)
 {
 	if (Visible)
 	{	
@@ -24,7 +25,7 @@ void BoolIndicator::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 		// If the Draw() is called from an BoolControl object, the Type was set to UI_CONTROL there
 		if(this->Type == UI_INDICATOR)
 		{
-			gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);	
+			gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);	
 		} 
 		
 		_valueDraw = *_valuePointer;
@@ -34,6 +35,6 @@ void BoolIndicator::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

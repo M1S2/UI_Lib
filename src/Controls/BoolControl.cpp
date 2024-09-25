@@ -3,6 +3,7 @@
  */ 
 
 #include "Controls/BoolControl.h"
+#include "Core/UI_Manager.h"
 
 BoolControl::BoolControl(bool* valuePointer, void* controlContext, void(*onValueChanged)(void* controlContext)) : BoolIndicator(valuePointer)
 {
@@ -18,18 +19,18 @@ BoolControl::BoolControl(uint16_t locX, uint16_t locY, bool* valuePointer, void*
 	_onValueChanged = onValueChanged;
 }
 
-void BoolControl::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void BoolControl::Draw(Adafruit_GFX* gfx)
 {
 	if (Visible)
 	{
-		gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
 
-		BoolIndicator::Draw(gfx, wasScreenCleared);
-		gfx->drawFastHLine(LocX, LocY + Height, Width, UI_LIB_COLOR_FOREGROUND);
+		BoolIndicator::Draw(gfx);
+		gfx->drawFastHLine(LocX, LocY + Height, Width, UiManager.ColorForeground);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

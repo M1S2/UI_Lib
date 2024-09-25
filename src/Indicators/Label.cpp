@@ -10,7 +10,7 @@ Label<StringLength>::Label(const char* text) : UIElement(UI_INDICATOR)
 {
 	SetText(text);
 	_font = NULL;
-	_color = UI_LIB_COLOR_FOREGROUND;
+	_wasColorSet = false;
 }
 
 template <int StringLength>
@@ -18,7 +18,16 @@ Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text) : UIE
 {
 	SetText(text);
 	_font = NULL;
-	_color = UI_LIB_COLOR_FOREGROUND;
+	_wasColorSet = false;
+}
+
+template <int StringLength>
+Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, uint16_t color) : UIElement(locX, locY, UI_INDICATOR)
+{
+	SetText(text);
+	_font = NULL;
+	_color = color;
+	_wasColorSet = true;
 }
 
 template <int StringLength>
@@ -27,6 +36,16 @@ Label<StringLength>::Label(const char* text, const GFXfont* font, uint16_t color
 	SetText(text);
 	_font = font;
 	_color = color;
+	_wasColorSet = true;
+}
+
+template <int StringLength>
+Label<StringLength>::Label(const char* text, uint16_t color) : UIElement(UI_INDICATOR)
+{
+	SetText(text);
+	_font = NULL;
+	_color = color;
+	_wasColorSet = true;
 }
 
 template <int StringLength>
@@ -35,14 +54,22 @@ Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, const
 	SetText(text);
 	_font = font;
 	_color = color;
+	_wasColorSet = true;
 }
 
 template <int StringLength>
-void Label<StringLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void Label<StringLength>::Draw(Adafruit_GFX* gfx)
 {
+	if(!_wasColorSet)
+	{
+		// Initialize the color with the foreground color from the UiManager if the color wasn't set in the constructor
+		_color = UiManager.ColorForeground;
+		_wasColorSet = true;
+	}
+
 	if (Visible)
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 
 		int font_y_offset = UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE;
 		if(_font != NULL) 
@@ -59,13 +86,13 @@ void Label<StringLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 		
 		if(_font !=NULL) 
 		{ 
-			gfx->setFont(UI_LIB_DEFAULT_FONT);
+			gfx->setFont(UiManager.DefaultFont);
 		}
-		gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
+		gfx->setTextColor(UiManager.ColorForeground);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

@@ -18,11 +18,11 @@ ContainerPage::ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint1
 	Height = height;
 }
 
-void ContainerPage::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void ContainerPage::Draw(Adafruit_GFX* gfx)
 {
 	for (int i = 0; i < _numItems; i++)
 	{
-		_items[i]->Draw(gfx, wasScreenCleared);
+		_items[i]->Draw(gfx);
 	}
 }
 

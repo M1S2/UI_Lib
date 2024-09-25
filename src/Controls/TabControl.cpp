@@ -3,6 +3,7 @@
  */ 
 
 #include "Controls/TabControl.h"
+#include "Core/UI_Manager.h"
 #include <string.h>
 
 TabControl::TabControl(uint16_t width, uint16_t height, uint16_t tabWidth, void* controlContext, void(*onSelectedTabChanged)(void* controlContext)) : UIElement(UI_CONTROL)
@@ -29,16 +30,16 @@ TabControl::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t he
 	_onSelectedTabChanged = onSelectedTabChanged;
 }
 
-void TabControl::Draw(Adafruit_GFX* gfx, bool wasScreenCleared) 
+void TabControl::Draw(Adafruit_GFX* gfx) 
 {
 	if (Visible)
 	{
-		if(_lastDrawnTabIndex != _selectedTabIndex || wasScreenCleared)
+		if(_lastDrawnTabIndex != _selectedTabIndex || UiManager.WasTreeRootChanged)
 		{
-			gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+			gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 			_lastDrawnTabIndex = _selectedTabIndex;
 
-			gfx->drawRect(LocX + _tabWidth - 1, LocY, Width - _tabWidth + 1, Height, UI_LIB_COLOR_FOREGROUND);
+			gfx->drawRect(LocX + _tabWidth - 1, LocY, Width - _tabWidth + 1, Height, UiManager.ColorForeground);
 			int yTab = LocY;
 			
 			int16_t x, y;
@@ -51,8 +52,8 @@ void TabControl::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 			{
 				if(i == _selectedTabIndex)
 				{
-					gfx->drawRect(LocX, yTab, _tabWidth, tabHeight, UI_LIB_COLOR_FOREGROUND);
-					gfx->drawFastVLine(LocX + _tabWidth - 1, yTab + 1, tabHeight - 2, UI_LIB_COLOR_CONTRAST);
+					gfx->drawRect(LocX, yTab, _tabWidth, tabHeight, UiManager.ColorForeground);
+					gfx->drawFastVLine(LocX + _tabWidth - 1, yTab + 1, tabHeight - 2, UiManager.ColorBackground);
 				}
 				
 				if(_headers[i] != NULL) 
@@ -64,11 +65,11 @@ void TabControl::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 			}
 		}
 		
-		if(_tabContents[_selectedTabIndex] != NULL) { _tabContents[_selectedTabIndex]->Draw(gfx, wasScreenCleared); }
+		if(_tabContents[_selectedTabIndex] != NULL) { _tabContents[_selectedTabIndex]->Draw(gfx); }
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

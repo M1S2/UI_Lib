@@ -14,7 +14,6 @@ enum TestEnum
 };
 const char* TestEnumNames[] = { "Test A", "Test B", "Test C" };
 
-UI_Manager ui_Manager;
 bool boolVal1 = false;
 bool boolVal2 = true;
 TestEnum enumVal1;
@@ -45,12 +44,12 @@ void OnShowError(void* context);
 
 #define ELEMENT_MARGIN	10
 
-Label<10> labelBool(ELEMENT_MARGIN, ELEMENT_MARGIN, "Boolean", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+Label<10> labelBool(ELEMENT_MARGIN, ELEMENT_MARGIN, "Boolean", COLOR_WHITE);
 BoolIndicator boolInd1(&boolVal1);
 BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
 BoolControl boolCtrl2(&boolVal2, &boolVal2, &OnBoolVal2Changed);
 ContainerStack stack_boolean(STACK_ORIENTATION_VERTICAL, ELEMENT_MARGIN);
-Label<15> labelEnum(ELEMENT_MARGIN, ELEMENT_MARGIN, "Enumerations", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+Label<15> labelEnum(ELEMENT_MARGIN, ELEMENT_MARGIN, "Enumerations", COLOR_WHITE);
 EnumIndicator<TestEnum> enumInd1(&enumVal1, TestEnumNames, 3);
 EnumControl<TestEnum> enumCtrl1(&enumVal1, TestEnumNames, 3);
 Icon enumCtrl1Icon(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
@@ -61,14 +60,14 @@ ContainerStack stack_enumCtrl2(STACK_ORIENTATION_HORIZONTAL, ELEMENT_MARGIN);
 ContainerStack stack_enum(STACK_ORIENTATION_VERTICAL, ELEMENT_MARGIN);
 ContainerList list1;
 
-Label<10> labelNum(ELEMENT_MARGIN, Y_ROW1, "Numerics", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+Label<10> labelNum(ELEMENT_MARGIN, Y_ROW1, "Numerics", COLOR_WHITE);
 NumericIndicator<int> numInd2(ELEMENT_MARGIN, Y_ROW2, &numVal2, "A", 5000, 0);
 NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 3);
 NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -10, 2000, 3, &numVal1, &OnNumVal1Changed);
 ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, 70, 20, &numVal1, -10, 2000, PROGRESSBAR_ORIGIN_ZERO, 0);
 ContainerPage page_numeric;
 
-Label<10> labelButtons(ELEMENT_MARGIN, Y_ROW1, "Buttons", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+Label<10> labelButtons(ELEMENT_MARGIN, Y_ROW1, "Buttons", COLOR_WHITE);
 ButtonControlDefault buttonReset(ELEMENT_MARGIN, Y_ROW2, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "Reset", NULL, &OnButtonReset);
 ButtonControlDefault buttonShowTestError(ELEMENT_MARGIN, Y_ROW4, 125, DEFAULT_UI_ELEMENT_HEIGHT, "Show Error", NULL, &OnShowError);
 MessageDialogDefault msgReset(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Reset sucessful.", MSG_INFO, MSG_BTN_OK, NULL, &OnMsgOk);
@@ -76,7 +75,7 @@ MessageDialogDefault msgTestWarning(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDT
 MessageDialogDefault msgTestError(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
 ContainerPage page_dialogs;
 
-Label<10> labelGrid("Grid", UI_LIB_DEFAULT_FONT, COLOR_WHITE);
+Label<10> labelGrid("Grid", COLOR_WHITE);
 Icon icon1(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon2(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon3(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
@@ -96,7 +95,7 @@ Icon globalIcon(DISPLAY_WIDTH - settings_window_width - 15, DISPLAY_HEIGHT - set
 
 void OnBoolVal1Changed(void* context)
 {
-	ui_Manager.ChangeVisualTreeRoot(&msgTestWarning);
+	UiManager.ChangeVisualTreeRoot(&msgTestWarning);
 }
 
 void OnBoolVal2Changed(void* context)
@@ -117,17 +116,17 @@ void OnButtonReset(void* context)
 	enumVal1 = Test_A;
 	numVal1 = 0;
 	numVal2 = 0;
-	ui_Manager.ChangeVisualTreeRoot(&msgReset);
+	UiManager.ChangeVisualTreeRoot(&msgReset);
 }
 
 void OnShowError(void* context)
 {
-	ui_Manager.ChangeVisualTreeRoot(&msgTestError);
+	UiManager.ChangeVisualTreeRoot(&msgTestError);
 }
 
 void OnMsgOk(void* context)
 {
-	ui_Manager.ChangeVisualTreeRoot(&mainPage);	
+	UiManager.ChangeVisualTreeRoot(&mainPage);	
 }
 
 void UI_Test_BuildTree()
@@ -196,20 +195,26 @@ void UI_Test_BuildTree()
 	
 	mainPage.InitItems();
 	
-	ui_Manager.ChangeVisualTreeRoot(&mainPage);	
+	UiManager.ChangeVisualTreeRoot(&mainPage);	
 }
 
 void UI_Test_Init(Adafruit_GFX* gfx)
 {
-	ui_Manager.Init(gfx);
+	// Use the global UiManager object and don't create a new instace !!!
+	
+	UiManager.ColorBackground = RGB565(0x00, 0x00, 0xFF);
+	UiManager.ColorForeground = RGB565(0xFF, 0x00, 0x00);
+	UiManager.ColorForegroundEditMode = RGB565(0x00, 0xFF, 0x00);
+
+	UiManager.Init(gfx);
 }
 
 void UI_Test_Draw(Adafruit_GFX* gfx)
 {
-	ui_Manager.Draw(gfx);
+	UiManager.Draw(gfx);
 }
 
 void UI_Test_KeyInput(Keys_t key)
 {
-	ui_Manager.KeyInput(key);
+	UiManager.KeyInput(key);
 }

@@ -40,9 +40,8 @@ class BoolControl : public BoolIndicator
 		/**
 		 * Method used for drawing of the BoolControl.
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
-		 * @param wasScreenCleared This parameter indicates that the complete screen was cleared. Draw everything again.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) override;
+		virtual void Draw(Adafruit_GFX* gfx) override;
 		
 		/**
 		 * Process the given key.

@@ -3,6 +3,7 @@
  */
 
 #include "Controls/NumericControl.h"
+#include "Core/UI_Manager.h"
 #include <math.h>
 
 template <class T, int stringBufferLength>
@@ -28,23 +29,23 @@ NumericControl<T, stringBufferLength>::NumericControl(uint16_t locX, uint16_t lo
 }
 
 template <class T, int stringBufferLength>
-void NumericControl<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void NumericControl<T, stringBufferLength>::Draw(Adafruit_GFX* gfx)
 {
 	if (this->Visible)
 	{
-		gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
 
 		if (IsEditMode)
 		{
-			gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UI_LIB_COLOR_FOREGROUND);
-			gfx->setTextColor(UI_LIB_COLOR_CONTRAST);
+			gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
+			gfx->setTextColor(UiManager.ColorForegroundEditMode);
 		}	
 		else 
 		{
-			gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UI_LIB_COLOR_FOREGROUND); 
+			gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UiManager.ColorForeground); 
 		}
 		
-		NumericIndicator<T, stringBufferLength>::Draw(gfx, wasScreenCleared);
+		NumericIndicator<T, stringBufferLength>::Draw(gfx);
 		
 		if(IsEditMode)
 		{	
@@ -57,9 +58,10 @@ void NumericControl<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool wasScre
 			uint8_t cursorDigitIndex = (-CurrentDigitPosition + (this->_numDigits - this->_numFractionalDigits)) + (((this->_numFractionalDigits + this->_unitPrefixPower) == 0 && this->_numFractionalDigits != 0) ? 1 : 0) - 1;	// if (this->_numFractionalDigits + this->_unitPrefixPower) == 0,  no comma is available
 			uint16_t cursorXpos = this->LocX + 5 + cursorDigitIndex * character_width + (CurrentDigitPosition < this->_unitPrefixPower ? dot_width : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
 
-			gfx->fillRect(cursorXpos, this->LocY + this->Height - 1, character_width, 2, UI_LIB_COLOR_CONTRAST);		// Draw cursor
+			gfx->fillRect(cursorXpos, this->LocY + this->Height - 1, character_width, 2, UiManager.ColorForegroundEditMode);		// Draw cursor
 
-			gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
+			// Reset text color back to default foreground
+			gfx->setTextColor(UiManager.ColorForeground);
 		}
 	}
 }

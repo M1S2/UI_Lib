@@ -5,39 +5,46 @@
 #include "Core/UI_Manager.h"
 #include "Core/UI_Elements.h"
 
+UI_Manager UiManager;
+
 UI_Manager::UI_Manager()
 {
 	_visualTreeRoot = NULL;
 	_focusElement = NULL;
+	
+	ColorBackground = UI_LIB_DEFAULT_COLOR_BACKGROUND;
+	ColorForeground = UI_LIB_DEFAULT_COLOR_FOREGROUND;
+	ColorForegroundEditMode = UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE;
+	DefaultFont = UI_LIB_DEFAULT_FONT;
 }
 
 void UI_Manager::Init(Adafruit_GFX* gfx)
 {
-	gfx->fillScreen(UI_LIB_COLOR_BACKGROUND);
-	gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
-	gfx->setFont(UI_LIB_DEFAULT_FONT);
+	gfx->fillScreen(ColorBackground);
+	gfx->setTextColor(ColorForeground);
+	gfx->setFont(DefaultFont);
 	gfx->setTextWrap(false);
 }
 
 void UI_Manager::Draw(Adafruit_GFX* gfx)
 {
-	if(_wasTreeRootChanged)
+	if(WasTreeRootChanged)
 	{
-		gfx->fillScreen(UI_LIB_COLOR_BACKGROUND);
+		gfx->fillScreen(ColorBackground);
 	}
 
 	if (_visualTreeRoot == NULL) { return; }
 	
-	_visualTreeRoot->Draw(gfx, _wasTreeRootChanged);
+	_visualTreeRoot->Draw(gfx);
 	
 	if(_focusElement != NULL && _focusElement->Visible && _focusElement->Type != UI_INDICATOR) 
 	{ 
-		gfx->drawRect(_focusElement->LocX - 1, _focusElement->LocY - 1, _focusElement->Width + 2, _focusElement->Height + 2, UI_LIB_COLOR_FOREGROUND); 
+		gfx->drawRect(_focusElement->LocX - 1, _focusElement->LocY - 1, _focusElement->Width + 2, _focusElement->Height + 2, ColorForeground); 
 	}
 
-	if(_wasTreeRootChanged)
+	if(WasTreeRootChanged)
 	{
-		_wasTreeRootChanged = false;
+		WasTreeRootChanged = false;
 	}
 }
 
@@ -45,7 +52,7 @@ void UI_Manager::ChangeVisualTreeRoot(UIElement* visualTreeRoot)
 {
 	_visualTreeRoot = visualTreeRoot;
 	setFocusToLeaf();
-	_wasTreeRootChanged = true;
+	WasTreeRootChanged = true;
 }
 
 void UI_Manager::setFocusToLeaf()

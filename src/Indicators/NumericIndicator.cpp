@@ -3,6 +3,7 @@
  */ 
 
 #include "Indicators/NumericIndicator.h"
+#include "Core/UI_Manager.h"
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
@@ -78,7 +79,7 @@ NumericIndicator<T, stringBufferLength>::NumericIndicator(uint16_t locX, uint16_
 }
 
 template <class T, int stringBufferLength>
-void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx)
 {
 	if (Visible)
 	{
@@ -94,7 +95,7 @@ void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool wasSc
 		// If the Draw() is called from an NumericControl object, the Type was set to UI_CONTROL there
 		if(this->Type == UI_INDICATOR)
 		{
-			gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+			gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 		}
 
 		_valueDraw = *_valuePointer;
@@ -121,6 +122,6 @@ void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx, bool wasSc
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

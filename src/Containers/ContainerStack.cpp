@@ -3,6 +3,7 @@
  */ 
 
 #include "Containers/ContainerStack.h"
+#include "Core/UI_Manager.h"
 
 ContainerStack::ContainerStack(StackOrientation_t stackOrientation, uint16_t marginBetweenElements)
 {
@@ -22,15 +23,15 @@ ContainerStack::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uin
 	_marginBetweenElements = marginBetweenElements;
 }
 
-void ContainerStack::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void ContainerStack::Draw(Adafruit_GFX* gfx)
 {
 	if (Visible)
 	{
-		ContainerPage::Draw(gfx, wasScreenCleared);
+		ContainerPage::Draw(gfx);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

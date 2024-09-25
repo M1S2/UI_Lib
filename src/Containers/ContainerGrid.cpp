@@ -3,6 +3,7 @@
  */ 
 
 #include "Containers/ContainerGrid.h"
+#include "Core/UI_Manager.h"
 
 ContainerGrid::ContainerGrid()
 {
@@ -18,37 +19,37 @@ ContainerGrid::ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint1
 	Height = height;
 }
 
-void ContainerGrid::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void ContainerGrid::Draw(Adafruit_GFX* gfx)
 {
 	if (Visible)
 	{
 		#ifdef DEBUG_SHOW_CONTAINER_GRID_CELLS
 
-			gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UI_LIB_COLOR_BACKGROUND);
+			gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
 
 			uint16_t currentY = LocY;
-			gfx->drawFastHLine(LocX, currentY, Width, UI_LIB_COLOR_FOREGROUND);
+			gfx->drawFastHLine(LocX, currentY, Width, UiManager.ColorForeground);
 			for(int r = 0; r < MAX_CONTAINER_GRID_ROWS; r++)
 			{
 				if(_rowHeights[r] == 0) { break; }
 				currentY += _rowHeights[r];
-				gfx->drawFastHLine(LocX, currentY, Width, UI_LIB_COLOR_FOREGROUND);
+				gfx->drawFastHLine(LocX, currentY, Width, UiManager.ColorForeground);
 			}
 
 			uint16_t currentX = LocX;
-			gfx->drawFastVLine(currentX, LocY, Height, UI_LIB_COLOR_FOREGROUND);
+			gfx->drawFastVLine(currentX, LocY, Height, UiManager.ColorForeground);
 			for(int c = 0; c < MAX_CONTAINER_GRID_COLUMNS; c++)
 			{
 				if(_columnWidths[c] == 0) { break; }
 				currentX += _columnWidths[c];
-				gfx->drawFastVLine(currentX, LocY, Height, UI_LIB_COLOR_FOREGROUND);
+				gfx->drawFastVLine(currentX, LocY, Height, UiManager.ColorForeground);
 			}
 		#endif
-		ContainerPage::Draw(gfx, wasScreenCleared);
+		ContainerPage::Draw(gfx);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

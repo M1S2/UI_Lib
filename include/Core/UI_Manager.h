@@ -8,6 +8,11 @@
 
 #include "UIElement.h"
 
+#define UI_LIB_DEFAULT_COLOR_BACKGROUND				RGB565(0x00, 0x00, 0x00)			/**< Default Background color (black) */
+#define UI_LIB_DEFAULT_COLOR_FOREGROUND				RGB565(0x00, 0xF7, 0x00)			/**< Default UIElement foreground color (green) */	
+#define UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE	UI_LIB_DEFAULT_COLOR_BACKGROUND		/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
+#define UI_LIB_DEFAULT_FONT 						&FreeSans12pt7b
+
 /**
  * Class that is used to handle the drawing and key handling of all UI_Elements.
  */
@@ -16,7 +21,7 @@ class UI_Manager
 	private:
 		UIElement* _visualTreeRoot;					/**< Root element of the visual tree. This element and all children are drawn to the screen. */
 		UIElement* _focusElement;					/**< Element that has the focus (it is highlited and receives all key inputs). */
-		bool _wasTreeRootChanged;					/**< True, if the tree root was currently changed. This is set to false on the first draw then. */
+		
 		
 		/**
 		 * Traverse down the visual tree until an element without a child is reached and focus this element.
@@ -25,6 +30,12 @@ class UI_Manager
 
 	public:
 	
+		uint16_t ColorBackground;					/**< Background color (black) */
+		uint16_t ColorForeground;					/**< UIElement color (green) */	
+		uint16_t ColorForegroundEditMode;			/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
+		const GFXfont* DefaultFont;					/**< Default font used when no other font is assigned */
+		bool WasTreeRootChanged;					/**< True, if the tree root was currently changed. This is set to false on the first draw then. */
+		
 		/** Constructor of the UI_Manager */
 		UI_Manager();
 		
@@ -57,5 +68,7 @@ class UI_Manager
 		 */
 		bool KeyInput(Keys_t key);
 };
+
+extern UI_Manager UiManager;
 
 #endif /* UI_MANAGER_H_ */

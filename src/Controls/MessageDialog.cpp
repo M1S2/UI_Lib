@@ -5,6 +5,7 @@
 #include "Controls/MessageDialog.h"
 #include "../Indicators/Label.cpp"
 #include "../Controls/ButtonControl.cpp"
+#include "Core/UI_Manager.h"
 
 template <int messageLength>
 MessageDialog<messageLength>::MessageDialog(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* message, MessageSeverity_t severity, MessageButtons_t buttons, void* controlContext, void(*onOkClick)(void* controlContext), void(*onCancelClick)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL),
@@ -37,10 +38,10 @@ MessageDialog<messageLength>::MessageDialog(uint16_t locX, uint16_t locY, uint16
 }
 
 template <int messageLength>
-void MessageDialog<messageLength>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void MessageDialog<messageLength>::Draw(Adafruit_GFX* gfx)
 {
-	gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UI_LIB_COLOR_BACKGROUND);
-	_page.Draw(gfx, wasScreenCleared);
+	gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+	_page.Draw(gfx);
 }
 
 template <int messageLength>

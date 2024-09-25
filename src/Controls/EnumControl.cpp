@@ -3,6 +3,7 @@
  */ 
 
 #include "Controls/EnumControl.h"
+#include "Core/UI_Manager.h"
 
 template <class T>
 EnumControl<T>::EnumControl(T* valuePointer, const char** enumNames, uint8_t numEnumValues, void* controlContext, void(*onValueChanged)(void* controlContext)) : EnumIndicator<T>(valuePointer, enumNames, numEnumValues)
@@ -21,27 +22,28 @@ EnumControl<T>::EnumControl(uint16_t locX, uint16_t locY, T* valuePointer, const
 }
 
 template <class T>
-void EnumControl<T>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void EnumControl<T>::Draw(Adafruit_GFX* gfx)
 {
 	if (this->Visible)
 	{
-		gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
 		
 		if (IsEditMode)
 		{
-			gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UI_LIB_COLOR_FOREGROUND);
-			gfx->setTextColor(UI_LIB_COLOR_CONTRAST);
+			gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
+			gfx->setTextColor(UiManager.ColorForegroundEditMode);
 		}	
 		else 
 		{
-			gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UI_LIB_COLOR_FOREGROUND); 
+			gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UiManager.ColorForeground); 
 		}
 				
-		EnumIndicator<T>::Draw(gfx, wasScreenCleared);
+		EnumIndicator<T>::Draw(gfx);
 		
 		if(IsEditMode) 
 		{ 
-			gfx->setTextColor(UI_LIB_COLOR_FOREGROUND);
+			// Reset text color back to default foreground
+			gfx->setTextColor(UiManager.ColorForeground);
 		}
 	}
 }

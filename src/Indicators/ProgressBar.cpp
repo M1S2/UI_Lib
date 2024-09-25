@@ -3,6 +3,7 @@
  */ 
 
 #include "Indicators/ProgressBar.h"
+#include "Core/UI_Manager.h"
 #include <math.h>
 
 template <class T>
@@ -38,11 +39,11 @@ ProgressBar<T>::ProgressBar(uint16_t locX, uint16_t locY, uint16_t width, uint16
 }
 
 template <class T>
-void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void ProgressBar<T>::Draw(Adafruit_GFX* gfx)
 {
 	if (Visible)
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 		
 		_valueDraw = *_valuePointer; 
 		if (_valueDraw > _maxValue) { _valueDraw = _maxValue; }			// Coerce value to be between _minValue and _maxValue
@@ -53,7 +54,7 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 		uint16_t valueXCoord = xCoordinateFromValue(_valueDraw);
 		
 		// Draw outer border of progress bar
-		gfx->drawRect(xCoordinateFromValue(_minValue), LocY, Width, Height, UI_LIB_COLOR_FOREGROUND);
+		gfx->drawRect(xCoordinateFromValue(_minValue), LocY, Width, Height, UiManager.ColorForeground);
 
 		// Change font for min and max value strings
 		//const u8g_fntpgm_uint8_t* tmp_font;
@@ -74,7 +75,7 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 		// Change back font to previous font
 		//gfx->setFont(UI_LIB_DEFAULT_FONT);
 
-		gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, UI_LIB_COLOR_FOREGROUND);
+		gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, UiManager.ColorForeground);
 		
 		if(_tickIncrement > 0)			// Use _tickIncrement<=0 to disable ticks
 		{
@@ -82,12 +83,12 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
 			{
 				int xCoord = xCoordinateFromValue(xVal);
 				int tickLength = (((int)xVal) % 10 == 0 ? 3 : (((int)xVal) % 5 == 0 ? 2 : 1));
-				gfx->drawFastVLine(xCoord, LocY - tickLength, tickLength, UI_LIB_COLOR_FOREGROUND);
+				gfx->drawFastVLine(xCoord, LocY - tickLength, tickLength, UiManager.ColorForeground);
 			}
 		}
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UI_LIB_COLOR_BACKGROUND);
+		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

@@ -7,6 +7,7 @@
 #define LABEL_H_
 
 #include "../Core/UIElement.h"
+#include "../Core/UI_Manager.h"
 
 #define DEFAULT_LABEL_STRING_LENGTH		50			/**< Default string length for a label. */
 
@@ -20,6 +21,7 @@ class Label : public UIElement
 	private:
 		const GFXfont* _font;						/**< Font that is used to draw the Label. The font is only used to draw this Label. All other UIElements are using the default font again. */
 		uint16_t _color;							/**< Text color that is used to draw the Label. The color is only used to draw this Label. All other UIElements are using the default color again. */
+		bool _wasColorSet;							/**< true, if the color was set in the constructor or during the first draw call; false, if the color wasn't set in the constructor and before the first draw call */
 
 	public:
 		char Text[StringLength];					/**< Character buffer holding the string drawn by the Label. */
@@ -39,12 +41,28 @@ class Label : public UIElement
 		Label(uint16_t locX, uint16_t locY, const char* text);
 		
 		/**
+		 * Constructor of the Label.
+		 * @param locX X Location of the upper left corner of the Label 
+		 * @param locY Y Location of the upper left corner of the Label
+		 * @param text String that is draw to the screen by the label.
+		 * @param color Text color that is used to draw the Label. The color is only used to draw this Label. All other UIElements are using the default color again.
+		 */
+		Label(uint16_t locX, uint16_t locY, const char* text, uint16_t color);
+
+		/**
 		 * Constructor of the Label including a font parameter.
 		 * @param text String that is draw to the screen by the label.
 		 * @param font Font that is used to draw the Label. The font is only used to draw this Label. All other UIElements are using the default font again.
 		 * @param color Text color that is used to draw the Label. The color is only used to draw this Label. All other UIElements are using the default color again.
 		 */
-		Label(const char* text, const GFXfont* font, uint16_t color = UI_LIB_COLOR_FOREGROUND);
+		Label(const char* text, const GFXfont* font, uint16_t color);
+
+		/**
+		 * Constructor of the Label.
+		 * @param text String that is draw to the screen by the label.
+		 * @param color Text color that is used to draw the Label. The color is only used to draw this Label. All other UIElements are using the default color again.
+		 */
+		Label(const char* text, uint16_t color);
 
 		/**
 		 * Constructor of the Label including a font parameter.
@@ -54,14 +72,13 @@ class Label : public UIElement
 		 * @param font Font that is used to draw the Label. The font is only used to draw this Label. All other UIElements are using the default font again.
 		 * @param color Text color that is used to draw the Label. The color is only used to draw this Label. All other UIElements are using the default color again.
 		 */
-		Label(uint16_t locX, uint16_t locY, const char* text, const GFXfont* font, uint16_t color = UI_LIB_COLOR_FOREGROUND);
+		Label(uint16_t locX, uint16_t locY, const char* text, const GFXfont* font, uint16_t color);
 		
 		/**
 		 * Method used for drawing of the Label.
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
-		 * @param wasScreenCleared This parameter indicates that the complete screen was cleared. Draw everything again.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) override;
+		virtual void Draw(Adafruit_GFX* gfx) override;
 		
 		/**
 		 * Change the string that is drawn to the screen by this Label. 
