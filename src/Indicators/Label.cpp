@@ -71,7 +71,7 @@ void Label<StringLength>::Draw(Adafruit_GFX* gfx)
 	{
 		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 
-		int font_y_offset = UiManager.FontHeight - 2;
+		int font_y_offset = UiManager.FontHeight - 4;
 		if(_font != NULL) 
 		{
 			gfx->setFont(_font);

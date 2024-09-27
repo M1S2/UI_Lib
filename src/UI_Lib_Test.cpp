@@ -205,7 +205,7 @@ void UI_Test_Init(Adafruit_GFX* gfx)
 	// Use the global UiManager object and don't create a new instace !!!
 	UiManager.SetColors(RGB565(0x00, 0x00, 0x00), RGB565(0x00, 0xF7, 0x00), RGB565(0x00, 0x00, 0x00));
 	UiManager.Init(gfx);
-	UiManager.SetFont(gfx, &FreeSerifItalic12pt7b);
+	//UiManager.SetFont(gfx, &FreeSerifItalic12pt7b);
 }
 
 void UI_Test_Draw(Adafruit_GFX* gfx)

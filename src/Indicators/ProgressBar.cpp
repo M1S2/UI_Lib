@@ -58,13 +58,13 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx)
 				
 		char buffer[6];
 		itoa(_maxValue, buffer, 10);
-		gfx->setCursor(xCoordinateFromValue(_maxValue) + 3, LocY + UiManager.FontHeight - 2);
+		gfx->setCursor(xCoordinateFromValue(_maxValue) + 3, LocY + UiManager.FontHeight - 4);
 		gfx->print(buffer);
 
 		itoa(_minValue, buffer, 10);
 		uint16_t minValueTextWidth;
 		gfx->getTextBounds(buffer, 0, 0, nullptr, nullptr, &minValueTextWidth, nullptr);
-		gfx->setCursor(xCoordinateFromValue(_minValue) - 3 - minValueTextWidth, LocY + UiManager.FontHeight - 2);
+		gfx->setCursor(xCoordinateFromValue(_minValue) - 3 - minValueTextWidth, LocY + UiManager.FontHeight - 4);
 		gfx->print(buffer);
 
 		gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, UiManager.ColorForeground);

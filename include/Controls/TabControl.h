@@ -14,6 +14,15 @@
 #define TABCONTROL_CONTENT_PADDING	2		/**< Padding between the content region and the tab content */
 
 /**
+ * Available tab positions.
+ */
+typedef enum TabPositions
+{
+	TAB_POSITION_LEFT,			/**< Tabs are on the left side */
+	TAB_POSITION_TOP			/**< Tabs are on the top */
+}TabPositions_t;
+
+/**
  * Class for a tab control that is showing a tab layout and can hold child elements.
  */
 class TabControl : public UIElement
@@ -24,8 +33,9 @@ class TabControl : public UIElement
 		int _numTabs;												/**< Number of Tabs. */
 		int _selectedTabIndex;										/**< Index of the currently selected tab. */
 		int _lastDrawnTabIndex;										/**< Index of the last drawn tab */
-		uint16_t _tabWidth;											/**< Width of the Tabs in pixel. */
-		
+		uint16_t _tabRegionSize;									/**< Width or height of the Tabs in pixel. */
+		TabPositions_t _tabPosition;								/**< Position of the tabs. */
+
 		void* _controlContext;										/**< Context pointer that is returned with the _onSelectedTabChanged function pointer */
 		void(*_onSelectedTabChanged)(void* controlContext);			/**< Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed. */
 		
@@ -35,11 +45,12 @@ class TabControl : public UIElement
 		 * Constructor of the TabControl.
 		 * @param width Drawing width of the TabControl
 		 * @param height Drawing height of the TabControl
-		 * @param tabWidth Width of the Tabs in pixel.
+		 * @param tabRegionSize Width or height of the Tabs in pixel.
+		 * @param tabPosition Position of the tabs.
 		 * @param controlContext Context pointer that is returned with the _onSelectedTabChanged function pointer
 		 * @param onSelectedTabChanged Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed.
 		 */
-		TabControl(uint16_t width, uint16_t height, uint16_t tabWidth, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL);
+		TabControl(uint16_t width, uint16_t height, uint16_t tabRegionSize, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL);
 	
 		/**
 		 * Constructor of the TabControl.
@@ -47,11 +58,12 @@ class TabControl : public UIElement
 		 * @param locY Y Location of the upper left corner of the TabControl
 		 * @param width Drawing width of the TabControl
 		 * @param height Drawing height of the TabControl
-		 * @param tabWidth Width of the Tabs in pixel.
+		 * @param tabRegionSize Width or height of the Tabs in pixel.
+		 * @param tabPosition Position of the tabs.
 		 * @param controlContext Context pointer that is returned with the _onSelectedTabChanged function pointer
 		 * @param onSelectedTabChanged Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed.
 		 */
-		TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint16_t tabWidth, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL);
+		TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint16_t tabRegionSize, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL);
 	
 		/**
 		 * Method used for drawing of the TabControl.

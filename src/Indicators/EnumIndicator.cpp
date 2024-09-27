@@ -35,7 +35,7 @@ void EnumIndicator<T>::Draw(Adafruit_GFX* gfx)
 
 		_valueDraw = *_valuePointer; 
 			
-		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2);
+		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 4);
 		gfx->print(_enumNames[_valueDraw]);
 	}
 	else

@@ -44,7 +44,7 @@ void ButtonControl<StringLength>::Draw(Adafruit_GFX* gfx)
 		gfx->drawFastHLine(LocX + Width - 4, LocY + Height, 5, UiManager.ColorForeground);		// Lower right corner		
 		gfx->drawFastVLine(LocX + Width, LocY + Height - 4, 5, UiManager.ColorForeground);
 		gfx->setTextColor(UiManager.ColorForeground);
-		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2);
+		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 4);
 		gfx->print(_buttonText);
 	}
 	else
