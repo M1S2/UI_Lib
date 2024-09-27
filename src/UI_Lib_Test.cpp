@@ -6,6 +6,8 @@
 #include "UI_Lib_Test.h"
 #include <Fonts/FreeMono18pt7b.h>
 
+#include <Fonts/FreeSerifItalic12pt7b.h>
+
 enum TestEnum
 {
 	Test_A,
@@ -201,12 +203,9 @@ void UI_Test_BuildTree()
 void UI_Test_Init(Adafruit_GFX* gfx)
 {
 	// Use the global UiManager object and don't create a new instace !!!
-	
-	UiManager.ColorBackground = RGB565(0x00, 0x00, 0xFF);
-	UiManager.ColorForeground = RGB565(0xFF, 0x00, 0x00);
-	UiManager.ColorForegroundEditMode = RGB565(0x00, 0xFF, 0x00);
-
+	UiManager.SetColors(RGB565(0x00, 0x00, 0x00), RGB565(0x00, 0xF7, 0x00), RGB565(0x00, 0x00, 0x00));
 	UiManager.Init(gfx);
+	UiManager.SetFont(gfx, &FreeSerifItalic12pt7b);
 }
 
 void UI_Test_Draw(Adafruit_GFX* gfx)

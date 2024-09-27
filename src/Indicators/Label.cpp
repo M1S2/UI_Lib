@@ -71,13 +71,13 @@ void Label<StringLength>::Draw(Adafruit_GFX* gfx)
 	{
 		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 
-		int font_y_offset = UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE;
+		int font_y_offset = UiManager.FontHeight - 2;
 		if(_font != NULL) 
 		{
 			gfx->setFont(_font);
 			int16_t x, y;
 			uint16_t w, h;
-			gfx->getTextBounds("A", 0, 0, &x, &y, &w, &h);
+			gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
 			font_y_offset = h;
 		}
 		gfx->setCursor(LocX, LocY + font_y_offset);
@@ -86,7 +86,7 @@ void Label<StringLength>::Draw(Adafruit_GFX* gfx)
 		
 		if(_font !=NULL) 
 		{ 
-			gfx->setFont(UiManager.DefaultFont);
+			gfx->setFont(UiManager.Font);
 		}
 		gfx->setTextColor(UiManager.ColorForeground);
 	}

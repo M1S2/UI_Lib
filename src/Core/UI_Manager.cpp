@@ -12,18 +12,35 @@ UI_Manager::UI_Manager()
 	_visualTreeRoot = NULL;
 	_focusElement = NULL;
 	
-	ColorBackground = UI_LIB_DEFAULT_COLOR_BACKGROUND;
-	ColorForeground = UI_LIB_DEFAULT_COLOR_FOREGROUND;
-	ColorForegroundEditMode = UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE;
-	DefaultFont = UI_LIB_DEFAULT_FONT;
+	SetColors(UI_LIB_DEFAULT_COLOR_BACKGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE);
+
+	Font = UI_LIB_DEFAULT_FONT;
 }
 
 void UI_Manager::Init(Adafruit_GFX* gfx)
 {
 	gfx->fillScreen(ColorBackground);
 	gfx->setTextColor(ColorForeground);
-	gfx->setFont(DefaultFont);
 	gfx->setTextWrap(false);
+	SetFont(gfx, Font);
+}
+
+void UI_Manager::SetColors(uint16_t colorBackground, uint16_t colorForeground, uint16_t colorForegroundEditMode)
+{
+	ColorBackground = colorBackground;
+	ColorForeground = colorForeground;
+	ColorForegroundEditMode = colorForegroundEditMode;
+}
+
+void UI_Manager::SetFont(Adafruit_GFX* gfx, const GFXfont* font)
+{
+	Font = font;
+	gfx->setFont(font);
+
+	int16_t x, y;
+	uint16_t w, h;
+	gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
+	FontHeight = h;
 }
 
 void UI_Manager::Draw(Adafruit_GFX* gfx)

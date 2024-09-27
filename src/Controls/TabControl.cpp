@@ -42,10 +42,7 @@ void TabControl::Draw(Adafruit_GFX* gfx)
 			gfx->drawRect(LocX + _tabWidth - 1, LocY, Width - _tabWidth + 1, Height, UiManager.ColorForeground);
 			int yTab = LocY;
 			
-			int16_t x, y;
-			uint16_t w, h;
-			gfx->getTextBounds("A", 0, 0, &x, &y, &w, &h);
-			int tabFontHeight = h;
+			int tabFontHeight = UiManager.FontHeight - 2;
 			int tabHeight = tabFontHeight + 8;
 			
 			for(int i = 0; i < _numTabs; i++)
@@ -58,7 +55,7 @@ void TabControl::Draw(Adafruit_GFX* gfx)
 				
 				if(_headers[i] != NULL) 
 				{
-					gfx->setCursor(LocX + 2, yTab + ((tabHeight - tabFontHeight) / 2) + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
+					gfx->setCursor(LocX + 2, yTab + ((tabHeight - tabFontHeight) / 2) + UiManager.FontHeight - 2);
 					gfx->print(_headers[i]);
 				}
 				yTab+=(tabHeight + TABCONTROL_TABPAGE_MARGIN);

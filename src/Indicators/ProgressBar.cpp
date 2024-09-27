@@ -55,25 +55,17 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx)
 		
 		// Draw outer border of progress bar
 		gfx->drawRect(xCoordinateFromValue(_minValue), LocY, Width, Height, UiManager.ColorForeground);
-
-		// Change font for min and max value strings
-		//const u8g_fntpgm_uint8_t* tmp_font;
-		//tmp_font = u8g->font;
-		//u8g_SetFont(u8g, u8g_font_5x7r);
 				
 		char buffer[6];
 		itoa(_maxValue, buffer, 10);
-		gfx->setCursor(xCoordinateFromValue(_maxValue) + 3, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
+		gfx->setCursor(xCoordinateFromValue(_maxValue) + 3, LocY + UiManager.FontHeight - 2);
 		gfx->print(buffer);
 
 		itoa(_minValue, buffer, 10);
 		uint16_t minValueTextWidth;
 		gfx->getTextBounds(buffer, 0, 0, nullptr, nullptr, &minValueTextWidth, nullptr);
-		gfx->setCursor(xCoordinateFromValue(_minValue) - 3 - minValueTextWidth, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
+		gfx->setCursor(xCoordinateFromValue(_minValue) - 3 - minValueTextWidth, LocY + UiManager.FontHeight - 2);
 		gfx->print(buffer);
-
-		// Change back font to previous font
-		//gfx->setFont(UI_LIB_DEFAULT_FONT);
 
 		gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, UiManager.ColorForeground);
 		

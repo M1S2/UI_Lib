@@ -33,7 +33,8 @@ class UI_Manager
 		uint16_t ColorBackground;					/**< Background color (black) */
 		uint16_t ColorForeground;					/**< UIElement color (green) */	
 		uint16_t ColorForegroundEditMode;			/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
-		const GFXfont* DefaultFont;					/**< Default font used when no other font is assigned */
+		const GFXfont* Font;						/**< Default font used when no other font is assigned */
+		uint16_t FontHeight;						/**< Maximum height of the Font (height of the string "Ag"). This parameter is recalculated when the SetFont() method is used. */
 		bool WasTreeRootChanged;					/**< True, if the tree root was currently changed. This is set to false on the first draw then. */
 		
 		/** Constructor of the UI_Manager */
@@ -45,6 +46,21 @@ class UI_Manager
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 */
 		void Init(Adafruit_GFX* gfx);
+
+		/**
+		 * Set all colors.
+		 * @param colorBackground Background color
+		 * @param colorForeground UIElement color
+		 * @param colorForegroundEditModeDefault UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color.
+		 */
+		void SetColors(uint16_t colorBackground, uint16_t colorForeground, uint16_t colorForegroundEditMode);
+
+		/**
+		 * Set the Font property and recalculate the FontHeight based on this font
+		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
+		 * @param font New font to use for all UIElements
+		 */
+		void SetFont(Adafruit_GFX* gfx, const GFXfont* font);
 
 		/**
 		 * Draw the complete visual tree (_visualTreeRoot and all of its children).

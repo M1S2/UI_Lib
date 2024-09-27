@@ -111,12 +111,12 @@ void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx)
 			_firstDraw = false;
 		}
 
-		gfx->setCursor(LocX + 5, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
+		gfx->setCursor(LocX + 5, LocY + UiManager.FontHeight - 2);
 		gfx->print(_stringDrawBuffer);				// Draw value without minus sign
 		if (_displayValue < 0) 
 		{ 
 			// Draw minus sign
-			gfx->setCursor(LocX, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
+			gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2);
 			gfx->print("-"); 
 		}
 	}

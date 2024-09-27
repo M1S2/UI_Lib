@@ -30,7 +30,7 @@ void BoolIndicator::Draw(Adafruit_GFX* gfx)
 		
 		_valueDraw = *_valuePointer;
 	
-		gfx->setCursor(LocX, LocY + UI_LIB_DEFAULT_FONT_OFFSET_Y_BASELINE);
+		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2);
 		gfx->print(_valueDraw ? "ON" : "OFF");
 	}
 	else
