@@ -151,3 +151,20 @@ bool ContainerGrid::AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowInd
 
 	return true;
 }
+
+void ContainerGrid::RecalculateDimensions()
+{
+	Width = 0;
+	for(int i = 0; i <= MAX_CONTAINER_GRID_COLUMNS; i++)
+	{
+		if(_columnWidths[i] == 0) { break; }
+		Width += _columnWidths[i];
+	}
+
+	Height = 0;
+	for(int i = 0; i <= MAX_CONTAINER_GRID_ROWS; i++)
+	{
+		if(_rowHeights[i] == 0) { break; }
+		Height += _rowHeights[i];
+	}
+}

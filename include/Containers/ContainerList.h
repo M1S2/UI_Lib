@@ -48,6 +48,11 @@ class ContainerList : public Container
 		 * @return true if the key was processed; false if not.
 		 */
 		virtual bool KeyInput(Keys_t key) override;
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 #endif /* CONTAINERLIST_H_ */

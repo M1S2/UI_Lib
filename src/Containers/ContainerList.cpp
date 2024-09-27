@@ -62,3 +62,13 @@ bool ContainerList::KeyInput(Keys_t key)
 			return false;
 	}
 }
+
+void ContainerList::RecalculateDimensions()
+{
+	// Strech the container to fill up the full parent container space
+	if(Parent != NULL)
+	{
+		Width = Parent->Width;
+		Height = Parent->Height;
+	}
+}

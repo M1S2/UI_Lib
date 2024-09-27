@@ -12,6 +12,7 @@
 #define UI_LIB_DEFAULT_COLOR_FOREGROUND				RGB565(0x00, 0xF7, 0x00)			/**< Default UIElement foreground color (green) */	
 #define UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE	UI_LIB_DEFAULT_COLOR_BACKGROUND		/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
 #define UI_LIB_DEFAULT_FONT 						&FreeSans12pt7b
+#define UI_LIB_DEFAULT_ELEMENT_PADDING				2									/**< Space between the outline of every UIElement and the internal content. Used while RecalculateDimensions() of the UIElement */
 
 /**
  * Class that is used to handle the drawing and key handling of all UI_Elements.
@@ -21,7 +22,6 @@ class UI_Manager
 	private:
 		UIElement* _visualTreeRoot;					/**< Root element of the visual tree. This element and all children are drawn to the screen. */
 		UIElement* _focusElement;					/**< Element that has the focus (it is highlited and receives all key inputs). */
-		
 		
 		/**
 		 * Traverse down the visual tree until an element without a child is reached and focus this element.
@@ -35,8 +35,10 @@ class UI_Manager
 		uint16_t ColorForegroundEditMode;			/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
 		const GFXfont* Font;						/**< Default font used when no other font is assigned */
 		uint16_t FontHeight;						/**< Maximum height of the Font (height of the string "Ag"). This parameter is recalculated when the SetFont() method is used. */
+		uint16_t ElementPadding;					/**< Space between the outline of every UIElement and the internal content. Used while RecalculateDimensions() of the UIElement */
 		bool WasTreeRootChanged;					/**< True, if the tree root was currently changed. This is set to false on the first draw then. */
-		
+		Adafruit_GFX* Gfx;							/**< Graphics object */
+
 		/** Constructor of the UI_Manager */
 		UI_Manager();
 		
@@ -57,10 +59,9 @@ class UI_Manager
 
 		/**
 		 * Set the Font property and recalculate the FontHeight based on this font
-		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 * @param font New font to use for all UIElements
 		 */
-		void SetFont(Adafruit_GFX* gfx, const GFXfont* font);
+		void SetFont(const GFXfont* font);
 
 		/**
 		 * Draw the complete visual tree (_visualTreeRoot and all of its children).

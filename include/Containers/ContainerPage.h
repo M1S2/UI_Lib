@@ -47,6 +47,11 @@ class ContainerPage : public Container
 		 * This method selects the first UIElement in the container that is of UI_CONTROL type.
 		 */
 		void InitItems();
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 #endif /* CONTAINERPAGE_H_ */

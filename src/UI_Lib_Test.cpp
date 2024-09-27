@@ -41,7 +41,7 @@ void OnShowError(void* context);
 #define Y_ROW1		5
 #define Y_ROW2		30
 #define Y_ROW3		55
-#define Y_ROW4		80
+#define Y_ROW4		85
 #define Y_ROW5		105
 
 #define ELEMENT_MARGIN	10
@@ -70,8 +70,8 @@ ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, 70, 20, &numVal1, -10, 2000, PRO
 ContainerPage page_numeric;
 
 Label<10> labelButtons(ELEMENT_MARGIN, Y_ROW1, "Buttons", COLOR_WHITE);
-ButtonControlDefault buttonReset(ELEMENT_MARGIN, Y_ROW2, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "Reset", NULL, &OnButtonReset);
-ButtonControlDefault buttonShowTestError(ELEMENT_MARGIN, Y_ROW4, 125, DEFAULT_UI_ELEMENT_HEIGHT, "Show Error", NULL, &OnShowError);
+ButtonControlDefault buttonReset(ELEMENT_MARGIN, Y_ROW2, 0, 0, "Reset", NULL, &OnButtonReset);
+ButtonControlDefault buttonShowTestError(ELEMENT_MARGIN, Y_ROW4, 0, 0, "Show Error", NULL, &OnShowError);
 MessageDialogDefault msgReset(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Reset sucessful.", MSG_INFO, MSG_BTN_OK, NULL, &OnMsgOk);
 MessageDialogDefault msgTestWarning(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Warning message.\nWith Newline.", MSG_WARNING, MSG_BTN_OK, NULL, &OnMsgOk);
 MessageDialogDefault msgTestError(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
@@ -205,7 +205,8 @@ void UI_Test_Init(Adafruit_GFX* gfx)
 	// Use the global UiManager object and don't create a new instace !!!
 	UiManager.SetColors(RGB565(0x00, 0x00, 0x00), RGB565(0x00, 0xF7, 0x00), RGB565(0x00, 0x00, 0x00));
 	UiManager.Init(gfx);
-	//UiManager.SetFont(gfx, &FreeSerifItalic12pt7b);
+	//UiManager.SetFont(&FreeSerifItalic12pt7b);
+	//UiManager.SetFont(&FreeMono18pt7b);
 }
 
 void UI_Test_Draw(Adafruit_GFX* gfx)

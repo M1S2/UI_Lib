@@ -47,3 +47,11 @@ void ContainerPage::InitItems()
 		NextControlItem();
 	}
 }
+
+void ContainerPage::RecalculateDimensions()
+{
+	uint16_t x, y, w, h;
+	GetItemsBoundingBox(&x, &y, &w, &h);
+	Width = w;		// resize the ContainerPage to fit the size of the bounding box
+	Height = h;
+}

@@ -30,11 +30,21 @@ void BoolIndicator::Draw(Adafruit_GFX* gfx)
 		
 		_valueDraw = *_valuePointer;
 	
-		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 4);
+		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
 		gfx->print(_valueDraw ? "ON" : "OFF");
 	}
 	else
 	{
 		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
+}
+
+void BoolIndicator::RecalculateDimensions()
+{
+	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding;
+	
+	int16_t x, y;
+	uint16_t w, h;
+	UiManager.Gfx->getTextBounds("OFF", 0, 0, &x, &y, &w, &h);
+	Width = w + 2 * UiManager.ElementPadding; 
 }

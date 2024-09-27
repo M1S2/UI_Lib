@@ -21,19 +21,11 @@ bool Container::AddItem(UIElement* item, bool stretchWidthEnabled, bool strechHe
 	item->Parent = this;
 	_items[_numItems] = item;
 	_numItems++;
+	item->RecalculateDimensions();
 
 	// Move item inside container region
 	item->LocX += LocX;
 	item->LocY += LocY;
-	// Strech the item to fill up the full container space if the items Width or Height are zero
-	if(item->Type == UI_CONTAINER && item->Width == 0 && stretchWidthEnabled)
-	{
-		item->Width = Width;	
-	}
-	if(item->Type == UI_CONTAINER && item->Height == 0 && strechHeightEnabled)
-	{
-		item->Height = Height;
-	}
 	
 	if (ActiveChild == NULL) { ActiveChild = item; }
 	return true;
@@ -129,4 +121,26 @@ bool Container::PreviousControlItem()
 		return true;
 	}
 	return false;
+}
+
+void Container::GetItemsBoundingBox(uint16_t* x, uint16_t* y, uint16_t* w, uint16_t* h)
+{
+	// Reset input parameters
+	*x = 65535;
+	*y = 65535;
+	*w = 0;
+	*h = 0;
+
+	uint16_t maxX = 0, maxY = 0;
+	for(int i = 0; i < _numItems; i++)
+	{
+		// Find lowest X and Y coordinates
+		if(_items[i]->LocX < *x) { *x = _items[i]->LocX; }
+		if(_items[i]->LocY < *y) { *y = _items[i]->LocY; }
+
+		if((_items[i]->LocX + _items[i]->Width) > maxX) { maxX = _items[i]->LocX + _items[i]->Width; }
+		if((_items[i]->LocY + _items[i]->Height) > maxY) { maxY = _items[i]->LocY + _items[i]->Height; }
+	}
+	if(maxX > 0) { *w = maxX - *x; }
+	if(maxY > 0) { *h = maxY - *y; }
 }

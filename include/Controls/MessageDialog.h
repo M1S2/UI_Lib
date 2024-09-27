@@ -84,6 +84,11 @@ class MessageDialog : public UIElement
 		 * @return true if the key was processed; false if not.
 		 */
 		virtual bool KeyInput(Keys_t key) override;
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 typedef MessageDialog<> MessageDialogDefault;			/**< MessageDialog using the MAX_MESSAGEDIALOG_STRING_LENGTH as string length */

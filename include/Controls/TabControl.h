@@ -108,6 +108,11 @@ s		 * @return true if the key was processed; false if not.
 		 * Return the value of the selected tab index.
 		 */
 		int GetSelectedTabIndex();
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 #endif /* TABCONTROL_H_ */

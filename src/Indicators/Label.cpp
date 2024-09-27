@@ -71,7 +71,7 @@ void Label<StringLength>::Draw(Adafruit_GFX* gfx)
 	{
 		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 
-		int font_y_offset = UiManager.FontHeight - 4;
+		int font_y_offset = UiManager.FontHeight - 2 * UiManager.ElementPadding;
 		if(_font != NULL) 
 		{
 			gfx->setFont(_font);
@@ -101,4 +101,24 @@ void Label<StringLength>::SetText(const char* text)
 {
 	strncpy(Text, text, StringLength);		// Copy a maximum number of StringLength characters to the Text buffer. If text is shorter, the array is zero padded.
 	Text[StringLength - 1] = '\0';			// The Text buffer must contain at least one termination character ('\0') at the end to protect from overflow.
+}
+
+template <int StringLength>
+void Label<StringLength>::RecalculateDimensions()
+{
+	if(_font != NULL)
+	{
+		UiManager.Gfx->setFont(_font);
+	}
+	int16_t x, y;
+	uint16_t w, h;
+	UiManager.Gfx->getTextBounds(Text, 0, 0, &x, &y, &w, &h);
+
+	Width = w + 2 * UiManager.ElementPadding;
+	Height = h + 2 * UiManager.ElementPadding;
+
+	if(_font !=NULL) 
+	{ 
+		UiManager.Gfx->setFont(UiManager.Font);
+	}
 }

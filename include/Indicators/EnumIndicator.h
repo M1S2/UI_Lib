@@ -46,6 +46,11 @@ class EnumIndicator : public UIElement
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 */
 		virtual void Draw(Adafruit_GFX* gfx) override;
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 #endif /* ENUMINDICATOR_H_ */

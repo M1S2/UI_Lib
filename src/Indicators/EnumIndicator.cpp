@@ -35,11 +35,28 @@ void EnumIndicator<T>::Draw(Adafruit_GFX* gfx)
 
 		_valueDraw = *_valuePointer; 
 			
-		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 4);
+		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
 		gfx->print(_enumNames[_valueDraw]);
 	}
 	else
 	{
 		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
+}
+
+template <class T>
+void EnumIndicator<T>::RecalculateDimensions()
+{
+	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding;
+	
+	uint16_t maxWidth = 0;
+	for(int i = 0; i < _numEnumValues; i++)
+	{
+		int16_t x, y;
+		uint16_t w, h;
+		UiManager.Gfx->getTextBounds(_enumNames[i], 0, 0, &x, &y, &w, &h);
+		if(w > maxWidth) { maxWidth = w; }
+	}
+	
+	Width = maxWidth + 2 * UiManager.ElementPadding; 
 }

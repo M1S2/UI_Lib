@@ -15,14 +15,16 @@ UI_Manager::UI_Manager()
 	SetColors(UI_LIB_DEFAULT_COLOR_BACKGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE);
 
 	Font = UI_LIB_DEFAULT_FONT;
+	ElementPadding = UI_LIB_DEFAULT_ELEMENT_PADDING;
 }
 
 void UI_Manager::Init(Adafruit_GFX* gfx)
 {
+	Gfx = gfx;
 	gfx->fillScreen(ColorBackground);
 	gfx->setTextColor(ColorForeground);
 	gfx->setTextWrap(false);
-	SetFont(gfx, Font);
+	SetFont(Font);
 }
 
 void UI_Manager::SetColors(uint16_t colorBackground, uint16_t colorForeground, uint16_t colorForegroundEditMode)
@@ -32,14 +34,14 @@ void UI_Manager::SetColors(uint16_t colorBackground, uint16_t colorForeground, u
 	ColorForegroundEditMode = colorForegroundEditMode;
 }
 
-void UI_Manager::SetFont(Adafruit_GFX* gfx, const GFXfont* font)
+void UI_Manager::SetFont(const GFXfont* font)
 {
 	Font = font;
-	gfx->setFont(font);
+	Gfx->setFont(font);
 
 	int16_t x, y;
 	uint16_t w, h;
-	gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
+	Gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
 	FontHeight = h;
 }
 
@@ -69,6 +71,7 @@ void UI_Manager::ChangeVisualTreeRoot(UIElement* visualTreeRoot)
 {
 	_visualTreeRoot = visualTreeRoot;
 	setFocusToLeaf();
+	visualTreeRoot->RecalculateDimensions();
 	WasTreeRootChanged = true;
 }
 

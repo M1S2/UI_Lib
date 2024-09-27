@@ -60,15 +60,6 @@ class ContainerStack : public ContainerPage
 		 * @return true, if added; otherwise false (if container is full) 
 		 */
 		bool AddItem(UIElement* item);
-
-		/**
-		 * Get a bounding box around all items in the ContainerStack
-		 * @param x X coordinate of the upper left corner of the bounding box
-		 * @param y Y coordinate of the upper left corner of the bounding box
-		 * @param w Width of the bounding box
-		 * @param h Height of the bounding box
-		 */
-		void GetItemsBoundingBox(uint16_t* x, uint16_t* y, uint16_t* w, uint16_t* h);
 };
 
 #endif /* CONTAINERSTACK_H_ */

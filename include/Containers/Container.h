@@ -81,6 +81,15 @@ class Container : public UIElement
 		 * @return true if there was a previous control item (if the selected item wasn't the first one).
 		 */
 		bool PreviousControlItem();
+
+		/**
+		 * Get a bounding box around all items in the Container
+		 * @param x X coordinate of the upper left corner of the bounding box
+		 * @param y Y coordinate of the upper left corner of the bounding box
+		 * @param w Width of the bounding box
+		 * @param h Height of the bounding box
+		 */
+		void GetItemsBoundingBox(uint16_t* x, uint16_t* y, uint16_t* w, uint16_t* h);
 };
 
 #endif /* CONTAINER_H_ */

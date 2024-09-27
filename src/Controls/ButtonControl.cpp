@@ -65,3 +65,14 @@ bool ButtonControl<StringLength>::KeyInput(Keys_t key)
 			return false;
 	}
 }
+
+template <int StringLength>
+void ButtonControl<StringLength>::RecalculateDimensions()
+{
+	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding;
+	
+	int16_t x, y;
+	uint16_t w, h;
+	UiManager.Gfx->getTextBounds(_buttonText, 0, 0, &x, &y, &w, &h);
+	Width = w + 2 * UiManager.ElementPadding; 
+}

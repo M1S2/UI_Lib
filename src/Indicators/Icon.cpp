@@ -61,3 +61,8 @@ void Icon::Draw(Adafruit_GFX* gfx)
 		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
+
+void Icon::RecalculateDimensions()
+{
+	// Override default UIElement behaviour. Dimensions are set in the constructor and shouldn't be changed here
+}

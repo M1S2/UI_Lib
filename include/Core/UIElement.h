@@ -40,11 +40,11 @@ class UIElement
 		 */
 		UIElement(UIElementType type)
 		{
-			if(type != UI_CONTAINER)
+			/*if(type != UI_CONTAINER)
 			{
 				Width = DEFAULT_UI_ELEMENT_WIDTH;
 				Height = DEFAULT_UI_ELEMENT_HEIGHT;
-			}
+			}*/
 			Visible = true;
 			Type = type;
 			ActiveChild = NULL;
@@ -60,11 +60,11 @@ class UIElement
 		{
 			LocX = locX;
 			LocY = locY;
-			if(type != UI_CONTAINER)
+			/*if(type != UI_CONTAINER)
 			{
 				Width = DEFAULT_UI_ELEMENT_WIDTH;
 				Height = DEFAULT_UI_ELEMENT_HEIGHT;
-			}
+			}*/
 			Visible = true;
 			Type = type;
 			ActiveChild = NULL;
@@ -86,6 +86,18 @@ class UIElement
 		 * @return true if the key was processed; false if not.
 		 */
 		virtual bool KeyInput(Keys_t key) { return false; }
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions()
+		{ 
+			if(Type != UI_CONTAINER)
+			{
+				Height = DEFAULT_UI_ELEMENT_HEIGHT;
+				Width = DEFAULT_UI_ELEMENT_WIDTH;
+			}
+		}
 };
 
 #endif /* UIELEMENT_H_ */

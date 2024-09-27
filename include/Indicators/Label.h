@@ -85,6 +85,11 @@ class Label : public UIElement
 		 * @param text New text string of the Label.
 		 */
 		void SetText(const char* text);
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 typedef Label<DEFAULT_LABEL_STRING_LENGTH> LabelDefault;		/**< Type definition for a label using the default string length. */

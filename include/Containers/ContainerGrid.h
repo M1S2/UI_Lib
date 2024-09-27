@@ -86,6 +86,11 @@ class ContainerGrid : public ContainerPage
 		 * @return true, if added; otherwise false (if container is full) 
 		 */
 		bool AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment);
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 #endif /* CONTAINERGRID_H_ */

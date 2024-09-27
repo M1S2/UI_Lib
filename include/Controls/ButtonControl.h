@@ -60,6 +60,11 @@ class ButtonControl : public UIElement
 		 * @return true if the key was processed; false if not.
 		 */
 		virtual bool KeyInput(Keys_t key) override;
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 typedef ButtonControl<DEFAULT_BUTTON_STRING_LENGTH> ButtonControlDefault;		/**< Type definition for a button using the default button text string length. */

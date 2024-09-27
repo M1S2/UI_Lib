@@ -61,7 +61,7 @@ void TabControl::Draw(Adafruit_GFX* gfx)
 						
 						if(_headers[i] != NULL) 
 						{
-							gfx->setCursor(LocX + 2, yTab + ((tabHeight - tabFontHeight) / 2) + UiManager.FontHeight - 4);
+							gfx->setCursor(LocX + 2, yTab + ((tabHeight - tabFontHeight) / 2) + UiManager.FontHeight - 2 * UiManager.ElementPadding);
 							gfx->print(_headers[i]);
 						}
 						yTab+=(tabHeight + TABCONTROL_TABPAGE_MARGIN);
@@ -133,6 +133,8 @@ void TabControl::AddTab(const char* header, UIElement* tabContent)
 	_headers[_numTabs][MAX_HEADER_LENGTH - 1] = '\0';			// The _header buffer must contain at least one termination character ('\0') at the end to protect from overflow.
 	_numTabs++;
 
+	RecalculateDimensions();
+
 	uint16_t xRegion_Offset = 0, yRegion_Offset = 0;
 	switch (_tabPosition)
 	{
@@ -190,4 +192,44 @@ void TabControl::SelectTab(int index)
 int TabControl::GetSelectedTabIndex()
 {
 	return _selectedTabIndex;
+}
+
+void TabControl::RecalculateDimensions()
+{
+	if(Parent != NULL)
+	{
+		// Strech the TabControl to fill up the full parent container space
+		Width = Parent->Width;
+		Height = Parent->Height;
+	}
+	else
+	{
+		// The TabControl is the top most control, size it to fill the complete screen
+		Width = UiManager.Gfx->width();
+		Height = UiManager.Gfx->height();
+	}
+
+	/*switch (_tabPosition)
+	{
+		case TAB_POSITION_LEFT:
+		{
+			uint16_t maxTabHeaderWidth = 0;
+			for(int i = 0; i < _numTabs; i++)
+			{
+				if(_headers[i] == NULL) { continue; }
+				int16_t x, y;
+				uint16_t w, h;
+				UiManager.Gfx->getTextBounds(_headers[i], 0, 0, &x, &y, &w, &h);
+				if(w > maxTabHeaderWidth) { maxTabHeaderWidth = w; }
+			}
+			_tabRegionSize = maxTabHeaderWidth + 2 * UiManager.ElementPadding + 2;
+			break;
+		}
+		case TAB_POSITION_TOP:
+		{
+			_tabRegionSize = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2;
+			break;
+		}
+		default: break;
+	}*/
 }

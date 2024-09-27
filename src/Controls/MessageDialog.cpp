@@ -41,11 +41,22 @@ template <int messageLength>
 void MessageDialog<messageLength>::Draw(Adafruit_GFX* gfx)
 {
 	gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+	UiManager.Gfx->setTextWrap(true);
 	_page.Draw(gfx);
+	UiManager.Gfx->setTextWrap(false);
 }
 
 template <int messageLength>
 bool MessageDialog<messageLength>::KeyInput(Keys_t key)
 {
 	return _page.KeyInput(key);
+}
+
+template <int messageLength>
+void MessageDialog<messageLength>::RecalculateDimensions()
+{
+	// Override default UIElement behaviour. Dimensions are set in the constructor and shouldn't be changed here
+
+	_buttonOk.RecalculateDimensions();
+	_buttonCancel.RecalculateDimensions();
 }

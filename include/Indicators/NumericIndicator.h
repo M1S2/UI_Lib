@@ -27,7 +27,6 @@ class NumericIndicator : public UIElement
 		int numNonFractionalDigits(T number);
 		
 		T _lastValueDraw;								/**< Last drawn numeric value. Only if the _valueDraw differs from this value, the _stringDrawBuffer is recalculated. */
-		bool _firstDraw;								/**< Used to track if it's the first draw after the construction of the indicator. */
 		const char* _unitPrefix;						/**< Current display prefix character ("m", "k", "M") */
 		char _stringDrawBuffer[stringBufferLength];		/**< Buffer holding the string that is drawn to the screen. This is only recalculated on the firstPage and if the value has changed. `char stringBufferLen = _numDigits + 1 + strlen(_unitPrefix) + strlen(_baseUnit) + 1;` */
 		
@@ -69,6 +68,11 @@ class NumericIndicator : public UIElement
 		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 */
 		virtual void Draw(Adafruit_GFX* gfx) override;
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 #endif /* NUMERICINDICATOR_H_ */
