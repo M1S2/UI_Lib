@@ -8,15 +8,15 @@
 
 #include "../Core/UIElement.h"
 
-#define MAX_CONTAINER_ITEMS		20		/**< Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory. */
-
 /**
  * Base class for container elements.
+ * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  */
+template <uint8_t maxItems>
 class Container : public UIElement
 {
 	protected:
-		UIElement* _items[MAX_CONTAINER_ITEMS];		/**< Array holding pointers to all UIElement that are items of the container. */
+		UIElement* _items[maxItems];				/**< Array holding pointers to all UIElement that are items of the container. */
 		int _numItems;								/**< Number of items in the container (number of valid items in the _items array). */
 		int _selectedItemIndex;						/**< Index of the selected container item. */
 
@@ -91,5 +91,8 @@ class Container : public UIElement
 		 */
 		void GetItemsBoundingBox(uint16_t* x, uint16_t* y, uint16_t* w, uint16_t* h);
 };
+
+#define MAX_CONTAINER_ITEMS		20		/**< Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory. */
+
 
 #endif /* CONTAINER_H_ */

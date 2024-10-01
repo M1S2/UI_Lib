@@ -31,6 +31,12 @@
 #include "../../src/Controls/NumericControl.cpp"
 #include "../../src/Indicators/ProgressBar.cpp"
 #include "../../src/Controls/MessageDialog.cpp"
+#include "../../src/Controls/TabControl.cpp"
+#include "../../src/Containers/ContainerStack.cpp"
+#include "../../src/Containers/ContainerGrid.cpp"
+#include "../../src/Containers/ContainerPage.cpp"
+#include "../../src/Containers/ContainerList.cpp"
+#include "../../src/Containers/Container.cpp"
 
 //#include "../../src/Indicators/Label.cpp"			// Label.cpp is included by MessageDialog.cpp
 //#include "../../src/Controls/ButtonControl.cpp"		// ButtonControl.cpp is included by MessageDialog.cpp

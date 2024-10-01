@@ -5,78 +5,84 @@
 #include "Containers/ContainerGrid.h"
 #include "Core/UI_Manager.h"
 
-ContainerGrid::ContainerGrid()
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+ContainerGrid<maxItems, maxGridRows, maxGridColumns>::ContainerGrid()
 {
-	Type = UI_CONTAINER;
+	this->Type = UI_CONTAINER;
 }
 
-ContainerGrid::ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+ContainerGrid<maxItems, maxGridRows, maxGridColumns>::ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
 {
-	Type = UI_CONTAINER;
-	LocX = locX;
-	LocY = locY;
-	Width = width;
-	Height = height;
+	this->Type = UI_CONTAINER;
+	this->LocX = locX;
+	this->LocY = locY;
+	this->Width = width;
+	this->Height = height;
 }
 
-void ContainerGrid::Draw(Adafruit_GFX* gfx)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::Draw(Adafruit_GFX* gfx)
 {
-	if (Visible)
+	if (this->Visible)
 	{
 		#ifdef DEBUG_SHOW_CONTAINER_GRID_CELLS
 
-			gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+			gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
 
-			uint16_t currentY = LocY;
-			gfx->drawFastHLine(LocX, currentY, Width, UiManager.ColorForeground);
-			for(int r = 0; r < MAX_CONTAINER_GRID_ROWS; r++)
+			uint16_t currentY = this->LocY;
+			gfx->drawFastHLine(this->LocX, currentY, this->Width, UiManager.ColorForeground);
+			for(int r = 0; r < maxGridRows; r++)
 			{
 				if(_rowHeights[r] == 0) { break; }
 				currentY += _rowHeights[r];
-				gfx->drawFastHLine(LocX, currentY, Width, UiManager.ColorForeground);
+				gfx->drawFastHLine(this->LocX, currentY, this->Width, UiManager.ColorForeground);
 			}
 
-			uint16_t currentX = LocX;
-			gfx->drawFastVLine(currentX, LocY, Height, UiManager.ColorForeground);
-			for(int c = 0; c < MAX_CONTAINER_GRID_COLUMNS; c++)
+			uint16_t currentX = this->LocX;
+			gfx->drawFastVLine(currentX, this->LocY, this->Height, UiManager.ColorForeground);
+			for(int c = 0; c < maxGridColumns; c++)
 			{
 				if(_columnWidths[c] == 0) { break; }
 				currentX += _columnWidths[c];
-				gfx->drawFastVLine(currentX, LocY, Height, UiManager.ColorForeground);
+				gfx->drawFastVLine(currentX, this->LocY, this->Height, UiManager.ColorForeground);
 			}
 		#endif
-		ContainerPage::Draw(gfx);
+		ContainerPage<maxItems>::Draw(gfx);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }
 
-bool ContainerGrid::SetRowHeight(uint8_t rowIndex, uint16_t rowHeight)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::SetRowHeight(uint8_t rowIndex, uint16_t rowHeight)
 {
-	if(rowIndex >= MAX_CONTAINER_GRID_ROWS) { return false; }
+	if(rowIndex >= maxGridRows) { return false; }
 
 	_rowHeights[rowIndex] = rowHeight;
 	return true;
 }
 
-bool ContainerGrid::SetColumnWidth(uint8_t columnIndex, uint16_t columnWidth)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::SetColumnWidth(uint8_t columnIndex, uint16_t columnWidth)
 {
-	if(columnIndex >= MAX_CONTAINER_GRID_COLUMNS) { return false; }
+	if(columnIndex >= maxGridColumns) { return false; }
 
 	_columnWidths[columnIndex] = columnWidth;
 	return true;
 }
 
-bool ContainerGrid::AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment)
 {
-	if(columnIndex >= MAX_CONTAINER_GRID_COLUMNS || rowIndex >= MAX_CONTAINER_GRID_ROWS) { return false; }
-	if(!Container::AddItem(item)) { return false; }
+	if(columnIndex >= maxGridColumns || rowIndex >= maxGridRows) { return false; }
+	if(!Container<maxItems>::AddItem(item)) { return false; }
 
 	// adapt location accordingly
 
-	uint16_t columnStart = LocX, columnEnd = 0;
+	uint16_t columnStart = this->LocX, columnEnd = 0;
 	for(int i = 0; i <= columnIndex; i++)
 	{
 		if(_columnWidths[i] == 0) { break; }
@@ -88,7 +94,7 @@ bool ContainerGrid::AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowInd
 		columnEnd = columnStart + _columnWidths[i];
 	}
 
-	uint16_t rowStart = LocY, rowEnd = 0;
+	uint16_t rowStart = this->LocY, rowEnd = 0;
 	for(int i = 0; i <= rowIndex; i++)
 	{
 		if(_rowHeights[i] == 0) { break; }
@@ -152,19 +158,20 @@ bool ContainerGrid::AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowInd
 	return true;
 }
 
-void ContainerGrid::RecalculateDimensions()
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateDimensions()
 {
-	Width = 0;
-	for(int i = 0; i <= MAX_CONTAINER_GRID_COLUMNS; i++)
+	this->Width = 0;
+	for(int i = 0; i <= maxGridColumns; i++)
 	{
 		if(_columnWidths[i] == 0) { break; }
-		Width += _columnWidths[i];
+		this->Width += _columnWidths[i];
 	}
 
-	Height = 0;
-	for(int i = 0; i <= MAX_CONTAINER_GRID_ROWS; i++)
+	this->Height = 0;
+	for(int i = 0; i <= maxGridRows; i++)
 	{
 		if(_rowHeights[i] == 0) { break; }
-		Height += _rowHeights[i];
+		this->Height += _rowHeights[i];
 	}
 }

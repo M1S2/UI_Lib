@@ -8,8 +8,6 @@
 
 #include "../Core/UIElement.h"
 
-#define DEFAULT_BUTTON_STRING_LENGTH		25			/**< Default string length for the button text. */
-
 /**
  * Class for a button control that is showing a clickable button used to trigger some action.
  * @tparam StringLength Maximum string length that the button text can hold. This is used as buffer length for the internal _buttonText character buffer.
@@ -66,6 +64,10 @@ class ButtonControl : public UIElement
 		 */
 		virtual void RecalculateDimensions() override;
 };
+
+/********************************************************************************************************************************************/
+
+#define DEFAULT_BUTTON_STRING_LENGTH		25									/**< Default string length for the button text. */
 
 typedef ButtonControl<DEFAULT_BUTTON_STRING_LENGTH> ButtonControlDefault;		/**< Type definition for a button using the default button text string length. */
 

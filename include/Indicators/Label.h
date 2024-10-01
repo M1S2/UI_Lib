@@ -9,8 +9,6 @@
 #include "../Core/UIElement.h"
 #include "../Core/UI_Manager.h"
 
-#define DEFAULT_LABEL_STRING_LENGTH		50			/**< Default string length for a label. */
-
 /**
  * Class for an Label indicator that is drawing a string to the screen.
  * @tparam StringLength Maximum string length that the Label can hold. This is used as buffer length for the internal character buffer.
@@ -91,6 +89,10 @@ class Label : public UIElement
 		 */
 		virtual void RecalculateDimensions() override;
 };
+
+/********************************************************************************************************************************************/
+
+#define DEFAULT_LABEL_STRING_LENGTH		50						/**< Default string length for a label. */
 
 typedef Label<DEFAULT_LABEL_STRING_LENGTH> LabelDefault;		/**< Type definition for a label using the default string length. */
 

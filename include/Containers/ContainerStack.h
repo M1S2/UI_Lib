@@ -21,8 +21,10 @@ typedef enum StackOrientation
 
 /**
  * class for a container that is showing all items at a time stacked one after another.
+ * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  */
-class ContainerStack : public ContainerPage
+template <uint8_t maxItems>
+class ContainerStack : public ContainerPage<maxItems>
 {
 	private:
 		StackOrientation_t _stackOrientation;					/**< Stack orientation */
@@ -61,5 +63,9 @@ class ContainerStack : public ContainerPage
 		 */
 		bool AddItem(UIElement* item);
 };
+
+/********************************************************************************************************************************************/
+
+typedef ContainerStack<MAX_CONTAINER_ITEMS> ContainerStackDefault;		/**< Type definition for a ContainerStack using the default settings. */
 
 #endif /* CONTAINERSTACK_H_ */

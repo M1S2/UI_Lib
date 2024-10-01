@@ -10,8 +10,10 @@
 
 /**
  * class for a container that is showing all items at a time.
+ * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  */
-class ContainerPage : public Container
+template <uint8_t maxItems>
+class ContainerPage : public Container<maxItems>
 {
 	public:
 		/**
@@ -53,5 +55,9 @@ class ContainerPage : public Container
 		 */
 		virtual void RecalculateDimensions() override;
 };
+
+/********************************************************************************************************************************************/
+
+typedef ContainerPage<MAX_CONTAINER_ITEMS> ContainerPageDefault;		/**< Type definition for a ContainerPage using the default settings. */
 
 #endif /* CONTAINERPAGE_H_ */

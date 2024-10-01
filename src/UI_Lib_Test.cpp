@@ -50,24 +50,24 @@ Label<10> labelBool(ELEMENT_MARGIN, ELEMENT_MARGIN, "Boolean", COLOR_WHITE);
 BoolIndicator boolInd1(&boolVal1);
 BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
 BoolControl boolCtrl2(&boolVal2, &boolVal2, &OnBoolVal2Changed);
-ContainerStack stack_boolean(STACK_ORIENTATION_VERTICAL, ELEMENT_MARGIN);
+ContainerStackDefault stack_boolean(STACK_ORIENTATION_VERTICAL, ELEMENT_MARGIN);
 Label<15> labelEnum(ELEMENT_MARGIN, ELEMENT_MARGIN, "Enumerations", COLOR_WHITE);
 EnumIndicator<TestEnum> enumInd1(&enumVal1, TestEnumNames, 3);
 EnumControl<TestEnum> enumCtrl1(&enumVal1, TestEnumNames, 3);
 Icon enumCtrl1Icon(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-ContainerStack stack_enumCtrl1(STACK_ORIENTATION_HORIZONTAL, ELEMENT_MARGIN);
+ContainerStackDefault stack_enumCtrl1(STACK_ORIENTATION_HORIZONTAL, ELEMENT_MARGIN);
 EnumControl<TestEnum> enumCtrl2(&enumVal1, TestEnumNames, 3);
 Icon enumCtrl2Icon(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStack stack_enumCtrl2(STACK_ORIENTATION_HORIZONTAL, ELEMENT_MARGIN);
-ContainerStack stack_enum(STACK_ORIENTATION_VERTICAL, ELEMENT_MARGIN);
-ContainerList list1;
+ContainerStackDefault stack_enumCtrl2(STACK_ORIENTATION_HORIZONTAL, ELEMENT_MARGIN);
+ContainerStackDefault stack_enum(STACK_ORIENTATION_VERTICAL, ELEMENT_MARGIN);
+ContainerListDefault list1;
 
 Label<10> labelNum(ELEMENT_MARGIN, Y_ROW1, "Numerics", COLOR_WHITE);
 NumericIndicator<int> numInd2(ELEMENT_MARGIN, Y_ROW2, &numVal2, "A", 5000, 0);
 NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 3);
 NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -10, 2000, 3, &numVal1, &OnNumVal1Changed);
 ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, 70, 20, &numVal1, -10, 2000, PROGRESSBAR_ORIGIN_ZERO, 0);
-ContainerPage page_numeric;
+ContainerPageDefault page_numeric;
 
 Label<10> labelButtons(ELEMENT_MARGIN, Y_ROW1, "Buttons", COLOR_WHITE);
 ButtonControlDefault buttonReset(ELEMENT_MARGIN, Y_ROW2, 0, 0, "Reset", NULL, &OnButtonReset);
@@ -75,7 +75,7 @@ ButtonControlDefault buttonShowTestError(ELEMENT_MARGIN, Y_ROW4, 0, 0, "Show Err
 MessageDialogDefault msgReset(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Reset sucessful.", MSG_INFO, MSG_BTN_OK, NULL, &OnMsgOk);
 MessageDialogDefault msgTestWarning(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Warning message.\nWith Newline.", MSG_WARNING, MSG_BTN_OK, NULL, &OnMsgOk);
 MessageDialogDefault msgTestError(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
-ContainerPage page_dialogs;
+ContainerPageDefault page_dialogs;
 
 Label<10> labelGrid("Grid", COLOR_WHITE);
 Icon icon1(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
@@ -87,11 +87,11 @@ Icon icon6(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon7(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon8(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon9(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-ContainerGrid grid_icons;
+ContainerGridDefault grid_icons;
 
-TabControl tabControl(DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_WIDTH);
+TabControlDefault tabControl(DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_WIDTH);
 
-ContainerPage mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+ContainerPageDefault mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 LabelDefault labelUILib(X_COLUMN1, DISPLAY_HEIGHT - settings_window_height - 10, "UI LIB", &FreeMono18pt7b, COLOR_ORANGE);
 Icon globalIcon(DISPLAY_WIDTH - settings_window_width - 15, DISPLAY_HEIGHT - settings_window_height - 10, settings_window_width, settings_window_height, settings_window_bits);
 

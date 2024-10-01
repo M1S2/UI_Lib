@@ -5,42 +5,46 @@
 #include "Containers/ContainerStack.h"
 #include "Core/UI_Manager.h"
 
-ContainerStack::ContainerStack(StackOrientation_t stackOrientation, uint16_t marginBetweenElements)
+template <uint8_t maxItems>
+ContainerStack<maxItems>::ContainerStack(StackOrientation_t stackOrientation, uint16_t marginBetweenElements)
 {
-	Type = UI_CONTAINER;
+	this->Type = UI_CONTAINER;
 	_stackOrientation = stackOrientation;
 	_marginBetweenElements = marginBetweenElements;
 }
 
-ContainerStack::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackOrientation_t stackOrientation, uint16_t marginBetweenElements)
+template <uint8_t maxItems>
+ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackOrientation_t stackOrientation, uint16_t marginBetweenElements)
 {
-	Type = UI_CONTAINER;
-	LocX = locX;
-	LocY = locY;
-	Width = width;
-	Height = height;
+	this->Type = UI_CONTAINER;
+	this->LocX = locX;
+	this->LocY = locY;
+	this->Width = width;
+	this->Height = height;
 	_stackOrientation = stackOrientation;
 	_marginBetweenElements = marginBetweenElements;
 }
 
-void ContainerStack::Draw(Adafruit_GFX* gfx)
+template <uint8_t maxItems>
+void ContainerStack<maxItems>::Draw(Adafruit_GFX* gfx)
 {
-	if (Visible)
+	if (this->Visible)
 	{
-		ContainerPage::Draw(gfx);
+		ContainerPage<maxItems>::Draw(gfx);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }
 
-bool ContainerStack::AddItem(UIElement* item)
+template <uint8_t maxItems>
+bool ContainerStack<maxItems>::AddItem(UIElement* item)
 {
-	if(!Container::AddItem(item, false, false)) { return false; }
+	if(!Container<maxItems>::AddItem(item, false, false)) { return false; }
 
-	if(_numItems <= 1) { return true; }				// it was the first added item, nothing to adapt
-	UIElement* lastItem = _items[_numItems - 2];	// -1 because number to index and -1 to get the previous element
+	if(this->_numItems <= 1) { return true; }					// it was the first added item, nothing to adapt
+	UIElement* lastItem = this->_items[this->_numItems - 2];	// -1 because number to index and -1 to get the previous element
 
 	switch (_stackOrientation)
 	{
@@ -56,7 +60,7 @@ bool ContainerStack::AddItem(UIElement* item)
 			break;
 	}
 
-	RecalculateDimensions();
+	this->RecalculateDimensions();
 
 	return true;
 }

@@ -47,7 +47,7 @@ template <int messageLength = MAX_MESSAGEDIALOG_STRING_LENGTH>
 class MessageDialog : public UIElement
 {
 	private:
-		ContainerPage _page;								/**< Container page that is internally used to group and handle all elements of the message dialog. */
+		ContainerPage<5> _page;								/**< Container page that is internally used to group and handle all elements of the message dialog. */
 		Icon _severityIcon;									/**< Icon UIElement used to display the message severity. */
 		MessageSeverity_t _severity;						/**< Message severity. */
 		Label<messageLength> _message;						/**< Label UIElement used to display the dialog message. */
@@ -90,6 +90,8 @@ class MessageDialog : public UIElement
 		 */
 		virtual void RecalculateDimensions() override;
 };
+
+/********************************************************************************************************************************************/
 
 typedef MessageDialog<> MessageDialogDefault;			/**< MessageDialog using the MAX_MESSAGEDIALOG_STRING_LENGTH as string length */
 

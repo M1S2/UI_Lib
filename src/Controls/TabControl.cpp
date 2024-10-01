@@ -6,7 +6,8 @@
 #include "Core/UI_Manager.h"
 #include <string.h>
 
-TabControl::TabControl(uint16_t width, uint16_t height, uint16_t tabRegionSize, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext)) : UIElement(UI_CONTROL)
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::TabControl(uint16_t width, uint16_t height, uint16_t tabRegionSize, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext)) : UIElement(UI_CONTROL)
 {
 	Width = width;
 	Height = height;
@@ -19,7 +20,8 @@ TabControl::TabControl(uint16_t width, uint16_t height, uint16_t tabRegionSize, 
 	_onSelectedTabChanged = onSelectedTabChanged;
 }
 
-TabControl::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint16_t tabRegionSize, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL)
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint16_t tabRegionSize, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL)
 {
 	Width = width;
 	Height = height;
@@ -32,7 +34,8 @@ TabControl::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t he
 	_onSelectedTabChanged = onSelectedTabChanged;
 }
 
-void TabControl::Draw(Adafruit_GFX* gfx) 
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::Draw(Adafruit_GFX* gfx) 
 {
 	if (Visible)
 	{
@@ -64,7 +67,7 @@ void TabControl::Draw(Adafruit_GFX* gfx)
 							gfx->setCursor(LocX + 2, yTab + ((tabHeight - tabFontHeight) / 2) + UiManager.FontHeight - 2 * UiManager.ElementPadding);
 							gfx->print(_headers[i]);
 						}
-						yTab+=(tabHeight + TABCONTROL_TABPAGE_MARGIN);
+						yTab+=(tabHeight + tabHeaderMargin);
 					}
 					break;
 				}
@@ -91,7 +94,7 @@ void TabControl::Draw(Adafruit_GFX* gfx)
 							gfx->setCursor(xTab, LocY + UiManager.FontHeight + 2);
 							gfx->print(_headers[i]);
 						}
-						xTab+=(tabWidth + TABCONTROL_TABPAGE_MARGIN);
+						xTab+=(tabWidth + tabHeaderMargin);
 					}
 					break;
 				}
@@ -108,7 +111,8 @@ void TabControl::Draw(Adafruit_GFX* gfx)
 	}
 }
 
-bool TabControl::KeyInput(Keys_t key)
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+bool TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
@@ -123,14 +127,15 @@ bool TabControl::KeyInput(Keys_t key)
 	}
 }
 
-void TabControl::AddTab(const char* header, UIElement* tabContent)
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::AddTab(const char* header, UIElement* tabContent)
 {
-	if (_numTabs >= MAX_TABCONTROL_TABS) { return; }
+	if (_numTabs >= maxTabs) { return; }
 
 	tabContent->Parent = this;
 	_tabContents[_numTabs] = tabContent;
-	strncpy(_headers[_numTabs], header, MAX_HEADER_LENGTH);		// Copy a maximum number of StringLength characters to the _header buffer. If text is shorter, the array is zero padded.
-	_headers[_numTabs][MAX_HEADER_LENGTH - 1] = '\0';			// The _header buffer must contain at least one termination character ('\0') at the end to protect from overflow.
+	strncpy(_headers[_numTabs], header, maxHeaderLength);		// Copy a maximum number of StringLength characters to the _header buffer. If text is shorter, the array is zero padded.
+	_headers[_numTabs][maxHeaderLength - 1] = '\0';			// The _header buffer must contain at least one termination character ('\0') at the end to protect from overflow.
 	_numTabs++;
 
 	RecalculateDimensions();
@@ -139,12 +144,12 @@ void TabControl::AddTab(const char* header, UIElement* tabContent)
 	switch (_tabPosition)
 	{
 		case TAB_POSITION_LEFT:
-			xRegion_Offset = _tabRegionSize + TABCONTROL_CONTENT_PADDING;
-			yRegion_Offset = TABCONTROL_CONTENT_PADDING;
+			xRegion_Offset = _tabRegionSize + contentPadding;
+			yRegion_Offset = contentPadding;
 			break;
 		case TAB_POSITION_TOP:
-			xRegion_Offset = TABCONTROL_CONTENT_PADDING;
-			yRegion_Offset = _tabRegionSize + TABCONTROL_CONTENT_PADDING;
+			xRegion_Offset = contentPadding;
+			yRegion_Offset = _tabRegionSize + contentPadding;
 			break;
 		default:
 			break;
@@ -156,29 +161,32 @@ void TabControl::AddTab(const char* header, UIElement* tabContent)
 	// Strech the tabContent to fill up the full tab content region space if the tabContent Width or Height are zero
 	if(tabContent->Type == UI_CONTAINER && tabContent->Width == 0)
 	{
-		tabContent->Width = Width - xRegion_Offset - TABCONTROL_CONTENT_PADDING;	
+		tabContent->Width = Width - xRegion_Offset - contentPadding;	
 	}
 	if(tabContent->Type == UI_CONTAINER && tabContent->Height == 0)
 	{
-		tabContent->Height = Height - yRegion_Offset - TABCONTROL_CONTENT_PADDING;
+		tabContent->Height = Height - yRegion_Offset - contentPadding;
 	}
 	
 	if (ActiveChild == NULL) { ActiveChild = tabContent; }
 }
 
-void TabControl::NextTab()
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::NextTab()
 {
 	_selectedTabIndex++;
 	SelectTab(_selectedTabIndex);
 }
 
-void TabControl::PreviousTab()
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::PreviousTab()
 {
 	_selectedTabIndex--;
 	SelectTab(_selectedTabIndex);
 }
 
-void TabControl::SelectTab(int index)
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::SelectTab(int index)
 {	
 	_selectedTabIndex = index;
 	if (_selectedTabIndex >= _numTabs) { _selectedTabIndex = 0; }
@@ -189,12 +197,14 @@ void TabControl::SelectTab(int index)
 	if (_onSelectedTabChanged != NULL) { _onSelectedTabChanged(_controlContext); }
 }
 
-int TabControl::GetSelectedTabIndex()
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+int TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::GetSelectedTabIndex()
 {
 	return _selectedTabIndex;
 }
 
-void TabControl::RecalculateDimensions()
+template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
+void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::RecalculateDimensions()
 {
 	if(Parent != NULL)
 	{

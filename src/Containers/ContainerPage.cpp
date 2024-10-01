@@ -4,54 +4,60 @@
 
 #include "Containers/ContainerPage.h"
 
-ContainerPage::ContainerPage()
+template <uint8_t maxItems>
+ContainerPage<maxItems>::ContainerPage()
 {
-	Type = UI_CONTAINER;
+	this->Type = UI_CONTAINER;
 }
 
-ContainerPage::ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
+template <uint8_t maxItems>
+ContainerPage<maxItems>::ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
 {
-	Type = UI_CONTAINER;
-	LocX = locX;
-	LocY = locY;
-	Width = width;
-	Height = height;
+	this->Type = UI_CONTAINER;
+	this->LocX = locX;
+	this->LocY = locY;
+	this->Width = width;
+	this->Height = height;
 }
 
-void ContainerPage::Draw(Adafruit_GFX* gfx)
+template <uint8_t maxItems>
+void ContainerPage<maxItems>::Draw(Adafruit_GFX* gfx)
 {
-	for (int i = 0; i < _numItems; i++)
+	for (int i = 0; i < this->_numItems; i++)
 	{
-		_items[i]->Draw(gfx);
+		this->_items[i]->Draw(gfx);
 	}
 }
 
-bool ContainerPage::KeyInput(Keys_t key)
+template <uint8_t maxItems>
+bool ContainerPage<maxItems>::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
 		case KEYUP:
-			return NextControlItem();
+			return this->NextControlItem();
 		case KEYDOWN:
-			return PreviousControlItem();
+			return this->PreviousControlItem();
 		default:
 			return false;
 	}
 }
 
-void ContainerPage::InitItems()
+template <uint8_t maxItems>
+void ContainerPage<maxItems>::InitItems()
 {
-	_selectedItemIndex = 0;
-	if (GetSelectedItem()->Type != UI_CONTROL || GetSelectedItem()->Visible == false)
+	this->_selectedItemIndex = 0;
+	if (this->GetSelectedItem()->Type != UI_CONTROL || this->GetSelectedItem()->Visible == false)
 	{
-		NextControlItem();
+		this->NextControlItem();
 	}
 }
 
-void ContainerPage::RecalculateDimensions()
+template <uint8_t maxItems>
+void ContainerPage<maxItems>::RecalculateDimensions()
 {
 	uint16_t x, y, w, h;
-	GetItemsBoundingBox(&x, &y, &w, &h);
-	Width = w;		// resize the ContainerPage to fit the size of the bounding box
-	Height = h;
+	this->GetItemsBoundingBox(&x, &y, &w, &h);
+	this->Width = w;		// resize the ContainerPage to fit the size of the bounding box
+	this->Height = h;
 }
