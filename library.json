@@ -1,0 +1,22 @@
+{
+    "name": "UI_LIB",
+    "version": "0.1.0",
+    "description": "This is a user interface library for graphical LCDs. It offers many different controls and indicators that can be nested depending on the element types.",
+    "keywords": "graphical, LCD, user interface",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/M1S2/UI_Lib.git"
+    },
+    "authors":
+    {
+      "name": "Markus Scheich"
+    },
+    "license": "MIT",
+    "dependencies": 
+    {
+      "adafruit/Adafruit GFX Library": "^1.11.10"
+    },
+    "frameworks": "*",
+    "platforms": "*"
+  }
