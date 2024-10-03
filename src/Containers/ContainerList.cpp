@@ -24,16 +24,16 @@ ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::ContainerList(uint16_t
 }
 
 template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
-void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw(Adafruit_GFX* gfx)
+void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw()
 {
 	if(_lastDrawnItemIndex != this->_selectedItemIndex || UiManager.WasTreeRootChanged)
 	{
-		gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 		_lastDrawnItemIndex = this->_selectedItemIndex;
 	}
 
 	UIElement* item = this->GetSelectedItem();
-	if(item != NULL) { item->Draw(gfx); }
+	if(item != NULL) { item->Draw(); }
 	
 	// Count visible items
 	int _numVisibleItems = 0;
@@ -49,8 +49,8 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw(Adafruit_GFX
 	uint16_t scrollBarBoxHeight = this->Height - 2 * scrollBarMargin;
 	uint16_t scrollBarHeight = scrollBarBoxHeight / _numVisibleItems;
 
-	gfx->drawRect(scrollBarLeft, this->LocY + scrollBarMargin, scrollBarWidth, scrollBarBoxHeight, UiManager.ColorForeground);
-	gfx->fillRect(scrollBarLeft, this->LocY + scrollBarMargin + ((this->_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), scrollBarWidth, scrollBarHeight, UiManager.ColorForeground);
+	UiManager.Gfx->drawRect(scrollBarLeft, this->LocY + scrollBarMargin, scrollBarWidth, scrollBarBoxHeight, UiManager.ColorForeground);
+	UiManager.Gfx->fillRect(scrollBarLeft, this->LocY + scrollBarMargin + ((this->_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), scrollBarWidth, scrollBarHeight, UiManager.ColorForeground);
 }
 
 template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>

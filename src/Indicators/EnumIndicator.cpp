@@ -22,7 +22,7 @@ EnumIndicator<T>::EnumIndicator(uint16_t locX, uint16_t locY, T* valuePointer, c
 }
 
 template <class T>
-void EnumIndicator<T>::Draw(Adafruit_GFX* gfx)
+void EnumIndicator<T>::Draw()
 {
 	if (Visible)
 	{
@@ -30,17 +30,17 @@ void EnumIndicator<T>::Draw(Adafruit_GFX* gfx)
 		// If the Draw() is called from an EnumControl object, the Type was set to UI_CONTROL there
 		if(this->Type == UI_INDICATOR)
 		{
-			gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 		}
 
 		_valueDraw = *_valuePointer; 
 			
-		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-		gfx->print(_enumNames[_valueDraw]);
+		UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+		UiManager.Gfx->print(_enumNames[_valueDraw]);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

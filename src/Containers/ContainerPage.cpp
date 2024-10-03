@@ -21,11 +21,11 @@ ContainerPage<maxItems>::ContainerPage(uint16_t locX, uint16_t locY, uint16_t wi
 }
 
 template <uint8_t maxItems>
-void ContainerPage<maxItems>::Draw(Adafruit_GFX* gfx)
+void ContainerPage<maxItems>::Draw()
 {
 	for (int i = 0; i < this->_numItems; i++)
 	{
-		this->_items[i]->Draw(gfx);
+		this->_items[i]->Draw();
 	}
 }
 

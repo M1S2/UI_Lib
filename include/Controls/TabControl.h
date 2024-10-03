@@ -67,9 +67,8 @@ class TabControl : public UIElement
 	
 		/**
 		 * Method used for drawing of the TabControl.
-		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx) override;
+		virtual void Draw() override;
 		
 		/**
 		 * Process the given key.

@@ -209,9 +209,9 @@ void UI_Test_Init(Adafruit_GFX* gfx)
 	//UiManager.SetFont(&FreeMono18pt7b);
 }
 
-void UI_Test_Draw(Adafruit_GFX* gfx)
+void UI_Test_Draw()
 {
-	UiManager.Draw(gfx);
+	UiManager.Draw();
 }
 
 void UI_Test_KeyInput(Keys_t key)

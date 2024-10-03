@@ -77,7 +77,7 @@ NumericIndicator<T, stringBufferLength>::NumericIndicator(uint16_t locX, uint16_
 }
 
 template <class T, int stringBufferLength>
-void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx)
+void NumericIndicator<T, stringBufferLength>::Draw()
 {
 	if (Visible)
 	{
@@ -85,7 +85,7 @@ void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx)
 		// If the Draw() is called from an NumericControl object, the Type was set to UI_CONTROL there
 		if(this->Type == UI_INDICATOR)
 		{
-			gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 		}
 
 		_valueDraw = *_valuePointer;
@@ -100,18 +100,18 @@ void NumericIndicator<T, stringBufferLength>::Draw(Adafruit_GFX* gfx)
 			sprintf(_stringDrawBuffer, formatStringBuffer, fabs(_displayValue));
 		}
 
-		gfx->setCursor(LocX + 5, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-		gfx->print(_stringDrawBuffer);				// Draw value without minus sign
+		UiManager.Gfx->setCursor(LocX + 5, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+		UiManager.Gfx->print(_stringDrawBuffer);				// Draw value without minus sign
 		if (_displayValue < 0) 
 		{ 
 			// Draw minus sign
-			gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-			gfx->print("-"); 
+			UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+			UiManager.Gfx->print("-"); 
 		}
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

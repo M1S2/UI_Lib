@@ -26,15 +26,15 @@ ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t 
 }
 
 template <uint8_t maxItems>
-void ContainerStack<maxItems>::Draw(Adafruit_GFX* gfx)
+void ContainerStack<maxItems>::Draw()
 {
 	if (this->Visible)
 	{
-		ContainerPage<maxItems>::Draw(gfx);
+		ContainerPage<maxItems>::Draw();
 	}
 	else
 	{
-		gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }
 

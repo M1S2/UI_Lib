@@ -19,18 +19,18 @@ BoolControl::BoolControl(uint16_t locX, uint16_t locY, bool* valuePointer, void*
 	_onValueChanged = onValueChanged;
 }
 
-void BoolControl::Draw(Adafruit_GFX* gfx)
+void BoolControl::Draw()
 {
 	if (Visible)
 	{
-		gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
 
-		BoolIndicator::Draw(gfx);
-		gfx->drawFastHLine(LocX, LocY + Height, Width, UiManager.ColorForeground);
+		BoolIndicator::Draw();
+		UiManager.Gfx->drawFastHLine(LocX, LocY + Height, Width, UiManager.ColorForeground);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

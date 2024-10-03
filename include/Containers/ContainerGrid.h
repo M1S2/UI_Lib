@@ -58,9 +58,8 @@ class ContainerGrid : public ContainerPage<maxItems>
 
 		/**
 		 * Method used for drawing of the ContainerGrid.
-		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx) override;
+		virtual void Draw() override;
 
 		/**
 		 * Set the height of a specific row.

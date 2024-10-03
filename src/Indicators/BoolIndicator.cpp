@@ -17,7 +17,7 @@ BoolIndicator::BoolIndicator(uint16_t locX, uint16_t locY, bool* valuePointer) :
 	_valuePointer = valuePointer;
 }
 
-void BoolIndicator::Draw(Adafruit_GFX* gfx)
+void BoolIndicator::Draw()
 {
 	if (Visible)
 	{	
@@ -25,17 +25,17 @@ void BoolIndicator::Draw(Adafruit_GFX* gfx)
 		// If the Draw() is called from an BoolControl object, the Type was set to UI_CONTROL there
 		if(this->Type == UI_INDICATOR)
 		{
-			gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);	
+			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);	
 		} 
 		
 		_valueDraw = *_valuePointer;
 	
-		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-		gfx->print(_valueDraw ? "ON" : "OFF");
+		UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+		UiManager.Gfx->print(_valueDraw ? "ON" : "OFF");
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

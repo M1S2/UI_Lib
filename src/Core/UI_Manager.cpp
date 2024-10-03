@@ -21,9 +21,9 @@ UI_Manager::UI_Manager()
 void UI_Manager::Init(Adafruit_GFX* gfx)
 {
 	Gfx = gfx;
-	gfx->fillScreen(ColorBackground);
-	gfx->setTextColor(ColorForeground);
-	gfx->setTextWrap(false);
+	UiManager.Gfx->fillScreen(ColorBackground);
+	UiManager.Gfx->setTextColor(ColorForeground);
+	UiManager.Gfx->setTextWrap(false);
 	SetFont(Font);
 }
 
@@ -37,28 +37,28 @@ void UI_Manager::SetColors(uint16_t colorBackground, uint16_t colorForeground, u
 void UI_Manager::SetFont(const GFXfont* font)
 {
 	Font = font;
-	Gfx->setFont(font);
+	UiManager.Gfx->setFont(font);
 
 	int16_t x, y;
 	uint16_t w, h;
-	Gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
+	UiManager.Gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
 	FontHeight = h;
 }
 
-void UI_Manager::Draw(Adafruit_GFX* gfx)
+void UI_Manager::Draw()
 {
 	if(WasTreeRootChanged)
 	{
-		gfx->fillScreen(ColorBackground);
+		UiManager.Gfx->fillScreen(ColorBackground);
 	}
 
 	if (_visualTreeRoot == NULL) { return; }
 	
-	_visualTreeRoot->Draw(gfx);
+	_visualTreeRoot->Draw();
 	
 	if(_focusElement != NULL && _focusElement->Visible && _focusElement->Type != UI_INDICATOR) 
 	{ 
-		gfx->drawRect(_focusElement->LocX - 1, _focusElement->LocY - 1, _focusElement->Width + 2, _focusElement->Height + 2, ColorForeground); 
+		UiManager.Gfx->drawRect(_focusElement->LocX - 1, _focusElement->LocY - 1, _focusElement->Width + 2, _focusElement->Height + 2, ColorForeground); 
 	}
 
 	if(WasTreeRootChanged)

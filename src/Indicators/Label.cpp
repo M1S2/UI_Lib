@@ -58,7 +58,7 @@ Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, const
 }
 
 template <int StringLength>
-void Label<StringLength>::Draw(Adafruit_GFX* gfx)
+void Label<StringLength>::Draw()
 {
 	if(!_wasColorSet)
 	{
@@ -69,30 +69,30 @@ void Label<StringLength>::Draw(Adafruit_GFX* gfx)
 
 	if (Visible)
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 
 		int font_y_offset = UiManager.FontHeight - 2 * UiManager.ElementPadding;
 		if(_font != NULL) 
 		{
-			gfx->setFont(_font);
+			UiManager.Gfx->setFont(_font);
 			int16_t x, y;
 			uint16_t w, h;
-			gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
+			UiManager.Gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
 			font_y_offset = h;
 		}
-		gfx->setCursor(LocX, LocY + font_y_offset);
-		gfx->setTextColor(_color);
-		gfx->print(Text);
+		UiManager.Gfx->setCursor(LocX, LocY + font_y_offset);
+		UiManager.Gfx->setTextColor(_color);
+		UiManager.Gfx->print(Text);
 		
 		if(_font !=NULL) 
 		{ 
-			gfx->setFont(UiManager.Font);
+			UiManager.Gfx->setFont(UiManager.Font);
 		}
-		gfx->setTextColor(UiManager.ColorForeground);
+		UiManager.Gfx->setTextColor(UiManager.ColorForeground);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

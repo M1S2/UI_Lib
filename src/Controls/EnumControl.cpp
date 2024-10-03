@@ -22,28 +22,28 @@ EnumControl<T>::EnumControl(uint16_t locX, uint16_t locY, T* valuePointer, const
 }
 
 template <class T>
-void EnumControl<T>::Draw(Adafruit_GFX* gfx)
+void EnumControl<T>::Draw()
 {
 	if (this->Visible)
 	{
-		gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
 		
 		if (IsEditMode)
 		{
-			gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
-			gfx->setTextColor(UiManager.ColorForegroundEditMode);
+			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
+			UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
 		}	
 		else 
 		{
-			gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UiManager.ColorForeground); 
+			UiManager.Gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UiManager.ColorForeground); 
 		}
 				
-		EnumIndicator<T>::Draw(gfx);
+		EnumIndicator<T>::Draw();
 		
 		if(IsEditMode) 
 		{ 
 			// Reset text color back to default foreground
-			gfx->setTextColor(UiManager.ColorForeground);
+			UiManager.Gfx->setTextColor(UiManager.ColorForeground);
 		}
 	}
 }

@@ -39,7 +39,7 @@ Icon::Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight
 	_wasColorSet = true;
 }
 
-void Icon::Draw(Adafruit_GFX* gfx)
+void Icon::Draw()
 {
 	if(!_wasColorSet)
 	{
@@ -52,13 +52,13 @@ void Icon::Draw(Adafruit_GFX* gfx)
 	{
 		if(_iconBits != NULL)
 		{
-			gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
-			gfx->drawXBitmap(LocX, LocY, _iconBits, Width, Height, _color);
+			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+			UiManager.Gfx->drawXBitmap(LocX, LocY, _iconBits, Width, Height, _color);
 		}
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

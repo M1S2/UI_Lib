@@ -74,9 +74,8 @@ class Label : public UIElement
 		
 		/**
 		 * Method used for drawing of the Label.
-		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx) override;
+		virtual void Draw() override;
 		
 		/**
 		 * Change the string that is drawn to the screen by this Label. 

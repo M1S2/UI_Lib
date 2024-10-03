@@ -9,7 +9,7 @@
 #include "UIElement.h"
 
 #define UI_LIB_DEFAULT_COLOR_BACKGROUND				RGB565(0x00, 0x00, 0x00)			/**< Default Background color (black) */
-#define UI_LIB_DEFAULT_COLOR_FOREGROUND				RGB565(0x00, 0xF7, 0x00)			/**< Default UIElement foreground color (green) */	
+#define UI_LIB_DEFAULT_COLOR_FOREGROUND				RGB565(0xFF, 0xFF, 0xFF)			/**< Default UIElement foreground color (white) */	
 #define UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE	UI_LIB_DEFAULT_COLOR_BACKGROUND		/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
 #define UI_LIB_DEFAULT_FONT 						&FreeSans12pt7b
 #define UI_LIB_DEFAULT_ELEMENT_PADDING				2									/**< Space between the outline of every UIElement and the internal content. Used while RecalculateDimensions() of the UIElement */
@@ -45,7 +45,7 @@ class UI_Manager
 		/**
 		 * Initialize the UI_Manager.
 		 * This method sets the font and foreground color of the graphic library.
-		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
+
 		 */
 		void Init(Adafruit_GFX* gfx);
 
@@ -65,9 +65,8 @@ class UI_Manager
 
 		/**
 		 * Draw the complete visual tree (_visualTreeRoot and all of its children).
-		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing. 
 		 */
-		void Draw(Adafruit_GFX* gfx);
+		void Draw();
 
 		/**
 		 * Change the root element of the visual tree. 

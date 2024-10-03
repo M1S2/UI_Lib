@@ -39,11 +39,11 @@ ProgressBar<T>::ProgressBar(uint16_t locX, uint16_t locY, uint16_t width, uint16
 }
 
 template <class T>
-void ProgressBar<T>::Draw(Adafruit_GFX* gfx)
+void ProgressBar<T>::Draw()
 {
 	if (Visible)
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 		
 		_valueDraw = *_valuePointer; 
 		if (_valueDraw > _maxValue) { _valueDraw = _maxValue; }			// Coerce value to be between _minValue and _maxValue
@@ -54,20 +54,20 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx)
 		uint16_t valueXCoord = xCoordinateFromValue(_valueDraw);
 		
 		// Draw outer border of progress bar
-		gfx->drawRect(xCoordinateFromValue(_minValue), LocY, Width, Height, UiManager.ColorForeground);
+		UiManager.Gfx->drawRect(xCoordinateFromValue(_minValue), LocY, Width, Height, UiManager.ColorForeground);
 				
 		char buffer[6];
 		itoa(_maxValue, buffer, 10);
-		gfx->setCursor(xCoordinateFromValue(_maxValue) + 3, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-		gfx->print(buffer);
+		UiManager.Gfx->setCursor(xCoordinateFromValue(_maxValue) + 3, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+		UiManager.Gfx->print(buffer);
 
 		itoa(_minValue, buffer, 10);
 		uint16_t minValueTextWidth;
-		gfx->getTextBounds(buffer, 0, 0, nullptr, nullptr, &minValueTextWidth, nullptr);
-		gfx->setCursor(xCoordinateFromValue(_minValue) - 3 - minValueTextWidth, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-		gfx->print(buffer);
+		UiManager.Gfx->getTextBounds(buffer, 0, 0, nullptr, nullptr, &minValueTextWidth, nullptr);
+		UiManager.Gfx->setCursor(xCoordinateFromValue(_minValue) - 3 - minValueTextWidth, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+		UiManager.Gfx->print(buffer);
 
-		gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, UiManager.ColorForeground);
+		UiManager.Gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY, (uint16_t)fabs(valueXCoord - _originXCoord), Height, UiManager.ColorForeground);
 		
 		if(_tickIncrement > 0)			// Use _tickIncrement<=0 to disable ticks
 		{
@@ -75,13 +75,13 @@ void ProgressBar<T>::Draw(Adafruit_GFX* gfx)
 			{
 				int xCoord = xCoordinateFromValue(xVal);
 				int tickLength = (((int)xVal) % 10 == 0 ? 3 : (((int)xVal) % 5 == 0 ? 2 : 1));
-				gfx->drawFastVLine(xCoord, LocY - tickLength, tickLength, UiManager.ColorForeground);
+				UiManager.Gfx->drawFastVLine(xCoord, LocY - tickLength, tickLength, UiManager.ColorForeground);
 			}
 		}
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

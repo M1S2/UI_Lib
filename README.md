@@ -118,7 +118,7 @@ protected:
 
 public:
 	NewControl(unsigned char locX, unsigned char locY, bool* valuePointer);
-	virtual void Draw(Adafruit_GFX* gfx) override;
+	virtual void Draw() override;
 	virtual bool KeyInput(Keys_t key) override;
 };
 
@@ -140,7 +140,7 @@ NewControl::NewControl(unsigned char locX, unsigned char locY, bool* valuePointe
 	// Do further constructor tasks here
 }
 
-void NewControl::Draw(Adafruit_GFX* gfx)
+void NewControl::Draw()
 {
 	if (Visible)
 	{
@@ -211,7 +211,7 @@ void UI_Test_Init(Adafruit_GFX* gfx)
 }
 
 // Call this method to redraw the screen
-void UI_Test_Draw(Adafruit_GFX* gfx)
+void UI_Test_Draw()
 {
 	UiManager.Draw(gfx);
 }

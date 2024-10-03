@@ -29,27 +29,27 @@ ButtonControl<StringLength>::ButtonControl(uint16_t locX, uint16_t locY, uint16_
 }
 
 template <int StringLength>
-void ButtonControl<StringLength>::Draw(Adafruit_GFX* gfx)
+void ButtonControl<StringLength>::Draw()
 {
 	if (Visible)
 	{
-		gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
 		
-		gfx->drawFastHLine(LocX - 1, LocY - 1, 5, UiManager.ColorForeground);					// Upper left corner
-		gfx->drawFastVLine(LocX - 1, LocY - 1, 5, UiManager.ColorForeground);
-		gfx->drawFastHLine(LocX + Width - 4, LocY - 1, 5, UiManager.ColorForeground);			// Upper right corner
-		gfx->drawFastVLine(LocX + Width, LocY - 1, 5, UiManager.ColorForeground);
-		gfx->drawFastHLine(LocX - 1, LocY + Height, 5, UiManager.ColorForeground);				// Lower left corner
-		gfx->drawFastVLine(LocX - 1, LocY + Height - 4, 5, UiManager.ColorForeground);
-		gfx->drawFastHLine(LocX + Width - 4, LocY + Height, 5, UiManager.ColorForeground);		// Lower right corner		
-		gfx->drawFastVLine(LocX + Width, LocY + Height - 4, 5, UiManager.ColorForeground);
-		gfx->setTextColor(UiManager.ColorForeground);
-		gfx->setCursor(LocX, LocY + UiManager.FontHeight - 4);
-		gfx->print(_buttonText);
+		UiManager.Gfx->drawFastHLine(LocX - 1, LocY - 1, 5, UiManager.ColorForeground);					// Upper left corner
+		UiManager.Gfx->drawFastVLine(LocX - 1, LocY - 1, 5, UiManager.ColorForeground);
+		UiManager.Gfx->drawFastHLine(LocX + Width - 4, LocY - 1, 5, UiManager.ColorForeground);			// Upper right corner
+		UiManager.Gfx->drawFastVLine(LocX + Width, LocY - 1, 5, UiManager.ColorForeground);
+		UiManager.Gfx->drawFastHLine(LocX - 1, LocY + Height, 5, UiManager.ColorForeground);				// Lower left corner
+		UiManager.Gfx->drawFastVLine(LocX - 1, LocY + Height - 4, 5, UiManager.ColorForeground);
+		UiManager.Gfx->drawFastHLine(LocX + Width - 4, LocY + Height, 5, UiManager.ColorForeground);		// Lower right corner		
+		UiManager.Gfx->drawFastVLine(LocX + Width, LocY + Height - 4, 5, UiManager.ColorForeground);
+		UiManager.Gfx->setTextColor(UiManager.ColorForeground);
+		UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 4);
+		UiManager.Gfx->print(_buttonText);
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 

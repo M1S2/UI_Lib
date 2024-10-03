@@ -35,7 +35,7 @@ void setup()
   UI_Test_Init(&tft);
   UI_Test_BuildTree();
 
-  UI_Test_Draw(&tft);
+  UI_Test_Draw();
 }
 
 void loop()
@@ -73,7 +73,7 @@ void loop()
 
     if(processed == true)
     {
-      UI_Test_Draw(&tft);
+      UI_Test_Draw();
     }
   }
 }

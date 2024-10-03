@@ -38,11 +38,11 @@ MessageDialog<messageLength>::MessageDialog(uint16_t locX, uint16_t locY, uint16
 }
 
 template <int messageLength>
-void MessageDialog<messageLength>::Draw(Adafruit_GFX* gfx)
+void MessageDialog<messageLength>::Draw()
 {
-	gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+	UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
 	UiManager.Gfx->setTextWrap(true);
-	_page.Draw(gfx);
+	_page.Draw();
 	UiManager.Gfx->setTextWrap(false);
 }
 

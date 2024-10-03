@@ -52,9 +52,8 @@ class ContainerStack : public ContainerPage<maxItems>
 
 		/**
 		 * Method used for drawing of the ContainerStack.
-		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx) override;
+		virtual void Draw() override;
 
 		/**
 		 * Add the item to the elements of this container and adapt the item location accordingly.

@@ -28,9 +28,8 @@ class Container : public UIElement
 		
 		/**
 		 * Virtual method used for drawing of the container UIElement.
-		 * @param gfx Pointer to the Adafruit_GFX object used for LCD drawing.
 		 */
-		virtual void Draw(Adafruit_GFX* gfx) { }  //= 0;
+		virtual void Draw() { }  //= 0;
 			
 		/**
 		 * Process the given key.

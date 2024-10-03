@@ -35,20 +35,20 @@ TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::TabContro
 }
 
 template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
-void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::Draw(Adafruit_GFX* gfx) 
+void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::Draw() 
 {
 	if (Visible)
 	{
 		if(_lastDrawnTabIndex != _selectedTabIndex || UiManager.WasTreeRootChanged)
 		{
-			gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 			_lastDrawnTabIndex = _selectedTabIndex;
 
 			switch (_tabPosition)
 			{
 				case TAB_POSITION_LEFT:
 				{
-					gfx->drawRect(LocX + _tabRegionSize - 1, LocY, Width - _tabRegionSize + 1, Height, UiManager.ColorForeground);
+					UiManager.Gfx->drawRect(LocX + _tabRegionSize - 1, LocY, Width - _tabRegionSize + 1, Height, UiManager.ColorForeground);
 					int yTab = LocY;
 					
 					int tabFontHeight = UiManager.FontHeight - 2;
@@ -58,14 +58,14 @@ void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::Draw
 					{
 						if(i == _selectedTabIndex)
 						{
-							gfx->drawRect(LocX, yTab, _tabRegionSize, tabHeight, UiManager.ColorForeground);
-							gfx->drawFastVLine(LocX + _tabRegionSize - 1, yTab + 1, tabHeight - 2, UiManager.ColorBackground);
+							UiManager.Gfx->drawRect(LocX, yTab, _tabRegionSize, tabHeight, UiManager.ColorForeground);
+							UiManager.Gfx->drawFastVLine(LocX + _tabRegionSize - 1, yTab + 1, tabHeight - 2, UiManager.ColorBackground);
 						}
 						
 						if(_headers[i] != NULL) 
 						{
-							gfx->setCursor(LocX + 2, yTab + ((tabHeight - tabFontHeight) / 2) + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-							gfx->print(_headers[i]);
+							UiManager.Gfx->setCursor(LocX + 2, yTab + ((tabHeight - tabFontHeight) / 2) + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+							UiManager.Gfx->print(_headers[i]);
 						}
 						yTab+=(tabHeight + tabHeaderMargin);
 					}
@@ -73,26 +73,26 @@ void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::Draw
 				}
 				case TAB_POSITION_TOP:
 				{
-					gfx->drawRect(LocX, LocY + _tabRegionSize - 1, Width, Height - _tabRegionSize + 1, UiManager.ColorForeground);
+					UiManager.Gfx->drawRect(LocX, LocY + _tabRegionSize - 1, Width, Height - _tabRegionSize + 1, UiManager.ColorForeground);
 					int xTab = LocX;
 										
 					for(int i = 0; i < _numTabs; i++)
 					{
 						int16_t x, y;
 						uint16_t w, h;
-						gfx->getTextBounds(_headers[i], 0, 0, &x, &y, &w, &h);
+						UiManager.Gfx->getTextBounds(_headers[i], 0, 0, &x, &y, &w, &h);
 						int tabWidth = w + 8;
 
 						if(i == _selectedTabIndex)
 						{
-							gfx->drawRect(xTab, LocY, tabWidth, _tabRegionSize, UiManager.ColorForeground);
-							gfx->drawFastHLine(xTab + 1, LocY + _tabRegionSize - 1, tabWidth - 2, UiManager.ColorBackground);
+							UiManager.Gfx->drawRect(xTab, LocY, tabWidth, _tabRegionSize, UiManager.ColorForeground);
+							UiManager.Gfx->drawFastHLine(xTab + 1, LocY + _tabRegionSize - 1, tabWidth - 2, UiManager.ColorBackground);
 						}
 						
 						if(_headers[i] != NULL) 
 						{
-							gfx->setCursor(xTab, LocY + UiManager.FontHeight + 2);
-							gfx->print(_headers[i]);
+							UiManager.Gfx->setCursor(xTab, LocY + UiManager.FontHeight + 2);
+							UiManager.Gfx->print(_headers[i]);
 						}
 						xTab+=(tabWidth + tabHeaderMargin);
 					}
@@ -103,11 +103,11 @@ void TabControl<maxTabs, maxHeaderLength, tabHeaderMargin, contentPadding>::Draw
 			}
 		}
 		
-		if(_tabContents[_selectedTabIndex] != NULL) { _tabContents[_selectedTabIndex]->Draw(gfx); }
+		if(_tabContents[_selectedTabIndex] != NULL) { _tabContents[_selectedTabIndex]->Draw(); }
 	}
 	else
 	{
-		gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
 
