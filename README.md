@@ -18,16 +18,17 @@ The Adafruit GFX library is used for LCD handling:
 To initialize the UI_Lib:
 - Create an Adafruit display object depending on the used display.
 - Init the display object accordingly.
-- Create an `UI_Manager` object from the UI_Lib.
-- Call the `UI_Manager::Init` function of the UI_Manager with the created Adafruit_GFX object. 
+- Call the `UiManager.Init` function of the `UI_Manager` (use the `UiManager` instance delivered with the library) with the created Adafruit_GFX object. 
+- Configure the colors you want to use with the `UiManager.SetColors` method. It is also possible to set the colors individually with the `UiManager.ColorBackground`, `UiManager.ColorForeground` and `UiManager.ColorForegroundEditMode` properties.
+- Configure the font you want to use with the `UiManager.SetFont` method.
 
 At this point, nothing is displayed yet. There is no visual tree assigned (and created) that can be shown, so create one:
 - Create objects of all UI elements that you want to use to build the user interface.
 - Link all objects to their parent objects (e.g. add a numeric control to the item collection of a page, add the page to a tab control, ...) by using the appropriate functions of the parent controls.
-- Connect the root of the visual tree to the `UI_Manager` by using the `UI_Manager::ChangeVisualTreeRoot` method.
-- Call the `UI_Manager::Draw` method with the previously created display object. You can also draw to a canvas here.
+- Connect the root of the visual tree to the `UI_Manager` by using the `UiManager.ChangeVisualTreeRoot` method.
+- Call the `UiManager.Draw` method with the previously created display object. You can also draw to a canvas here.
 
-Now the user interface is shown but no user inputs are processed. You have to feed the `UI_Manager::KeyInput` function of the `UI_Manager` whenever a key was pressed. Rotary encoder inputs should also be encoded as key presses (KEYUP, KEYDOWN, KEYOK).
+Now the user interface is shown but no user inputs are processed. You have to feed the `UiManager.KeyInput` function whenever a key was pressed. Rotary encoder inputs should also be encoded as key presses (KEYUP, KEYDOWN, KEYOK).
 
 ## Available components
 This section lists all available UI elements (containers, controls, indicators). Base classes are not listed here.
@@ -39,6 +40,14 @@ This section lists all available UI elements (containers, controls, indicators).
 		- KEYUP and KEYDOWN to scroll though the items. 
 - ContainerPage: This container can be used to show all children at the same time. This can be used to draw e.g. multiple controls and indicators on the same page.
 	- Supports children: Yes (adding with `ContainerPage::AddItem` function)
+	- Supported user inputs: 
+		- KEYUP and KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
+- ContainerGrid: This container can be used to show all children at the same time in a grid layout.
+	- Supports children: Yes (adding with `ContainerGrid::AddItem` function)
+	- Supported user inputs: 
+		- KEYUP and KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
+- ContainerStack: This container can be used to show all children at the same time stacked horizontal or vertical.
+	- Supports children: Yes (adding with `ContainerStack::AddItem` function)
 	- Supported user inputs: 
 		- KEYUP and KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
 
@@ -109,7 +118,7 @@ protected:
 
 public:
 	NewControl(unsigned char locX, unsigned char locY, bool* valuePointer);
-	virtual void Draw(Adafruit_GFX* gfx, bool wasScreenCleared) override;
+	virtual void Draw(Adafruit_GFX* gfx) override;
 	virtual bool KeyInput(Keys_t key) override;
 };
 
@@ -131,7 +140,7 @@ NewControl::NewControl(unsigned char locX, unsigned char locY, bool* valuePointe
 	// Do further constructor tasks here
 }
 
-void NewControl::Draw(Adafruit_GFX* gfx, bool wasScreenCleared)
+void NewControl::Draw(Adafruit_GFX* gfx)
 {
 	if (Visible)
 	{
@@ -179,39 +188,38 @@ After each key input, the `UI_Manager::_focusElement` is recalculated.
 #include "Core/UI_Manager.h"
 #include "Core/UI_Elements.h"
 
-UI_Manager ui_Manager;
 bool boolVal1;
-Label<10> labelBool(40, 5, "Boolean");
-BoolIndicator boolInd1(40, 20, &boolVal1);
-BoolControl boolCtrl1(40, 35, &boolVal1, &boolVal1);
-ContainerPage page_boolean;
+Label<10> labelBool("Boolean");
+BoolIndicator boolInd1(&boolVal1);
+BoolControl boolCtrl1(&boolVal1, &boolVal1);
+ContainerStackDefault stack_boolean;
 
 // Call this method to build a simple Visual Tree and attach it to the UI_Manager
 void UI_Test_BuildTree()
 {
-	page_boolean.AddItem(&labelBool);
-	page_boolean.AddItem(&boolInd1);
-	page_boolean.AddItem(&boolCtrl1);
-	page_boolean.InitItems();
-	ui_Manager.ChangeVisualTreeRoot(&page_boolean);
+	stack_boolean.AddItem(&labelBool);
+	stack_boolean.AddItem(&boolInd1);
+	stack_boolean.AddItem(&boolCtrl1);
+	stack_boolean.InitItems();
+	UiManager.ChangeVisualTreeRoot(&stack_boolean);
 }
 
 // Call this method from outside to initialize the UI_Lib
 void UI_Test_Init(Adafruit_GFX* gfx)
 {
-	ui_Manager.Init(gfx);
+	UiManager.Init(gfx);
 }
 
 // Call this method to redraw the screen
 void UI_Test_Draw(Adafruit_GFX* gfx)
 {
-	ui_Manager.Draw(gfx);
+	UiManager.Draw(gfx);
 }
 
 // Call this method to send user inputs (keys, encoder actions) to the UI_Manager
 void UI_Test_KeyInput(Keys_t key)
 {
-	ui_Manager.KeyInput(key);
+	UiManager.KeyInput(key);
 }
 ```
 
