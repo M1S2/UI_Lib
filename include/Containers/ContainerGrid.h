@@ -26,6 +26,14 @@ typedef enum GridCellAlignment
 	GRID_CELL_ALIGNMENT_BOTTOM_RIGHT,		/**< Alignment bottom right */
 }GridCellAlignment_t;
 
+struct GridItemConfig
+{
+	UIElement* item;
+	uint8_t columnIndex;
+	uint8_t rowIndex;
+	GridCellAlignment_t cellAlignment;
+};
+
 /**
  * class for a container that is showing all items at a time in a fixed grid layout.
  * Therefore the location of the added items is changed.
@@ -39,7 +47,8 @@ class ContainerGrid : public ContainerPage<maxItems>
 	private:
 		uint16_t _rowHeights[maxGridRows];			/**< Heights for the individual rows. 0 if not used. */
 		uint16_t _columnWidths[maxGridColumns];		/**< Widths for the individual columns. 0 if not used. */
-		
+		GridItemConfig _itemConfiguration[maxItems];
+
 	public:
 
 		/**
@@ -91,6 +100,11 @@ class ContainerGrid : public ContainerPage<maxItems>
 		 * Recalculate the Height and Width of the UIElement
 		 */
 		virtual void RecalculateDimensions() override;
+
+		/**
+		 * Recalculate the X- and Y-Location of all items in the container
+		 */
+		virtual void RecalculateItemLocations() override;
 };
 
 /********************************************************************************************************************************************/

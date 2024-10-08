@@ -77,3 +77,15 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateDimens
 		this->Height = this->Parent->Height;
 	}
 }
+
+template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
+void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateItemLocations()
+{
+	// Move each item inside container region
+	for(int i = 0; i < this->_numItems; i++)
+	{
+		UIElement* currentItem = this->_items[i];
+		currentItem->LocX = this->LocX;
+		currentItem->LocY = this->LocY;
+	}
+}

@@ -56,11 +56,9 @@ class ContainerStack : public ContainerPage<maxItems>
 		virtual void Draw() override;
 
 		/**
-		 * Add the item to the elements of this container and adapt the item location accordingly.
-		 * @param item Pointer to the UIElement that should be added to the container. 
-		 * @return true, if added; otherwise false (if container is full) 
+		 * Recalculate the X- and Y-Location of all items in the container
 		 */
-		bool AddItem(UIElement* item);
+		virtual void RecalculateItemLocations() override;
 };
 
 /********************************************************************************************************************************************/

@@ -17,7 +17,7 @@ UIElement* Container<maxItems>::GetSelectedItem()
 }
 
 template <uint8_t maxItems>
-bool Container<maxItems>::AddItem(UIElement* item, bool stretchWidthEnabled, bool strechHeightEnabled)
+bool Container<maxItems>::AddItem(UIElement* item)
 {
 	if (_numItems >= maxItems) { return false; }
 
@@ -26,9 +26,7 @@ bool Container<maxItems>::AddItem(UIElement* item, bool stretchWidthEnabled, boo
 	_numItems++;
 	item->RecalculateDimensions();
 
-	// Move item inside container region
-	item->LocX += LocX;
-	item->LocY += LocY;
+	this->RecalculateItemLocations();
 	
 	if (ActiveChild == NULL) { ActiveChild = item; }
 	return true;

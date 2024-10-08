@@ -78,82 +78,15 @@ template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
 bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment)
 {
 	if(columnIndex >= maxGridColumns || rowIndex >= maxGridRows) { return false; }
+
+	GridItemConfig itemConfig;
+	itemConfig.item = item;
+	itemConfig.columnIndex = columnIndex;
+	itemConfig.rowIndex = rowIndex;
+	itemConfig.cellAlignment = cellAlignment;
+	_itemConfiguration[this->_numItems] = itemConfig;
+
 	if(!Container<maxItems>::AddItem(item)) { return false; }
-
-	// adapt location accordingly
-
-	uint16_t columnStart = this->LocX, columnEnd = 0;
-	for(int i = 0; i <= columnIndex; i++)
-	{
-		if(_columnWidths[i] == 0) { break; }
-		
-		if(i >= 1)
-		{
-			columnStart += _columnWidths[i - 1];
-		}
-		columnEnd = columnStart + _columnWidths[i];
-	}
-
-	uint16_t rowStart = this->LocY, rowEnd = 0;
-	for(int i = 0; i <= rowIndex; i++)
-	{
-		if(_rowHeights[i] == 0) { break; }
-		
-		if(i >= 1)
-		{
-			rowStart += _rowHeights[i - 1];
-		}
-		rowEnd = rowStart + _rowHeights[i];
-	}
-
-	if(columnEnd < columnStart || rowEnd < rowStart)
-	{
-		return false;
-	}
-	else
-	{
-		switch (cellAlignment)
-		{
-			case GRID_CELL_ALIGNMENT_TOP_LEFT:
-				item->LocX = columnStart;
-				item->LocY = rowStart;
-				break;
-			case GRID_CELL_ALIGNMENT_LEFT:
-				item->LocX = columnStart;
-				item->LocY = rowStart + ((rowEnd - rowStart - item->Height) / 2);
-				break;
-			case GRID_CELL_ALIGNMENT_BOTTOM_LEFT:
-				item->LocX = columnStart;
-				item->LocY = rowEnd - item->Height;
-				break;
-			case GRID_CELL_ALIGNMENT_TOP:
-				item->LocX = columnStart + ((columnEnd - columnStart - item->Width) / 2);
-				item->LocY = rowStart;
-				break;
-			case GRID_CELL_ALIGNMENT_MIDDLE:
-				item->LocX = columnStart + ((columnEnd - columnStart - item->Width) / 2);
-				item->LocY = rowStart + ((rowEnd - rowStart - item->Height) / 2);
-				break;
-			case GRID_CELL_ALIGNMENT_BOTTOM:
-				item->LocX = columnStart + ((columnEnd - columnStart - item->Width) / 2);
-				item->LocY = rowEnd - item->Height;
-				break;
-			case GRID_CELL_ALIGNMENT_TOP_RIGHT:
-				item->LocX = columnEnd - item->Width;
-				item->LocY = rowStart;
-				break;
-			case GRID_CELL_ALIGNMENT_RIGHT:
-				item->LocX = columnEnd - item->Width;
-				item->LocY = rowStart + ((rowEnd - rowStart - item->Height) / 2);
-				break;
-			case GRID_CELL_ALIGNMENT_BOTTOM_RIGHT:
-				item->LocX = columnEnd - item->Width;
-				item->LocY = rowEnd - item->Height;
-				break;
-			default:
-				break;
-		}		
-	}
 
 	return true;
 }
@@ -173,5 +106,89 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateDimensions
 	{
 		if(_rowHeights[i] == 0) { break; }
 		this->Height += _rowHeights[i];
+	}
+}
+
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateItemLocations()
+{
+	// Place each item inside container region
+	for(int i = 0; i < this->_numItems; i++)
+	{
+		UIElement* currentItem = this->_items[i];
+		GridItemConfig currentItemConfig = _itemConfiguration[i];
+
+		uint16_t columnStart = this->LocX, columnEnd = 0;
+		for(int c = 0; c <= currentItemConfig.columnIndex; c++)
+		{
+			if(_columnWidths[c] == 0) { break; }
+			
+			if(c >= 1)
+			{
+				columnStart += _columnWidths[c - 1];
+			}
+			columnEnd = columnStart + _columnWidths[c];
+		}
+
+		uint16_t rowStart = this->LocY, rowEnd = 0;
+		for(int r = 0; r <= currentItemConfig.rowIndex; r++)
+		{
+			if(_rowHeights[r] == 0) { break; }
+			
+			if(r >= 1)
+			{
+				rowStart += _rowHeights[r - 1];
+			}
+			rowEnd = rowStart + _rowHeights[r];
+		}
+
+		if(columnEnd < columnStart || rowEnd < rowStart)
+		{
+			continue;
+		}
+		else
+		{
+			switch (currentItemConfig.cellAlignment)
+			{
+				case GRID_CELL_ALIGNMENT_TOP_LEFT:
+					currentItem->LocX = columnStart;
+					currentItem->LocY = rowStart;
+					break;
+				case GRID_CELL_ALIGNMENT_LEFT:
+					currentItem->LocX = columnStart;
+					currentItem->LocY = rowStart + ((rowEnd - rowStart - currentItem->Height) / 2);
+					break;
+				case GRID_CELL_ALIGNMENT_BOTTOM_LEFT:
+					currentItem->LocX = columnStart;
+					currentItem->LocY = rowEnd - currentItem->Height;
+					break;
+				case GRID_CELL_ALIGNMENT_TOP:
+					currentItem->LocX = columnStart + ((columnEnd - columnStart - currentItem->Width) / 2);
+					currentItem->LocY = rowStart;
+					break;
+				case GRID_CELL_ALIGNMENT_MIDDLE:
+					currentItem->LocX = columnStart + ((columnEnd - columnStart - currentItem->Width) / 2);
+					currentItem->LocY = rowStart + ((rowEnd - rowStart - currentItem->Height) / 2);
+					break;
+				case GRID_CELL_ALIGNMENT_BOTTOM:
+					currentItem->LocX = columnStart + ((columnEnd - columnStart - currentItem->Width) / 2);
+					currentItem->LocY = rowEnd - currentItem->Height;
+					break;
+				case GRID_CELL_ALIGNMENT_TOP_RIGHT:
+					currentItem->LocX = columnEnd - currentItem->Width;
+					currentItem->LocY = rowStart;
+					break;
+				case GRID_CELL_ALIGNMENT_RIGHT:
+					currentItem->LocX = columnEnd - currentItem->Width;
+					currentItem->LocY = rowStart + ((rowEnd - rowStart - currentItem->Height) / 2);
+					break;
+				case GRID_CELL_ALIGNMENT_BOTTOM_RIGHT:
+					currentItem->LocX = columnEnd - currentItem->Width;
+					currentItem->LocY = rowEnd - currentItem->Height;
+					break;
+				default:
+					break;
+			}	
+		}
 	}
 }

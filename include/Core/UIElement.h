@@ -90,14 +90,7 @@ class UIElement
 		/**
 		 * Recalculate the Height and Width of the UIElement
 		 */
-		virtual void RecalculateDimensions()
-		{ 
-			if(Type != UI_CONTAINER)
-			{
-				Height = DEFAULT_UI_ELEMENT_HEIGHT;
-				Width = DEFAULT_UI_ELEMENT_WIDTH;
-			}
-		}
+		virtual void RecalculateDimensions() = 0;
 };
 
 #endif /* UIELEMENT_H_ */

@@ -61,3 +61,9 @@ void ContainerPage<maxItems>::RecalculateDimensions()
 	this->Width = w;		// resize the ContainerPage to fit the size of the bounding box
 	this->Height = h;
 }
+
+template <uint8_t maxItems>
+void ContainerPage<maxItems>::RecalculateItemLocations()
+{
+	// Nothing recalculated here (yet)
+}

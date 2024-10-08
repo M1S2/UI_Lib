@@ -39,28 +39,36 @@ void ContainerStack<maxItems>::Draw()
 }
 
 template <uint8_t maxItems>
-bool ContainerStack<maxItems>::AddItem(UIElement* item)
+void ContainerStack<maxItems>::RecalculateItemLocations()
 {
-	if(!Container<maxItems>::AddItem(item, false, false)) { return false; }
-
-	if(this->_numItems <= 1) { return true; }					// it was the first added item, nothing to adapt
-	UIElement* lastItem = this->_items[this->_numItems - 2];	// -1 because number to index and -1 to get the previous element
-
-	switch (_stackOrientation)
+	// Stack each item inside container region
+	for(int i = 0; i < this->_numItems; i++)
 	{
-		case STACK_ORIENTATION_VERTICAL:
-			item->LocX = lastItem->LocX;
-			item->LocY = lastItem->LocY + lastItem->Height + _marginBetweenElements;
-			break;
-		case STACK_ORIENTATION_HORIZONTAL:
-			item->LocX = lastItem->LocX + lastItem->Width + _marginBetweenElements;
-			item->LocY = lastItem->LocY;
-			break;
-		default:
-			break;
+		UIElement* currentItem = this->_items[i];
+		if(i == 0)
+		{	
+			currentItem->LocX = this->LocX;
+			currentItem->LocY = this->LocY;
+		}
+		else
+		{
+			UIElement* lastItem = this->_items[i - 1];	// -1 to get the previous element
+
+			switch (_stackOrientation)
+			{
+				case STACK_ORIENTATION_VERTICAL:
+					currentItem->LocX = lastItem->LocX;
+					currentItem->LocY = lastItem->LocY + lastItem->Height + _marginBetweenElements;
+					break;
+				case STACK_ORIENTATION_HORIZONTAL:
+					currentItem->LocX = lastItem->LocX + lastItem->Width + _marginBetweenElements;
+					currentItem->LocY = lastItem->LocY;
+					break;
+				default:
+					break;
+			}
+
+			this->RecalculateDimensions();
+		}
 	}
-
-	this->RecalculateDimensions();
-
-	return true;
 }
