@@ -6,22 +6,22 @@
 #include "Core/UI_Manager.h"
 
 template <uint8_t maxItems>
-ContainerStack<maxItems>::ContainerStack(StackOrientation_t stackOrientation, uint16_t marginBetweenElements)
+ContainerStack<maxItems>::ContainerStack(StackLayout_t stackLayout, uint16_t marginBetweenElements)
 {
 	this->Type = UI_CONTAINER;
-	_stackOrientation = stackOrientation;
+	_stackLayout = stackLayout;
 	_marginBetweenElements = marginBetweenElements;
 }
 
 template <uint8_t maxItems>
-ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackOrientation_t stackOrientation, uint16_t marginBetweenElements)
+ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout, uint16_t marginBetweenElements)
 {
 	this->Type = UI_CONTAINER;
 	this->LocX = locX;
 	this->LocY = locY;
 	this->Width = width;
 	this->Height = height;
-	_stackOrientation = stackOrientation;
+	_stackLayout = stackLayout;
 	_marginBetweenElements = marginBetweenElements;
 }
 
@@ -77,34 +77,68 @@ void ContainerStack<maxItems>::RecalculateDimensions()
 template <uint8_t maxItems>
 void ContainerStack<maxItems>::RecalculateItemLocations()
 {
+	uint16_t largestItemDimension = 0;			// Width of the largest item if STACK_LAYOUT_VERTICAL, Height of the largest item if STACK_LAYOUT_HORIZONTAL
+	for(int i = 0; i < this->_numItems; i++)
+	{
+		UIElement* currentItem = this->_items[i];
+		currentItem->RecalculateDimensions();
+		switch (_stackLayout)
+		{
+			case STACK_LAYOUT_VERTICAL_LEFT:
+			case STACK_LAYOUT_VERTICAL_CENTER:
+			case STACK_LAYOUT_VERTICAL_RIGHT:
+				if(currentItem->Width > largestItemDimension) { largestItemDimension = currentItem->Width; }
+				break;
+			case STACK_LAYOUT_HORIZONTAL_TOP:
+			case STACK_LAYOUT_HORIZONTAL_CENTER:
+			case STACK_LAYOUT_HORIZONTAL_BOTTOM:
+				if(currentItem->Height > largestItemDimension) { largestItemDimension = currentItem->Height; }
+				break;
+			default: break;
+		}	
+	}
+
 	// Stack each item inside container region
 	for(int i = 0; i < this->_numItems; i++)
 	{
 		UIElement* currentItem = this->_items[i];
-		if(i == 0)
-		{	
-			currentItem->LocX = this->LocX;
-			currentItem->LocY = this->LocY;
-		}
-		else
+		UIElement* lastItem = NULL;
+		if(i > 0) { lastItem = this->_items[i - 1]; }	// -1 to get the previous element
+
+		switch (_stackLayout)
 		{
-			UIElement* lastItem = this->_items[i - 1];	// -1 to get the previous element
+			case STACK_LAYOUT_VERTICAL_LEFT:
+				currentItem->LocX = this->LocX;
+				currentItem->LocY = (lastItem == NULL) ? this->LocY : (lastItem->LocY + lastItem->Height + _marginBetweenElements);
+				break;
+			case STACK_LAYOUT_VERTICAL_CENTER:
+				currentItem->LocX = this->LocX + ((largestItemDimension - currentItem->Width) / 2);
+				currentItem->LocY = (lastItem == NULL) ? this->LocY : (lastItem->LocY + lastItem->Height + _marginBetweenElements);
+				break;
+			case STACK_LAYOUT_VERTICAL_RIGHT:
+				currentItem->LocX = this->LocX + (largestItemDimension - currentItem->Width);
+				currentItem->LocY = (lastItem == NULL) ? this->LocY : (lastItem->LocY + lastItem->Height + _marginBetweenElements);
+				break;
+			case STACK_LAYOUT_HORIZONTAL_TOP:
+				currentItem->LocX = (lastItem == NULL) ? this->LocX : (lastItem->LocX + lastItem->Width + _marginBetweenElements);
+				currentItem->LocY = this->LocY;
+				break;
+			case STACK_LAYOUT_HORIZONTAL_CENTER:
+				currentItem->LocX = (lastItem == NULL) ? this->LocX : (lastItem->LocX + lastItem->Width + _marginBetweenElements);
+				currentItem->LocY = this->LocY + ((largestItemDimension - currentItem->Height) / 2);
+				break;
+			case STACK_LAYOUT_HORIZONTAL_BOTTOM:
+				currentItem->LocX = (lastItem == NULL) ? this->LocX : (lastItem->LocX + lastItem->Width + _marginBetweenElements);
+				currentItem->LocY = this->LocY + (largestItemDimension - currentItem->Height);
+				break;
+			default: break;
+		}
 
-			switch (_stackOrientation)
-			{
-				case STACK_ORIENTATION_VERTICAL:
-					currentItem->LocX = lastItem->LocX;
-					currentItem->LocY = lastItem->LocY + lastItem->Height + _marginBetweenElements;
-					break;
-				case STACK_ORIENTATION_HORIZONTAL:
-					currentItem->LocX = lastItem->LocX + lastItem->Width + _marginBetweenElements;
-					currentItem->LocY = lastItem->LocY;
-					break;
-				default:
-					break;
-			}
-
-			this->RecalculateDimensions();
+		if(currentItem->Type == UI_CONTAINER)
+		{
+			((Container<maxItems>*)currentItem)->RecalculateItemLocations();
 		}
 	}
+	
+	this->RecalculateDimensions();
 }

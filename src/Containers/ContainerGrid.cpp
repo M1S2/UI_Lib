@@ -216,6 +216,11 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateItemLocati
 					break;
 				default:
 					break;
+			}
+
+			if(currentItem->Type == UI_CONTAINER)
+			{
+				((Container<maxItems>*)currentItem)->RecalculateItemLocations();
 			}	
 		}
 	}

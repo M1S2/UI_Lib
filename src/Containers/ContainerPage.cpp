@@ -86,5 +86,10 @@ void ContainerPage<maxItems>::RecalculateItemLocations()
 
 		currentItem->LocX = this->LocX + currentItemConfig.relativeX;
 		currentItem->LocY = this->LocY + currentItemConfig.relativeY;
+
+		if(currentItem->Type == UI_CONTAINER)
+		{
+			((Container<maxItems>*)currentItem)->RecalculateItemLocations();
+		}
 	}
 }

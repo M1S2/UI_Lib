@@ -9,13 +9,17 @@
 #include "ContainerPage.h"
 
 /**
- * Available stack orientations
+ * Available stack layouts
  */
-typedef enum StackOrientation
+typedef enum StackLayout
 {
-	STACK_ORIENTATION_VERTICAL,			/**< Stack the elements vertical */
-	STACK_ORIENTATION_HORIZONTAL,		/**< Stack the elements horizontal */
-}StackOrientation_t;
+	STACK_LAYOUT_VERTICAL_LEFT,			/**< Stack the elements vertical, left aligned */
+	STACK_LAYOUT_VERTICAL_CENTER,			/**< Stack the elements vertical, center aligned */
+	STACK_LAYOUT_VERTICAL_RIGHT,			/**< Stack the elements vertical, right aligned */
+	STACK_LAYOUT_HORIZONTAL_TOP,			/**< Stack the elements horizontal, top aligned */
+	STACK_LAYOUT_HORIZONTAL_CENTER,		/**< Stack the elements horizontal, center aligned */
+	STACK_LAYOUT_HORIZONTAL_BOTTOM			/**< Stack the elements horizontal, bottom aligned */
+}StackLayout_t;
 
 #define DEFAULT_MARGIN_BETWEEN_ELEMENTS	5	/**< Default margin between elements */
 
@@ -27,17 +31,17 @@ template <uint8_t maxItems>
 class ContainerStack : public Container<maxItems>
 {
 	private:
-		StackOrientation_t _stackOrientation;					/**< Stack orientation */
-		uint16_t _marginBetweenElements;						/**< Margin between the last element and the next one */
+		StackLayout_t _stackLayout;							/**< Stack layout */
+		uint16_t _marginBetweenElements;					/**< Margin between the last element and the next one */
 
 	public:
 
 		/**
 		 * Constructor of the ContainerStack.
-		 * @param stackOrientation Stack orientation
+		 * @param stackLayout Stack layout
 		 * @param marginBetweenElements Margin between the last element and the next one
 		 */
-		ContainerStack(StackOrientation_t stackOrientation = STACK_ORIENTATION_VERTICAL, uint16_t marginBetweenElements = DEFAULT_MARGIN_BETWEEN_ELEMENTS);
+		ContainerStack(StackLayout_t stackLayout = STACK_LAYOUT_VERTICAL_LEFT, uint16_t marginBetweenElements = DEFAULT_MARGIN_BETWEEN_ELEMENTS);
 
 		/**
 		 * Constructor of the ContainerStack.
@@ -45,10 +49,10 @@ class ContainerStack : public Container<maxItems>
 		 * @param locY Y Location of the upper left corner of the ContainerStack
 		 * @param width Drawing width of the ContainerStack
 		 * @param height Drawing height of the ContainerStack
-		 * @param stackOrientation Stack orientation
+		 * @param stackLayout Stack layout
 		 * @param marginBetweenElements Margin between the last element and the next one
 		 */
-		ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackOrientation_t stackOrientation = STACK_ORIENTATION_VERTICAL, uint16_t marginBetweenElements = DEFAULT_MARGIN_BETWEEN_ELEMENTS);
+		ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout = STACK_LAYOUT_VERTICAL_LEFT, uint16_t marginBetweenElements = DEFAULT_MARGIN_BETWEEN_ELEMENTS);
 
 		/**
 		 * Method used for drawing of the ContainerStack.
