@@ -38,19 +38,31 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw()
 	// Count visible items
 	int _numVisibleItems = 0;
 	int _numNonVisibleItemsBeforeSelected = 0;
-	for(int i=0; i<this->_numItems; i++)
+	for(int i = 0; i < this->_numItems; i++)
 	{
 		if(this->_items[i]->Visible == true) { _numVisibleItems++; }
 		if(this->_items[i]->Visible == false && i < this->_selectedItemIndex) { _numNonVisibleItemsBeforeSelected++; }
 	}
 	
 	// Draw scroll bar
+	uint16_t scrollBarArrowSize = scrollBarWidth;		// height and width of the up and down arrows
 	uint16_t scrollBarLeft = this->LocX + this->Width - scrollBarWidth - scrollBarMargin;
-	uint16_t scrollBarBoxHeight = this->Height - 2 * scrollBarMargin;
+	uint16_t scrollBarBoxHeight = this->Height - 4 * scrollBarMargin - 2 * scrollBarArrowSize - 2;	// -2 to take the outline into account
 	uint16_t scrollBarHeight = scrollBarBoxHeight / _numVisibleItems;
 
-	UiManager.Gfx->drawRect(scrollBarLeft, this->LocY + scrollBarMargin, scrollBarWidth, scrollBarBoxHeight, UiManager.ColorForeground);
-	UiManager.Gfx->fillRect(scrollBarLeft, this->LocY + scrollBarMargin + ((this->_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), scrollBarWidth, scrollBarHeight, UiManager.ColorForeground);
+	UiManager.Gfx->drawRect(scrollBarLeft, this->LocY + 2 * scrollBarMargin + scrollBarArrowSize, scrollBarWidth, scrollBarBoxHeight, UiManager.ColorForeground);
+	UiManager.Gfx->fillRect(scrollBarLeft, this->LocY + 2 * scrollBarMargin + scrollBarArrowSize + ((this->_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), scrollBarWidth, scrollBarHeight, UiManager.ColorForeground);
+
+	// Show Up Arrow if not the first element is selected
+	if((this->_selectedItemIndex - _numNonVisibleItemsBeforeSelected) > 0)
+	{
+		UiManager.Gfx->fillTriangle(scrollBarLeft + (scrollBarWidth / 2), scrollBarMargin + 1, scrollBarLeft, scrollBarMargin + scrollBarArrowSize, scrollBarLeft + scrollBarArrowSize, scrollBarMargin + scrollBarArrowSize, UiManager.ColorForeground);
+	}
+	// Show Down Arrow if not the last element is selected
+	if(this->_selectedItemIndex < (_numVisibleItems - 1))
+	{
+		UiManager.Gfx->fillTriangle(scrollBarLeft + (scrollBarWidth / 2), this->Height - scrollBarMargin - 1, scrollBarLeft, this->Height - scrollBarMargin - scrollBarArrowSize, scrollBarLeft + scrollBarArrowSize, this->Height - scrollBarMargin - scrollBarArrowSize, UiManager.ColorForeground);
+	}
 }
 
 template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>

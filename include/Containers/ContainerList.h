@@ -12,7 +12,7 @@
  * Class for a container that is showing one item at a time and supports scrolling.
  * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  * @tparam scrollBarWidth Width in pixel of the scroll bar on the right side of the container
- * @tparam scrollBarMargin Margin in pixel between the scroll bar frame and the scroll bar slider
+ * @tparam scrollBarMargin Margin in pixel between the scroll bar frame and the container list outline
  */
 template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
 class ContainerList : public Container<maxItems>
@@ -62,8 +62,8 @@ class ContainerList : public Container<maxItems>
 
 /********************************************************************************************************************************************/
 
-#define CONTAINERLIST_SCROLLBAR_WIDTH		6		/**< Width in pixel of the scroll bar on the right side of the container */
-#define CONTAINERLIST_SCROLLBAR_MARGIN		2		/**< Margin in pixel between the scroll bar frame and the scroll bar slider */
+#define CONTAINERLIST_SCROLLBAR_WIDTH		10		/**< Width in pixel of the scroll bar on the right side of the container */
+#define CONTAINERLIST_SCROLLBAR_MARGIN		2		/**< Margin in pixel between the scroll bar frame and the container list outline */
 
 typedef ContainerList<MAX_CONTAINER_ITEMS, CONTAINERLIST_SCROLLBAR_WIDTH, CONTAINERLIST_SCROLLBAR_MARGIN> ContainerListDefault;		/**< Type definition for a ContainerList using the default settings. */
 

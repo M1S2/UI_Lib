@@ -46,12 +46,12 @@ void OnShowError(void* context);
 
 #define ELEMENT_MARGIN	10
 
-Label<10> labelBool(ELEMENT_MARGIN, ELEMENT_MARGIN, "Boolean", COLOR_WHITE);
+Label<10> labelBool("Boolean", COLOR_WHITE);
 BoolIndicator boolInd1(&boolVal1);
 BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
 BoolControl boolCtrl2(&boolVal2, &boolVal2, &OnBoolVal2Changed);
 ContainerStackDefault stack_boolean(STACK_LAYOUT_VERTICAL_LEFT, ELEMENT_MARGIN);
-Label<15> labelEnum(ELEMENT_MARGIN, ELEMENT_MARGIN, "Enumerations", COLOR_WHITE);
+Label<15> labelEnum("Enumerations", COLOR_WHITE);
 EnumIndicator<TestEnum> enumInd1(&enumVal1, TestEnumNames, 3);
 EnumControl<TestEnum> enumCtrl1(&enumVal1, TestEnumNames, 3);
 Icon enumCtrl1Icon(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
@@ -93,7 +93,7 @@ TabControlDefault tabControl(DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_WIDTH);
 
 ContainerPageDefault mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 LabelDefault labelUILib(X_COLUMN1, DISPLAY_HEIGHT - settings_window_height - 10, "UI LIB", &FreeMono18pt7b, COLOR_ORANGE);
-Icon globalIcon(DISPLAY_WIDTH - settings_window_width - 15, DISPLAY_HEIGHT - settings_window_height - 10, settings_window_width, settings_window_height, settings_window_bits);
+Icon globalIcon(DISPLAY_WIDTH - settings_window_width - 25, DISPLAY_HEIGHT - settings_window_height - 10, settings_window_width, settings_window_height, settings_window_bits);
 
 void OnBoolVal1Changed(void* context)
 {
