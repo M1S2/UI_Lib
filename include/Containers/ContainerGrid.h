@@ -42,7 +42,7 @@ struct GridItemConfig
  * @tparam maxGridColumns Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory.
  */
 template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-class ContainerGrid : public ContainerPage<maxItems>
+class ContainerGrid : public Container<maxItems>
 {
 	private:
 		uint16_t _rowHeights[maxGridRows];			/**< Heights for the individual rows. 0 if not used. */
@@ -69,6 +69,20 @@ class ContainerGrid : public ContainerPage<maxItems>
 		 * Method used for drawing of the ContainerGrid.
 		 */
 		virtual void Draw() override;
+
+		/**
+		 * Process the given key.
+		 * If this element doesn't support the key type, the key is forwarded to the parent.
+		 * This is done until the key is processed or the root of the visual tree is reached.
+		 * @param key Key that should be processed. Supported keys are: KEYUP, KEYDOWN
+		 * @return true if the key was processed; false if not.
+		 */
+		virtual bool KeyInput(Keys_t key) override;
+		
+		/**
+		 * This method selects the first UIElement in the container that is of UI_CONTROL type.
+		 */
+		void InitItems();
 
 		/**
 		 * Set the height of a specific row.

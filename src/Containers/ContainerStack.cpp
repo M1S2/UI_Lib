@@ -30,12 +30,48 @@ void ContainerStack<maxItems>::Draw()
 {
 	if (this->Visible)
 	{
-		ContainerPage<maxItems>::Draw();
+		for (int i = 0; i < this->_numItems; i++)
+		{
+			this->_items[i]->Draw();
+		}
 	}
 	else
 	{
 		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
+}
+
+template <uint8_t maxItems>
+bool ContainerStack<maxItems>::KeyInput(Keys_t key)
+{
+	switch (key)
+	{
+		case KEYUP:
+			return this->NextControlItem();
+		case KEYDOWN:
+			return this->PreviousControlItem();
+		default:
+			return false;
+	}
+}
+
+template <uint8_t maxItems>
+void ContainerStack<maxItems>::InitItems()
+{
+	this->_selectedItemIndex = 0;
+	if (this->GetSelectedItem()->Type != UI_CONTROL || this->GetSelectedItem()->Visible == false)
+	{
+		this->NextControlItem();
+	}
+}
+
+template <uint8_t maxItems>
+void ContainerStack<maxItems>::RecalculateDimensions()
+{
+	uint16_t x, y, w, h;
+	this->GetItemsBoundingBox(&x, &y, &w, &h);
+	this->Width = w;		// resize the ContainerStack to fit the size of the bounding box
+	this->Height = h;
 }
 
 template <uint8_t maxItems>

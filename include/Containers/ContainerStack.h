@@ -24,7 +24,7 @@ typedef enum StackOrientation
  * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  */
 template <uint8_t maxItems>
-class ContainerStack : public ContainerPage<maxItems>
+class ContainerStack : public Container<maxItems>
 {
 	private:
 		StackOrientation_t _stackOrientation;					/**< Stack orientation */
@@ -54,6 +54,25 @@ class ContainerStack : public ContainerPage<maxItems>
 		 * Method used for drawing of the ContainerStack.
 		 */
 		virtual void Draw() override;
+
+		/**
+		 * Process the given key.
+		 * If this element doesn't support the key type, the key is forwarded to the parent.
+		 * This is done until the key is processed or the root of the visual tree is reached.
+		 * @param key Key that should be processed. Supported keys are: KEYUP, KEYDOWN
+		 * @return true if the key was processed; false if not.
+		 */
+		virtual bool KeyInput(Keys_t key) override;
+		
+		/**
+		 * This method selects the first UIElement in the container that is of UI_CONTROL type.
+		 */
+		void InitItems();
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 
 		/**
 		 * Recalculate the X- and Y-Location of all items in the container

@@ -48,11 +48,39 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::Draw()
 				UiManager.Gfx->drawFastVLine(currentX, this->LocY, this->Height, UiManager.ColorForeground);
 			}
 		#endif
-		ContainerPage<maxItems>::Draw();
+		
+		for (int i = 0; i < this->_numItems; i++)
+		{
+			this->_items[i]->Draw();
+		}
 	}
 	else
 	{
 		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
+	}
+}
+
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::KeyInput(Keys_t key)
+{
+	switch (key)
+	{
+		case KEYUP:
+			return this->NextControlItem();
+		case KEYDOWN:
+			return this->PreviousControlItem();
+		default:
+			return false;
+	}
+}
+
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::InitItems()
+{
+	this->_selectedItemIndex = 0;
+	if (this->GetSelectedItem()->Type != UI_CONTROL || this->GetSelectedItem()->Visible == false)
+	{
+		this->NextControlItem();
 	}
 }
 
