@@ -26,17 +26,19 @@ typedef enum GridCellAlignment
 	GRID_CELL_ALIGNMENT_BOTTOM_RIGHT,		/**< Alignment bottom right */
 }GridCellAlignment_t;
 
+/**
+ * Struct used to store the column, row and alignment of a item inside the grid.
+ */
 struct GridItemConfig
 {
-	UIElement* item;
-	uint8_t columnIndex;
-	uint8_t rowIndex;
-	GridCellAlignment_t cellAlignment;
+	UIElement* item;						/**< Pointer to the item for which this configuration applies */
+	uint8_t columnIndex;					/**< Column inside the grid where the item is placed */
+	uint8_t rowIndex;						/**< Row inside the grid where the item is placed */
+	GridCellAlignment_t cellAlignment;		/**< Alignment of the item inside the grid cell */
 };
 
 /**
- * class for a container that is showing all items at a time in a fixed grid layout.
- * Therefore the location of the added items is changed.
+ * Class for a container that is showing all items at a time in a fixed grid layout.
  * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  * @tparam maxGridRows Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory.
  * @tparam maxGridColumns Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory.
@@ -45,9 +47,9 @@ template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
 class ContainerGrid : public Container<maxItems>
 {
 	private:
-		uint16_t _rowHeights[maxGridRows];			/**< Heights for the individual rows. 0 if not used. */
-		uint16_t _columnWidths[maxGridColumns];		/**< Widths for the individual columns. 0 if not used. */
-		GridItemConfig _itemConfiguration[maxItems];
+		uint16_t _rowHeights[maxGridRows];				/**< Heights for the individual rows. 0 if not used. */
+		uint16_t _columnWidths[maxGridColumns];			/**< Widths for the individual columns. 0 if not used. */
+		GridItemConfig _itemConfiguration[maxItems];	/**< Configuration data for all items inside the grid. */
 
 	public:
 

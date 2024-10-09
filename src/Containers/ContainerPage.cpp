@@ -54,6 +54,20 @@ void ContainerPage<maxItems>::InitItems()
 }
 
 template <uint8_t maxItems>
+bool ContainerPage<maxItems>::AddItem(UIElement* item)
+{
+	PageItemConfig itemConfig;
+	itemConfig.item = item;
+	itemConfig.relativeX = item->LocX;		// the X and Y coordinates at time of adding are treated as relative coordinates inside the parent container.
+	itemConfig.relativeY = item->LocY;
+	_itemConfiguration[this->_numItems] = itemConfig;
+
+	if(!Container<maxItems>::AddItem(item)) { return false; }
+
+	return true;
+}
+
+template <uint8_t maxItems>
 void ContainerPage<maxItems>::RecalculateDimensions()
 {
 	uint16_t x, y, w, h;
@@ -65,5 +79,12 @@ void ContainerPage<maxItems>::RecalculateDimensions()
 template <uint8_t maxItems>
 void ContainerPage<maxItems>::RecalculateItemLocations()
 {
-	// Nothing recalculated here (yet)
+	for(int i = 0; i < this->_numItems; i++)
+	{
+		UIElement* currentItem = this->_items[i];
+		PageItemConfig currentItemConfig = _itemConfiguration[i];
+
+		currentItem->LocX = this->LocX + currentItemConfig.relativeX;
+		currentItem->LocY = this->LocY + currentItemConfig.relativeY;
+	}
 }

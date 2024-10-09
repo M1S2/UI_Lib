@@ -9,12 +9,25 @@
 #include "Container.h"
 
 /**
+ * Struct used to store the relative coordinates of a item inside the page.
+ */
+struct PageItemConfig
+{
+	UIElement* item;		/**< Pointer to the item for which this configuration applies */
+	uint16_t relativeX;		/**< Relative X coordinate inside the page where the item is placed */
+	uint16_t relativeY;		/**< Relative Y coordinate inside the page where the item is placed */
+};
+
+/**
  * class for a container that is showing all items at a time.
  * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  */
 template <uint8_t maxItems>
 class ContainerPage : public Container<maxItems>
 {
+	private:
+		PageItemConfig _itemConfiguration[maxItems];	/**< Configuration data for all items inside the page. */
+
 	public:
 		/**
 		 * Constructor of the ContainerPage.
@@ -48,6 +61,13 @@ class ContainerPage : public Container<maxItems>
 		 * This method selects the first UIElement in the container that is of UI_CONTROL type.
 		 */
 		void InitItems();
+
+		/**
+		 * Add the item to the elements of this container and adapt the save the current relative coordinates.
+		 * @param item Pointer to the UIElement that should be added to the container. 
+		 * @return true, if added; otherwise false (if container is full) 
+		 */
+		bool AddItem(UIElement* item);
 
 		/**
 		 * Recalculate the Height and Width of the UIElement
