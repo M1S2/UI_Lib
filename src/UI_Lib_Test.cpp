@@ -137,10 +137,10 @@ void UI_Test_BuildTree()
 	mainPage.AddItem(&labelUILib);
 	mainPage.AddItem(&globalIcon);
 	
-	tabControl.AddTab("Tab1", &list1);
-	tabControl.AddTab("Tab2", &page_numeric);
-	tabControl.AddTab("Tab3", &page_dialogs);
-	tabControl.AddTab("Tab4", &grid_icons);
+	tabControl.AddItem("Tab1", &list1);
+	tabControl.AddItem("Tab2", &page_numeric);
+	tabControl.AddItem("Tab3", &page_dialogs);
+	tabControl.AddItem("Tab4", &grid_icons);
 	tabControl.SelectTab(0);
 
 	list1.AddItem(&stack_boolean);

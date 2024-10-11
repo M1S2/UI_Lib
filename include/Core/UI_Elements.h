@@ -21,7 +21,7 @@
 #include "../Containers/ContainerList.h"
 #include "../Containers/ContainerGrid.h"
 #include "../Containers/ContainerStack.h"
-#include "../Controls/TabControl.h"
+#include "../Containers/TabControl.h"
 #include "../Controls/ButtonControl.h"
 #include "../Controls/MessageDialog.h"
 
@@ -31,7 +31,7 @@
 #include "../../src/Controls/NumericControl.cpp"
 #include "../../src/Indicators/ProgressBar.cpp"
 #include "../../src/Controls/MessageDialog.cpp"
-#include "../../src/Controls/TabControl.cpp"
+#include "../../src/Containers/TabControl.cpp"
 #include "../../src/Containers/ContainerStack.cpp"
 #include "../../src/Containers/ContainerGrid.cpp"
 #include "../../src/Containers/ContainerPage.cpp"

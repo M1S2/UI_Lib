@@ -1,12 +1,12 @@
 /**
  * @file	TabControl.h
- * @brief	Containing a class for a tab control that is showing a vertical tab layout and can hold child elements.
+ * @brief	Containing a class for a tab control that is showing a vertical or horizontal tab layout and can hold child elements.
  */ 
 
 #ifndef TABCONTROL_H_
 #define TABCONTROL_H_
 
-#include "../Core/UIElement.h"
+#include "Container.h"
 
 /**
  * Available tab positions.
@@ -25,13 +25,10 @@ typedef enum TabPositions
  * @tparam contentPadding Padding between the content region and the tab content
  */
 template <uint8_t maxTabs, uint8_t maxHeaderLength, uint8_t tabHeaderMargin, uint8_t contentPadding>
-class TabControl : public UIElement
+class TabControl : public Container<maxTabs>
 {
 	private:
-		UIElement* _tabContents[maxTabs];							/**< Array with pointers to the tab page contents which can of any UIElement. */
 		char _headers[maxTabs][maxHeaderLength];					/**< Array with all tab page tab header strings. */
-		int _numTabs;												/**< Number of Tabs. */
-		int _selectedTabIndex;										/**< Index of the currently selected tab. */
 		int _lastDrawnTabIndex;										/**< Index of the last drawn tab */
 		uint16_t _tabRegionSize;									/**< Width or height of the Tabs in pixel. */
 		TabPositions_t _tabPosition;								/**< Position of the tabs. */
@@ -82,20 +79,9 @@ s		 * @return true if the key was processed; false if not.
 		 * Add a new tab to the tab control.
 		 * @param header Tab page tab header string.
 		 * @param tabContent Pointer to the tab page content which can of any UIElement.
+		 * @return true, if added; otherwise false (if container is full) 
 		 */
-		void AddTab(const char* header, UIElement* tabContent);
-		
-		/**
-		 * Select the next tab page.
-		 * If the current page is the last one, the first page is selected again (to implement a circular behaviour).
-		 */
-		void NextTab();
-		
-		/**
-		 * Select the previous tab page.
-		 * If the current page is the first one, the last page is selected again (to implement a circular behaviour).
-		 */
-		void PreviousTab();
+		bool AddItem(const char* header, UIElement* tabContent);
 		
 		/**
 		 * Select the tab at the requested index (after range checking).
@@ -112,6 +98,11 @@ s		 * @return true if the key was processed; false if not.
 		 * Recalculate the Height and Width of the UIElement
 		 */
 		virtual void RecalculateDimensions() override;
+
+		/**
+		 * Recalculate the X- and Y-Location of all items in the container
+		 */
+		virtual void RecalculateItemLocations() override;
 };
 
 /********************************************************************************************************************************************/

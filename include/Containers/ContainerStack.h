@@ -6,7 +6,7 @@
 #ifndef CONTAINERSTACK_H_
 #define CONTAINERSTACK_H_
 
-#include "ContainerPage.h"
+#include "Container.h"
 
 /**
  * Available stack layouts

@@ -6,7 +6,7 @@
 #ifndef CONTAINERGRID_H_
 #define CONTAINERGRID_H_
 
-#include "ContainerPage.h"
+#include "Container.h"
 
 #define DEBUG_SHOW_CONTAINER_GRID_CELLS		/**< Enable this define to draw the grid cells */
 
