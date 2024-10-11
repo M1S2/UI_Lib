@@ -89,7 +89,13 @@ Icon icon8(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon9(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 ContainerGridDefault grid_icons;
 
-TabControlDefault tabControl(DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_WIDTH);
+Label<10> labelTab1("Tab1", COLOR_WHITE);
+Icon iconTab1(icon_info_width, icon_info_height, icon_info_bits);
+ContainerStackDefault stack_Tab1Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
+Label<10> labelTab2("Tab2", COLOR_WHITE);
+Label<10> labelTab3("Tab3", COLOR_WHITE);
+Label<10> labelTab4("Tab4", COLOR_WHITE);
+TabControlDefault tabControl(DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_POSITION_TOP);
 
 ContainerPageDefault mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 LabelDefault labelUILib(X_COLUMN1, DISPLAY_HEIGHT - settings_window_height - 10, "UI LIB", &FreeMono18pt7b, COLOR_ORANGE);
@@ -137,10 +143,13 @@ void UI_Test_BuildTree()
 	mainPage.AddItem(&labelUILib);
 	mainPage.AddItem(&globalIcon);
 	
-	tabControl.AddItem("Tab1", &list1);
-	tabControl.AddItem("Tab2", &page_numeric);
-	tabControl.AddItem("Tab3", &page_dialogs);
-	tabControl.AddItem("Tab4", &grid_icons);
+	stack_Tab1Header.AddItem(&iconTab1);
+	stack_Tab1Header.AddItem(&labelTab1);
+	stack_Tab1Header.InitItems();
+	tabControl.AddItem(&stack_Tab1Header, &list1);
+	tabControl.AddItem(&labelTab2, &page_numeric);
+	tabControl.AddItem(&labelTab3, &page_dialogs);
+	tabControl.AddItem(&labelTab4, &grid_icons);
 	tabControl.SelectTab(0);
 
 	list1.AddItem(&stack_boolean);
