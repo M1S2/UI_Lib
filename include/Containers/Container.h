@@ -25,7 +25,7 @@ class Container : public UIElement
 		 * Constructor of the Container.
 		 */
 		Container();
-		
+
 		/**
 		 * Virtual method used for drawing of the container UIElement.
 		 */
@@ -87,11 +87,6 @@ class Container : public UIElement
 		 * @param h Height of the bounding box
 		 */
 		void GetItemsBoundingBox(uint16_t* x, uint16_t* y, uint16_t* w, uint16_t* h);
-
-		/**
-		 * Recalculate the X- and Y-Location of all items in the container
-		 */
-		virtual void RecalculateItemLocations() = 0;
 };
 
 #define MAX_CONTAINER_ITEMS		20		/**< Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory. */

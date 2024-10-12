@@ -91,6 +91,11 @@ class UIElement
 		 * Recalculate the Height and Width of the UIElement
 		 */
 		virtual void RecalculateDimensions() = 0;
+
+		/**
+		 * Recalculate the UIElement layout (containers update the X- and Y-Location of all their items, all other items can do other layout update stuff)
+		 */
+		virtual void RecalculateLayout() { }
 };
 
 #endif /* UIELEMENT_H_ */

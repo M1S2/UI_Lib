@@ -29,14 +29,14 @@ class TabControl : public Container<maxTabs>
 	private:
 		UIElement* _headers[maxTabs];								/**< Array with all tab page tab header elements. */
 		int _lastDrawnTabIndex;										/**< Index of the last drawn tab */
-		uint16_t _tabRegionSize;									/**< Width or height of the Tabs in pixel. */
 		TabPositions_t _tabPosition;								/**< Position of the tabs. */
 
 		void* _controlContext;										/**< Context pointer that is returned with the _onSelectedTabChanged function pointer */
 		void(*_onSelectedTabChanged)(void* controlContext);			/**< Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed. */
 		
 	public:
-	
+		uint16_t TabRegionSize;										/**< Width or height of the Tabs in pixel. */
+
 		/**
 		 * Constructor of the TabControl.
 		 * @param width Drawing width of the TabControl
@@ -92,14 +92,21 @@ s		 * @return true if the key was processed; false if not.
 		int GetSelectedTabIndex();
 
 		/**
+		 * Get the size of the content region of the TabControl
+		 * @param w Pointer used to give back the content region width
+		 * @param h Pointer used to give back the content region height
+		 */
+		void GetContentRegionSize(uint16_t* w, uint16_t* h);
+
+		/**
 		 * Recalculate the Height and Width of the UIElement
 		 */
 		virtual void RecalculateDimensions() override;
 
 		/**
-		 * Recalculate the X- and Y-Location of all items in the container
+		 * Recalculate the UIElement layout (containers update the X- and Y-Location of all their items, all other items can do other layout update stuff)
 		 */
-		virtual void RecalculateItemLocations() override;
+		virtual void RecalculateLayout() override;
 };
 
 /********************************************************************************************************************************************/

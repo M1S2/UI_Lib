@@ -56,12 +56,12 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw()
 	// Show Up Arrow if not the first element is selected
 	if((this->_selectedItemIndex - _numNonVisibleItemsBeforeSelected) > 0)
 	{
-		UiManager.Gfx->fillTriangle(scrollBarLeft + (scrollBarWidth / 2), scrollBarMargin + 1, scrollBarLeft, scrollBarMargin + scrollBarArrowSize, scrollBarLeft + scrollBarArrowSize, scrollBarMargin + scrollBarArrowSize, UiManager.ColorForeground);
+		UiManager.Gfx->fillTriangle(scrollBarLeft + (scrollBarWidth / 2), this->LocY + scrollBarMargin, scrollBarLeft, this->LocY + scrollBarMargin + scrollBarArrowSize - 1, scrollBarLeft + scrollBarArrowSize, this->LocY + scrollBarMargin + scrollBarArrowSize - 1, UiManager.ColorForeground);
 	}
 	// Show Down Arrow if not the last element is selected
 	if(this->_selectedItemIndex < (_numVisibleItems - 1))
 	{
-		UiManager.Gfx->fillTriangle(scrollBarLeft + (scrollBarWidth / 2), this->Height - scrollBarMargin - 1, scrollBarLeft, this->Height - scrollBarMargin - scrollBarArrowSize, scrollBarLeft + scrollBarArrowSize, this->Height - scrollBarMargin - scrollBarArrowSize, UiManager.ColorForeground);
+		UiManager.Gfx->fillTriangle(scrollBarLeft + (scrollBarWidth / 2), this->LocY + this->Height - scrollBarMargin - 1, scrollBarLeft, this->LocY + this->Height - scrollBarMargin - scrollBarArrowSize, scrollBarLeft + scrollBarArrowSize, this->LocY + this->Height - scrollBarMargin - scrollBarArrowSize, UiManager.ColorForeground);
 	}
 }
 
@@ -82,16 +82,20 @@ bool ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::KeyInput(Keys_t k
 template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
 void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateDimensions()
 {
-	// Strech the container to fill up the full parent container space
 	if(this->Parent != NULL)
 	{
-		this->Width = this->Parent->Width;
-		this->Height = this->Parent->Height;
+		// Nothing to do here. Size is updated by parent container.
+	}
+	else
+	{
+		// The ContainerList is the top most control, size it to fill the complete screen
+		this->Width = UiManager.Gfx->width();
+		this->Height = UiManager.Gfx->height();
 	}
 }
 
 template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
-void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateItemLocations()
+void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateLayout()
 {
 	// Move each item inside container region
 	for(int i = 0; i < this->_numItems; i++)
@@ -102,7 +106,7 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateItemLo
 
 		if(currentItem->Type == UI_CONTAINER)
 		{
-			((Container<maxItems>*)currentItem)->RecalculateItemLocations();
+			currentItem->RecalculateLayout();
 		}
 	}
 }

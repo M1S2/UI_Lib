@@ -77,7 +77,7 @@ void ContainerPage<maxItems>::RecalculateDimensions()
 }
 
 template <uint8_t maxItems>
-void ContainerPage<maxItems>::RecalculateItemLocations()
+void ContainerPage<maxItems>::RecalculateLayout()
 {
 	for(int i = 0; i < this->_numItems; i++)
 	{
@@ -89,7 +89,7 @@ void ContainerPage<maxItems>::RecalculateItemLocations()
 
 		if(currentItem->Type == UI_CONTAINER)
 		{
-			((Container<maxItems>*)currentItem)->RecalculateItemLocations();
+			currentItem->RecalculateLayout();
 		}
 	}
 }

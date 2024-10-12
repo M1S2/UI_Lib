@@ -75,9 +75,9 @@ class ContainerPage : public Container<maxItems>
 		virtual void RecalculateDimensions() override;
 
 		/**
-		 * Recalculate the X- and Y-Location of all items in the container
+		 * Recalculate the UIElement layout (containers update the X- and Y-Location of all their items, all other items can do other layout update stuff)
 		 */
-		virtual void RecalculateItemLocations() override;
+		virtual void RecalculateLayout() override;
 };
 
 /********************************************************************************************************************************************/

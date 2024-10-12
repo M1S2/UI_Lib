@@ -138,7 +138,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateDimensions
 }
 
 template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateItemLocations()
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateLayout()
 {
 	// Place each item inside container region
 	for(int i = 0; i < this->_numItems; i++)
@@ -220,7 +220,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateItemLocati
 
 			if(currentItem->Type == UI_CONTAINER)
 			{
-				((Container<maxItems>*)currentItem)->RecalculateItemLocations();
+				currentItem->RecalculateLayout();
 			}	
 		}
 	}

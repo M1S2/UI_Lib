@@ -75,7 +75,7 @@ void ContainerStack<maxItems>::RecalculateDimensions()
 }
 
 template <uint8_t maxItems>
-void ContainerStack<maxItems>::RecalculateItemLocations()
+void ContainerStack<maxItems>::RecalculateLayout()
 {
 	uint16_t largestItemDimension = 0;			// Width of the largest item if STACK_LAYOUT_VERTICAL, Height of the largest item if STACK_LAYOUT_HORIZONTAL
 	for(int i = 0; i < this->_numItems; i++)
@@ -136,7 +136,7 @@ void ContainerStack<maxItems>::RecalculateItemLocations()
 
 		if(currentItem->Type == UI_CONTAINER)
 		{
-			((Container<maxItems>*)currentItem)->RecalculateItemLocations();
+			currentItem->RecalculateLayout();
 		}
 	}
 	
