@@ -103,10 +103,6 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateLayout
 		UIElement* currentItem = this->_items[i];
 		currentItem->LocX = this->LocX;
 		currentItem->LocY = this->LocY;
-
-		if(currentItem->Type == UI_CONTAINER)
-		{
-			currentItem->RecalculateLayout();
-		}
+		currentItem->RecalculateLayout();
 	}
 }

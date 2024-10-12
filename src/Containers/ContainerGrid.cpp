@@ -218,10 +218,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateLayout()
 					break;
 			}
 
-			if(currentItem->Type == UI_CONTAINER)
-			{
-				currentItem->RecalculateLayout();
-			}	
+			currentItem->RecalculateLayout();
 		}
 	}
 }

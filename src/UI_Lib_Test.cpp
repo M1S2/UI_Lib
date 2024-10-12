@@ -93,8 +93,14 @@ Label<10> labelTab1("Tab1", COLOR_WHITE);
 Icon iconTab1(icon_info_width, icon_info_height, icon_info_bits);
 ContainerStackDefault stack_Tab1Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
 Label<10> labelTab2("Tab2", COLOR_WHITE);
+Icon iconTab2(icon_info_width, icon_info_height, icon_info_bits);
+ContainerStackDefault stack_Tab2Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
 Label<10> labelTab3("Tab3", COLOR_WHITE);
+Icon iconTab3(icon_info_width, icon_info_height, icon_info_bits);
+ContainerStackDefault stack_Tab3Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
 Label<10> labelTab4("Tab4", COLOR_WHITE);
+Icon iconTab4(icon_info_width, icon_info_height, icon_info_bits);
+ContainerStackDefault stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
 TabControlDefault tabControl(DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_POSITION_TOP);
 
 ContainerPageDefault mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
@@ -137,24 +143,8 @@ void OnMsgOk(void* context)
 	UiManager.ChangeVisualTreeRoot(&mainPage);	
 }
 
-void UI_Test_BuildTree()
+UIElement* build_screen_boolean_enum()
 {
-	mainPage.AddItem(&tabControl);
-	mainPage.AddItem(&labelUILib);
-	mainPage.AddItem(&globalIcon);
-	
-	stack_Tab1Header.AddItem(&iconTab1);
-	stack_Tab1Header.AddItem(&labelTab1);
-	stack_Tab1Header.InitItems();
-	tabControl.AddItem(&stack_Tab1Header, &list1);
-	tabControl.AddItem(&labelTab2, &page_numeric);
-	tabControl.AddItem(&labelTab3, &page_dialogs);
-	tabControl.AddItem(&labelTab4, &grid_icons);
-	tabControl.SelectTab(0);
-
-	list1.AddItem(&stack_boolean);
-	list1.AddItem(&stack_enum);
-
 	stack_boolean.AddItem(&labelBool);
 	stack_boolean.AddItem(&boolInd1);
 	stack_boolean.AddItem(&boolCtrl1);
@@ -172,19 +162,34 @@ void UI_Test_BuildTree()
 	stack_enum.AddItem(&stack_enumCtrl1);
 	stack_enum.AddItem(&stack_enumCtrl2);
 	stack_enum.InitItems();
-	
+
+	list1.AddItem(&stack_boolean);
+	list1.AddItem(&stack_enum);
+	return &list1;
+}
+
+UIElement* build_screen_numeric()
+{
 	page_numeric.AddItem(&labelNum);
 	page_numeric.AddItem(&numInd1);
 	page_numeric.AddItem(&numCtrl1);
 	page_numeric.AddItem(&numInd2);
 	page_numeric.AddItem(&progress1);
 	page_numeric.InitItems();
-	
+	return &page_numeric;
+}
+
+UIElement* build_screen_dialogs()
+{
 	page_dialogs.AddItem(&labelButtons);
 	page_dialogs.AddItem(&buttonReset);
 	page_dialogs.AddItem(&buttonShowTestError);
 	page_dialogs.InitItems();
+	return &page_dialogs;
+}
 
+UIElement* build_screen_grid()
+{
 	grid_icons.SetRowHeight(0, 30);	
 	grid_icons.SetRowHeight(1, 30);
 	grid_icons.SetRowHeight(2, 30);
@@ -203,8 +208,28 @@ void UI_Test_BuildTree()
 	grid_icons.AddItem(&icon8, 2, 2, GRID_CELL_ALIGNMENT_RIGHT);
 	grid_icons.AddItem(&icon9, 2, 3, GRID_CELL_ALIGNMENT_BOTTOM_RIGHT);
 	grid_icons.InitItems();
+	return &grid_icons;
+}
+
+void UI_Test_BuildTree()
+{
+	mainPage.AddItem(&tabControl);
+	mainPage.AddItem(&labelUILib);
+	mainPage.AddItem(&globalIcon);
 	
-	mainPage.InitItems();
+	stack_Tab1Header.AddItem(&iconTab1);
+	stack_Tab1Header.AddItem(&labelTab1);
+	stack_Tab2Header.AddItem(&iconTab2);
+	stack_Tab2Header.AddItem(&labelTab2);
+	stack_Tab3Header.AddItem(&iconTab3);
+	stack_Tab3Header.AddItem(&labelTab3);
+	stack_Tab4Header.AddItem(&iconTab4);
+	stack_Tab4Header.AddItem(&labelTab4);
+	tabControl.AddItem(&stack_Tab1Header, build_screen_boolean_enum());
+	tabControl.AddItem(&stack_Tab2Header, build_screen_numeric());
+	tabControl.AddItem(&stack_Tab3Header, build_screen_dialogs());
+	tabControl.AddItem(&stack_Tab4Header, build_screen_grid());
+	tabControl.SelectTab(0);
 	
 	UiManager.ChangeVisualTreeRoot(&mainPage);	
 }

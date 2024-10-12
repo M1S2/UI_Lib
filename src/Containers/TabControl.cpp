@@ -215,10 +215,7 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateLayout()
 				default: break;
 			}
 
-			if(currentHeader->Type == UI_CONTAINER)
-			{
-				currentHeader->RecalculateLayout();
-			}
+			currentHeader->RecalculateLayout();
 		}
 
 		// Move tabContent inside tab content region
@@ -233,6 +230,7 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateLayout()
 		{
 			currentItem->Height = this->Height - yRegion_Offset - contentPadding;
 		}
+		currentItem->RecalculateLayout();
 	}
 
 	RecalculateDimensions();

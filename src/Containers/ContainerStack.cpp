@@ -134,10 +134,7 @@ void ContainerStack<maxItems>::RecalculateLayout()
 			default: break;
 		}
 
-		if(currentItem->Type == UI_CONTAINER)
-		{
-			currentItem->RecalculateLayout();
-		}
+		currentItem->RecalculateLayout();
 	}
 	
 	this->RecalculateDimensions();

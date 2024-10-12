@@ -112,7 +112,7 @@ s		 * @return true if the key was processed; false if not.
 /********************************************************************************************************************************************/
 
 #define MAX_TABCONTROL_TABS			5		/**< Maximum number of tabs that are supported. */
-#define TABCONTROL_TABHEADER_MARGIN	3		/**< Margin around the tab page tabs. */
+#define TABCONTROL_TABHEADER_MARGIN	2		/**< Margin around the tab page tabs. */
 #define TABCONTROL_CONTENT_PADDING	5		/**< Padding between the content region and the tab content */
 
 typedef TabControl<MAX_TABCONTROL_TABS, TABCONTROL_TABHEADER_MARGIN, TABCONTROL_CONTENT_PADDING> TabControlDefault;		/**< Type definition for a TabControl using the default settings. */

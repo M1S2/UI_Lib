@@ -1,0 +1,4 @@
+icon_info:		self drawn
+icon_error_small:	self drawn
+icon_error:		self drawn
+icon_warning:		self drawn
