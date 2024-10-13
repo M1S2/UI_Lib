@@ -8,8 +8,6 @@
 
 #include "Container.h"
 
-#define DEBUG_SHOW_CONTAINER_GRID_CELLS		/**< Enable this define to draw the grid cells */
-
 /**
  * Available alignment in cell.
  */
@@ -42,8 +40,9 @@ struct GridItemConfig
  * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  * @tparam maxGridRows Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory.
  * @tparam maxGridColumns Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory.
+ * @tparam showGridCells Enable this to draw the grid cells
  */
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
 class ContainerGrid : public Container<maxItems>
 {
 	private:
@@ -128,6 +127,6 @@ class ContainerGrid : public Container<maxItems>
 #define MAX_CONTAINER_GRID_ROWS		10		/**< Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory. */
 #define MAX_CONTAINER_GRID_COLUMNS	10		/**< Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory. */
 
-typedef ContainerGrid<MAX_CONTAINER_ITEMS, MAX_CONTAINER_GRID_ROWS, MAX_CONTAINER_GRID_COLUMNS> ContainerGridDefault;		/**< Type definition for a ContainerGrid using the default settings. */
+typedef ContainerGrid<MAX_CONTAINER_ITEMS, MAX_CONTAINER_GRID_ROWS, MAX_CONTAINER_GRID_COLUMNS, false> ContainerGridDefault;		/**< Type definition for a ContainerGrid using the default settings. */
 
 #endif /* CONTAINERGRID_H_ */

@@ -5,14 +5,14 @@
 #include "Containers/ContainerGrid.h"
 #include "Core/UI_Manager.h"
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-ContainerGrid<maxItems, maxGridRows, maxGridColumns>::ContainerGrid()
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::ContainerGrid()
 {
 	this->Type = UI_CONTAINER;
 }
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-ContainerGrid<maxItems, maxGridRows, maxGridColumns>::ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
 {
 	this->Type = UI_CONTAINER;
 	this->LocX = locX;
@@ -21,13 +21,13 @@ ContainerGrid<maxItems, maxGridRows, maxGridColumns>::ContainerGrid(uint16_t loc
 	this->Height = height;
 }
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::Draw()
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::Draw()
 {
 	if (this->Visible)
 	{
-		#ifdef DEBUG_SHOW_CONTAINER_GRID_CELLS
-
+		if(showGridCells)
+		{
 			UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
 
 			uint16_t currentY = this->LocY;
@@ -47,7 +47,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::Draw()
 				currentX += _columnWidths[c];
 				UiManager.Gfx->drawFastVLine(currentX, this->LocY, this->Height, UiManager.ColorForeground);
 			}
-		#endif
+		}
 		
 		for (int i = 0; i < this->_numItems; i++)
 		{
@@ -60,8 +60,8 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::Draw()
 	}
 }
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::KeyInput(Keys_t key)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+bool ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
@@ -74,8 +74,8 @@ bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::KeyInput(Keys_t key)
 	}
 }
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::InitItems()
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::InitItems()
 {
 	this->_selectedItemIndex = 0;
 	if (this->GetSelectedItem()->Type != UI_CONTROL || this->GetSelectedItem()->Visible == false)
@@ -84,8 +84,8 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::InitItems()
 	}
 }
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::SetRowHeight(uint8_t rowIndex, uint16_t rowHeight)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+bool ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::SetRowHeight(uint8_t rowIndex, uint16_t rowHeight)
 {
 	if(rowIndex >= maxGridRows) { return false; }
 
@@ -93,8 +93,8 @@ bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::SetRowHeight(uint8_t 
 	return true;
 }
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::SetColumnWidth(uint8_t columnIndex, uint16_t columnWidth)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+bool ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::SetColumnWidth(uint8_t columnIndex, uint16_t columnWidth)
 {
 	if(columnIndex >= maxGridColumns) { return false; }
 
@@ -102,8 +102,8 @@ bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::SetColumnWidth(uint8_
 	return true;
 }
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment)
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+bool ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment)
 {
 	if(columnIndex >= maxGridColumns || rowIndex >= maxGridRows) { return false; }
 
@@ -119,8 +119,8 @@ bool ContainerGrid<maxItems, maxGridRows, maxGridColumns>::AddItem(UIElement* it
 	return true;
 }
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateDimensions()
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::RecalculateDimensions()
 {
 	this->Width = 0;
 	for(int i = 0; i <= maxGridColumns; i++)
@@ -137,8 +137,8 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateDimensions
 	}
 }
 
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns>
-void ContainerGrid<maxItems, maxGridRows, maxGridColumns>::RecalculateLayout()
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::RecalculateLayout()
 {
 	// Place each item inside container region
 	for(int i = 0; i < this->_numItems; i++)

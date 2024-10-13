@@ -87,7 +87,7 @@ Icon icon6(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon7(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon8(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon9(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-ContainerGridDefault grid_icons;
+ContainerGrid<10, 5, 5, true> grid_icons;
 
 Label<10> labelTab1("Tab1", COLOR_WHITE);
 Icon iconTab1(icon_info_width, icon_info_height, icon_info_bits);
