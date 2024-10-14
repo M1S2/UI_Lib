@@ -26,7 +26,7 @@ ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::ContainerList(uint16_t
 template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
 void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw()
 {
-	if(_lastDrawnItemIndex != this->_selectedItemIndex || UiManager.WasTreeRootChanged)
+	if(_lastDrawnItemIndex != this->_selectedItemIndex || UiManager.CompleteRedrawRequested)
 	{
 		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 		_lastDrawnItemIndex = this->_selectedItemIndex;
@@ -104,5 +104,6 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateLayout
 		currentItem->LocX = this->LocX;
 		currentItem->LocY = this->LocY;
 		currentItem->RecalculateLayout();
+		currentItem->RecalculateDimensions();
 	}
 }

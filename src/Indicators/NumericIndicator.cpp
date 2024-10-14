@@ -89,7 +89,7 @@ void NumericIndicator<T, stringBufferLength>::Draw()
 		}
 
 		_valueDraw = *_valuePointer;
-		if (_lastValueDraw != _valueDraw)
+		if (_lastValueDraw != _valueDraw || UiManager.CompleteRedrawRequested)
 		{
 			_lastValueDraw = _valueDraw;
 			calculateDisplayValue();

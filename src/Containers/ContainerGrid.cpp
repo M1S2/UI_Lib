@@ -219,6 +219,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::Recalc
 			}
 
 			currentItem->RecalculateLayout();
+			currentItem->RecalculateDimensions();
 		}
 	}
 }

@@ -35,7 +35,7 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw()
 {
 	if (this->Visible)
 	{
-		if(_lastDrawnTabIndex != this->_selectedItemIndex || UiManager.WasTreeRootChanged)
+		if(_lastDrawnTabIndex != this->_selectedItemIndex || UiManager.CompleteRedrawRequested)
 		{
 			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 			_lastDrawnTabIndex = this->_selectedItemIndex;
@@ -208,14 +208,14 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateLayout()
 		{
 			currentHeader->LocX = currentHeaderX;
 			currentHeader->LocY = currentHeaderY;
+			currentHeader->RecalculateLayout();
+			currentHeader->RecalculateDimensions();
 			switch (_tabPosition)
 			{
 				case TAB_POSITION_LEFT: currentHeaderY += currentHeader->Height + 2 * tabHeaderMargin; break;
 				case TAB_POSITION_TOP: currentHeaderX += currentHeader->Width + 2 * tabHeaderMargin; break;
 				default: break;
 			}
-
-			currentHeader->RecalculateLayout();
 		}
 
 		// Move tabContent inside tab content region
@@ -231,6 +231,7 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateLayout()
 			currentItem->Height = this->Height - yRegion_Offset - contentPadding;
 		}
 		currentItem->RecalculateLayout();
+		currentItem->RecalculateDimensions();
 	}
 
 	RecalculateDimensions();

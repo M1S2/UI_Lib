@@ -5,7 +5,7 @@
 #include "Core/UI_Manager.h"
 #include "Core/UI_Elements.h"
 
-UI_Manager UiManager;
+UI_Manager UiManager = UI_Manager::getInstance();
 
 UI_Manager::UI_Manager()
 {
@@ -47,7 +47,7 @@ void UI_Manager::SetFont(const GFXfont* font)
 
 void UI_Manager::Draw()
 {
-	if(WasTreeRootChanged)
+	if(CompleteRedrawRequested)
 	{
 		UiManager.Gfx->fillScreen(ColorBackground);
 	}
@@ -61,9 +61,9 @@ void UI_Manager::Draw()
 		UiManager.Gfx->drawRect(_focusElement->LocX - 1, _focusElement->LocY - 1, _focusElement->Width + 2, _focusElement->Height + 2, ColorForeground); 
 	}
 
-	if(WasTreeRootChanged)
+	if(CompleteRedrawRequested)
 	{
-		WasTreeRootChanged = false;
+		CompleteRedrawRequested = false;
 	}
 }
 
@@ -72,7 +72,8 @@ void UI_Manager::ChangeVisualTreeRoot(UIElement* visualTreeRoot)
 	_visualTreeRoot = visualTreeRoot;
 	setFocusToLeaf();
 	visualTreeRoot->RecalculateDimensions();
-	WasTreeRootChanged = true;
+	visualTreeRoot->RecalculateLayout();
+	CompleteRedrawRequested = true;
 }
 
 void UI_Manager::setFocusToLeaf()

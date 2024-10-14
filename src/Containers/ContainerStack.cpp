@@ -81,6 +81,7 @@ void ContainerStack<maxItems>::RecalculateLayout()
 	for(int i = 0; i < this->_numItems; i++)
 	{
 		UIElement* currentItem = this->_items[i];
+		currentItem->RecalculateLayout();
 		currentItem->RecalculateDimensions();
 		switch (_stackLayout)
 		{

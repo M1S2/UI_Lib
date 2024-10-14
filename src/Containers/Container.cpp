@@ -25,9 +25,6 @@ bool Container<maxItems>::AddItem(UIElement* item)
 	_items[_numItems] = item;
 	_numItems++;
 	item->RecalculateDimensions();
-	item->RecalculateLayout();
-
-	this->RecalculateLayout();
 	
 	if (ActiveChild == NULL) { ActiveChild = item; }
 	return true;

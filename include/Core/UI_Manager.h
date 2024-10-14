@@ -28,6 +28,9 @@ class UI_Manager
 		 */
 		void setFocusToLeaf();
 
+		/** Constructor of the UI_Manager */
+		UI_Manager();
+
 	public:
 	
 		uint16_t ColorBackground;					/**< Background color (black) */
@@ -36,16 +39,23 @@ class UI_Manager
 		const GFXfont* Font;						/**< Default font used when no other font is assigned */
 		uint16_t FontHeight;						/**< Maximum height of the Font (height of the string "Ag"). This parameter is recalculated when the SetFont() method is used. */
 		uint16_t ElementPadding;					/**< Space between the outline of every UIElement and the internal content. Used while RecalculateDimensions() of the UIElement */
-		bool WasTreeRootChanged;					/**< True, if the tree root was currently changed. This is set to false on the first draw then. */
+		bool CompleteRedrawRequested;				/**< True, if the tree root was currently changed. This is set to false on the first draw then. */
 		Adafruit_GFX* Gfx;							/**< Graphics object */
-
-		/** Constructor of the UI_Manager */
-		UI_Manager();
 		
+		/**
+		 * Get the singleton instance of the UI_Manager class.
+		 * Usage:
+		 * UI_Manager UiManager = UI_Manager::getInstance();
+		 */
+		static UI_Manager& getInstance()
+        {
+            static UI_Manager instance; 	// Instantiated on first use.
+            return instance;
+        }
+
 		/**
 		 * Initialize the UI_Manager.
 		 * This method sets the font and foreground color of the graphic library.
-
 		 */
 		void Init(Adafruit_GFX* gfx);
 
