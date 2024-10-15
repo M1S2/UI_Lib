@@ -66,7 +66,7 @@ class NumericIndicator : public UIElement
 		/**
 		 * Method used for drawing of the NumericIndicator.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 
 		/**
 		 * Recalculate the Height and Width of the UIElement

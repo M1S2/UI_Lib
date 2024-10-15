@@ -39,7 +39,7 @@ ProgressBar<T>::ProgressBar(uint16_t locX, uint16_t locY, T* valuePointer, T min
 }
 
 template <class T>
-void ProgressBar<T>::Draw()
+void ProgressBar<T>::Draw(bool redraw)
 {
 	if (Visible)
 	{

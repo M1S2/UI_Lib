@@ -71,7 +71,7 @@ class NumericControl : public NumericIndicator<T, stringBufferLength>
 		/**
 		 * Method used for drawing of the NumericControl.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 		
 		/**
 		 * Process the given key.

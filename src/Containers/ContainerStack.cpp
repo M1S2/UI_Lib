@@ -26,13 +26,13 @@ ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t 
 }
 
 template <uint8_t maxItems>
-void ContainerStack<maxItems>::Draw()
+void ContainerStack<maxItems>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
 		for (int i = 0; i < this->_numItems; i++)
 		{
-			this->_items[i]->Draw();
+			this->_items[i]->Draw(redraw);
 		}
 	}
 	else

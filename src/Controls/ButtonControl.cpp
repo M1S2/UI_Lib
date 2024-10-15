@@ -27,7 +27,7 @@ ButtonControl<StringLength>::ButtonControl(uint16_t locX, uint16_t locY, uint16_
 }
 
 template <int StringLength>
-void ButtonControl<StringLength>::Draw()
+void ButtonControl<StringLength>::Draw(bool redraw)
 {
 	if (Visible)
 	{

@@ -118,7 +118,7 @@ protected:
 
 public:
 	NewControl(unsigned char locX, unsigned char locY, bool* valuePointer);
-	virtual void Draw() override;
+	virtual void Draw(bool redraw) override;
 	virtual bool KeyInput(Keys_t key) override;
 };
 
@@ -140,7 +140,7 @@ NewControl::NewControl(unsigned char locX, unsigned char locY, bool* valuePointe
 	// Do further constructor tasks here
 }
 
-void NewControl::Draw()
+void NewControl::Draw(bool redraw)
 {
 	if (Visible)
 	{

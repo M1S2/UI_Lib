@@ -44,7 +44,7 @@ class EnumIndicator : public UIElement
 		/**
 		 * Method used for drawing of the EnumIndicator.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 
 		/**
 		 * Recalculate the Height and Width of the UIElement

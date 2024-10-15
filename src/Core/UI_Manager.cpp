@@ -54,7 +54,7 @@ void UI_Manager::Draw()
 
 	if (_visualTreeRoot == NULL) { return; }
 	
-	_visualTreeRoot->Draw();
+	_visualTreeRoot->Draw(CompleteRedrawRequested);
 	
 	if(_focusElement != NULL && _focusElement->Visible && _focusElement->Type != UI_INDICATOR) 
 	{ 

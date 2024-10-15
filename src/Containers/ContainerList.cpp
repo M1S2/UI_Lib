@@ -24,16 +24,17 @@ ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::ContainerList(uint16_t
 }
 
 template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
-void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw()
+void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw(bool redraw)
 {
-	if(_lastDrawnItemIndex != this->_selectedItemIndex || UiManager.CompleteRedrawRequested)
+	bool wasListItemChanged = (_lastDrawnItemIndex != this->_selectedItemIndex);
+	if(wasListItemChanged || redraw)
 	{
 		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 		_lastDrawnItemIndex = this->_selectedItemIndex;
 	}
 
 	UIElement* item = this->GetSelectedItem();
-	if(item != NULL) { item->Draw(); }
+	if(item != NULL) { item->Draw(redraw || wasListItemChanged); }
 	
 	// Count visible items
 	int _numVisibleItems = 0;

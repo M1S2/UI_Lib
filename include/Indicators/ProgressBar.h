@@ -82,7 +82,7 @@ class ProgressBar : public UIElement
 		/**
 		 * Method used for drawing of the ProgressBar.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 		
 		/**
 		 * Recalculate the Height and Width of the UIElement

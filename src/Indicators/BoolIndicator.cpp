@@ -17,7 +17,7 @@ BoolIndicator::BoolIndicator(uint16_t locX, uint16_t locY, bool* valuePointer) :
 	_valuePointer = valuePointer;
 }
 
-void BoolIndicator::Draw()
+void BoolIndicator::Draw(bool redraw)
 {
 	if (Visible)
 	{	

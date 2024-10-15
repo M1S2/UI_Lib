@@ -74,7 +74,7 @@ class MessageDialog : public UIElement
 		/**
 		 * Method used for drawing of the MessageDialog.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 
 		/**
 		 * Process the given key.

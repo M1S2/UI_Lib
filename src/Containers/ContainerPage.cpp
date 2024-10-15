@@ -21,11 +21,11 @@ ContainerPage<maxItems>::ContainerPage(uint16_t locX, uint16_t locY, uint16_t wi
 }
 
 template <uint8_t maxItems>
-void ContainerPage<maxItems>::Draw()
+void ContainerPage<maxItems>::Draw(bool redraw)
 {
 	for (int i = 0; i < this->_numItems; i++)
 	{
-		this->_items[i]->Draw();
+		this->_items[i]->Draw(redraw);
 	}
 }
 

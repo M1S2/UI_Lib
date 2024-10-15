@@ -75,7 +75,7 @@ class UIElement
 		 * This method must be overwritten in all derived classes.
 		 * Use the UiManager.Gfx object for drawing.
 		 */
-		virtual void Draw() = 0;
+		virtual void Draw(bool redraw) = 0;
 		
 		/**
 		 * Process the given key.

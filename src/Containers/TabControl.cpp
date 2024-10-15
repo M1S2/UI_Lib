@@ -31,11 +31,12 @@ TabControl<maxTabs, tabHeaderMargin, contentPadding>::TabControl(uint16_t locX, 
 }
 
 template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw() 
+void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw(bool redraw) 
 {
 	if (this->Visible)
 	{
-		if(_lastDrawnTabIndex != this->_selectedItemIndex || UiManager.CompleteRedrawRequested)
+		bool wasTabChanged = (_lastDrawnTabIndex != this->_selectedItemIndex);
+		if(wasTabChanged || redraw)
 		{
 			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 			_lastDrawnTabIndex = this->_selectedItemIndex;
@@ -54,7 +55,7 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw()
 							UiManager.Gfx->drawFastVLine(this->LocX + TabRegionSize - 1, _headers[i]->LocY - tabHeaderMargin + 1, _headers[i]->Height + 2 * tabHeaderMargin - 2, UiManager.ColorBackground);
 						}
 						
-						if(_headers[i] != NULL) { _headers[i]->Draw(); }
+						if(_headers[i] != NULL) { _headers[i]->Draw(true); }
 					}
 					break;
 				}
@@ -70,7 +71,7 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw()
 							UiManager.Gfx->drawFastHLine(_headers[i]->LocX - tabHeaderMargin + 1, this->LocY + TabRegionSize - 1, _headers[i]->Width + 2 * tabHeaderMargin - 2, UiManager.ColorBackground);						
 						}
 						
-						if(_headers[i] != NULL) { _headers[i]->Draw(); }
+						if(_headers[i] != NULL) { _headers[i]->Draw(true); }
 					}
 					break;
 				}
@@ -78,7 +79,7 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw()
 			}
 		}
 		
-		if(this->_items[this->_selectedItemIndex] != NULL) { this->_items[this->_selectedItemIndex]->Draw(); }
+		if(this->_items[this->_selectedItemIndex] != NULL) { this->_items[this->_selectedItemIndex]->Draw(redraw || wasTabChanged); }
 	}
 	else
 	{

@@ -75,7 +75,7 @@ class Label : public UIElement
 		/**
 		 * Method used for drawing of the Label.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 		
 		/**
 		 * Change the string that is drawn to the screen by this Label. 

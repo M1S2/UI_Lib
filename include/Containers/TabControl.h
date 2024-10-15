@@ -62,7 +62,7 @@ class TabControl : public Container<maxTabs>
 		/**
 		 * Method used for drawing of the TabControl.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 		
 		/**
 		 * Process the given key.

@@ -40,7 +40,7 @@ class BoolControl : public BoolIndicator
 		/**
 		 * Method used for drawing of the BoolControl.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 		
 		/**
 		 * Process the given key.

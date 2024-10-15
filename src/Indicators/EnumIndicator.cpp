@@ -22,7 +22,7 @@ EnumIndicator<T>::EnumIndicator(uint16_t locX, uint16_t locY, T* valuePointer, c
 }
 
 template <class T>
-void EnumIndicator<T>::Draw()
+void EnumIndicator<T>::Draw(bool redraw)
 {
 	if (Visible)
 	{

@@ -47,7 +47,7 @@ class EnumControl : public EnumIndicator<T>
 		/**
 		 * Method used for drawing of the EnumControl.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 		
 		/**
 		 * Process the given key.

@@ -36,7 +36,7 @@ class BoolIndicator : public UIElement
 		/**
 		 * Method used for drawing of the BooleanIndicator.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 
 		/**
 		 * Recalculate the Height and Width of the UIElement

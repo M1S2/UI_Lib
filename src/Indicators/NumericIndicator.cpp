@@ -77,7 +77,7 @@ NumericIndicator<T, stringBufferLength>::NumericIndicator(uint16_t locX, uint16_
 }
 
 template <class T, int stringBufferLength>
-void NumericIndicator<T, stringBufferLength>::Draw()
+void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 {
 	if (Visible)
 	{
@@ -89,7 +89,7 @@ void NumericIndicator<T, stringBufferLength>::Draw()
 		}
 
 		_valueDraw = *_valuePointer;
-		if (_lastValueDraw != _valueDraw || UiManager.CompleteRedrawRequested)
+		if (_lastValueDraw != _valueDraw || redraw)
 		{
 			_lastValueDraw = _valueDraw;
 			calculateDisplayValue();

@@ -29,7 +29,7 @@ NumericControl<T, stringBufferLength>::NumericControl(uint16_t locX, uint16_t lo
 }
 
 template <class T, int stringBufferLength>
-void NumericControl<T, stringBufferLength>::Draw()
+void NumericControl<T, stringBufferLength>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
@@ -45,7 +45,7 @@ void NumericControl<T, stringBufferLength>::Draw()
 			UiManager.Gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UiManager.ColorForeground); 
 		}
 		
-		NumericIndicator<T, stringBufferLength>::Draw();
+		NumericIndicator<T, stringBufferLength>::Draw(redraw);
 		
 		if(IsEditMode)
 		{	

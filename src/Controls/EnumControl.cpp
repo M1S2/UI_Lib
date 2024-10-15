@@ -22,7 +22,7 @@ EnumControl<T>::EnumControl(uint16_t locX, uint16_t locY, T* valuePointer, const
 }
 
 template <class T>
-void EnumControl<T>::Draw()
+void EnumControl<T>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
@@ -38,7 +38,7 @@ void EnumControl<T>::Draw()
 			UiManager.Gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UiManager.ColorForeground); 
 		}
 				
-		EnumIndicator<T>::Draw();
+		EnumIndicator<T>::Draw(redraw);
 		
 		if(IsEditMode) 
 		{ 

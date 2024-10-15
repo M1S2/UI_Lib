@@ -46,7 +46,7 @@ class ContainerPage : public Container<maxItems>
 		/**
 		 * Method used for drawing of the ContainerPage.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 		
 		/**
 		 * Process the given key.
