@@ -39,7 +39,7 @@ Icon::Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight
 	_wasColorSet = true;
 }
 
-void Icon::Draw()
+void Icon::Draw(bool redraw)
 {
 	if(!_wasColorSet)
 	{
@@ -50,7 +50,7 @@ void Icon::Draw()
 
 	if (Visible)
 	{
-		if(_iconBits != NULL)
+		if(_iconBits != NULL && redraw)
 		{
 			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 			UiManager.Gfx->drawXBitmap(LocX, LocY, _iconBits, Width, Height, _color);

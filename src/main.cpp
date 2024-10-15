@@ -74,6 +74,8 @@ void loop()
     if(processed == true)
     {
       UI_Test_Draw();
-    }
+    }  
   }
+  
+  UI_Test_Draw();
 }

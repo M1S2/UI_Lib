@@ -38,12 +38,15 @@ MessageDialog<messageLength>::MessageDialog(uint16_t locX, uint16_t locY, uint16
 }
 
 template <int messageLength>
-void MessageDialog<messageLength>::Draw()
+void MessageDialog<messageLength>::Draw(bool redraw)
 {
-	UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
-	UiManager.Gfx->setTextWrap(true);
-	_page.Draw();
-	UiManager.Gfx->setTextWrap(false);
+	if(redraw)
+	{
+		UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+		UiManager.Gfx->setTextWrap(true);
+		_page.Draw(redraw);
+		UiManager.Gfx->setTextWrap(false);
+	}
 }
 
 template <int messageLength>

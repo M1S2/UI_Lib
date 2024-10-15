@@ -11,7 +11,8 @@ UI_Manager::UI_Manager()
 {
 	_visualTreeRoot = NULL;
 	_focusElement = NULL;
-	
+	_lastDrawnFocusElement = NULL;
+
 	SetColors(UI_LIB_DEFAULT_COLOR_BACKGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE);
 
 	Font = UI_LIB_DEFAULT_FONT;
@@ -54,12 +55,18 @@ void UI_Manager::Draw()
 
 	if (_visualTreeRoot == NULL) { return; }
 	
-	_visualTreeRoot->Draw();
+	if(_lastDrawnFocusElement != _focusElement)
+	{
+		UiManager.Gfx->drawRect(_lastDrawnFocusElement->LocX - 1, _lastDrawnFocusElement->LocY - 1, _lastDrawnFocusElement->Width + 2, _lastDrawnFocusElement->Height + 2, ColorBackground);
+	}
+
+	_visualTreeRoot->Draw(CompleteRedrawRequested);
 	
 	if(_focusElement != NULL && _focusElement->Visible && _focusElement->Type != UI_INDICATOR) 
 	{ 
 		UiManager.Gfx->drawRect(_focusElement->LocX - 1, _focusElement->LocY - 1, _focusElement->Width + 2, _focusElement->Height + 2, ColorForeground); 
 	}
+	_lastDrawnFocusElement = _focusElement;
 
 	if(CompleteRedrawRequested)
 	{

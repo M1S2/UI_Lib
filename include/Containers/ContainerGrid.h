@@ -71,7 +71,7 @@ class ContainerGrid : public Container<maxItems>
 		/**
 		 * Method used for drawing of the ContainerGrid.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 
 		/**
 		 * Process the given key.

@@ -39,39 +39,42 @@ ProgressBar<T>::ProgressBar(uint16_t locX, uint16_t locY, T* valuePointer, T min
 }
 
 template <class T>
-void ProgressBar<T>::Draw()
+void ProgressBar<T>::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
-                               
-		_lastValueDraw = *_valuePointer; 
-		if (_lastValueDraw > _maxValue) { _lastValueDraw = _maxValue; }                                             // Coerce value to be between _minValue and _maxValue
-		else if (_lastValueDraw < _minValue) { _lastValueDraw = _minValue; }
-
-		// Draw outer border of progress bar
-		UiManager.Gfx->drawRect(xCoordinateFromValue(_minValue), LocY + Height - ProgressbarHeight, ProgressbarWidth, ProgressbarHeight, UiManager.ColorForeground);
-		
-		// Draw inner progress bar
-		uint16_t valueXCoord = xCoordinateFromValue(_lastValueDraw);
-		UiManager.Gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY + Height - ProgressbarHeight, (uint16_t)fabs(valueXCoord - _originXCoord), ProgressbarHeight, UiManager.ColorForeground);
-		
-		// Draw min and max value texts
-		char buffer[6];
-		itoa(_maxValue, buffer, 10);
-		UiManager.Gfx->setCursor(xCoordinateFromValue(_maxValue) + UiManager.ElementPadding, LocY + Height - UiManager.ElementPadding);
-		UiManager.Gfx->print(buffer);
-		itoa(_minValue, buffer, 10);
-		UiManager.Gfx->setCursor(xCoordinateFromValue(_minValue) - UiManager.ElementPadding - _minValueTextWidth, LocY + Height - UiManager.ElementPadding);
-		UiManager.Gfx->print(buffer);
-
-		if(_tickIncrement > 0)                                    // Use _tickIncrement<=0 to disable ticks
+		if (_lastValueDraw != *_valuePointer || redraw)
 		{
-			for (T xVal = _minValue; xVal <= _maxValue; xVal+=_tickIncrement)
+			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+								
+			_lastValueDraw = *_valuePointer; 
+			if (_lastValueDraw > _maxValue) { _lastValueDraw = _maxValue; }                                             // Coerce value to be between _minValue and _maxValue
+			else if (_lastValueDraw < _minValue) { _lastValueDraw = _minValue; }
+
+			// Draw outer border of progress bar
+			UiManager.Gfx->drawRect(xCoordinateFromValue(_minValue), LocY + Height - ProgressbarHeight, ProgressbarWidth, ProgressbarHeight, UiManager.ColorForeground);
+			
+			// Draw inner progress bar
+			uint16_t valueXCoord = xCoordinateFromValue(_lastValueDraw);
+			UiManager.Gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY + Height - ProgressbarHeight, (uint16_t)fabs(valueXCoord - _originXCoord), ProgressbarHeight, UiManager.ColorForeground);
+			
+			// Draw min and max value texts
+			char buffer[6];
+			itoa(_maxValue, buffer, 10);
+			UiManager.Gfx->setCursor(xCoordinateFromValue(_maxValue) + UiManager.ElementPadding, LocY + Height - UiManager.ElementPadding);
+			UiManager.Gfx->print(buffer);
+			itoa(_minValue, buffer, 10);
+			UiManager.Gfx->setCursor(xCoordinateFromValue(_minValue) - UiManager.ElementPadding - _minValueTextWidth, LocY + Height - UiManager.ElementPadding);
+			UiManager.Gfx->print(buffer);
+
+			if(_tickIncrement > 0)                                    // Use _tickIncrement<=0 to disable ticks
 			{
-				int xCoord = xCoordinateFromValue(xVal);
-				int tickLength = (((int)xVal) % 10 == 0 ? PROGRESSBAR_LONG_TICK_LENGTH : (((int)xVal) % 5 == 0 ? PROGRESSBAR_MIDDLE_TICK_LENGTH : PROGRESSBAR_SHORT_TICK_LENGTH));
-				UiManager.Gfx->drawFastVLine(xCoord, LocY + Height - ProgressbarHeight - tickLength, tickLength, UiManager.ColorForeground);
+				for (T xVal = _minValue; xVal <= _maxValue; xVal+=_tickIncrement)
+				{
+					int xCoord = xCoordinateFromValue(xVal);
+					int tickLength = (((int)xVal) % 10 == 0 ? PROGRESSBAR_LONG_TICK_LENGTH : (((int)xVal) % 5 == 0 ? PROGRESSBAR_MIDDLE_TICK_LENGTH : PROGRESSBAR_SHORT_TICK_LENGTH));
+					UiManager.Gfx->drawFastVLine(xCoord, LocY + Height - ProgressbarHeight - tickLength, tickLength, UiManager.ColorForeground);
+				}
 			}
 		}
 	}

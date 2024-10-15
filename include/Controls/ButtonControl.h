@@ -48,7 +48,7 @@ class ButtonControl : public UIElement
 		/**
 		 * Method used for drawing of the ButtonControl.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 
 		/**
 		 * Process the given key.

@@ -11,6 +11,7 @@ NumericControl<T, stringBufferLength>::NumericControl(T* valuePointer, const cha
 {
 	this->Type = UI_CONTROL;
 	IsEditMode = false;
+	_lastDrawnEditMode = false;
 	CurrentDigitPosition = 0;
 	_minValue = minValue;
 	_controlContext = controlContext;
@@ -22,6 +23,7 @@ NumericControl<T, stringBufferLength>::NumericControl(uint16_t locX, uint16_t lo
 {
 	this->Type = UI_CONTROL;
 	IsEditMode = false;
+	_lastDrawnEditMode = false;
 	CurrentDigitPosition = 0;
 	_minValue = minValue;
 	_controlContext = controlContext;
@@ -29,40 +31,50 @@ NumericControl<T, stringBufferLength>::NumericControl(uint16_t locX, uint16_t lo
 }
 
 template <class T, int stringBufferLength>
-void NumericControl<T, stringBufferLength>::Draw()
+void NumericControl<T, stringBufferLength>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
-		UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
-
-		if (IsEditMode)
+		redraw = redraw | (this->_lastValueDraw != *this->_valuePointer) | (IsEditMode != _lastDrawnEditMode) | (CurrentDigitPosition != _lastDrawnCurrentDigitPosition);
+		if(redraw)
 		{
-			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
-			UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
-		}	
-		else 
-		{
-			UiManager.Gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UiManager.ColorForeground); 
+			_lastDrawnEditMode = IsEditMode;
+			_lastDrawnCurrentDigitPosition = CurrentDigitPosition;
+			UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
+
+			if (IsEditMode)
+			{
+				UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
+				UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
+			}	
+			else 
+			{
+				UiManager.Gfx->drawFastHLine(this->LocX + 1, this->LocY + this->Height - 1, this->Width - 2, UiManager.ColorForeground); 
+			}
+			
+			NumericIndicator<T, stringBufferLength>::Draw(redraw);
+			
+			if(IsEditMode)
+			{	
+				uint16_t character_width, dot_width;
+				UiManager.Gfx->getTextBounds("0", 0, 0, nullptr, nullptr, &character_width, nullptr);
+				UiManager.Gfx->getTextBounds(".", 0, 0, nullptr, nullptr, &dot_width, nullptr);
+				character_width += 2;	// some space between the characters
+				dot_width += 4;			// some space between the dot and the characters
+
+				uint8_t cursorDigitIndex = (-CurrentDigitPosition + (this->_numDigits - this->_numFractionalDigits)) + (((this->_numFractionalDigits + this->_unitPrefixPower) == 0 && this->_numFractionalDigits != 0) ? 1 : 0) - 1;	// if (this->_numFractionalDigits + this->_unitPrefixPower) == 0,  no comma is available
+				uint16_t cursorXpos = this->LocX + 5 + cursorDigitIndex * character_width + (CurrentDigitPosition < this->_unitPrefixPower ? dot_width : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
+
+				UiManager.Gfx->fillRect(cursorXpos, this->LocY + this->Height - 1, character_width, 2, UiManager.ColorForegroundEditMode);		// Draw cursor
+
+				// Reset text color back to default foreground
+				UiManager.Gfx->setTextColor(UiManager.ColorForeground);
+			}
 		}
-		
-		NumericIndicator<T, stringBufferLength>::Draw();
-		
-		if(IsEditMode)
-		{	
-			uint16_t character_width, dot_width;
-			UiManager.Gfx->getTextBounds("0", 0, 0, nullptr, nullptr, &character_width, nullptr);
-			UiManager.Gfx->getTextBounds(".", 0, 0, nullptr, nullptr, &dot_width, nullptr);
-			character_width += 2;	// some space between the characters
-			dot_width += 4;			// some space between the dot and the characters
-
-			uint8_t cursorDigitIndex = (-CurrentDigitPosition + (this->_numDigits - this->_numFractionalDigits)) + (((this->_numFractionalDigits + this->_unitPrefixPower) == 0 && this->_numFractionalDigits != 0) ? 1 : 0) - 1;	// if (this->_numFractionalDigits + this->_unitPrefixPower) == 0,  no comma is available
-			uint16_t cursorXpos = this->LocX + 5 + cursorDigitIndex * character_width + (CurrentDigitPosition < this->_unitPrefixPower ? dot_width : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
-
-			UiManager.Gfx->fillRect(cursorXpos, this->LocY + this->Height - 1, character_width, 2, UiManager.ColorForegroundEditMode);		// Draw cursor
-
-			// Reset text color back to default foreground
-			UiManager.Gfx->setTextColor(UiManager.ColorForeground);
-		}
+	}
+	else
+	{
+		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }
 

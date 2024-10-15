@@ -22,29 +22,38 @@ EnumControl<T>::EnumControl(uint16_t locX, uint16_t locY, T* valuePointer, const
 }
 
 template <class T>
-void EnumControl<T>::Draw()
+void EnumControl<T>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
-		UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
-		
-		if (IsEditMode)
+		redraw = redraw | (this->_lastValueDraw != *this->_valuePointer) | (IsEditMode != _lastDrawnEditMode);
+		if(redraw)
 		{
-			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
-			UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
-		}	
-		else 
-		{
-			UiManager.Gfx->drawFastHLine(this->LocX, this->LocY + this->Height, this->Width, UiManager.ColorForeground); 
+			_lastDrawnEditMode = IsEditMode;
+			UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
+			
+			if (IsEditMode)
+			{
+				UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
+				UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
+			}	
+			else 
+			{
+				UiManager.Gfx->drawFastHLine(this->LocX + 1, this->LocY + this->Height - 1, this->Width - 2, UiManager.ColorForeground); 
+			}
+					
+			EnumIndicator<T>::Draw(redraw);
+			
+			if(IsEditMode) 
+			{ 
+				// Reset text color back to default foreground
+				UiManager.Gfx->setTextColor(UiManager.ColorForeground);
+			}
 		}
-				
-		EnumIndicator<T>::Draw();
-		
-		if(IsEditMode) 
-		{ 
-			// Reset text color back to default foreground
-			UiManager.Gfx->setTextColor(UiManager.ColorForeground);
-		}
+	}
+	else
+	{
+		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }
 

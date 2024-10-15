@@ -22,6 +22,7 @@ class UI_Manager
 	private:
 		UIElement* _visualTreeRoot;					/**< Root element of the visual tree. This element and all children are drawn to the screen. */
 		UIElement* _focusElement;					/**< Element that has the focus (it is highlited and receives all key inputs). */
+		UIElement* _lastDrawnFocusElement;			/**< Last drawn focus element. */
 		
 		/**
 		 * Traverse down the visual tree until an element without a child is reached and focus this element.
@@ -32,7 +33,6 @@ class UI_Manager
 		UI_Manager();
 
 	public:
-	
 		uint16_t ColorBackground;					/**< Background color (black) */
 		uint16_t ColorForeground;					/**< UIElement color (green) */	
 		uint16_t ColorForegroundEditMode;			/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	

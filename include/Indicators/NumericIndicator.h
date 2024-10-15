@@ -11,9 +11,9 @@
 /**
  * Class for a numeric indicator that is only showing a numeric variable value.
  * @tparam T Type of numeric variable handled by this indicator. This can be e.g. float or int.
- * @tparam stringBufferLength Length for the internally used _stringDrawBuffer
+ * @tparam stringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
  */
-template <class T, int stringBufferLength = 9>
+template <class T, int stringBufferLength = 15>
 class NumericIndicator : public UIElement
 {
 	private:
@@ -26,14 +26,13 @@ class NumericIndicator : public UIElement
 		 */
 		int numNonFractionalDigits(T number);
 		
-		T _lastValueDraw;								/**< Last drawn numeric value. Only if the _valueDraw differs from this value, the _stringDrawBuffer is recalculated. */
 		const char* _unitPrefix;						/**< Current display prefix character ("m", "k", "M") */
 		char _stringDrawBuffer[stringBufferLength];		/**< Buffer holding the string that is drawn to the screen. This is only recalculated on the firstPage and if the value has changed. `char stringBufferLen = _numDigits + 1 + strlen(_unitPrefix) + strlen(_baseUnit) + 1;` */
 		
 	protected:
 		const char* _baseUnit;							/**< Base unit that is appended to the calculated prefix. E.g. "V" for voltage values. To use the "%" sign as unit, you have to use "%%" as string. */
 		T* _valuePointer;								/**< Pointer to the numeric variable that is shown by this indicator. */
-		T _valueDraw;									/**< This variable is updated from the _valuePointer on each draw of the first page. */
+		T _lastValueDraw;								/**< Last drawn numeric value. Only if the _valueDraw differs from this value, the _stringDrawBuffer is recalculated and the indicator redrawn. */
 		T _maxValue;									/**< Maximum value that can be shown by this numeric indicator. It is used to determine the number of non-fractional digits. */
 		unsigned char _numFractionalDigits;				/**< Number of fractional digits that are shown by this indicator. E.g. 1.234 V has 3 fractional digits. */
 		unsigned char _numDigits;						/**< Number of digits calculated from the maxValue (_numFractionalDigits + numNonFractionalDigits). */
@@ -66,7 +65,7 @@ class NumericIndicator : public UIElement
 		/**
 		 * Method used for drawing of the NumericIndicator.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 
 		/**
 		 * Recalculate the Height and Width of the UIElement

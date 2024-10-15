@@ -17,21 +17,24 @@ BoolIndicator::BoolIndicator(uint16_t locX, uint16_t locY, bool* valuePointer) :
 	_valuePointer = valuePointer;
 }
 
-void BoolIndicator::Draw()
+void BoolIndicator::Draw(bool redraw)
 {
 	if (Visible)
-	{	
-		// If the Draw() is called on a object of the BoolIndicator, the Type is UI_INDICATOR
-		// If the Draw() is called from an BoolControl object, the Type was set to UI_CONTROL there
-		if(this->Type == UI_INDICATOR)
+	{	 
+		if (_lastValueDraw != *_valuePointer || redraw)
 		{
-			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);	
-		} 
+			_lastValueDraw = *_valuePointer;
+
+			// If the Draw() is called on a object of the BoolIndicator, the Type is UI_INDICATOR
+			// If the Draw() is called from an BoolControl object, the Type was set to UI_CONTROL there
+			if(this->Type == UI_INDICATOR)
+			{
+				UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);	
+			}
 		
-		_valueDraw = *_valuePointer;
-	
-		UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-		UiManager.Gfx->print(_valueDraw ? "ON" : "OFF");
+			UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+			UiManager.Gfx->print(*_valuePointer ? "ON" : "OFF");
+		}
 	}
 	else
 	{

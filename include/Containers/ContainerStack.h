@@ -57,7 +57,7 @@ class ContainerStack : public Container<maxItems>
 		/**
 		 * Method used for drawing of the ContainerStack.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 
 		/**
 		 * Process the given key.

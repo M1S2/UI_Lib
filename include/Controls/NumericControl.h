@@ -11,13 +11,16 @@
 /**
  * Class for a numeric control that is showing a numeric variable value and offers the possibility to edit the value.
  * @tparam T Type of numeric variable handled by this control. This can be e.g. float or int.
- * @tparam stringBufferLength Length for the internally used _stringDrawBuffer of the NumericIndicator
+ * @tparam stringBufferLength Length for the internally used _stringDrawBuffer of the NumericIndicator. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
  */
-template <class T, int stringBufferLength = 9>
+template <class T, int stringBufferLength = 15>
 class NumericControl : public NumericIndicator<T, stringBufferLength>
 {
 	private:
 		T _minValue;									/**< Minimum value that can be handled by this numeric control. */
+
+		bool _lastDrawnEditMode;						/**< The EditMode that was last drawn. Used to detect changes in the edit mode. */
+		signed char _lastDrawnCurrentDigitPosition;		/**< The CurrentDigitPosition that was last drawn. Used to detect changes in the current digit position. */
 
 		/**
 		 * Limit the value to be between _minValue and _maxValue.
@@ -71,7 +74,7 @@ class NumericControl : public NumericIndicator<T, stringBufferLength>
 		/**
 		 * Method used for drawing of the NumericControl.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 		
 		/**
 		 * Process the given key.

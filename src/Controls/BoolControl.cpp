@@ -19,14 +19,18 @@ BoolControl::BoolControl(uint16_t locX, uint16_t locY, bool* valuePointer, void*
 	_onValueChanged = onValueChanged;
 }
 
-void BoolControl::Draw()
+void BoolControl::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+		redraw = redraw | (this->_lastValueDraw != *this->_valuePointer);
+		if(redraw)
+		{
+			UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
 
-		BoolIndicator::Draw();
-		UiManager.Gfx->drawFastHLine(LocX, LocY + Height, Width, UiManager.ColorForeground);
+			BoolIndicator::Draw(redraw);
+			UiManager.Gfx->drawFastHLine(LocX + 1, LocY + Height - 1, Width - 2, UiManager.ColorForeground);
+		}
 	}
 	else
 	{

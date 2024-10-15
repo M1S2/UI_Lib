@@ -15,8 +15,8 @@ class BoolIndicator : public UIElement
 {
 	protected:
 		bool* _valuePointer;		/**< Pointer to the boolean variable that is shown by this indicator. */
-		bool _valueDraw;			/**< This variable is updated from the _valuePointer on each draw of the first page. */
-
+		bool _lastValueDraw;		/**< Last drawn bool value. Only if the _valueDraw differs from this value, the indicator is redrawn. */
+		
 	public:
 	
 		/**
@@ -36,7 +36,7 @@ class BoolIndicator : public UIElement
 		/**
 		 * Method used for drawing of the BooleanIndicator.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 
 		/**
 		 * Recalculate the Height and Width of the UIElement

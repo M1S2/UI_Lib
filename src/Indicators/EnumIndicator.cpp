@@ -22,21 +22,24 @@ EnumIndicator<T>::EnumIndicator(uint16_t locX, uint16_t locY, T* valuePointer, c
 }
 
 template <class T>
-void EnumIndicator<T>::Draw()
+void EnumIndicator<T>::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		// If the Draw() is called on a object of the EnumIndicator, the Type is UI_INDICATOR
-		// If the Draw() is called from an EnumControl object, the Type was set to UI_CONTROL there
-		if(this->Type == UI_INDICATOR)
+		if (_lastValueDraw != *_valuePointer || redraw)
 		{
-			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
-		}
+			_lastValueDraw = *_valuePointer;
 
-		_valueDraw = *_valuePointer; 
-			
-		UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-		UiManager.Gfx->print(_enumNames[_valueDraw]);
+			// If the Draw() is called on a object of the EnumIndicator, the Type is UI_INDICATOR
+			// If the Draw() is called from an EnumControl object, the Type was set to UI_CONTROL there
+			if(this->Type == UI_INDICATOR)
+			{
+				UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+			}
+				
+			UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+			UiManager.Gfx->print(_enumNames[_lastValueDraw]);
+		}
 	}
 	else
 	{

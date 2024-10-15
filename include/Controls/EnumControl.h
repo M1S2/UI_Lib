@@ -18,6 +18,7 @@ class EnumControl : public EnumIndicator<T>
 	private:
 		void* _controlContext;							/**< Context pointer that is returned with the _onValueChanged function pointer */
 		void(*_onValueChanged)(void* controlContext);	/**< Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed. */
+		bool _lastDrawnEditMode;						/**< The EditMode that was last drawn. Used to detect changes in the edit mode. */
 		
 	public:
 		bool IsEditMode;								/**< Is the control in edit mode? All keys are only supported in edit mode. */
@@ -47,7 +48,7 @@ class EnumControl : public EnumIndicator<T>
 		/**
 		 * Method used for drawing of the EnumControl.
 		 */
-		virtual void Draw() override;
+		virtual void Draw(bool redraw) override;
 		
 		/**
 		 * Process the given key.

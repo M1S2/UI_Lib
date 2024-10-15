@@ -22,11 +22,11 @@ ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::ContainerGr
 }
 
 template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
-void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::Draw()
+void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
-		if(showGridCells)
+		if(showGridCells && redraw)
 		{
 			UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
 
@@ -51,7 +51,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::Draw()
 		
 		for (int i = 0; i < this->_numItems; i++)
 		{
-			this->_items[i]->Draw();
+			this->_items[i]->Draw(redraw);
 		}
 	}
 	else

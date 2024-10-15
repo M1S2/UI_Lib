@@ -58,7 +58,7 @@ Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, const
 }
 
 template <int StringLength>
-void Label<StringLength>::Draw()
+void Label<StringLength>::Draw(bool redraw)
 {
 	if(!_wasColorSet)
 	{
@@ -69,26 +69,29 @@ void Label<StringLength>::Draw()
 
 	if (Visible)
 	{
-		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
-
-		int font_y_offset = UiManager.FontHeight - 2 * UiManager.ElementPadding;
-		if(_font != NULL) 
+		if(redraw)
 		{
-			UiManager.Gfx->setFont(_font);
-			int16_t x, y;
-			uint16_t w, h;
-			UiManager.Gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
-			font_y_offset = h;
+			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+
+			int font_y_offset = UiManager.FontHeight - 2 * UiManager.ElementPadding;
+			if(_font != NULL) 
+			{
+				UiManager.Gfx->setFont(_font);
+				int16_t x, y;
+				uint16_t w, h;
+				UiManager.Gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
+				font_y_offset = h;
+			}
+			UiManager.Gfx->setCursor(LocX, LocY + font_y_offset);
+			UiManager.Gfx->setTextColor(_color);
+			UiManager.Gfx->print(Text);
+			
+			if(_font !=NULL) 
+			{ 
+				UiManager.Gfx->setFont(UiManager.Font);
+			}
+			UiManager.Gfx->setTextColor(UiManager.ColorForeground);
 		}
-		UiManager.Gfx->setCursor(LocX, LocY + font_y_offset);
-		UiManager.Gfx->setTextColor(_color);
-		UiManager.Gfx->print(Text);
-		
-		if(_font !=NULL) 
-		{ 
-			UiManager.Gfx->setFont(UiManager.Font);
-		}
-		UiManager.Gfx->setTextColor(UiManager.ColorForeground);
 	}
 	else
 	{

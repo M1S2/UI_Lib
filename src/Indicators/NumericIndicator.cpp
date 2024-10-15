@@ -13,7 +13,7 @@
 template <class T, int stringBufferLength>
 void NumericIndicator<T, stringBufferLength>::calculateDisplayValue()
 {
-	_displayValue = (float)_valueDraw;
+	_displayValue = (float)*_valuePointer;
 	_unitPrefixPower = 0;
 
 	if (fabs(_displayValue) < pow(10, -_numFractionalDigits))
@@ -77,36 +77,35 @@ NumericIndicator<T, stringBufferLength>::NumericIndicator(uint16_t locX, uint16_
 }
 
 template <class T, int stringBufferLength>
-void NumericIndicator<T, stringBufferLength>::Draw()
+void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		// If the Draw() is called on a object of the NumericIndicator, the Type is UI_INDICATOR
-		// If the Draw() is called from an NumericControl object, the Type was set to UI_CONTROL there
-		if(this->Type == UI_INDICATOR)
-		{
-			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
-		}
+		if (_lastValueDraw != *_valuePointer || redraw)
+		{	
+			// If the Draw() is called on a object of the NumericIndicator, the Type is UI_INDICATOR
+			// If the Draw() is called from an NumericControl object, the Type was set to UI_CONTROL there
+			if(this->Type == UI_INDICATOR)
+			{
+				UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+			}
 
-		_valueDraw = *_valuePointer;
-		if (_lastValueDraw != _valueDraw || UiManager.CompleteRedrawRequested)
-		{
-			_lastValueDraw = _valueDraw;
+			_lastValueDraw = *_valuePointer;
 			calculateDisplayValue();
 
 			//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item
 			char formatStringBuffer[10];
 			sprintf(formatStringBuffer, "%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
 			sprintf(_stringDrawBuffer, formatStringBuffer, fabs(_displayValue));
-		}
 
-		UiManager.Gfx->setCursor(LocX + 5, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-		UiManager.Gfx->print(_stringDrawBuffer);				// Draw value without minus sign
-		if (_displayValue < 0) 
-		{ 
-			// Draw minus sign
-			UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
-			UiManager.Gfx->print("-"); 
+			UiManager.Gfx->setCursor(LocX + 5, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+			UiManager.Gfx->print(_stringDrawBuffer);				// Draw value without minus sign
+			if (_displayValue < 0) 
+			{ 
+				// Draw minus sign
+				UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+				UiManager.Gfx->print("-"); 
+			}
 		}
 	}
 	else
