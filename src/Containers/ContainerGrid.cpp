@@ -89,7 +89,7 @@ bool ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::SetRow
 {
 	if(rowIndex >= maxGridRows) { return false; }
 
-	_rowHeights[rowIndex] = rowHeight;
+	_initialRowHeights[rowIndex] = rowHeight;
 	return true;
 }
 
@@ -98,7 +98,7 @@ bool ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::SetCol
 {
 	if(columnIndex >= maxGridColumns) { return false; }
 
-	_columnWidths[columnIndex] = columnWidth;
+	_initialColumnWidths[columnIndex] = columnWidth;
 	return true;
 }
 
@@ -140,6 +140,40 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::Recalc
 template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
 void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::RecalculateLayout()
 {
+	// clear _columnWidths and _rowHeights (set all to 0)
+	memset(_columnWidths, 0, maxGridColumns * sizeof(_columnWidths[0]));
+	memset(_rowHeights, 0, maxGridRows * sizeof(_rowHeights[0]));
+	for(int i = 0; i < this->_numItems; i++)
+	{
+		UIElement* currentItem = this->_items[i];
+		GridItemConfig currentItemConfig = _itemConfiguration[i];
+		
+		if(_initialColumnWidths[currentItemConfig.columnIndex] == 0)
+		{
+			currentItem->RecalculateDimensions();
+			if(currentItem->Width > _columnWidths[currentItemConfig.columnIndex])
+			{
+				_columnWidths[currentItemConfig.columnIndex] = currentItem->Width;
+			}
+		}
+		else
+		{
+			_columnWidths[currentItemConfig.columnIndex] = _initialColumnWidths[currentItemConfig.columnIndex];
+		}
+		if(_initialRowHeights[currentItemConfig.rowIndex] == 0)
+		{
+			currentItem->RecalculateDimensions();
+			if(currentItem->Height > _rowHeights[currentItemConfig.rowIndex])
+			{
+				_rowHeights[currentItemConfig.rowIndex] = currentItem->Height;
+			}
+		}
+		else
+		{
+			_rowHeights[currentItemConfig.rowIndex] = _initialRowHeights[currentItemConfig.rowIndex];
+		}
+	}
+
 	// Place each item inside container region
 	for(int i = 0; i < this->_numItems; i++)
 	{

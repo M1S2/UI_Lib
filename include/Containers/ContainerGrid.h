@@ -46,8 +46,10 @@ template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool sh
 class ContainerGrid : public Container<maxItems>
 {
 	private:
-		uint16_t _rowHeights[maxGridRows];				/**< Heights for the individual rows. 0 if not used. */
-		uint16_t _columnWidths[maxGridColumns];			/**< Widths for the individual columns. 0 if not used. */
+		uint16_t _initialRowHeights[maxGridRows];		/**< Heights for the individual rows. 0 if row sizes to the largest item. */
+		uint16_t _initialColumnWidths[maxGridColumns];	/**< Widths for the individual columns. 0 if column sizes to the largest item. */
+		uint16_t _rowHeights[maxGridRows];				/**< Heights for the individual rows. They are recalculated by the RecalculateLayout() method. */
+		uint16_t _columnWidths[maxGridColumns];			/**< Widths for the individual columns. They are recalculated by the RecalculateLayout() method. */
 		GridItemConfig _itemConfiguration[maxItems];	/**< Configuration data for all items inside the grid. */
 
 	public:
@@ -86,7 +88,7 @@ class ContainerGrid : public Container<maxItems>
 		void InitItems();
 
 		/**
-		 * Set the height of a specific row.
+		 * Set the height of a specific row. 0 if row sizes to the largest item.
 		 * @param rowIndex Index of the row to set.
 		 * @param rowHeight New height for the row.
 		 * @return true, if set; otherwise false (if index is out of range) 
@@ -94,7 +96,7 @@ class ContainerGrid : public Container<maxItems>
 		bool SetRowHeight(uint8_t rowIndex, uint16_t rowHeight);
 
 		/**
-		 * Set the width of a specific column.
+		 * Set the width of a specific column. 0 if column sizes to the largest item.
 		 * @param columnIndex Index of the column to set.
 		 * @param columnWidth New width for the column.
 		 * @return true, if set; otherwise false (if index is out of range) 

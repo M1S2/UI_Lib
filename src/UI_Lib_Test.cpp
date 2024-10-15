@@ -194,7 +194,7 @@ UIElement* build_screen_grid()
 	grid_icons.SetRowHeight(1, 30);
 	grid_icons.SetRowHeight(2, 30);
 	grid_icons.SetRowHeight(3, 40);
-	grid_icons.SetColumnWidth(0, 80);
+	//grid_icons.SetColumnWidth(0, 80);		// This line is commented out intentionally to show the auto-sizing of column 0. It is sized to the largest element assigned to this column.
 	grid_icons.SetColumnWidth(1, 60);
 	grid_icons.SetColumnWidth(2, 40);
 	grid_icons.AddItem(&labelGrid, 0, 0, GRID_CELL_ALIGNMENT_TOP_LEFT);
