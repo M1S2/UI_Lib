@@ -38,7 +38,7 @@ void EnumIndicator<T>::Draw(bool redraw)
 				UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 			}
 				
-			UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+			UiManager.Gfx->setCursor(LocX + UiManager.ElementMargin + UiManager.ElementPadding, LocY + Height - UiManager.ElementMargin - 2 * UiManager.ElementPadding - 1);
 			UiManager.Gfx->print(_enumNames[_lastValueDraw]);
 		}
 	}
@@ -52,7 +52,7 @@ void EnumIndicator<T>::Draw(bool redraw)
 template <class T>
 void EnumIndicator<T>::RecalculateDimensions()
 {
-	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding;
+	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 	
 	uint16_t maxWidth = 0;
 	for(int i = 0; i < _numEnumValues; i++)
@@ -63,5 +63,5 @@ void EnumIndicator<T>::RecalculateDimensions()
 		if(w > maxWidth) { maxWidth = w; }
 	}
 	
-	Width = maxWidth + 2 * UiManager.ElementPadding; 
+	Width = maxWidth + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 2; 
 }

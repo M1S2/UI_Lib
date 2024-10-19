@@ -6,15 +6,14 @@
 #include "Core/UI_Manager.h"
 
 template <uint8_t maxItems>
-ContainerStack<maxItems>::ContainerStack(StackLayout_t stackLayout, uint16_t marginBetweenElements)
+ContainerStack<maxItems>::ContainerStack(StackLayout_t stackLayout)
 {
 	this->Type = UI_CONTAINER;
 	_stackLayout = stackLayout;
-	_marginBetweenElements = marginBetweenElements;
 }
 
 template <uint8_t maxItems>
-ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout, uint16_t marginBetweenElements)
+ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout)
 {
 	this->Type = UI_CONTAINER;
 	this->LocX = locX;
@@ -22,7 +21,6 @@ ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t 
 	this->Width = width;
 	this->Height = height;
 	_stackLayout = stackLayout;
-	_marginBetweenElements = marginBetweenElements;
 }
 
 template <uint8_t maxItems>
@@ -112,26 +110,26 @@ void ContainerStack<maxItems>::RecalculateLayout()
 		{
 			case STACK_LAYOUT_VERTICAL_LEFT:
 				currentItem->LocX = this->LocX;
-				currentItem->LocY = (lastItem == NULL) ? this->LocY : (lastItem->LocY + lastItem->Height + _marginBetweenElements);
+				currentItem->LocY = (lastItem == NULL) ? this->LocY : (lastItem->LocY + lastItem->Height);
 				break;
 			case STACK_LAYOUT_VERTICAL_CENTER:
 				currentItem->LocX = this->LocX + ((largestItemDimension - currentItem->Width) / 2);
-				currentItem->LocY = (lastItem == NULL) ? this->LocY : (lastItem->LocY + lastItem->Height + _marginBetweenElements);
+				currentItem->LocY = (lastItem == NULL) ? this->LocY : (lastItem->LocY + lastItem->Height);
 				break;
 			case STACK_LAYOUT_VERTICAL_RIGHT:
 				currentItem->LocX = this->LocX + (largestItemDimension - currentItem->Width);
-				currentItem->LocY = (lastItem == NULL) ? this->LocY : (lastItem->LocY + lastItem->Height + _marginBetweenElements);
+				currentItem->LocY = (lastItem == NULL) ? this->LocY : (lastItem->LocY + lastItem->Height);
 				break;
 			case STACK_LAYOUT_HORIZONTAL_TOP:
-				currentItem->LocX = (lastItem == NULL) ? this->LocX : (lastItem->LocX + lastItem->Width + _marginBetweenElements);
+				currentItem->LocX = (lastItem == NULL) ? this->LocX : (lastItem->LocX + lastItem->Width);
 				currentItem->LocY = this->LocY;
 				break;
 			case STACK_LAYOUT_HORIZONTAL_CENTER:
-				currentItem->LocX = (lastItem == NULL) ? this->LocX : (lastItem->LocX + lastItem->Width + _marginBetweenElements);
+				currentItem->LocX = (lastItem == NULL) ? this->LocX : (lastItem->LocX + lastItem->Width);
 				currentItem->LocY = this->LocY + ((largestItemDimension - currentItem->Height) / 2);
 				break;
 			case STACK_LAYOUT_HORIZONTAL_BOTTOM:
-				currentItem->LocX = (lastItem == NULL) ? this->LocX : (lastItem->LocX + lastItem->Width + _marginBetweenElements);
+				currentItem->LocX = (lastItem == NULL) ? this->LocX : (lastItem->LocX + lastItem->Width);
 				currentItem->LocY = this->LocY + (largestItemDimension - currentItem->Height);
 				break;
 			default: break;

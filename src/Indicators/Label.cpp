@@ -83,7 +83,7 @@ void Label<StringLength>::Draw(bool redraw)
 				UiManager.Gfx->getTextBounds("Ag", 0, 0, &x, &y, &w, &h);
 				font_y_offset = h;
 			}
-			UiManager.Gfx->setCursor(LocX, LocY + font_y_offset);
+			UiManager.Gfx->setCursor(LocX + UiManager.ElementMargin, LocY + UiManager.ElementMargin + font_y_offset);
 			UiManager.Gfx->setTextColor(_color);
 			UiManager.Gfx->print(Text);
 			
@@ -119,8 +119,8 @@ void Label<StringLength>::RecalculateDimensions()
 	uint16_t w, h;
 	UiManager.Gfx->getTextBounds(Text, 0, 0, &x, &y, &w, &h);
 
-	Width = w + 2 * UiManager.ElementPadding;
-	Height = h + 2 * UiManager.ElementPadding;
+	Width = w + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
+	Height = h + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 
 	if(_font !=NULL) 
 	{ 

@@ -30,7 +30,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::Draw(b
 		this->_lastDrawnVisible = true;
 		if(showGridCells && redraw)
 		{
-			UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
+			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 
 			uint16_t currentY = this->LocY;
 			UiManager.Gfx->drawFastHLine(this->LocX, currentY, this->Width, UiManager.ColorForeground);

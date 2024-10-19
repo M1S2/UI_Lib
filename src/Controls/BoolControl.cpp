@@ -27,10 +27,10 @@ void BoolControl::Draw(bool redraw)
 		if(redraw)
 		{
 			_lastDrawnVisible = true;
-			UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 
 			BoolIndicator::Draw(redraw);
-			UiManager.Gfx->drawFastHLine(LocX + 1, LocY + Height - 1, Width - 2, UiManager.ColorForeground);
+			UiManager.Gfx->drawFastHLine(LocX + UiManager.ElementMargin + 1, LocY + Height - UiManager.ElementMargin - UiManager.ElementPadding, Width - 2 * UiManager.ElementMargin - 2, UiManager.ColorForeground);
 		}
 	}
 	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false

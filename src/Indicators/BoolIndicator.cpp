@@ -33,7 +33,7 @@ void BoolIndicator::Draw(bool redraw)
 				UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);	
 			}
 		
-			UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+			UiManager.Gfx->setCursor(LocX + UiManager.ElementMargin + UiManager.ElementPadding, LocY + Height - UiManager.ElementMargin - 2 * UiManager.ElementPadding - 1);
 			UiManager.Gfx->print(*_valuePointer ? "ON" : "OFF");
 		}
 	}
@@ -46,10 +46,10 @@ void BoolIndicator::Draw(bool redraw)
 
 void BoolIndicator::RecalculateDimensions()
 {
-	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding;
+	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 	
 	int16_t x, y;
 	uint16_t w, h;
 	UiManager.Gfx->getTextBounds("OFF", 0, 0, &x, &y, &w, &h);
-	Width = w + 2 * UiManager.ElementPadding; 
+	Width = w + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 2; 
 }

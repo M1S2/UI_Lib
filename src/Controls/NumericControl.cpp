@@ -41,16 +41,16 @@ void NumericControl<T, stringBufferLength>::Draw(bool redraw)
 			this->_lastDrawnVisible = true;
 			_lastDrawnEditMode = IsEditMode;
 			_lastDrawnCurrentDigitPosition = CurrentDigitPosition;
-			UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
+			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 
 			if (IsEditMode)
 			{
-				UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
+				UiManager.Gfx->fillRect(this->LocX + UiManager.ElementMargin, this->LocY + UiManager.ElementMargin, this->Width - 2 * UiManager.ElementMargin, this->Height - 2 * UiManager.ElementMargin, UiManager.ColorForeground);
 				UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
 			}	
 			else 
 			{
-				UiManager.Gfx->drawFastHLine(this->LocX + 1, this->LocY + this->Height - 1, this->Width - 2, UiManager.ColorForeground); 
+				UiManager.Gfx->drawFastHLine(this->LocX + UiManager.ElementMargin + 1, this->LocY + this->Height - UiManager.ElementMargin - UiManager.ElementPadding, this->Width - 2 * UiManager.ElementMargin - 2, UiManager.ColorForeground); 
 			}
 			
 			NumericIndicator<T, stringBufferLength>::Draw(redraw);
@@ -64,9 +64,9 @@ void NumericControl<T, stringBufferLength>::Draw(bool redraw)
 				dot_width += 4;			// some space between the dot and the characters
 
 				uint8_t cursorDigitIndex = (-CurrentDigitPosition + (this->_numDigits - this->_numFractionalDigits)) + (((this->_numFractionalDigits + this->_unitPrefixPower) == 0 && this->_numFractionalDigits != 0) ? 1 : 0) - 1;	// if (this->_numFractionalDigits + this->_unitPrefixPower) == 0,  no comma is available
-				uint16_t cursorXpos = this->LocX + 5 + cursorDigitIndex * character_width + (CurrentDigitPosition < this->_unitPrefixPower ? dot_width : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
+				uint16_t cursorXpos = this->LocX + 5 + UiManager.ElementMargin + UiManager.ElementPadding + cursorDigitIndex * character_width + (CurrentDigitPosition < this->_unitPrefixPower ? dot_width : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
 
-				UiManager.Gfx->fillRect(cursorXpos, this->LocY + this->Height - 1, character_width, 2, UiManager.ColorForegroundEditMode);		// Draw cursor
+				UiManager.Gfx->fillRect(cursorXpos, this->LocY + this->Height - UiManager.ElementMargin - UiManager.ElementPadding, character_width, 2, UiManager.ColorForegroundEditMode);		// Draw cursor
 
 				// Reset text color back to default foreground
 				UiManager.Gfx->setTextColor(UiManager.ColorForeground);

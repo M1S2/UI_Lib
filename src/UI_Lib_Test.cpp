@@ -39,10 +39,10 @@ void OnShowError(void* context);
 #define X_COLUMN1	(TAB_WIDTH + 5)
 #define X_COLUMN2	(X_COLUMN1 + 30)
 #define Y_ROW1		5
-#define Y_ROW2		30
-#define Y_ROW3		55
-#define Y_ROW4		85
-#define Y_ROW5		105
+#define Y_ROW2		35
+#define Y_ROW3		65
+#define Y_ROW4		100
+#define Y_ROW5		125
 
 #define ELEMENT_MARGIN	10
 
@@ -51,17 +51,17 @@ BoolIndicator boolInd1(&boolVal1);
 BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
 BoolControl boolCtrl2(&boolVal2, &boolVal2, &OnBoolVal2Changed);
 Icon boolIcon(100, 30, settings_window_width, settings_window_height, settings_window_bits);
-ContainerStackDefault stack_boolean(STACK_LAYOUT_VERTICAL_LEFT, ELEMENT_MARGIN);
+ContainerStackDefault stack_boolean(STACK_LAYOUT_VERTICAL_LEFT);
 ContainerPageDefault page_boolean;
 Label<15> labelEnum("Enumerations", COLOR_WHITE);
 EnumIndicator<TestEnum> enumInd1(&enumVal1, TestEnumNames, 3);
 EnumControl<TestEnum> enumCtrl1(&enumVal1, TestEnumNames, 3);
 Icon enumCtrl1Icon(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-ContainerStackDefault stack_enumCtrl1(STACK_LAYOUT_HORIZONTAL_TOP, ELEMENT_MARGIN);
+ContainerStackDefault stack_enumCtrl1(STACK_LAYOUT_HORIZONTAL_TOP);
 EnumControl<TestEnum> enumCtrl2(&enumVal1, TestEnumNames, 3);
 Icon enumCtrl2Icon(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_enumCtrl2(STACK_LAYOUT_HORIZONTAL_CENTER, ELEMENT_MARGIN);
-ContainerStackDefault stack_enum(STACK_LAYOUT_VERTICAL_CENTER, ELEMENT_MARGIN);
+ContainerStackDefault stack_enumCtrl2(STACK_LAYOUT_HORIZONTAL_CENTER);
+ContainerStackDefault stack_enum(STACK_LAYOUT_VERTICAL_CENTER);
 ContainerListDefault list1;
 
 Label<10> labelNum(ELEMENT_MARGIN, Y_ROW1, "Numerics", COLOR_WHITE);
@@ -91,19 +91,19 @@ Icon icon8(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon9(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 ContainerGrid<10, 5, 5, true> grid_icons;
 
-Label<10> labelTab1("Tab1", COLOR_WHITE);
+Label<10> labelTab1("#1", COLOR_WHITE);
 Icon iconTab1(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_Tab1Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
-Label<10> labelTab2("Tab2", COLOR_WHITE);
+ContainerStackDefault stack_Tab1Header(STACK_LAYOUT_HORIZONTAL_CENTER);
+Label<10> labelTab2("#2", COLOR_WHITE);
 Icon iconTab2(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_Tab2Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
-Label<10> labelTab3("Tab3", COLOR_WHITE);
+ContainerStackDefault stack_Tab2Header(STACK_LAYOUT_HORIZONTAL_CENTER);
+Label<10> labelTab3("#3", COLOR_WHITE);
 Icon iconTab3(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_Tab3Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
-Label<10> labelTab4("Tab4", COLOR_WHITE);
+ContainerStackDefault stack_Tab3Header(STACK_LAYOUT_HORIZONTAL_CENTER);
+Label<10> labelTab4("#4", COLOR_WHITE);
 Icon iconTab4(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
-TabControlDefault tabControl(0, 30, DISPLAY_WIDTH, DISPLAY_HEIGHT - 30, TAB_POSITION_TOP);
+ContainerStackDefault stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER);
+TabControlDefault tabControl(0, 35, DISPLAY_WIDTH, DISPLAY_HEIGHT - 35, TAB_POSITION_TOP);
 
 ContainerPageDefault mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 LabelDefault labelUILib(0, 0, "UI LIB", &FreeMono18pt7b, COLOR_ORANGE);
@@ -194,13 +194,13 @@ UIElement* build_screen_dialogs()
 
 UIElement* build_screen_grid()
 {
-	grid_icons.SetRowHeight(0, 30);	
-	grid_icons.SetRowHeight(1, 30);
-	grid_icons.SetRowHeight(2, 30);
-	grid_icons.SetRowHeight(3, 40);
-	//grid_icons.SetColumnWidth(0, 80);		// This line is commented out intentionally to show the auto-sizing of column 0. It is sized to the largest element assigned to this column.
-	grid_icons.SetColumnWidth(1, 60);
-	grid_icons.SetColumnWidth(2, 40);
+	grid_icons.SetRowHeight(0, 35);	
+	grid_icons.SetRowHeight(1, 35);
+	grid_icons.SetRowHeight(2, 35);
+	grid_icons.SetRowHeight(3, 45);
+	//grid_icons.SetColumnWidth(0, 90);		// This line is commented out intentionally to show the auto-sizing of column 0. It is sized to the largest element assigned to this column.
+	grid_icons.SetColumnWidth(1, 70);
+	grid_icons.SetColumnWidth(2, 50);
 	grid_icons.AddItem(&labelGrid, 0, 0, GRID_CELL_ALIGNMENT_TOP_LEFT);
 	grid_icons.AddItem(&icon1, 0, 1, GRID_CELL_ALIGNMENT_TOP_LEFT);
 	grid_icons.AddItem(&icon2, 0, 2, GRID_CELL_ALIGNMENT_LEFT);

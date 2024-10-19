@@ -7,16 +7,16 @@
 
 Icon::Icon(uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits) : UIElement(0, 0, UI_INDICATOR)
 {
-	Width = iconWidth;
-	Height = iconHeight;
+	_iconWidth = iconWidth;
+	_iconHeight = iconHeight;
 	_iconBits = iconBits;
 	_wasColorSet = false;
 }
 
 Icon::Icon(uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits, uint16_t color) : UIElement(0, 0, UI_INDICATOR)
 {
-	Width = iconWidth;
-	Height = iconHeight;
+	_iconWidth = iconWidth;
+	_iconHeight = iconHeight;
 	_iconBits = iconBits;
 	_color = color;
 	_wasColorSet = true;
@@ -24,16 +24,16 @@ Icon::Icon(uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits, uin
 
 Icon::Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits) : UIElement(locX, locY, UI_INDICATOR)
 {
-	Width = iconWidth;
-	Height = iconHeight;
+	_iconWidth = iconWidth;
+	_iconHeight = iconHeight;
 	_iconBits = iconBits;
 	_wasColorSet = false;
 }
 
 Icon::Icon(uint16_t locX, uint16_t locY, uint16_t iconWidth, uint16_t iconHeight, const uint8_t* iconBits, uint16_t color) : UIElement(locX, locY, UI_INDICATOR)
 {
-	Width = iconWidth;
-	Height = iconHeight;
+	_iconWidth = iconWidth;
+	_iconHeight = iconHeight;
 	_iconBits = iconBits;
 	_color = color;
 	_wasColorSet = true;
@@ -54,7 +54,7 @@ void Icon::Draw(bool redraw)
 		{
 			_lastDrawnVisible = true;
 			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
-			UiManager.Gfx->drawXBitmap(LocX, LocY, _iconBits, Width, Height, _color);
+			UiManager.Gfx->drawXBitmap(LocX + UiManager.ElementMargin + UiManager.ElementPadding, LocY + UiManager.ElementMargin + UiManager.ElementPadding, _iconBits, _iconWidth, _iconHeight, _color);
 		}
 	}
 	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false
@@ -66,5 +66,6 @@ void Icon::Draw(bool redraw)
 
 void Icon::RecalculateDimensions()
 {
-	// Override default UIElement behaviour. Dimensions are set in the constructor and shouldn't be changed here
+	Width = _iconWidth + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
+	Height = _iconHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 }

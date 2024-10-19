@@ -16,6 +16,7 @@ UI_Manager::UI_Manager()
 	SetColors(UI_LIB_DEFAULT_COLOR_BACKGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE);
 
 	Font = UI_LIB_DEFAULT_FONT;
+	ElementMargin = UI_LIB_DEFAULT_ELEMENT_MARGIN;
 	ElementPadding = UI_LIB_DEFAULT_ELEMENT_PADDING;
 }
 
@@ -57,14 +58,14 @@ void UI_Manager::Draw()
 	
 	if(_lastDrawnFocusElement != _focusElement)
 	{
-		UiManager.Gfx->drawRect(_lastDrawnFocusElement->LocX - 1, _lastDrawnFocusElement->LocY - 1, _lastDrawnFocusElement->Width + 2, _lastDrawnFocusElement->Height + 2, ColorBackground);
+		UiManager.Gfx->drawRect(_lastDrawnFocusElement->LocX + UiManager.ElementMargin, _lastDrawnFocusElement->LocY + UiManager.ElementMargin, _lastDrawnFocusElement->Width - 2 * UiManager.ElementMargin, _lastDrawnFocusElement->Height - 2 * UiManager.ElementMargin, ColorBackground); 
 	}
 
 	_visualTreeRoot->Draw(CompleteRedrawRequested);
 	
 	if(_focusElement != NULL && _focusElement->Visible && _focusElement->Type != UI_INDICATOR) 
 	{ 
-		UiManager.Gfx->drawRect(_focusElement->LocX - 1, _focusElement->LocY - 1, _focusElement->Width + 2, _focusElement->Height + 2, ColorForeground); 
+		UiManager.Gfx->drawRect(_focusElement->LocX + UiManager.ElementMargin, _focusElement->LocY + UiManager.ElementMargin, _focusElement->Width - 2 * UiManager.ElementMargin, _focusElement->Height - 2 * UiManager.ElementMargin, ColorForeground); 
 	}
 	_lastDrawnFocusElement = _focusElement;
 

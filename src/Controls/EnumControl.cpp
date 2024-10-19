@@ -31,16 +31,16 @@ void EnumControl<T>::Draw(bool redraw)
 		{
 			this->_lastDrawnVisible = true;
 			_lastDrawnEditMode = IsEditMode;
-			UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
+			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 			
 			if (IsEditMode)
 			{
-				UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorForeground);
+				UiManager.Gfx->fillRect(this->LocX + UiManager.ElementMargin, this->LocY + UiManager.ElementMargin, this->Width - 2 * UiManager.ElementMargin, this->Height - 2 * UiManager.ElementMargin, UiManager.ColorForeground);
 				UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
 			}	
 			else 
 			{
-				UiManager.Gfx->drawFastHLine(this->LocX + 1, this->LocY + this->Height - 1, this->Width - 2, UiManager.ColorForeground); 
+				UiManager.Gfx->drawFastHLine(this->LocX + UiManager.ElementMargin + 1, this->LocY + this->Height - UiManager.ElementMargin - UiManager.ElementPadding, this->Width - 2 * UiManager.ElementMargin - 2, UiManager.ColorForeground); 
 			}
 					
 			EnumIndicator<T>::Draw(redraw);

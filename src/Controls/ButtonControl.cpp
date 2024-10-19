@@ -34,17 +34,17 @@ void ButtonControl<StringLength>::Draw(bool redraw)
 		if(redraw || !_lastDrawnVisible)
 		{
 			_lastDrawnVisible = true;
-			UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
+			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 			
-			UiManager.Gfx->drawFastHLine(LocX, LocY, 5, UiManager.ColorForeground);					// Upper left corner
-			UiManager.Gfx->drawFastVLine(LocX, LocY, 5, UiManager.ColorForeground);
-			UiManager.Gfx->drawFastHLine(LocX + Width - 6, LocY, 5, UiManager.ColorForeground);			// Upper right corner
-			UiManager.Gfx->drawFastVLine(LocX + Width - 1, LocY, 5, UiManager.ColorForeground);
-			UiManager.Gfx->drawFastHLine(LocX, LocY + Height - 1, 5, UiManager.ColorForeground);				// Lower left corner
-			UiManager.Gfx->drawFastVLine(LocX, LocY + Height - 6, 5, UiManager.ColorForeground);
-			UiManager.Gfx->drawFastHLine(LocX + Width - 6, LocY + Height - 1, 5, UiManager.ColorForeground);		// Lower right corner		
-			UiManager.Gfx->drawFastVLine(LocX + Width - 1, LocY + Height - 5, 5, UiManager.ColorForeground);
-			UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight + UiManager.ElementPadding - 4);
+			UiManager.Gfx->drawFastHLine(LocX + UiManager.ElementMargin + 1, LocY + UiManager.ElementMargin + 1, 5, UiManager.ColorForeground);					// Upper left corner
+			UiManager.Gfx->drawFastVLine(LocX + UiManager.ElementMargin + 1, LocY + UiManager.ElementMargin + 1, 5, UiManager.ColorForeground);
+			UiManager.Gfx->drawFastHLine(LocX + Width - UiManager.ElementMargin - 7, LocY + UiManager.ElementMargin + 1, 5, UiManager.ColorForeground);			// Upper right corner
+			UiManager.Gfx->drawFastVLine(LocX + Width - UiManager.ElementMargin - 2, LocY + UiManager.ElementMargin + 1, 5, UiManager.ColorForeground);
+			UiManager.Gfx->drawFastHLine(LocX + UiManager.ElementMargin + 1, LocY + Height - UiManager.ElementMargin - 2, 5, UiManager.ColorForeground);				// Lower left corner
+			UiManager.Gfx->drawFastVLine(LocX + UiManager.ElementMargin + 1, LocY + Height - UiManager.ElementMargin - 7, 5, UiManager.ColorForeground);
+			UiManager.Gfx->drawFastHLine(LocX + Width - UiManager.ElementMargin - 7, LocY + Height - UiManager.ElementMargin - 2, 5, UiManager.ColorForeground);		// Lower right corner		
+			UiManager.Gfx->drawFastVLine(LocX + Width - UiManager.ElementMargin - 2, LocY + Height - UiManager.ElementMargin - 6, 5, UiManager.ColorForeground);
+			UiManager.Gfx->setCursor(LocX + UiManager.ElementMargin + 1, LocY + Height - UiManager.ElementMargin - 2 * UiManager.ElementPadding - 2);
 			UiManager.Gfx->print(_buttonText);
 		}
 	}
@@ -71,10 +71,10 @@ bool ButtonControl<StringLength>::KeyInput(Keys_t key)
 template <int StringLength>
 void ButtonControl<StringLength>::RecalculateDimensions()
 {
-	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding;
+	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 2;
 	
 	int16_t x, y;
 	uint16_t w, h;
 	UiManager.Gfx->getTextBounds(_buttonText, 0, 0, &x, &y, &w, &h);
-	Width = w + 2 * UiManager.ElementPadding; 
+	Width = w + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 2; 
 }

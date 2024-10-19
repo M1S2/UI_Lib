@@ -12,7 +12,8 @@
 #define UI_LIB_DEFAULT_COLOR_FOREGROUND				RGB565(0xFF, 0xFF, 0xFF)			/**< Default UIElement foreground color (white) */	
 #define UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE	UI_LIB_DEFAULT_COLOR_BACKGROUND		/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
 #define UI_LIB_DEFAULT_FONT 						&FreeSans12pt7b
-#define UI_LIB_DEFAULT_ELEMENT_PADDING				2									/**< Space between the outline of every UIElement and the internal content. Used while RecalculateDimensions() of the UIElement */
+#define UI_LIB_DEFAULT_ELEMENT_MARGIN				1									/**< Space without content around every UIElement. This is part of the UIElement size. */
+#define UI_LIB_DEFAULT_ELEMENT_PADDING				2									/**< Space between the outline of every UIElement and the internal content. This is part of the UIElement size. */
 
 /**
  * Class that is used to handle the drawing and key handling of all UI_Elements.
@@ -38,7 +39,8 @@ class UI_Manager
 		uint16_t ColorForegroundEditMode;			/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
 		const GFXfont* Font;						/**< Default font used when no other font is assigned */
 		uint16_t FontHeight;						/**< Maximum height of the Font (height of the string "Ag"). This parameter is recalculated when the SetFont() method is used. */
-		uint16_t ElementPadding;					/**< Space between the outline of every UIElement and the internal content. Used while RecalculateDimensions() of the UIElement */
+		uint16_t ElementMargin;						/**< Space without content around every UIElement. This is part of the UIElement size. */
+		uint16_t ElementPadding;					/**< Space between the outline of every UIElement and the internal content. This is part of the UIElement size. */
 		bool CompleteRedrawRequested;				/**< True, if the tree root was currently changed. This is set to false on the first draw then. */
 		Adafruit_GFX* Gfx;							/**< Graphics object */
 		

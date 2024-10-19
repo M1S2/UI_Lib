@@ -99,12 +99,12 @@ void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 			sprintf(formatStringBuffer, "%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
 			sprintf(_stringDrawBuffer, formatStringBuffer, fabs(_displayValue));
 
-			UiManager.Gfx->setCursor(LocX + 5, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+			UiManager.Gfx->setCursor(LocX + 5 + UiManager.ElementMargin + UiManager.ElementPadding, LocY + Height - UiManager.ElementMargin - 2 * UiManager.ElementPadding - 1);
 			UiManager.Gfx->print(_stringDrawBuffer);				// Draw value without minus sign
 			if (_displayValue < 0) 
 			{ 
 				// Draw minus sign
-				UiManager.Gfx->setCursor(LocX, LocY + UiManager.FontHeight - 2 * UiManager.ElementPadding);
+				UiManager.Gfx->setCursor(LocX + UiManager.ElementMargin + UiManager.ElementPadding, LocY + Height - UiManager.ElementMargin - 2 * UiManager.ElementPadding - 1);
 				UiManager.Gfx->print("-"); 
 			}
 		}
@@ -119,10 +119,10 @@ void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 template <class T, int stringBufferLength>
 void NumericIndicator<T, stringBufferLength>::RecalculateDimensions()
 {
-	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding;
+	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 	
 	uint16_t character_width, base_unit_width;
 	UiManager.Gfx->getTextBounds("0", 0, 0, nullptr, nullptr, &character_width, nullptr);
 	UiManager.Gfx->getTextBounds(_baseUnit, 0, 0, nullptr, nullptr, &base_unit_width, nullptr);
-	Width = (_numDigits + 2) * character_width + base_unit_width + 2 * UiManager.ElementPadding;		// + 2 because (dot between digits and one unit prefix)
+	Width = (_numDigits + 2) * character_width + base_unit_width + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;		// + 2 because (dot between digits and one unit prefix)
 }
