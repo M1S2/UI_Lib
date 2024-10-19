@@ -23,17 +23,19 @@ void BoolControl::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		redraw = redraw | (this->_lastValueDraw != *this->_valuePointer);
+		redraw = redraw || (this->_lastValueDraw != *this->_valuePointer) || !_lastDrawnVisible;
 		if(redraw)
 		{
+			_lastDrawnVisible = true;
 			UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
 
 			BoolIndicator::Draw(redraw);
 			UiManager.Gfx->drawFastHLine(LocX + 1, LocY + Height - 1, Width - 2, UiManager.ColorForeground);
 		}
 	}
-	else
+	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

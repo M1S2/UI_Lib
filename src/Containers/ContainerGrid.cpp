@@ -26,6 +26,8 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::Draw(b
 {
 	if (this->Visible)
 	{
+		redraw = redraw || !this->_lastDrawnVisible;
+		this->_lastDrawnVisible = true;
 		if(showGridCells && redraw)
 		{
 			UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
@@ -54,8 +56,9 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells>::Draw(b
 			this->_items[i]->Draw(redraw);
 		}
 	}
-	else
+	else if(!this->Visible && this->_lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		this->_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }

@@ -24,6 +24,9 @@
  */
 class UIElement
 {
+	protected:
+		bool _lastDrawnVisible;		/**< The Visible value that was last drawn. Used to detect changes in the Visible property. */
+		
 	public:
 		UIElementType Type;			/**< Element type (control, indicator, container) */
 		uint16_t LocX;				/**< X Location of the upper left corner of the UIElement */

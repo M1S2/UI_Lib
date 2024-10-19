@@ -31,8 +31,9 @@ void ButtonControl<StringLength>::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		if(redraw)
+		if(redraw || !_lastDrawnVisible)
 		{
+			_lastDrawnVisible = true;
 			UiManager.Gfx->fillRect(LocX - 1, LocY - 1, Width + 2, Height + 2, UiManager.ColorBackground);
 			
 			UiManager.Gfx->drawFastHLine(LocX, LocY, 5, UiManager.ColorForeground);					// Upper left corner
@@ -47,8 +48,9 @@ void ButtonControl<StringLength>::Draw(bool redraw)
 			UiManager.Gfx->print(_buttonText);
 		}
 	}
-	else
+	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

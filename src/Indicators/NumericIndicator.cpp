@@ -81,11 +81,12 @@ void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		if (_lastValueDraw != *_valuePointer || redraw)
+		if (_lastValueDraw != *_valuePointer || redraw || !_lastDrawnVisible)
 		{	
+			_lastDrawnVisible = true;
 			// If the Draw() is called on a object of the NumericIndicator, the Type is UI_INDICATOR
 			// If the Draw() is called from an NumericControl object, the Type was set to UI_CONTROL there
-			if(this->Type == UI_INDICATOR)
+			if(Type == UI_INDICATOR)
 			{
 				UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 			}
@@ -108,8 +109,9 @@ void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 			}
 		}
 	}
-	else
+	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

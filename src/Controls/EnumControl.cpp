@@ -26,9 +26,10 @@ void EnumControl<T>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
-		redraw = redraw | (this->_lastValueDraw != *this->_valuePointer) | (IsEditMode != _lastDrawnEditMode);
+		redraw = redraw || (this->_lastValueDraw != *this->_valuePointer) || (IsEditMode != _lastDrawnEditMode) || !this->_lastDrawnVisible;
 		if(redraw)
 		{
+			this->_lastDrawnVisible = true;
 			_lastDrawnEditMode = IsEditMode;
 			UiManager.Gfx->fillRect(this->LocX - 1, this->LocY - 1, this->Width + 2, this->Height + 2, UiManager.ColorBackground);
 			
@@ -51,8 +52,9 @@ void EnumControl<T>::Draw(bool redraw)
 			}
 		}
 	}
-	else
+	else if(!this->Visible && this->_lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		this->_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }

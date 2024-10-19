@@ -43,8 +43,9 @@ void ProgressBar<T>::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		if (_lastValueDraw != *_valuePointer || redraw)
+		if (_lastValueDraw != *_valuePointer || redraw || !_lastDrawnVisible)
 		{
+			_lastDrawnVisible = true;
 			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 								
 			_lastValueDraw = *_valuePointer; 
@@ -78,8 +79,9 @@ void ProgressBar<T>::Draw(bool redraw)
 			}
 		}
 	}
-	else
+	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

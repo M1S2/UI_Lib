@@ -26,13 +26,14 @@ void EnumIndicator<T>::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		if (_lastValueDraw != *_valuePointer || redraw)
+		if (_lastValueDraw != *_valuePointer || redraw || !_lastDrawnVisible)
 		{
+			_lastDrawnVisible = true;
 			_lastValueDraw = *_valuePointer;
 
 			// If the Draw() is called on a object of the EnumIndicator, the Type is UI_INDICATOR
 			// If the Draw() is called from an EnumControl object, the Type was set to UI_CONTROL there
-			if(this->Type == UI_INDICATOR)
+			if(Type == UI_INDICATOR)
 			{
 				UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 			}
@@ -41,8 +42,9 @@ void EnumIndicator<T>::Draw(bool redraw)
 			UiManager.Gfx->print(_enumNames[_lastValueDraw]);
 		}
 	}
-	else
+	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

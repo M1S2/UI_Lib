@@ -50,14 +50,16 @@ void Icon::Draw(bool redraw)
 
 	if (Visible)
 	{
-		if(_iconBits != NULL && redraw)
+		if(_iconBits != NULL && (redraw || !_lastDrawnVisible))
 		{
+			_lastDrawnVisible = true;
 			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 			UiManager.Gfx->drawXBitmap(LocX, LocY, _iconBits, Width, Height, _color);
 		}
 	}
-	else
+	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

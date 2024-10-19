@@ -50,7 +50,9 @@ Label<10> labelBool("Boolean", COLOR_WHITE);
 BoolIndicator boolInd1(&boolVal1);
 BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
 BoolControl boolCtrl2(&boolVal2, &boolVal2, &OnBoolVal2Changed);
+Icon boolIcon(100, 30, settings_window_width, settings_window_height, settings_window_bits);
 ContainerStackDefault stack_boolean(STACK_LAYOUT_VERTICAL_LEFT, ELEMENT_MARGIN);
+ContainerPageDefault page_boolean;
 Label<15> labelEnum("Enumerations", COLOR_WHITE);
 EnumIndicator<TestEnum> enumInd1(&enumVal1, TestEnumNames, 3);
 EnumControl<TestEnum> enumCtrl1(&enumVal1, TestEnumNames, 3);
@@ -101,11 +103,10 @@ ContainerStackDefault stack_Tab3Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
 Label<10> labelTab4("Tab4", COLOR_WHITE);
 Icon iconTab4(icon_info_width, icon_info_height, icon_info_bits);
 ContainerStackDefault stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER, 5);
-TabControlDefault tabControl(DISPLAY_WIDTH, DISPLAY_HEIGHT, TAB_POSITION_TOP);
+TabControlDefault tabControl(0, 30, DISPLAY_WIDTH, DISPLAY_HEIGHT - 30, TAB_POSITION_TOP);
 
 ContainerPageDefault mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-LabelDefault labelUILib(X_COLUMN1, DISPLAY_HEIGHT - settings_window_height - 10, "UI LIB", &FreeMono18pt7b, COLOR_ORANGE);
-Icon globalIcon(DISPLAY_WIDTH - settings_window_width - 25, DISPLAY_HEIGHT - settings_window_height - 10, settings_window_width, settings_window_height, settings_window_bits);
+LabelDefault labelUILib(0, 0, "UI LIB", &FreeMono18pt7b, COLOR_ORANGE);
 
 void OnBoolVal1Changed(void* context)
 {
@@ -115,7 +116,7 @@ void OnBoolVal1Changed(void* context)
 void OnBoolVal2Changed(void* context)
 {
 	bool boolVal = *((bool*)context);
-	globalIcon.Visible = boolVal;
+	boolIcon.Visible = boolVal;
 }
 
 void OnNumVal1Changed(void* context)
@@ -150,6 +151,9 @@ UIElement* build_screen_boolean_enum()
 	stack_boolean.AddItem(&boolCtrl1);
 	stack_boolean.AddItem(&boolCtrl2);
 	stack_boolean.InitItems();
+	page_boolean.AddItem(&stack_boolean);
+	page_boolean.AddItem(&boolIcon);
+	page_boolean.InitItems();
 
 	stack_enumCtrl1.AddItem(&enumCtrl1Icon);
 	stack_enumCtrl1.AddItem(&enumCtrl1);
@@ -163,7 +167,7 @@ UIElement* build_screen_boolean_enum()
 	stack_enum.AddItem(&stack_enumCtrl2);
 	stack_enum.InitItems();
 
-	list1.AddItem(&stack_boolean);
+	list1.AddItem(&page_boolean);
 	list1.AddItem(&stack_enum);
 	return &list1;
 }
@@ -215,7 +219,6 @@ void UI_Test_BuildTree()
 {
 	mainPage.AddItem(&tabControl);
 	mainPage.AddItem(&labelUILib);
-	mainPage.AddItem(&globalIcon);
 	
 	stack_Tab1Header.AddItem(&iconTab1);
 	stack_Tab1Header.AddItem(&labelTab1);

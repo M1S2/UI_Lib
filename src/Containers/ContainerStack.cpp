@@ -30,13 +30,15 @@ void ContainerStack<maxItems>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
+		this->_lastDrawnVisible = true;
 		for (int i = 0; i < this->_numItems; i++)
 		{
 			this->_items[i]->Draw(redraw);
 		}
 	}
-	else
+	else if(!this->Visible && this->_lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		this->_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }

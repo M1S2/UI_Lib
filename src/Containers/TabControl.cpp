@@ -35,8 +35,9 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
-		bool wasTabChanged = (_lastDrawnTabIndex != this->_selectedItemIndex);
-		if(wasTabChanged || redraw)
+		redraw = redraw || (_lastDrawnTabIndex != this->_selectedItemIndex) || !this->_lastDrawnVisible;
+		this->_lastDrawnVisible = true;
+		if(redraw)
 		{
 			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 			_lastDrawnTabIndex = this->_selectedItemIndex;
@@ -79,10 +80,11 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw(bool redraw)
 			}
 		}
 		
-		if(this->_items[this->_selectedItemIndex] != NULL) { this->_items[this->_selectedItemIndex]->Draw(redraw || wasTabChanged); }
+		if(this->_items[this->_selectedItemIndex] != NULL) { this->_items[this->_selectedItemIndex]->Draw(redraw); }
 	}
-	else
+	else if(!this->Visible && this->_lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		this->_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }
@@ -154,17 +156,20 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::GetContentRegionSize(
 template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
 void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateDimensions()
 {
-	if(this->Parent != NULL)
+	if(this->Width == 0 && this->Height == 0)
 	{
-		// Strech the TabControl to fill up the full parent container space
-		this->Width = this->Parent->Width;
-		this->Height = this->Parent->Height;
-	}
-	else
-	{
-		// The TabControl is the top most control, size it to fill the complete screen
-		this->Width = UiManager.Gfx->width();
-		this->Height = UiManager.Gfx->height();
+		if(this->Parent != NULL)
+		{
+			// Strech the TabControl to fill up the full parent container space
+			this->Width = this->Parent->Width;
+			this->Height = this->Parent->Height;
+		}
+		else
+		{
+			// The TabControl is the top most control, size it to fill the complete screen
+			this->Width = UiManager.Gfx->width();
+			this->Height = UiManager.Gfx->height();
+		}
 	}
 }
 

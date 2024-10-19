@@ -20,9 +20,10 @@ BoolIndicator::BoolIndicator(uint16_t locX, uint16_t locY, bool* valuePointer) :
 void BoolIndicator::Draw(bool redraw)
 {
 	if (Visible)
-	{	 
-		if (_lastValueDraw != *_valuePointer || redraw)
+	{
+		if (_lastValueDraw != *_valuePointer || redraw || !_lastDrawnVisible)
 		{
+			_lastDrawnVisible = true;
 			_lastValueDraw = *_valuePointer;
 
 			// If the Draw() is called on a object of the BoolIndicator, the Type is UI_INDICATOR
@@ -36,8 +37,9 @@ void BoolIndicator::Draw(bool redraw)
 			UiManager.Gfx->print(*_valuePointer ? "ON" : "OFF");
 		}
 	}
-	else
+	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }

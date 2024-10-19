@@ -3,6 +3,7 @@
  */ 
 
 #include "Containers/ContainerPage.h"
+#include "Core/UI_Manager.h"
 
 template <uint8_t maxItems>
 ContainerPage<maxItems>::ContainerPage()
@@ -23,9 +24,18 @@ ContainerPage<maxItems>::ContainerPage(uint16_t locX, uint16_t locY, uint16_t wi
 template <uint8_t maxItems>
 void ContainerPage<maxItems>::Draw(bool redraw)
 {
-	for (int i = 0; i < this->_numItems; i++)
+	if (this->Visible)
 	{
-		this->_items[i]->Draw(redraw);
+		this->_lastDrawnVisible = true;
+		for (int i = 0; i < this->_numItems; i++)
+		{
+			this->_items[i]->Draw(redraw);
+		}
+	}
+	else if(!this->Visible && this->_lastDrawnVisible)		// clear only when the Visible property changes from true to false
+	{
+		this->_lastDrawnVisible = false;
+		UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 	}
 }
 

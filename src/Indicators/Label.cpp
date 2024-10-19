@@ -69,8 +69,9 @@ void Label<StringLength>::Draw(bool redraw)
 
 	if (Visible)
 	{
-		if(redraw)
+		if(redraw || !_lastDrawnVisible)
 		{
+			_lastDrawnVisible = true;
 			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 
 			int font_y_offset = UiManager.FontHeight - 2 * UiManager.ElementPadding;
@@ -93,8 +94,9 @@ void Label<StringLength>::Draw(bool redraw)
 			UiManager.Gfx->setTextColor(UiManager.ColorForeground);
 		}
 	}
-	else
+	else if(!Visible && _lastDrawnVisible)		// clear only when the Visible property changes from true to false
 	{
+		_lastDrawnVisible = false;
 		UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
 	}
 }
