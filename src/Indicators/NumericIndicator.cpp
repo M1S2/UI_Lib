@@ -38,7 +38,14 @@ void NumericIndicator<T, stringBufferLength>::calculateDisplayValue()
 		}
 	}
 
-	_unitPrefix = (_unitPrefixPower == -3 ? "m" : (_unitPrefixPower == 0 ? "" : (_unitPrefixPower == 3 ? "k" : (_unitPrefixPower == 6 ? "M" : ""))));
+	switch (_unitPrefixPower)
+	{
+		case -3: _unitPrefix = "m";	break;
+		case 0: _unitPrefix = "";	break;
+		case 3: _unitPrefix = "k";	break;
+		case 6: _unitPrefix = "M";	break;
+		default: _unitPrefix = ""; break;
+	}
 }
 
 template <class T, int stringBufferLength>
@@ -99,7 +106,10 @@ void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 			sprintf(formatStringBuffer, "%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
 			sprintf(_stringDrawBuffer, formatStringBuffer, fabs(_displayValue));
 
-			UiManager.Gfx->setCursor(LocX + 5 + UiManager.ElementMargin + UiManager.ElementPadding, LocY + Height - UiManager.ElementMargin - 2 * UiManager.ElementPadding - 1);
+			uint16_t minus_width;
+			UiManager.Gfx->getTextBounds("-", 0, 0, nullptr, nullptr, &minus_width, nullptr);
+
+			UiManager.Gfx->setCursor(LocX + minus_width + 2 + UiManager.ElementMargin + UiManager.ElementPadding, LocY + Height - UiManager.ElementMargin - 2 * UiManager.ElementPadding - 1);
 			UiManager.Gfx->print(_stringDrawBuffer);				// Draw value without minus sign
 			if (_displayValue < 0) 
 			{ 
@@ -121,8 +131,14 @@ void NumericIndicator<T, stringBufferLength>::RecalculateDimensions()
 {
 	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 	
-	uint16_t character_width, base_unit_width;
-	UiManager.Gfx->getTextBounds("0", 0, 0, nullptr, nullptr, &character_width, nullptr);
-	UiManager.Gfx->getTextBounds(_baseUnit, 0, 0, nullptr, nullptr, &base_unit_width, nullptr);
-	Width = (_numDigits + 2) * character_width + base_unit_width + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;		// + 2 because (dot between digits and one unit prefix)
+	//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item
+	_unitPrefixPower = 0;
+	_unitPrefix = "M";		// set unit prefix to "M" to use the largest possible value		
+	char formatStringBuffer[10];
+	sprintf(formatStringBuffer, "-%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
+	sprintf(_stringDrawBuffer, formatStringBuffer, 0);		// calculate the length of a string with all zeroes ("0" is a wide characters)
+
+	uint16_t string_width;
+	UiManager.Gfx->getTextBounds(_stringDrawBuffer, 0, 0, nullptr, nullptr, &string_width, nullptr);
+	Width = string_width + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 2;
 }

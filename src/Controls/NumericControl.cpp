@@ -57,14 +57,16 @@ void NumericControl<T, stringBufferLength>::Draw(bool redraw)
 			
 			if(IsEditMode)
 			{	
-				uint16_t character_width, dot_width;
+				uint16_t character_width, character_space_width, dot_width, minus_width;
 				UiManager.Gfx->getTextBounds("0", 0, 0, nullptr, nullptr, &character_width, nullptr);
+				UiManager.Gfx->getTextBounds("00", 0, 0, nullptr, nullptr, &character_space_width, nullptr);
+				character_space_width -= 2* character_width;	// subtract the with of both "0" characters to get only the space between the characters
 				UiManager.Gfx->getTextBounds(".", 0, 0, nullptr, nullptr, &dot_width, nullptr);
-				character_width += 2;	// some space between the characters
-				dot_width += 4;			// some space between the dot and the characters
+				UiManager.Gfx->getTextBounds("-", 0, 0, nullptr, nullptr, &minus_width, nullptr);
+				dot_width += 2 * character_space_width;			// some space between the dot and the characters
 
 				uint8_t cursorDigitIndex = (-CurrentDigitPosition + (this->_numDigits - this->_numFractionalDigits)) + (((this->_numFractionalDigits + this->_unitPrefixPower) == 0 && this->_numFractionalDigits != 0) ? 1 : 0) - 1;	// if (this->_numFractionalDigits + this->_unitPrefixPower) == 0,  no comma is available
-				uint16_t cursorXpos = this->LocX + 5 + UiManager.ElementMargin + UiManager.ElementPadding + cursorDigitIndex * character_width + (CurrentDigitPosition < this->_unitPrefixPower ? dot_width : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
+				uint16_t cursorXpos = this->LocX + minus_width + 2 + character_space_width + UiManager.ElementMargin + UiManager.ElementPadding + cursorDigitIndex * (character_width + character_space_width) + (CurrentDigitPosition < this->_unitPrefixPower ? dot_width : 0) - 1;																								// if (CurrentDigitPosition < _unitPrefixPower) cursor is right of comma
 
 				UiManager.Gfx->fillRect(cursorXpos, this->LocY + this->Height - UiManager.ElementMargin - UiManager.ElementPadding, character_width, 2, UiManager.ColorForegroundEditMode);		// Draw cursor
 
