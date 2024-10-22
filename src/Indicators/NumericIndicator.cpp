@@ -140,5 +140,5 @@ void NumericIndicator<T, stringBufferLength>::RecalculateDimensions()
 
 	uint16_t string_width;
 	UiManager.Gfx->getTextBounds(_stringDrawBuffer, 0, 0, nullptr, nullptr, &string_width, nullptr);
-	Width = string_width + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 2;
+	Width = string_width + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 10;
 }

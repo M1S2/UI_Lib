@@ -37,7 +37,7 @@ void OnShowError(void* context);
 
 #define TAB_WIDTH	70
 #define X_COLUMN1	(TAB_WIDTH + 5)
-#define X_COLUMN2	(X_COLUMN1 + 30)
+#define X_COLUMN2	(X_COLUMN1 + 40)
 #define Y_ROW1		5
 #define Y_ROW2		35
 #define Y_ROW3		65
@@ -80,6 +80,7 @@ MessageDialogDefault msgTestError(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH 
 ContainerPageDefault page_dialogs;
 
 Label<10> labelGrid("Grid", COLOR_WHITE);
+Label<10> labelGridSide("Grid Side");
 Icon icon1(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon2(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon3(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
@@ -89,7 +90,7 @@ Icon icon6(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon7(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon8(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon9(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-ContainerGrid<10, 5, 5, true> grid_icons;
+ContainerGrid<11, 5, 5, true, true> grid_icons;
 
 Label<10> labelTab1("#1", COLOR_WHITE);
 Icon iconTab1(icon_info_width, icon_info_height, icon_info_bits);
@@ -199,9 +200,9 @@ UIElement* build_screen_grid()
 	grid_icons.SetRowHeight(2, 35);
 	grid_icons.SetRowHeight(3, 45);
 	//grid_icons.SetColumnWidth(0, 90);		// This line is commented out intentionally to show the auto-sizing of column 0. It is sized to the largest element assigned to this column.
-	grid_icons.SetColumnWidth(1, 70);
+	grid_icons.SetColumnWidth(1, 60);
 	grid_icons.SetColumnWidth(2, 50);
-	grid_icons.AddItem(&labelGrid, 0, 0, GRID_CELL_ALIGNMENT_TOP_LEFT);
+	grid_icons.AddItem(&labelGrid, 0, 0, GRID_CELL_ALIGNMENT_TOP, 2, 1);
 	grid_icons.AddItem(&icon1, 0, 1, GRID_CELL_ALIGNMENT_TOP_LEFT);
 	grid_icons.AddItem(&icon2, 0, 2, GRID_CELL_ALIGNMENT_LEFT);
 	grid_icons.AddItem(&icon3, 0, 3, GRID_CELL_ALIGNMENT_BOTTOM_LEFT);
@@ -211,6 +212,7 @@ UIElement* build_screen_grid()
 	grid_icons.AddItem(&icon7, 2, 1, GRID_CELL_ALIGNMENT_TOP_RIGHT);
 	grid_icons.AddItem(&icon8, 2, 2, GRID_CELL_ALIGNMENT_RIGHT);
 	grid_icons.AddItem(&icon9, 2, 3, GRID_CELL_ALIGNMENT_BOTTOM_RIGHT);
+	grid_icons.AddItem(&labelGridSide, 3, 0, GRID_CELL_ALIGNMENT_MIDDLE, 1, 4);
 	grid_icons.InitItems();
 	return &grid_icons;
 }

@@ -33,6 +33,8 @@ struct GridItemConfig
 	uint8_t columnIndex;					/**< Column inside the grid where the item is placed */
 	uint8_t rowIndex;						/**< Row inside the grid where the item is placed */
 	GridCellAlignment_t cellAlignment;		/**< Alignment of the item inside the grid cell */
+	uint8_t columnSpan;						/**< Number of columns over which the item is placed (starting from column index) */
+	uint8_t rowSpan;						/**< Number of rows over which the item is placed (starting from row index) */
 };
 
 /**
@@ -41,8 +43,9 @@ struct GridItemConfig
  * @tparam maxGridRows Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory.
  * @tparam maxGridColumns Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory.
  * @tparam showGridCells Enable this to draw the grid cells
+ * @tparam autoSizingFillLast If true, keep all columns or rows as small as possible except the last one set to auto size; if false, evenly increase the size of all columns or rows set to auto size
  */
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells>
+template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells, bool autoSizingFillLast>
 class ContainerGrid : public Container<maxItems>
 {
 	private:
@@ -109,9 +112,11 @@ class ContainerGrid : public Container<maxItems>
 		 * @param columnIndex Index of the column to insert the item into.
 		 * @param rowIndex Index of the row to insert the item into.
 		 * @param cellAlignment Alignment for the cell.
+		 * @param columnSpan Number of columns over which the item is placed (starting from column index)
+		 * @param rowSpan Number of rows over which the item is placed (starting from row index)
 		 * @return true, if added; otherwise false (if container is full) 
 		 */
-		bool AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment);
+		bool AddItem(UIElement* item, uint8_t columnIndex, uint8_t rowIndex, GridCellAlignment_t cellAlignment = GRID_CELL_ALIGNMENT_MIDDLE, uint8_t columnSpan = 1, uint8_t rowSpan = 1);
 
 		/**
 		 * Recalculate the Height and Width of the UIElement
@@ -129,6 +134,6 @@ class ContainerGrid : public Container<maxItems>
 #define MAX_CONTAINER_GRID_ROWS		10		/**< Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory. */
 #define MAX_CONTAINER_GRID_COLUMNS	10		/**< Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory. */
 
-typedef ContainerGrid<MAX_CONTAINER_ITEMS, MAX_CONTAINER_GRID_ROWS, MAX_CONTAINER_GRID_COLUMNS, false> ContainerGridDefault;		/**< Type definition for a ContainerGrid using the default settings. */
+typedef ContainerGrid<MAX_CONTAINER_ITEMS, MAX_CONTAINER_GRID_ROWS, MAX_CONTAINER_GRID_COLUMNS, false, true> ContainerGridDefault;		/**< Type definition for a ContainerGrid using the default settings. */
 
 #endif /* CONTAINERGRID_H_ */
