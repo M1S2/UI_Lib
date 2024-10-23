@@ -91,7 +91,7 @@ T NumericControl<T, stringBufferLength>::coerceValue(T value)
 }
 
 template <class T, int stringBufferLength>
-unsigned char NumericControl<T, stringBufferLength>::extractDigit(float number, int8_t position)
+uint8_t NumericControl<T, stringBufferLength>::extractDigit(float number, int8_t position)
 {
 	float divisor = pow(10, position);
 	uint32_t truncated = uint32_t((fabs(number) / divisor) + 0.1f);		// +0.1f not really clean workaround. Is there some rounding problem?

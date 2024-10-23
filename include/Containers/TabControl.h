@@ -28,7 +28,7 @@ class TabControl : public Container<maxTabs>
 {
 	private:
 		UIElement* _headers[maxTabs];								/**< Array with all tab page tab header elements. */
-		int _lastDrawnTabIndex;										/**< Index of the last drawn tab */
+		uint8_t _lastDrawnTabIndex;									/**< Index of the last drawn tab */
 		TabPositions_t _tabPosition;								/**< Position of the tabs. */
 
 		void* _controlContext;										/**< Context pointer that is returned with the _onSelectedTabChanged function pointer */

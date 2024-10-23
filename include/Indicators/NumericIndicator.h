@@ -24,7 +24,7 @@ class NumericIndicator : public UIElement
 		 * Calculate the number of non-fractional digits of the given number.
 		 * @see https://stackoverflow.com/questions/1489830/efficient-way-to-determine-number-of-digits-in-an-integer
 		 */
-		int numNonFractionalDigits(T number);
+		uint8_t numNonFractionalDigits(T number);
 		
 		const char* _unitPrefix;						/**< Current display prefix character ("m", "k", "M") */
 		char _stringDrawBuffer[stringBufferLength];		/**< Buffer holding the string that is drawn to the screen. This is only recalculated on the firstPage and if the value has changed. `char stringBufferLen = _numDigits + 1 + strlen(_unitPrefix) + strlen(_baseUnit) + 1;` */
@@ -34,11 +34,11 @@ class NumericIndicator : public UIElement
 		T* _valuePointer;								/**< Pointer to the numeric variable that is shown by this indicator. */
 		T _lastValueDraw;								/**< Last drawn numeric value. Only if the _valueDraw differs from this value, the _stringDrawBuffer is recalculated and the indicator redrawn. */
 		T _maxValue;									/**< Maximum value that can be shown by this numeric indicator. It is used to determine the number of non-fractional digits. */
-		unsigned char _numFractionalDigits;				/**< Number of fractional digits that are shown by this indicator. E.g. 1.234 V has 3 fractional digits. */
-		unsigned char _numDigits;						/**< Number of digits calculated from the maxValue (_numFractionalDigits + numNonFractionalDigits). */
+		uint8_t _numFractionalDigits;					/**< Number of fractional digits that are shown by this indicator. E.g. 1.234 V has 3 fractional digits. */
+		uint8_t _numDigits;								/**< Number of digits calculated from the maxValue (_numFractionalDigits + numNonFractionalDigits). */
 
 		float _displayValue;							/**< Value that is displayed by Draw(). E.g. 999.760 if control value is 999760 Hz. */
-		signed char _unitPrefixPower;					/**< Current display prefix power (m = -3, k = 3, M = 6) */
+		int8_t _unitPrefixPower;						/**< Current display prefix power (m = -3, k = 3, M = 6) */
 
 	public:
 

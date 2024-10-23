@@ -49,9 +49,9 @@ void NumericIndicator<T, stringBufferLength>::calculateDisplayValue()
 }
 
 template <class T, int stringBufferLength>
-int NumericIndicator<T, stringBufferLength>::numNonFractionalDigits(T number)
+uint8_t NumericIndicator<T, stringBufferLength>::numNonFractionalDigits(T number)
 {
-	int digits = 0;
+	uint8_t digits = 0;
 	//if (number < 0) digits = 1; // remove this line if '-' counts as a digit
 	while (fabs(number) >= 1)
 	{

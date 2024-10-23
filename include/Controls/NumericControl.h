@@ -20,7 +20,7 @@ class NumericControl : public NumericIndicator<T, stringBufferLength>
 		T _minValue;									/**< Minimum value that can be handled by this numeric control. */
 
 		bool _lastDrawnEditMode;						/**< The EditMode that was last drawn. Used to detect changes in the edit mode. */
-		signed char _lastDrawnCurrentDigitPosition;		/**< The CurrentDigitPosition that was last drawn. Used to detect changes in the current digit position. */
+		int8_t _lastDrawnCurrentDigitPosition;			/**< The CurrentDigitPosition that was last drawn. Used to detect changes in the current digit position. */
 
 		/**
 		 * Limit the value to be between _minValue and _maxValue.
@@ -36,14 +36,14 @@ class NumericControl : public NumericIndicator<T, stringBufferLength>
 		 * @return Extracted digit between 0 and 9
 		 * @see https://www.quora.com/How-can-you-mathematically-extract-a-single-digit-from-a-number
 		 */
-		unsigned char extractDigit(float number, int8_t position);
+		uint8_t extractDigit(float number, int8_t position);
 		
 		void* _controlContext;							/**< Context pointer that is returned with the _onValueChanged function pointer */
 		void(*_onValueChanged)(void* controlContext);	/**< Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed. */
 		
 	public:
 		bool IsEditMode;								/**< Is the control in edit mode? All keys are only supported in edit mode. */
-		signed char CurrentDigitPosition;				/**< Position of the currently controlled digit. Range from (-_numFractionalDigits) to (_numDigits - _numFractionalDigits - 1) */
+		int8_t CurrentDigitPosition;					/**< Position of the currently controlled digit. Range from (-_numFractionalDigits) to (_numDigits - _numFractionalDigits - 1) */
 
 		/**
 		 * Constructor of the NumericControl.

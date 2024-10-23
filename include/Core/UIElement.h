@@ -13,9 +13,6 @@
 
 #include "Fonts/FreeSans12pt7b.h"
 
-#define DEFAULT_UI_ELEMENT_WIDTH	70			/**< Default width for an UIElement */
-#define DEFAULT_UI_ELEMENT_HEIGHT	20			/**< Default height for an UIElement */
-
 // https://forum.arduino.cc/t/solved-rgb-in-rgb565-umwandeln-und-mit-0x-in-eine-variable-schreiben/1146991/2
 #define RGB565(r, g, b) ((((r)& 0xF8) << 8) | (((g) & 0xFC) << 3) | (((b) & 0xF8) >> 3))
 
@@ -43,11 +40,6 @@ class UIElement
 		 */
 		UIElement(UIElementType type)
 		{
-			/*if(type != UI_CONTAINER)
-			{
-				Width = DEFAULT_UI_ELEMENT_WIDTH;
-				Height = DEFAULT_UI_ELEMENT_HEIGHT;
-			}*/
 			Visible = true;
 			Type = type;
 			ActiveChild = NULL;
@@ -63,11 +55,6 @@ class UIElement
 		{
 			LocX = locX;
 			LocY = locY;
-			/*if(type != UI_CONTAINER)
-			{
-				Width = DEFAULT_UI_ELEMENT_WIDTH;
-				Height = DEFAULT_UI_ELEMENT_HEIGHT;
-			}*/
 			Visible = true;
 			Type = type;
 			ActiveChild = NULL;

@@ -39,6 +39,8 @@ typedef enum MessageButtons
 	MSG_BTN_OK_CANCEL		/**< Dialog with an OK and CANCEL button. */
 }MessageButtons_t;
 
+#define DEFAULT_MSG_BUTTON_HEIGHT	20			/**< Default height for the message box buttons */
+
 /**
  * Class for a message dialog with optional Ok and Cancel buttons.
  * @tparam messageLength Length for the internally used string buffer of the Label of the MessageDialog. This is the maximum length that the message can be.

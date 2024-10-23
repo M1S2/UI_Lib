@@ -17,8 +17,8 @@ class Container : public UIElement
 {
 	protected:
 		UIElement* _items[maxItems];				/**< Array holding pointers to all UIElement that are items of the container. */
-		int _numItems;								/**< Number of items in the container (number of valid items in the _items array). */
-		int _selectedItemIndex;						/**< Index of the selected container item. */
+		uint8_t _numItems;							/**< Number of items in the container (number of valid items in the _items array). */
+		uint8_t _selectedItemIndex;					/**< Index of the selected container item. */
 
 	public:
 		/**

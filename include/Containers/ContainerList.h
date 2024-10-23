@@ -18,7 +18,7 @@ template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
 class ContainerList : public Container<maxItems>
 {
 	private:
-		int _lastDrawnItemIndex;		/**< Index of the last item */
+		uint8_t _lastDrawnItemIndex;		/**< Index of the last item */
 
 	public:
 		/**

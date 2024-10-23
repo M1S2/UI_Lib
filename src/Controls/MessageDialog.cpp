@@ -12,8 +12,8 @@ MessageDialog<messageLength>::MessageDialog(uint16_t locX, uint16_t locY, uint16
 	_page(),
 	_severityIcon(locX, locY, icon_info_width, icon_info_height, (severity == MSG_INFO ? icon_info_bits : (severity == MSG_WARNING ? icon_warning_bits : icon_error_bits)), (severity == MSG_INFO ? MSG_INFO_COLOR : (severity == MSG_WARNING ? MSG_WARNING_COLOR : MSG_ERR_COLOR))),
 	_message(locX + icon_info_width + 5, locY, message),
-	_buttonOk(locX + width / 2 - 20 - (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_UI_ELEMENT_HEIGHT - 4, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "OK", controlContext, onOkClick),
-	_buttonCancel(locX + width / 2 - 20 + (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_UI_ELEMENT_HEIGHT - 4, DEFAULT_UI_ELEMENT_WIDTH, DEFAULT_UI_ELEMENT_HEIGHT, "Cancel", controlContext, onCancelClick)
+	_buttonOk(locX + width / 2 - 20 - (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 4, 0, 0, "OK", controlContext, onOkClick),
+	_buttonCancel(locX + width / 2 - 20 + (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 4, 0, 0, "Cancel", controlContext, onCancelClick)
 {
 	Width = width;
 	Height = height;	
@@ -58,8 +58,6 @@ bool MessageDialog<messageLength>::KeyInput(Keys_t key)
 template <int messageLength>
 void MessageDialog<messageLength>::RecalculateDimensions()
 {
-	// Override default UIElement behaviour. Dimensions are set in the constructor and shouldn't be changed here
-
 	_buttonOk.RecalculateDimensions();
 	_buttonCancel.RecalculateDimensions();
 }
