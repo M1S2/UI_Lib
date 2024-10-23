@@ -40,6 +40,14 @@ Label<StringLength>::Label(const char* text, const GFXfont* font, uint16_t color
 }
 
 template <int StringLength>
+Label<StringLength>::Label(const char* text, const GFXfont* font) : UIElement(UI_INDICATOR)
+{
+	SetText(text);
+	_font = font;
+	_wasColorSet = false;
+}
+
+template <int StringLength>
 Label<StringLength>::Label(const char* text, uint16_t color) : UIElement(UI_INDICATOR)
 {
 	SetText(text);
