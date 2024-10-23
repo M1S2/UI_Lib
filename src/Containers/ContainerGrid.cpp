@@ -172,6 +172,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells, autoSiz
 		UIElement* currentItem = currentItemConfig.item;
 		if(currentItem == NULL || currentItemConfig.columnSpan == 0) { continue; }
 		currentItem->RecalculateDimensions();
+		currentItem->RecalculateLayout();
 
 		// First find the number of auto sized columns or the remaining size to distribute to the auto sized columns (only regard the columns that should be used for the current item; columnIndex, columnSpan)
 		uint8_t numAutoSizeColumns = 0;
@@ -237,6 +238,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells, autoSiz
 		UIElement* currentItem = currentItemConfig.item;
 		if(currentItem == NULL || currentItemConfig.rowSpan == 0) { continue; }
 		currentItem->RecalculateDimensions();
+		currentItem->RecalculateLayout();
 
 		// First find the number of auto sized rows or the remaining size to distribute to the auto sized rows (only regard the rows that should be used for the current item; rowIndex, rowSpan)
 		uint8_t numAutoSizeRows = 0;
