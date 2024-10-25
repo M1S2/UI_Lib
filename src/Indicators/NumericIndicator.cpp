@@ -11,9 +11,9 @@
 #include <stdlib.h>
 
 template <class T, int stringBufferLength>
-void NumericIndicator<T, stringBufferLength>::calculateDisplayValue()
+void NumericIndicator<T, stringBufferLength>::calculateDisplayValue(float value)
 {
-	_displayValue = (float)*_valuePointer;
+	_displayValue = value;
 	_unitPrefixPower = 0;
 
 	if (fabs(_displayValue) < pow(10, -_numFractionalDigits))
@@ -40,10 +40,14 @@ void NumericIndicator<T, stringBufferLength>::calculateDisplayValue()
 
 	switch (_unitPrefixPower)
 	{
-		case -3: _unitPrefix = "m";	break;
-		case 0: _unitPrefix = "";	break;
-		case 3: _unitPrefix = "k";	break;
-		case 6: _unitPrefix = "M";	break;
+		case -12: _unitPrefix = "p"; break;
+		case -9: _unitPrefix = "n"; break;
+		case -6: _unitPrefix = "u"; break;
+		case -3: _unitPrefix = "m"; break;
+		case 0: _unitPrefix = ""; break;
+		case 3: _unitPrefix = "k"; break;
+		case 6: _unitPrefix = "M"; break;
+		case 9: _unitPrefix = "T"; break;
 		default: _unitPrefix = ""; break;
 	}
 }
@@ -99,10 +103,10 @@ void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 			}
 
 			_lastValueDraw = *_valuePointer;
-			calculateDisplayValue();
+			calculateDisplayValue((float)_lastValueDraw);
 
 			//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item
-			char formatStringBuffer[10];
+			char formatStringBuffer[15];
 			sprintf(formatStringBuffer, "%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
 			sprintf(_stringDrawBuffer, formatStringBuffer, fabs(_displayValue));
 
@@ -131,14 +135,13 @@ void NumericIndicator<T, stringBufferLength>::RecalculateDimensions()
 {
 	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 	
-	//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item
-	_unitPrefixPower = 0;
-	_unitPrefix = "M";		// set unit prefix to "M" to use the largest possible value		
-	char formatStringBuffer[10];
+	calculateDisplayValue(_maxValue);
+	//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item	
+	char formatStringBuffer[15];
 	sprintf(formatStringBuffer, "-%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
-	sprintf(_stringDrawBuffer, formatStringBuffer, 0);		// calculate the length of a string with all zeroes ("0" is a wide characters)
+	sprintf(_stringDrawBuffer, formatStringBuffer, 0.0f);		// calculate the length of a string with all zeroes ("0" is a wide characters)
 
 	uint16_t string_width;
 	UiManager.Gfx->getTextBounds(_stringDrawBuffer, 0, 0, nullptr, nullptr, &string_width, nullptr);
-	Width = string_width + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 10;
+	Width = string_width + 5 + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 }

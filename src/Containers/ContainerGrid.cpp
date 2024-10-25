@@ -303,7 +303,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells, autoSiz
 		uint16_t columnStart = this->LocX, columnEnd = 0;
 		for(int c = 0; c <= (currentItemConfig.columnIndex + currentItemConfig.columnSpan - 1); c++)
 		{		
-			if(c >= maxGridColumns - 1) { break; }
+			if(c >= maxGridColumns) { break; }
 			
 			if(c <= currentItemConfig.columnIndex)		// The start of the column wasn't reached yet.
 			{
@@ -322,7 +322,7 @@ void ContainerGrid<maxItems, maxGridRows, maxGridColumns, showGridCells, autoSiz
 		uint16_t rowStart = this->LocY, rowEnd = 0;
 		for(int r = 0; r <= (currentItemConfig.rowIndex + currentItemConfig.rowSpan - 1); r++)
 		{
-			if(r >= maxGridRows - 1) { break; }
+			if(r >= maxGridRows) { break; }
 			
 			if(r <= currentItemConfig.rowIndex)		// The start of the row wasn't reached yet.
 			{

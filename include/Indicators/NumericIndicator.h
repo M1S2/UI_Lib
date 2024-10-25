@@ -17,9 +17,9 @@ template <class T, int stringBufferLength = 15>
 class NumericIndicator : public UIElement
 {
 	private:
-		/** Calculate the _displayValue and the _unitPrefix from the _valueDraw. */
-		void calculateDisplayValue();
-		
+		/** Calculate the _displayValue and the _unitPrefix from the given value. */
+		void calculateDisplayValue(float value);
+
 		/**
 		 * Calculate the number of non-fractional digits of the given number.
 		 * @see https://stackoverflow.com/questions/1489830/efficient-way-to-determine-number-of-digits-in-an-integer
