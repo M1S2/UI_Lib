@@ -136,12 +136,16 @@ void NumericIndicator<T, stringBufferLength>::RecalculateDimensions()
 	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 	
 	calculateDisplayValue(_maxValue);
+	_unitPrefix = "m";			// make sure to set the _unitPrefix to a value != "" to take this width into account
 	//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item	
 	char formatStringBuffer[15];
 	sprintf(formatStringBuffer, "-%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
 	sprintf(_stringDrawBuffer, formatStringBuffer, 0.0f);		// calculate the length of a string with all zeroes ("0" is a wide characters)
 
+	uint16_t minus_width;
+	UiManager.Gfx->getTextBounds("-", 0, 0, nullptr, nullptr, &minus_width, nullptr);
+
 	uint16_t string_width;
 	UiManager.Gfx->getTextBounds(_stringDrawBuffer, 0, 0, nullptr, nullptr, &string_width, nullptr);
-	Width = string_width + 5 + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
+	Width = string_width + minus_width + 2 + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 }

@@ -57,7 +57,7 @@ void ProgressBar<T>::Draw(bool redraw)
 			
 			// Draw inner progress bar
 			uint16_t valueXCoord = xCoordinateFromValue(_lastValueDraw);
-			UiManager.Gfx->fillRect((uint16_t)fmin(valueXCoord, _originXCoord), LocY + Height - ProgressbarHeight, (uint16_t)fabs(valueXCoord - _originXCoord), ProgressbarHeight, UiManager.ColorForeground);
+			UiManager.Gfx->fillRect((uint16_t)min(valueXCoord, _originXCoord), LocY + Height - ProgressbarHeight, (uint16_t)abs((int16_t)valueXCoord - (int16_t)_originXCoord), ProgressbarHeight, UiManager.ColorForeground);
 			
 			// Draw min and max value texts
 			char buffer[6];

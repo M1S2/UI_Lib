@@ -37,7 +37,7 @@ void OnShowError(void* context);
 
 #define TAB_WIDTH	70
 #define X_COLUMN1	(TAB_WIDTH + 5)
-#define X_COLUMN2	(X_COLUMN1 + 40)
+#define X_COLUMN2	(X_COLUMN1 + 50)
 #define Y_ROW1		5
 #define Y_ROW2		35
 #define Y_ROW3		65
@@ -67,8 +67,8 @@ ContainerListDefault list1;
 Label<10> labelNum(ELEMENT_MARGIN, Y_ROW1, "Numerics", COLOR_WHITE);
 NumericIndicator<int> numInd2(ELEMENT_MARGIN, Y_ROW2, &numVal2, "A", 5000, 0);
 NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 3);
-NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -10, 2000, 3, &numVal1, &OnNumVal1Changed);
-ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, &numVal1, -10, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20);
+NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed);
+ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, &numVal1, -500, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20);
 ContainerPageDefault page_numeric;
 
 Label<10> labelButtons(ELEMENT_MARGIN, Y_ROW1, "Buttons", COLOR_WHITE);
