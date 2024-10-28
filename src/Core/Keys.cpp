@@ -4,7 +4,7 @@
 
 #include "Core/Keys.h"
 
-unsigned char Keys_GetKeyNumInt(Keys_t key)
+uint8_t Keys_GetKeyNumInt(Keys_t key)
 {
 	switch(key)
 	{

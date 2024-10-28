@@ -91,10 +91,10 @@ T NumericControl<T, stringBufferLength>::coerceValue(T value)
 }
 
 template <class T, int stringBufferLength>
-uint8_t NumericControl<T, stringBufferLength>::extractDigit(float number, int8_t position)
+uint8_t NumericControl<T, stringBufferLength>::extractDigit(T number, int8_t position)
 {
 	float divisor = pow(10, position);
-	uint32_t truncated = uint32_t((fabs(number) / divisor) + 0.1f);		// +0.1f not really clean workaround. Is there some rounding problem?
+	uint32_t truncated = uint32_t((abs(number) / divisor) + 0.1f);		// +0.1f not really clean workaround. Is there some rounding problem?
 	return truncated % 10;
 }
 
@@ -201,11 +201,11 @@ bool NumericControl<T, stringBufferLength>::KeyNumeric(Keys_t key)
 	{
 		T oldValue = *this->_valuePointer;
 		
-		unsigned char keyNum = Keys_GetKeyNumInt(key);
+		uint8_t keyNum = Keys_GetKeyNumInt(key);
 		if(keyNum < 0 || keyNum > 9) { return false; }		// if the keyNum isn't in the range 0..9, the given key is no numeric key
 			
-		unsigned char digit = extractDigit(oldValue, CurrentDigitPosition);
-		float multiplicator = pow(10, CurrentDigitPosition);
+		uint8_t digit = extractDigit(oldValue, CurrentDigitPosition);
+		float multiplicator = pow(10, CurrentDigitPosition) * (oldValue < 0 ? -1.0f : 1.0f);
 		(*this->_valuePointer) = coerceValue(oldValue - (digit * multiplicator) + (keyNum * multiplicator));
 		if (CurrentDigitPosition > -this->_numFractionalDigits) { CurrentDigitPosition--; }	// Move cursor right
 

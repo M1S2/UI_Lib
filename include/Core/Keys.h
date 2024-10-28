@@ -6,6 +6,8 @@
 #ifndef KEYS_H_
 #define KEYS_H_
 
+#include <stdint.h>
+
 /**
  * Available input keys.
  * Enumeration with all different keys.
@@ -40,6 +42,6 @@ typedef enum Keys
  * @param key Key to convert to a number (only number keys KEY0 .. KEY9 allowed)
  * @return 0 for KEY0, 1 for KEY1, ..., 9 for KEY9; 100 for all other keys
  */
-unsigned char Keys_GetKeyNumInt(Keys_t key);
+uint8_t Keys_GetKeyNumInt(Keys_t key);
 
 #endif /* KEYS_H_ */

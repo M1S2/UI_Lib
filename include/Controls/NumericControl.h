@@ -36,7 +36,7 @@ class NumericControl : public NumericIndicator<T, stringBufferLength>
 		 * @return Extracted digit between 0 and 9
 		 * @see https://www.quora.com/How-can-you-mathematically-extract-a-single-digit-from-a-number
 		 */
-		uint8_t extractDigit(float number, int8_t position);
+		uint8_t extractDigit(T number, int8_t position);
 		
 		void* _controlContext;							/**< Context pointer that is returned with the _onValueChanged function pointer */
 		void(*_onValueChanged)(void* controlContext);	/**< Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed. */
