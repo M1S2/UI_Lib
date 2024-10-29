@@ -6,8 +6,8 @@
 #include "Core/UI_Manager.h"
 #include <math.h>
 
-template <class T, int stringBufferLength>
-NumericControl<T, stringBufferLength>::NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext)) : NumericIndicator<T, stringBufferLength>(valuePointer, baseUnit, maxValue, numFractionalDigits)
+template <class T>
+NumericControl<T>::NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), uint8_t maxStringBufferLength) : NumericIndicator<T>(valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
 {
 	this->Type = UI_CONTROL;
 	IsEditMode = false;
@@ -18,8 +18,8 @@ NumericControl<T, stringBufferLength>::NumericControl(T* valuePointer, const cha
 	_onValueChanged = onValueChanged;
 }
 
-template <class T, int stringBufferLength>
-NumericControl<T, stringBufferLength>::NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext)) : NumericIndicator<T, stringBufferLength>(locX, locY, valuePointer, baseUnit, maxValue, numFractionalDigits)
+template <class T>
+NumericControl<T>::NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), uint8_t maxStringBufferLength) : NumericIndicator<T>(locX, locY, valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
 {
 	this->Type = UI_CONTROL;
 	IsEditMode = false;
@@ -30,8 +30,8 @@ NumericControl<T, stringBufferLength>::NumericControl(uint16_t locX, uint16_t lo
 	_onValueChanged = onValueChanged;
 }
 
-template <class T, int stringBufferLength>
-void NumericControl<T, stringBufferLength>::Draw(bool redraw)
+template <class T>
+void NumericControl<T>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
@@ -53,7 +53,7 @@ void NumericControl<T, stringBufferLength>::Draw(bool redraw)
 				UiManager.Gfx->drawFastHLine(this->LocX + UiManager.ElementMargin + 1, this->LocY + this->Height - UiManager.ElementMargin - UiManager.ElementPadding, this->Width - 2 * UiManager.ElementMargin - 2, UiManager.ColorForeground); 
 			}
 			
-			NumericIndicator<T, stringBufferLength>::Draw(redraw);
+			NumericIndicator<T>::Draw(redraw);
 			
 			if(IsEditMode)
 			{	
@@ -82,16 +82,16 @@ void NumericControl<T, stringBufferLength>::Draw(bool redraw)
 	}
 }
 
-template <class T, int stringBufferLength>
-T NumericControl<T, stringBufferLength>::coerceValue(T value)
+template <class T>
+T NumericControl<T>::coerceValue(T value)
 {
 	if (value > this->_maxValue) { value = this->_maxValue; }
 	else if (value < _minValue) { value = _minValue; }
 	return value;
 }
 
-template <class T, int stringBufferLength>
-uint8_t NumericControl<T, stringBufferLength>::extractDigit(T number, int8_t position)
+template <class T>
+uint8_t NumericControl<T>::extractDigit(T number, int8_t position)
 {
 	float divisor = pow(10, position);
 	uint32_t truncated = uint32_t((abs(number) / divisor) + 0.1f);		// +0.1f not really clean workaround. Is there some rounding problem?
@@ -99,8 +99,8 @@ uint8_t NumericControl<T, stringBufferLength>::extractDigit(T number, int8_t pos
 }
 
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::KeyInput(Keys_t key)
+template <class T>
+bool NumericControl<T>::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
@@ -139,8 +139,8 @@ bool NumericControl<T, stringBufferLength>::KeyInput(Keys_t key)
 	}
 }
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::KeyKilo()
+template <class T>
+bool NumericControl<T>::KeyKilo()
 {
 	if (IsEditMode)
 	{
@@ -153,8 +153,8 @@ bool NumericControl<T, stringBufferLength>::KeyKilo()
 	return false;
 }
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::KeyMilli()
+template <class T>
+bool NumericControl<T>::KeyMilli()
 {
 	if (IsEditMode)
 	{
@@ -167,8 +167,8 @@ bool NumericControl<T, stringBufferLength>::KeyMilli()
 	return false;
 }
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::KeyX1()
+template <class T>
+bool NumericControl<T>::KeyX1()
 {
 	if (IsEditMode)
 	{
@@ -181,8 +181,8 @@ bool NumericControl<T, stringBufferLength>::KeyX1()
 	return false;
 }
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::KeyMinus()
+template <class T>
+bool NumericControl<T>::KeyMinus()
 {
 	if (IsEditMode)
 	{
@@ -194,8 +194,8 @@ bool NumericControl<T, stringBufferLength>::KeyMinus()
 	return false;
 }
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::KeyNumeric(Keys_t key)
+template <class T>
+bool NumericControl<T>::KeyNumeric(Keys_t key)
 {
 	if (IsEditMode)
 	{
@@ -215,8 +215,8 @@ bool NumericControl<T, stringBufferLength>::KeyNumeric(Keys_t key)
 	return false;
 }
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::ValueUp()
+template <class T>
+bool NumericControl<T>::ValueUp()
 {
 	if (IsEditMode)
 	{
@@ -229,8 +229,8 @@ bool NumericControl<T, stringBufferLength>::ValueUp()
 	return false;
 }
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::ValueDown()
+template <class T>
+bool NumericControl<T>::ValueDown()
 {
 	if (IsEditMode)
 	{
@@ -243,8 +243,8 @@ bool NumericControl<T, stringBufferLength>::ValueDown()
 	return false;
 }
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::CursorLeft()
+template <class T>
+bool NumericControl<T>::CursorLeft()
 {
 	if (IsEditMode)
 	{
@@ -257,8 +257,8 @@ bool NumericControl<T, stringBufferLength>::CursorLeft()
 	return false;
 }
 
-template <class T, int stringBufferLength>
-bool NumericControl<T, stringBufferLength>::CursorRight()
+template <class T>
+bool NumericControl<T>::CursorRight()
 {
 	if (IsEditMode)
 	{
@@ -271,8 +271,8 @@ bool NumericControl<T, stringBufferLength>::CursorRight()
 	return false;
 }
 
-template <class T, int stringBufferLength>
-void NumericControl<T, stringBufferLength>::ToggleEditMode()
+template <class T>
+void NumericControl<T>::ToggleEditMode()
 {
 	IsEditMode = !IsEditMode;
 }

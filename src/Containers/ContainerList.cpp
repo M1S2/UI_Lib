@@ -5,15 +5,15 @@
 #include "Containers/ContainerList.h"
 #include "Core/UI_Manager.h"
 
-template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
-ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::ContainerList()
+ContainerList::ContainerList(uint8_t maxNumItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin) : Container(maxNumItems)
 {
 	this->Type = UI_CONTAINER;
 	_lastDrawnItemIndex = -1;
+	_scrollBarWidth = scrollBarWidth;
+	_scrollBarMargin = scrollBarMargin;
 }
 
-template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
-ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::ContainerList(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
+ContainerList::ContainerList(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin) : Container(maxNumItems)
 {
 	this->Type = UI_CONTAINER;
 	this->LocX = locX;
@@ -21,10 +21,11 @@ ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::ContainerList(uint16_t
 	this->Width = width;
 	this->Height = height;
 	_lastDrawnItemIndex = -1;
+	_scrollBarWidth = scrollBarWidth;
+	_scrollBarMargin = scrollBarMargin;
 }
 
-template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
-void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw(bool redraw)
+void ContainerList::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
@@ -51,23 +52,23 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw(bool redraw)
 			}
 			
 			// Draw scroll bar
-			uint16_t scrollBarArrowSize = scrollBarWidth;		// height and width of the up and down arrows
-			uint16_t scrollBarLeft = this->LocX + this->Width - scrollBarWidth - scrollBarMargin;
-			uint16_t scrollBarBoxHeight = this->Height - 4 * scrollBarMargin - 2 * scrollBarArrowSize - 2;	// -2 to take the outline into account
+			uint16_t scrollBarArrowSize = _scrollBarWidth;		// height and width of the up and down arrows
+			uint16_t scrollBarLeft = this->LocX + this->Width - _scrollBarWidth - _scrollBarMargin;
+			uint16_t scrollBarBoxHeight = this->Height - 4 * _scrollBarMargin - 2 * scrollBarArrowSize - 2;	// -2 to take the outline into account
 			uint16_t scrollBarHeight = scrollBarBoxHeight / _numVisibleItems;
 
-			UiManager.Gfx->drawRect(scrollBarLeft, this->LocY + 2 * scrollBarMargin + scrollBarArrowSize, scrollBarWidth, scrollBarBoxHeight, UiManager.ColorForeground);
-			UiManager.Gfx->fillRect(scrollBarLeft, this->LocY + 2 * scrollBarMargin + scrollBarArrowSize + ((this->_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), scrollBarWidth, scrollBarHeight, UiManager.ColorForeground);
+			UiManager.Gfx->drawRect(scrollBarLeft, this->LocY + 2 * _scrollBarMargin + scrollBarArrowSize, _scrollBarWidth, scrollBarBoxHeight, UiManager.ColorForeground);
+			UiManager.Gfx->fillRect(scrollBarLeft, this->LocY + 2 * _scrollBarMargin + scrollBarArrowSize + ((this->_selectedItemIndex - _numNonVisibleItemsBeforeSelected) * scrollBarHeight), _scrollBarWidth, scrollBarHeight, UiManager.ColorForeground);
 
 			// Show Up Arrow if not the first element is selected
 			if((this->_selectedItemIndex - _numNonVisibleItemsBeforeSelected) > 0)
 			{
-				UiManager.Gfx->fillTriangle(scrollBarLeft + (scrollBarWidth / 2), this->LocY + scrollBarMargin, scrollBarLeft, this->LocY + scrollBarMargin + scrollBarArrowSize - 1, scrollBarLeft + scrollBarArrowSize, this->LocY + scrollBarMargin + scrollBarArrowSize - 1, UiManager.ColorForeground);
+				UiManager.Gfx->fillTriangle(scrollBarLeft + (_scrollBarWidth / 2), this->LocY + _scrollBarMargin, scrollBarLeft, this->LocY + _scrollBarMargin + scrollBarArrowSize - 1, scrollBarLeft + scrollBarArrowSize, this->LocY + _scrollBarMargin + scrollBarArrowSize - 1, UiManager.ColorForeground);
 			}
 			// Show Down Arrow if not the last element is selected
 			if(this->_selectedItemIndex < (_numVisibleItems - 1))
 			{
-				UiManager.Gfx->fillTriangle(scrollBarLeft + (scrollBarWidth / 2), this->LocY + this->Height - scrollBarMargin - 1, scrollBarLeft, this->LocY + this->Height - scrollBarMargin - scrollBarArrowSize, scrollBarLeft + scrollBarArrowSize, this->LocY + this->Height - scrollBarMargin - scrollBarArrowSize, UiManager.ColorForeground);
+				UiManager.Gfx->fillTriangle(scrollBarLeft + (_scrollBarWidth / 2), this->LocY + this->Height - _scrollBarMargin - 1, scrollBarLeft, this->LocY + this->Height - _scrollBarMargin - scrollBarArrowSize, scrollBarLeft + scrollBarArrowSize, this->LocY + this->Height - _scrollBarMargin - scrollBarArrowSize, UiManager.ColorForeground);
 			}
 		}
 	}
@@ -78,8 +79,7 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::Draw(bool redraw)
 	}
 }
 
-template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
-bool ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::KeyInput(Keys_t key)
+bool ContainerList::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
@@ -92,8 +92,7 @@ bool ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::KeyInput(Keys_t k
 	}
 }
 
-template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
-void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateDimensions()
+void ContainerList::RecalculateDimensions()
 {
 	if(this->Parent != NULL)
 	{
@@ -107,8 +106,7 @@ void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateDimens
 	}
 }
 
-template <uint8_t maxItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin>
-void ContainerList<maxItems, scrollBarWidth, scrollBarMargin>::RecalculateLayout()
+void ContainerList::RecalculateLayout()
 {
 	// Move each item inside container region
 	for(int i = 0; i < this->_numItems; i++)

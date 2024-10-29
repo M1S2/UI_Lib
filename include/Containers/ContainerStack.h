@@ -23,10 +23,8 @@ typedef enum StackLayout
 
 /**
  * class for a container that is showing all items at a time stacked one after another.
- * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  */
-template <uint8_t maxItems>
-class ContainerStack : public Container<maxItems>
+class ContainerStack : public Container
 {
 	private:
 		StackLayout_t _stackLayout;							/**< Stack layout */
@@ -36,8 +34,9 @@ class ContainerStack : public Container<maxItems>
 		/**
 		 * Constructor of the ContainerStack.
 		 * @param stackLayout Stack layout
+		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
 		 */
-		ContainerStack(StackLayout_t stackLayout = STACK_LAYOUT_VERTICAL_LEFT);
+		ContainerStack(StackLayout_t stackLayout = STACK_LAYOUT_VERTICAL_LEFT, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS);
 
 		/**
 		 * Constructor of the ContainerStack.
@@ -46,8 +45,9 @@ class ContainerStack : public Container<maxItems>
 		 * @param width Drawing width of the ContainerStack
 		 * @param height Drawing height of the ContainerStack
 		 * @param stackLayout Stack layout
+		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
 		 */
-		ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout = STACK_LAYOUT_VERTICAL_LEFT);
+		ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout = STACK_LAYOUT_VERTICAL_LEFT, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS);
 
 		/**
 		 * Method used for drawing of the ContainerStack.
@@ -78,9 +78,5 @@ class ContainerStack : public Container<maxItems>
 		 */
 		virtual void RecalculateLayout() override;
 };
-
-/********************************************************************************************************************************************/
-
-typedef ContainerStack<MAX_CONTAINER_ITEMS> ContainerStackDefault;		/**< Type definition for a ContainerStack using the default settings. */
 
 #endif /* CONTAINERSTACK_H_ */

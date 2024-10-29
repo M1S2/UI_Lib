@@ -5,15 +5,15 @@
 #include "Containers/ContainerPage.h"
 #include "Core/UI_Manager.h"
 
-template <uint8_t maxItems>
-ContainerPage<maxItems>::ContainerPage()
+ContainerPage::ContainerPage(uint8_t maxNumItems) : Container(maxNumItems)
 {
+	_itemConfiguration = new PageItemConfig[maxNumItems]();
 	this->Type = UI_CONTAINER;
 }
 
-template <uint8_t maxItems>
-ContainerPage<maxItems>::ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height)
+ContainerPage::ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems) : Container(maxNumItems)
 {
+	_itemConfiguration = new PageItemConfig[maxNumItems]();
 	this->Type = UI_CONTAINER;
 	this->LocX = locX;
 	this->LocY = locY;
@@ -21,8 +21,7 @@ ContainerPage<maxItems>::ContainerPage(uint16_t locX, uint16_t locY, uint16_t wi
 	this->Height = height;
 }
 
-template <uint8_t maxItems>
-void ContainerPage<maxItems>::Draw(bool redraw)
+void ContainerPage::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
@@ -39,8 +38,7 @@ void ContainerPage<maxItems>::Draw(bool redraw)
 	}
 }
 
-template <uint8_t maxItems>
-bool ContainerPage<maxItems>::KeyInput(Keys_t key)
+bool ContainerPage::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
@@ -53,8 +51,7 @@ bool ContainerPage<maxItems>::KeyInput(Keys_t key)
 	}
 }
 
-template <uint8_t maxItems>
-void ContainerPage<maxItems>::InitItems()
+void ContainerPage::InitItems()
 {
 	this->_selectedItemIndex = 0;
 	if (this->GetSelectedItem()->Type != UI_CONTROL || this->GetSelectedItem()->Visible == false)
@@ -63,8 +60,7 @@ void ContainerPage<maxItems>::InitItems()
 	}
 }
 
-template <uint8_t maxItems>
-bool ContainerPage<maxItems>::AddItem(UIElement* item)
+bool ContainerPage::AddItem(UIElement* item)
 {
 	PageItemConfig itemConfig;
 	itemConfig.item = item;
@@ -72,13 +68,12 @@ bool ContainerPage<maxItems>::AddItem(UIElement* item)
 	itemConfig.relativeY = item->LocY;
 	_itemConfiguration[this->_numItems] = itemConfig;
 
-	if(!Container<maxItems>::AddItem(item)) { return false; }
+	if(!Container::AddItem(item)) { return false; }
 
 	return true;
 }
 
-template <uint8_t maxItems>
-void ContainerPage<maxItems>::RecalculateDimensions()
+void ContainerPage::RecalculateDimensions()
 {
 	uint16_t x, y, w, h;
 	this->GetItemsBoundingBox(&x, &y, &w, &h);
@@ -86,8 +81,7 @@ void ContainerPage<maxItems>::RecalculateDimensions()
 	this->Height = h;
 }
 
-template <uint8_t maxItems>
-void ContainerPage<maxItems>::RecalculateLayout()
+void ContainerPage::RecalculateLayout()
 {
 	for(int i = 0; i < this->_numItems; i++)
 	{

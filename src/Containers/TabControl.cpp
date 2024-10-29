@@ -6,8 +6,7 @@
 #include "Core/UI_Manager.h"
 #include <string.h>
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-TabControl<maxTabs, tabHeaderMargin, contentPadding>::TabControl(uint16_t width, uint16_t height, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext))
+TabControl::TabControl(uint16_t width, uint16_t height, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext), uint8_t maxNumItems, uint8_t tabHeaderMargin) : Container(maxNumItems)
 {
 	this->Width = width;
 	this->Height = height;
@@ -15,10 +14,11 @@ TabControl<maxTabs, tabHeaderMargin, contentPadding>::TabControl(uint16_t width,
 	_tabPosition = tabPosition;
 	_controlContext = controlContext;
 	_onSelectedTabChanged = onSelectedTabChanged;
+	_tabHeaderMargin = tabHeaderMargin;
+	_headers = new UIElement*[maxNumItems]();
 }
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-TabControl<maxTabs, tabHeaderMargin, contentPadding>::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext))
+TabControl::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext), uint8_t maxNumItems, uint8_t tabHeaderMargin) : Container(maxNumItems)
 {
 	this->Width = width;
 	this->Height = height;
@@ -28,10 +28,11 @@ TabControl<maxTabs, tabHeaderMargin, contentPadding>::TabControl(uint16_t locX, 
 	_tabPosition = tabPosition;
 	_controlContext = controlContext;
 	_onSelectedTabChanged = onSelectedTabChanged;
+	_tabHeaderMargin = tabHeaderMargin;
+	_headers = new UIElement*[maxNumItems]();
 }
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw(bool redraw) 
+void TabControl::Draw(bool redraw) 
 {
 	if (this->Visible)
 	{
@@ -52,8 +53,8 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw(bool redraw)
 					{
 						if(i == this->_selectedItemIndex)
 						{
-							UiManager.Gfx->drawRect(this->LocX, _headers[i]->LocY - tabHeaderMargin, TabRegionSize, _headers[i]->Height + 2 * tabHeaderMargin, UiManager.ColorForeground);
-							UiManager.Gfx->drawFastVLine(this->LocX + TabRegionSize - 1, _headers[i]->LocY - tabHeaderMargin + 1, _headers[i]->Height + 2 * tabHeaderMargin - 2, UiManager.ColorBackground);
+							UiManager.Gfx->drawRect(this->LocX, _headers[i]->LocY - _tabHeaderMargin, TabRegionSize, _headers[i]->Height + 2 * _tabHeaderMargin, UiManager.ColorForeground);
+							UiManager.Gfx->drawFastVLine(this->LocX + TabRegionSize - 1, _headers[i]->LocY - _tabHeaderMargin + 1, _headers[i]->Height + 2 * _tabHeaderMargin - 2, UiManager.ColorBackground);
 						}
 						
 						if(_headers[i] != NULL) { _headers[i]->Draw(true); }
@@ -68,8 +69,8 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw(bool redraw)
 					{
 						if(i == this->_selectedItemIndex)
 						{
-							UiManager.Gfx->drawRect(_headers[i]->LocX - tabHeaderMargin, this->LocY, _headers[i]->Width + 2 * tabHeaderMargin, TabRegionSize, UiManager.ColorForeground);
-							UiManager.Gfx->drawFastHLine(_headers[i]->LocX - tabHeaderMargin + 1, this->LocY + TabRegionSize - 1, _headers[i]->Width + 2 * tabHeaderMargin - 2, UiManager.ColorBackground);						
+							UiManager.Gfx->drawRect(_headers[i]->LocX - _tabHeaderMargin, this->LocY, _headers[i]->Width + 2 * _tabHeaderMargin, TabRegionSize, UiManager.ColorForeground);
+							UiManager.Gfx->drawFastHLine(_headers[i]->LocX - _tabHeaderMargin + 1, this->LocY + TabRegionSize - 1, _headers[i]->Width + 2 * _tabHeaderMargin - 2, UiManager.ColorBackground);						
 						}
 						
 						if(_headers[i] != NULL) { _headers[i]->Draw(true); }
@@ -89,8 +90,7 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::Draw(bool redraw)
 	}
 }
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-bool TabControl<maxTabs, tabHeaderMargin, contentPadding>::KeyInput(Keys_t key)
+bool TabControl::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
@@ -105,21 +105,19 @@ bool TabControl<maxTabs, tabHeaderMargin, contentPadding>::KeyInput(Keys_t key)
 	}
 }
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-bool TabControl<maxTabs, tabHeaderMargin, contentPadding>::AddItem(UIElement* header, UIElement* tabContent)
+bool TabControl::AddItem(UIElement* header, UIElement* tabContent)
 {
 	_headers[this->_numItems] = header;
 	header->RecalculateDimensions();		
 
-	if(!Container<maxTabs>::AddItem(tabContent)) { return false; }
+	if(!Container::AddItem(tabContent)) { return false; }
 
 	RecalculateDimensions();
 
 	return true;
 }
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-void TabControl<maxTabs, tabHeaderMargin, contentPadding>::SelectTab(int index)
+void TabControl::SelectTab(int index)
 {	
 	this->_selectedItemIndex = index;
 	if (this->_selectedItemIndex >= this->_numItems) { this->_selectedItemIndex = 0; }
@@ -130,31 +128,28 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::SelectTab(int index)
 	if (_onSelectedTabChanged != NULL) { _onSelectedTabChanged(_controlContext); }
 }
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-int TabControl<maxTabs, tabHeaderMargin, contentPadding>::GetSelectedTabIndex()
+int TabControl::GetSelectedTabIndex()
 {
 	return this->_selectedItemIndex;
 }
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-void TabControl<maxTabs, tabHeaderMargin, contentPadding>::GetContentRegionSize(uint16_t* w, uint16_t* h)
+void TabControl::GetContentRegionSize(uint16_t* w, uint16_t* h)
 {
 	switch (_tabPosition)
 	{
 		case TAB_POSITION_LEFT:
-			*w = this->Width - TabRegionSize - 2 * contentPadding;
-			*h = this->Height - 2 * contentPadding;
+			*w = this->Width - TabRegionSize - 2 * UiManager.ElementPadding;
+			*h = this->Height - 2 * UiManager.ElementPadding;
 			break;
 		case TAB_POSITION_TOP:
-			*w = this->Width - 2 * contentPadding;
-			*h = this->Height - TabRegionSize - 2 * contentPadding;
+			*w = this->Width - 2 * UiManager.ElementPadding;
+			*h = this->Height - TabRegionSize - 2 * UiManager.ElementPadding;
 			break;
 		default: break;
 	}
 }
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateDimensions()
+void TabControl::RecalculateDimensions()
 {
 	if(this->Width == 0 && this->Height == 0)
 	{
@@ -173,8 +168,7 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateDimensions
 	}
 }
 
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateLayout()
+void TabControl::RecalculateLayout()
 {
 	uint16_t maxHeaderWidth = 0, maxHeaderHeight = 0;
 	for (int i = 0; i < this->_numItems; i++)
@@ -185,8 +179,8 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateLayout()
 	}
 	switch (_tabPosition)
 	{
-		case TAB_POSITION_LEFT: TabRegionSize = maxHeaderWidth + 2 * tabHeaderMargin; break;
-		case TAB_POSITION_TOP: TabRegionSize = maxHeaderHeight + 2 * tabHeaderMargin; break;
+		case TAB_POSITION_LEFT: TabRegionSize = maxHeaderWidth + 2 * _tabHeaderMargin; break;
+		case TAB_POSITION_TOP: TabRegionSize = maxHeaderHeight + 2 * _tabHeaderMargin; break;
 		default: break;
 	}
 
@@ -194,17 +188,17 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateLayout()
 	switch (_tabPosition)
 	{
 		case TAB_POSITION_LEFT:
-			xRegion_Offset = TabRegionSize + contentPadding;
-			yRegion_Offset = contentPadding;
+			xRegion_Offset = TabRegionSize + UiManager.ElementPadding;
+			yRegion_Offset = UiManager.ElementPadding;
 			break;
 		case TAB_POSITION_TOP:
-			xRegion_Offset = contentPadding;
-			yRegion_Offset = TabRegionSize + contentPadding;
+			xRegion_Offset = UiManager.ElementPadding;
+			yRegion_Offset = TabRegionSize + UiManager.ElementPadding;
 			break;
 		default: break;
 	}
 	
-	uint16_t currentHeaderX = this->LocX + tabHeaderMargin, currentHeaderY = this->LocY + tabHeaderMargin;
+	uint16_t currentHeaderX = this->LocX + _tabHeaderMargin, currentHeaderY = this->LocY + _tabHeaderMargin;
 	for(int i = 0; i < this->_numItems; i++)
 	{
 		UIElement* currentItem = this->_items[i];
@@ -218,8 +212,8 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateLayout()
 			currentHeader->RecalculateDimensions();
 			switch (_tabPosition)
 			{
-				case TAB_POSITION_LEFT: currentHeaderY += currentHeader->Height + 2 * tabHeaderMargin; break;
-				case TAB_POSITION_TOP: currentHeaderX += currentHeader->Width + 2 * tabHeaderMargin; break;
+				case TAB_POSITION_LEFT: currentHeaderY += currentHeader->Height + 2 * _tabHeaderMargin; break;
+				case TAB_POSITION_TOP: currentHeaderX += currentHeader->Width + 2 * _tabHeaderMargin; break;
 				default: break;
 			}
 		}
@@ -230,11 +224,11 @@ void TabControl<maxTabs, tabHeaderMargin, contentPadding>::RecalculateLayout()
 		// Strech the tabContent to fill up the full tab content region space
 		if(currentItem->Type == UI_CONTAINER && currentItem->Width == 0)
 		{
-			currentItem->Width = this->Width - xRegion_Offset - contentPadding;	
+			currentItem->Width = this->Width - xRegion_Offset - UiManager.ElementPadding;	
 		}
 		if(currentItem->Type == UI_CONTAINER && currentItem->Height == 0)
 		{
-			currentItem->Height = this->Height - yRegion_Offset - contentPadding;
+			currentItem->Height = this->Height - yRegion_Offset - UiManager.ElementPadding;
 		}
 		currentItem->RecalculateLayout();
 		currentItem->RecalculateDimensions();

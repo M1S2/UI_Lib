@@ -8,15 +8,15 @@
 
 #include "../Core/UIElement.h"
 
+#define DEFAULT_BUTTON_STRING_LENGTH		25									/**< Default string length for the button text. */
+
 /**
  * Class for a button control that is showing a clickable button used to trigger some action.
- * @tparam StringLength Maximum string length that the button text can hold. This is used as buffer length for the internal _buttonText character buffer.
  */
-template <int StringLength>
 class ButtonControl : public UIElement
 {
 	private:
-		char _buttonText[StringLength];						/**< Character buffer holding the string drawn by the button as text. */
+		char* _buttonText;									/**< Character buffer holding the string drawn by the button as text. */
 
 		void* _controlContext;								/**< Context pointer that is returned with the _onClick function pointer */
 		void(*_onClick)(void* controlContext);				/**< Function pointer for _onClick event. This function is called when the button is clicked. */
@@ -30,8 +30,9 @@ class ButtonControl : public UIElement
 		 * @param buttonText String that is draw to the screen as button text.
 		 * @param controlContext Context pointer that is returned with the _onClick function pointer
 		 * @param onClick Function pointer for _onClick event. This function is called when the button is clicked.
+		 * @param maxStringLength Maximum string length that the button text can hold. This is used as buffer length for the internal _buttonText character buffer.
 		 */
-		ButtonControl(const char* buttonText, void* controlContext = NULL, void(*onClick)(void* controlContext) = NULL);
+		ButtonControl(const char* buttonText, void* controlContext = NULL, void(*onClick)(void* controlContext) = NULL, int maxStringLength = DEFAULT_BUTTON_STRING_LENGTH);
 
 		/**
 		 * Constructor of the ButtonControl.
@@ -42,8 +43,21 @@ class ButtonControl : public UIElement
 		 * @param buttonText String that is draw to the screen as button text.
 		 * @param controlContext Context pointer that is returned with the _onClick function pointer
 		 * @param onClick Function pointer for _onClick event. This function is called when the button is clicked.
+		 * @param maxStringLength Maximum string length that the button text can hold. This is used as buffer length for the internal _buttonText character buffer.
 		 */
-		ButtonControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* buttonText, void* controlContext = NULL, void(*onClick)(void* controlContext) = NULL);
+		ButtonControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* buttonText, void* controlContext = NULL, void(*onClick)(void* controlContext) = NULL, int maxStringLength = DEFAULT_BUTTON_STRING_LENGTH);
+
+		/**
+		 * Destructor of the Label
+		 */
+		~ButtonControl()
+		{
+			if(_buttonText)
+			{
+				free(_buttonText);
+				_buttonText = NULL;
+			}
+		}
 
 		/**
 		 * Method used for drawing of the ButtonControl.
@@ -63,11 +77,5 @@ class ButtonControl : public UIElement
 		 */
 		virtual void RecalculateDimensions() override;
 };
-
-/********************************************************************************************************************************************/
-
-#define DEFAULT_BUTTON_STRING_LENGTH		25									/**< Default string length for the button text. */
-
-typedef ButtonControl<DEFAULT_BUTTON_STRING_LENGTH> ButtonControlDefault;		/**< Type definition for a button using the default button text string length. */
 
 #endif /* BUTTONCONTROL_H_ */

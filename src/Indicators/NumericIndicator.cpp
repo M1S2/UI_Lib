@@ -10,8 +10,8 @@
 
 #include <stdlib.h>
 
-template <class T, int stringBufferLength>
-void NumericIndicator<T, stringBufferLength>::calculateDisplayValue(float value)
+template <class T>
+void NumericIndicator<T>::calculateDisplayValue(float value)
 {
 	_displayValue = value;
 	_unitPrefixPower = 0;
@@ -52,8 +52,8 @@ void NumericIndicator<T, stringBufferLength>::calculateDisplayValue(float value)
 	}
 }
 
-template <class T, int stringBufferLength>
-uint8_t NumericIndicator<T, stringBufferLength>::numNonFractionalDigits(T number)
+template <class T>
+uint8_t NumericIndicator<T>::numNonFractionalDigits(T number)
 {
 	uint8_t digits = 0;
 	//if (number < 0) digits = 1; // remove this line if '-' counts as a digit
@@ -65,9 +65,10 @@ uint8_t NumericIndicator<T, stringBufferLength>::numNonFractionalDigits(T number
 	return digits;
 }
 
-template <class T, int stringBufferLength>
-NumericIndicator<T, stringBufferLength>::NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits) : UIElement(UI_INDICATOR)
+template <class T>
+NumericIndicator<T>::NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint8_t maxStringBufferLength) : UIElement(UI_INDICATOR)
 {
+	_stringDrawBuffer = new char[maxStringBufferLength]();
 	_valuePointer = valuePointer;
 	_baseUnit = baseUnit;
 	_unitPrefix = "";
@@ -76,9 +77,10 @@ NumericIndicator<T, stringBufferLength>::NumericIndicator(T* valuePointer, const
 	_numDigits = _numFractionalDigits + numNonFractionalDigits(maxValue);
 }
 
-template <class T, int stringBufferLength>
-NumericIndicator<T, stringBufferLength>::NumericIndicator(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits) : UIElement(locX, locY, UI_INDICATOR)
+template <class T>
+NumericIndicator<T>::NumericIndicator(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint8_t maxStringBufferLength) : UIElement(locX, locY, UI_INDICATOR)
 {
+	_stringDrawBuffer = new char[maxStringBufferLength]();
 	_valuePointer = valuePointer;
 	_baseUnit = baseUnit;
 	_unitPrefix = "";
@@ -87,8 +89,8 @@ NumericIndicator<T, stringBufferLength>::NumericIndicator(uint16_t locX, uint16_
 	_numDigits = _numFractionalDigits + numNonFractionalDigits(maxValue);
 }
 
-template <class T, int stringBufferLength>
-void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
+template <class T>
+void NumericIndicator<T>::Draw(bool redraw)
 {
 	if (Visible)
 	{
@@ -130,8 +132,8 @@ void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 	}
 }
 
-template <class T, int stringBufferLength>
-void NumericIndicator<T, stringBufferLength>::RecalculateDimensions()
+template <class T>
+void NumericIndicator<T>::RecalculateDimensions()
 {
 	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin;
 	

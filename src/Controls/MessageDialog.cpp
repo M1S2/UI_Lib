@@ -3,17 +3,14 @@
  */ 
 
 #include "Controls/MessageDialog.h"
-#include "../Indicators/Label.cpp"
-#include "../Controls/ButtonControl.cpp"
 #include "Core/UI_Manager.h"
 
-template <int messageLength>
-MessageDialog<messageLength>::MessageDialog(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* message, MessageSeverity_t severity, MessageButtons_t buttons, void* controlContext, void(*onOkClick)(void* controlContext), void(*onCancelClick)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL),
-	_page(),
-	_severityIcon(locX, locY, icon_info_width, icon_info_height, (severity == MSG_INFO ? icon_info_bits : (severity == MSG_WARNING ? icon_warning_bits : icon_error_bits)), (severity == MSG_INFO ? MSG_INFO_COLOR : (severity == MSG_WARNING ? MSG_WARNING_COLOR : MSG_ERR_COLOR))),
-	_message(locX + icon_info_width + 5, locY, message),
-	_buttonOk(locX + width / 2 - 20 - (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 4, 0, 0, "OK", controlContext, onOkClick),
-	_buttonCancel(locX + width / 2 - 20 + (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 4, 0, 0, "Cancel", controlContext, onCancelClick)
+MessageDialog::MessageDialog(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* message, MessageSeverity_t severity, MessageButtons_t buttons, void* controlContext, void(*onOkClick)(void* controlContext), void(*onCancelClick)(void* controlContext), uint16_t maxMsgLength) : UIElement(locX, locY, UI_CONTROL),
+	_page(5),
+	_severityIcon(icon_info_width, icon_info_height, (severity == MSG_INFO ? icon_info_bits : (severity == MSG_WARNING ? icon_warning_bits : icon_error_bits)), (severity == MSG_INFO ? MSG_INFO_COLOR : (severity == MSG_WARNING ? MSG_WARNING_COLOR : MSG_ERR_COLOR)), locX, locY),
+	_message(message, LABEL_COLOR_NOTSET, NULL, locX + icon_info_width + 5, locY, maxMsgLength),
+	_buttonOk(locX + width / 2 - 20 - (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 4, 0, 0, "OK", controlContext, onOkClick, 3),
+	_buttonCancel(locX + width / 2 - 20 + (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 4, 0, 0, "Cancel", controlContext, onCancelClick, 7)
 {
 	Width = width;
 	Height = height;	
@@ -37,8 +34,7 @@ MessageDialog<messageLength>::MessageDialog(uint16_t locX, uint16_t locY, uint16
 	ActiveChild = &_page;
 }
 
-template <int messageLength>
-void MessageDialog<messageLength>::Draw(bool redraw)
+void MessageDialog::Draw(bool redraw)
 {
 	if(redraw)
 	{
@@ -49,14 +45,12 @@ void MessageDialog<messageLength>::Draw(bool redraw)
 	}
 }
 
-template <int messageLength>
-bool MessageDialog<messageLength>::KeyInput(Keys_t key)
+bool MessageDialog::KeyInput(Keys_t key)
 {
 	return _page.KeyInput(key);
 }
 
-template <int messageLength>
-void MessageDialog<messageLength>::RecalculateDimensions()
+void MessageDialog::RecalculateDimensions()
 {
 	_buttonOk.RecalculateDimensions();
 	_buttonCancel.RecalculateDimensions();

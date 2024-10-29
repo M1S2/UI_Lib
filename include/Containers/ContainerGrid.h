@@ -8,6 +8,9 @@
 
 #include "Container.h"
 
+#define DEFAULT_MAX_CONTAINERGRID_ROWS		10		/**< Default maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory. */
+#define DEFAULT_MAX_CONTAINERGRID_COLUMNS	10		/**< Default maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory. */
+
 /**
  * Available alignment in cell.
  */
@@ -39,28 +42,31 @@ struct GridItemConfig
 
 /**
  * Class for a container that is showing all items at a time in a fixed grid layout.
- * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
- * @tparam maxGridRows Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory.
- * @tparam maxGridColumns Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory.
- * @tparam showGridCells Enable this to draw the grid cells
- * @tparam autoSizingFillLast If true, keep all columns or rows as small as possible except the last one set to auto size; if false, evenly increase the size of all columns or rows set to auto size
  */
-template <uint8_t maxItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells, bool autoSizingFillLast>
-class ContainerGrid : public Container<maxItems>
+class ContainerGrid : public Container
 {
 	private:
-		uint16_t _initialRowHeights[maxGridRows];		/**< Heights for the individual rows. 0 if row sizes to the largest item. */
-		uint16_t _initialColumnWidths[maxGridColumns];	/**< Widths for the individual columns. 0 if column sizes to the largest item. */
-		uint16_t _rowHeights[maxGridRows];				/**< Heights for the individual rows. They are recalculated by the RecalculateLayout() method. */
-		uint16_t _columnWidths[maxGridColumns];			/**< Widths for the individual columns. They are recalculated by the RecalculateLayout() method. */
-		GridItemConfig _itemConfiguration[maxItems];	/**< Configuration data for all items inside the grid. */
+		uint8_t _maxGridRows;							/**< Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory. */
+		uint8_t _maxGridColumns;						/**< Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory. */
+		bool _showGridCells;							/**< Enable this to draw the grid cells */
+		bool _autoSizingFillLast;						/**< If true, keep all columns or rows as small as possible except the last one set to auto size; if false, evenly increase the size of all columns or rows set to auto size */
+		uint16_t* _initialRowHeights;					/**< Heights for the individual rows. 0 if row sizes to the largest item. */
+		uint16_t* _initialColumnWidths;					/**< Widths for the individual columns. 0 if column sizes to the largest item. */
+		uint16_t* _rowHeights;							/**< Heights for the individual rows. They are recalculated by the RecalculateLayout() method. */
+		uint16_t* _columnWidths;						/**< Widths for the individual columns. They are recalculated by the RecalculateLayout() method. */
+		GridItemConfig* _itemConfiguration;				/**< Configuration data for all items inside the grid. */
 
 	public:
 
 		/**
 		 * Constructor of the ContainerGrid.
+		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
+		 * @param maxGridRows Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory.
+ 		 * @param maxGridColumns Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory.
+ 		 * @param showGridCells Enable this to draw the grid cells
+ 		 * @param autoSizingFillLast If true, keep all columns or rows as small as possible except the last one set to auto size; if false, evenly increase the size of all columns or rows set to auto size
 		 */
-		ContainerGrid();
+		ContainerGrid(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t maxGridRows = DEFAULT_MAX_CONTAINERGRID_ROWS, uint8_t maxGridColumns = DEFAULT_MAX_CONTAINERGRID_COLUMNS, bool showGridCells = false, bool autoSizingFillLast = true);
 
 		/**
 		 * Constructor of the ContainerGrid.
@@ -68,8 +74,13 @@ class ContainerGrid : public Container<maxItems>
 		 * @param locY Y Location of the upper left corner of the ContainerGrid
 		 * @param width Drawing width of the ContainerGrid
 		 * @param height Drawing height of the ContainerGrid
+		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
+		 * @param maxGridRows Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory.
+ 		 * @param maxGridColumns Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory.
+ 		 * @param showGridCells Enable this to draw the grid cells
+ 		 * @param autoSizingFillLast If true, keep all columns or rows as small as possible except the last one set to auto size; if false, evenly increase the size of all columns or rows set to auto size
 		 */
-		ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height);
+		ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t maxGridRows = DEFAULT_MAX_CONTAINERGRID_ROWS, uint8_t maxGridColumns = DEFAULT_MAX_CONTAINERGRID_COLUMNS, bool showGridCells = false, bool autoSizingFillLast = true);
 
 		/**
 		 * Method used for drawing of the ContainerGrid.
@@ -128,12 +139,5 @@ class ContainerGrid : public Container<maxItems>
 		 */
 		virtual void RecalculateLayout() override;
 };
-
-/********************************************************************************************************************************************/
-
-#define MAX_CONTAINER_GRID_ROWS		10		/**< Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory. */
-#define MAX_CONTAINER_GRID_COLUMNS	10		/**< Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory. */
-
-typedef ContainerGrid<MAX_CONTAINER_ITEMS, MAX_CONTAINER_GRID_ROWS, MAX_CONTAINER_GRID_COLUMNS, false, true> ContainerGridDefault;		/**< Type definition for a ContainerGrid using the default settings. */
 
 #endif /* CONTAINERGRID_H_ */

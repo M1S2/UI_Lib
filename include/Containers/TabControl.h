@@ -8,6 +8,9 @@
 
 #include "Container.h"
 
+#define DEFAULT_MAX_TABCONTROL_TABS			5		/**< Maximum number of tabs that are supported. */
+#define DEFAULT_TABCONTROL_TABHEADER_MARGIN	2		/**< Margin around the tab page tabs. */
+
 /**
  * Available tab positions.
  */
@@ -19,18 +22,15 @@ typedef enum TabPositions
 
 /**
  * Class for a tab control that is showing a tab layout and can hold child elements.
- * @tparam maxTabs Maximum number of tabs that are supported.
- * @tparam tabHeaderMargin Margin around the tab page tabs.
- * @tparam contentPadding Padding between the content region and the tab content
  */
-template <uint8_t maxTabs, uint8_t tabHeaderMargin, uint8_t contentPadding>
-class TabControl : public Container<maxTabs>
+class TabControl : public Container
 {
 	private:
-		UIElement* _headers[maxTabs];								/**< Array with all tab page tab header elements. */
+		UIElement** _headers;										/**< Array with all tab page tab header elements. */
 		uint8_t _lastDrawnTabIndex;									/**< Index of the last drawn tab */
 		TabPositions_t _tabPosition;								/**< Position of the tabs. */
-
+		uint8_t _tabHeaderMargin;									/**< Margin around the tab page tabs. */
+		
 		void* _controlContext;										/**< Context pointer that is returned with the _onSelectedTabChanged function pointer */
 		void(*_onSelectedTabChanged)(void* controlContext);			/**< Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed. */
 		
@@ -44,8 +44,10 @@ class TabControl : public Container<maxTabs>
 		 * @param tabPosition Position of the tabs.
 		 * @param controlContext Context pointer that is returned with the _onSelectedTabChanged function pointer
 		 * @param onSelectedTabChanged Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed.
+		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
+		 * @param tabHeaderMargin Margin around the tab page tabs.
 		 */
-		TabControl(uint16_t width, uint16_t height, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL);
+		TabControl(uint16_t width, uint16_t height, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL, uint8_t maxNumItems = DEFAULT_MAX_TABCONTROL_TABS, uint8_t tabHeaderMargin = DEFAULT_TABCONTROL_TABHEADER_MARGIN);
 	
 		/**
 		 * Constructor of the TabControl.
@@ -56,8 +58,10 @@ class TabControl : public Container<maxTabs>
 		 * @param tabPosition Position of the tabs.
 		 * @param controlContext Context pointer that is returned with the _onSelectedTabChanged function pointer
 		 * @param onSelectedTabChanged Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed.
+		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
+		 * @param tabHeaderMargin Margin around the tab page tabs.
 		 */
-		TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL);
+		TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL, uint8_t maxNumItems = DEFAULT_MAX_TABCONTROL_TABS, uint8_t tabHeaderMargin = DEFAULT_TABCONTROL_TABHEADER_MARGIN);
 	
 		/**
 		 * Method used for drawing of the TabControl.
@@ -108,13 +112,5 @@ s		 * @return true if the key was processed; false if not.
 		 */
 		virtual void RecalculateLayout() override;
 };
-
-/********************************************************************************************************************************************/
-
-#define MAX_TABCONTROL_TABS			5		/**< Maximum number of tabs that are supported. */
-#define TABCONTROL_TABHEADER_MARGIN	2		/**< Margin around the tab page tabs. */
-#define TABCONTROL_CONTENT_PADDING	5		/**< Padding between the content region and the tab content */
-
-typedef TabControl<MAX_TABCONTROL_TABS, TABCONTROL_TABHEADER_MARGIN, TABCONTROL_CONTENT_PADDING> TabControlDefault;		/**< Type definition for a TabControl using the default settings. */
 
 #endif /* TABCONTROL_H_ */

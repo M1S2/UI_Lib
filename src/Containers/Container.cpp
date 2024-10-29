@@ -4,22 +4,21 @@
 
 #include "Containers/Container.h"
 
-template <uint8_t maxItems>
-Container<maxItems>::Container() : UIElement(UI_CONTAINER)
+Container::Container(uint8_t maxNumItems) : UIElement(UI_CONTAINER)
 {
 	_numItems = 0;
+	_maxNumItems = maxNumItems;
+	_items = new UIElement*[maxNumItems]();
 }
 
-template <uint8_t maxItems>
-UIElement* Container<maxItems>::GetSelectedItem()
+UIElement* Container::GetSelectedItem()
 {
 	return _items[_selectedItemIndex];
 }
 
-template <uint8_t maxItems>
-bool Container<maxItems>::AddItem(UIElement* item)
+bool Container::AddItem(UIElement* item)
 {
-	if (_numItems >= maxItems) { return false; }
+	if (_numItems >= _maxNumItems) { return false; }
 
 	item->Parent = this;
 	_items[_numItems] = item;
@@ -30,8 +29,7 @@ bool Container<maxItems>::AddItem(UIElement* item)
 	return true;
 }
 
-template <uint8_t maxItems>
-bool Container<maxItems>::NextItem()
+bool Container::NextItem()
 {
 	if (_selectedItemIndex >= _numItems - 1)
 	{
@@ -49,8 +47,7 @@ bool Container<maxItems>::NextItem()
 	return false;
 }
 
-template <uint8_t maxItems>
-bool Container<maxItems>::PreviousItem()
+bool Container::PreviousItem()
 {
 	if (_selectedItemIndex <= 0)
 	{
@@ -68,8 +65,7 @@ bool Container<maxItems>::PreviousItem()
 	return false;
 }
 
-template <uint8_t maxItems>
-bool Container<maxItems>::NextControlItem()
+bool Container::NextControlItem()
 {
 	int nextControlIndex = -1;
 	for (int i = (_selectedItemIndex + 1); i < _numItems; i++)
@@ -97,8 +93,7 @@ bool Container<maxItems>::NextControlItem()
 	return false;
 }
 
-template <uint8_t maxItems>
-bool Container<maxItems>::PreviousControlItem()
+bool Container::PreviousControlItem()
 {
 	int previousControlIndex = -1;
 	for (int i = (_selectedItemIndex - 1); i >= 0; i--)
@@ -126,8 +121,7 @@ bool Container<maxItems>::PreviousControlItem()
 	return false;
 }
 
-template <uint8_t maxItems>
-void Container<maxItems>::GetItemsBoundingBox(uint16_t* x, uint16_t* y, uint16_t* w, uint16_t* h)
+void Container::GetItemsBoundingBox(uint16_t* x, uint16_t* y, uint16_t* w, uint16_t* h)
 {
 	// Reset input parameters
 	*x = 65535;

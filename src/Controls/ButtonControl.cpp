@@ -6,28 +6,27 @@
 #include "Core/UI_Manager.h"
 #include <string.h>
 
-template <int StringLength>
-ButtonControl<StringLength>::ButtonControl(const char* buttonText, void* controlContext, void(*onClick)(void* controlContext)) : UIElement(UI_CONTROL)
+ButtonControl::ButtonControl(const char* buttonText, void* controlContext, void(*onClick)(void* controlContext), int maxStringLength) : UIElement(UI_CONTROL)
 {
-	strncpy(_buttonText, buttonText, StringLength);		// Copy a maximum number of StringLength characters to the _buttonText buffer. If text is shorter, the array is zero padded.
-	_buttonText[StringLength - 1] = '\0';				// The _buttonText buffer must contain at least one termination character ('\0') at the end to protect from overflow.
+	_buttonText = new char[maxStringLength]();
+	strncpy(_buttonText, buttonText, maxStringLength);	// Copy a maximum number of StringLength characters to the _buttonText buffer. If text is shorter, the array is zero padded.
+	_buttonText[maxStringLength - 1] = '\0';			// The _buttonText buffer must contain at least one termination character ('\0') at the end to protect from overflow.
 	_controlContext = controlContext;
 	_onClick = onClick;
 }
 
-template <int StringLength>
-ButtonControl<StringLength>::ButtonControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* buttonText, void* controlContext, void(*onClick)(void* controlContext)) : UIElement(locX, locY, UI_CONTROL)
+ButtonControl::ButtonControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* buttonText, void* controlContext, void(*onClick)(void* controlContext), int maxStringLength) : UIElement(locX, locY, UI_CONTROL)
 {
 	Width = width;
 	Height = height;
-	strncpy(_buttonText, buttonText, StringLength);		// Copy a maximum number of StringLength characters to the _buttonText buffer. If text is shorter, the array is zero padded.
-	_buttonText[StringLength - 1] = '\0';				// The _buttonText buffer must contain at least one termination character ('\0') at the end to protect from overflow.
+	_buttonText = new char[maxStringLength]();
+	strncpy(_buttonText, buttonText, maxStringLength);	// Copy a maximum number of StringLength characters to the _buttonText buffer. If text is shorter, the array is zero padded.
+	_buttonText[maxStringLength - 1] = '\0';			// The _buttonText buffer must contain at least one termination character ('\0') at the end to protect from overflow.
 	_controlContext = controlContext;
 	_onClick = onClick;
 }
 
-template <int StringLength>
-void ButtonControl<StringLength>::Draw(bool redraw)
+void ButtonControl::Draw(bool redraw)
 {
 	if (Visible)
 	{
@@ -55,8 +54,7 @@ void ButtonControl<StringLength>::Draw(bool redraw)
 	}
 }
 
-template <int StringLength>
-bool ButtonControl<StringLength>::KeyInput(Keys_t key)
+bool ButtonControl::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
@@ -68,8 +66,7 @@ bool ButtonControl<StringLength>::KeyInput(Keys_t key)
 	}
 }
 
-template <int StringLength>
-void ButtonControl<StringLength>::RecalculateDimensions()
+void ButtonControl::RecalculateDimensions()
 {
 	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 2;
 	

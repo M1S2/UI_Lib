@@ -13,7 +13,8 @@
 #include "../Controls/ButtonControl.h"
 #include "../Core/UI_Icons.h"
 
-#define MAX_MESSAGEDIALOG_STRING_LENGTH		55			/**< Default string length for the message dialog text. */
+#define DEFAULT_MAX_MSG_STRING_LENGTH		55			/**< Default string length for the message dialog text. */
+#define DEFAULT_MSG_BUTTON_HEIGHT			20			/**< Default height for the message box buttons */
 
 #define MSG_INFO_COLOR		RGB565(0x00, 0x66, 0xCC)
 #define MSG_WARNING_COLOR	RGB565(0xFF, 0xFF, 0x00)
@@ -39,22 +40,19 @@ typedef enum MessageButtons
 	MSG_BTN_OK_CANCEL		/**< Dialog with an OK and CANCEL button. */
 }MessageButtons_t;
 
-#define DEFAULT_MSG_BUTTON_HEIGHT	20			/**< Default height for the message box buttons */
-
 /**
  * Class for a message dialog with optional Ok and Cancel buttons.
- * @tparam messageLength Length for the internally used string buffer of the Label of the MessageDialog. This is the maximum length that the message can be.
  */
-template <int messageLength = MAX_MESSAGEDIALOG_STRING_LENGTH>
 class MessageDialog : public UIElement
 {
 	private:
-		ContainerPage<5> _page;								/**< Container page that is internally used to group and handle all elements of the message dialog. */
+		uint16_t _maxMsgLength;								/**< Maximum length for the internally used string buffer of the Label of the MessageDialog. This is the maximum length that the message can be. */
+		ContainerPage _page;								/**< Container page that is internally used to group and handle all elements of the message dialog. */
 		Icon _severityIcon;									/**< Icon UIElement used to display the message severity. */
 		MessageSeverity_t _severity;						/**< Message severity. */
-		Label<messageLength> _message;						/**< Label UIElement used to display the dialog message. */
-		ButtonControl<3> _buttonOk;							/**< Optional Ok button. */
-		ButtonControl<7> _buttonCancel;						/**< Optional Cancel button. */
+		Label _message;										/**< Label UIElement used to display the dialog message. */
+		ButtonControl _buttonOk;							/**< Optional Ok button. */
+		ButtonControl _buttonCancel;						/**< Optional Cancel button. */
 
 	public:
 	
@@ -70,8 +68,9 @@ class MessageDialog : public UIElement
 		 * @param controlContext Context pointer that is returned with the onOkClick and onCancelClick function pointers
 		 * @param onOkClick Function pointer for onOkClick event. This function is called when the Ok button is clicked.
 		 * @param onCancelClick Function pointer for onCancelClick event. This function is called when the Cancel button is clicked.
+		 * @param maxMsgLength Maximum length for the internally used string buffer of the Label of the MessageDialog. This is the maximum length that the message can be.
 		 */
-		MessageDialog(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* message, MessageSeverity_t severity, MessageButtons_t buttons = MSG_BTN_OK, void* controlContext = NULL, void(*onOkClick)(void* controlContext) = NULL, void(*onCancelClick)(void* controlContext) = NULL);
+		MessageDialog(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* message, MessageSeverity_t severity, MessageButtons_t buttons = MSG_BTN_OK, void* controlContext = NULL, void(*onOkClick)(void* controlContext) = NULL, void(*onCancelClick)(void* controlContext) = NULL, uint16_t maxMsgLength = DEFAULT_MAX_MSG_STRING_LENGTH);
 		
 		/**
 		 * Method used for drawing of the MessageDialog.
@@ -91,9 +90,5 @@ class MessageDialog : public UIElement
 		 */
 		virtual void RecalculateDimensions() override;
 };
-
-/********************************************************************************************************************************************/
-
-typedef MessageDialog<> MessageDialogDefault;			/**< MessageDialog using the MAX_MESSAGEDIALOG_STRING_LENGTH as string length */
 
 #endif /* MESSAGEDIALOG_H_ */

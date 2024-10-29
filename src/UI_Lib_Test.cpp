@@ -46,41 +46,41 @@ void OnShowError(void* context);
 
 #define ELEMENT_MARGIN	10
 
-Label<10> labelBool("Boolean", COLOR_WHITE);
+Label labelBool("Boolean", COLOR_WHITE, NULL, 0, 0, 10);
 BoolIndicator boolInd1(&boolVal1);
 BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
 BoolControl boolCtrl2(&boolVal2, &boolVal2, &OnBoolVal2Changed);
-Icon boolIcon(100, 30, settings_window_width, settings_window_height, settings_window_bits);
-ContainerStackDefault stack_boolean(STACK_LAYOUT_VERTICAL_LEFT);
-ContainerPageDefault page_boolean;
-Label<15> labelEnum("Enumerations", COLOR_WHITE);
+Icon boolIcon(settings_window_width, settings_window_height, settings_window_bits, COLOR_ORANGE, 100, 30);
+ContainerStack stack_boolean(STACK_LAYOUT_VERTICAL_LEFT);
+ContainerPage page_boolean;
+Label labelEnum("Enumerations", COLOR_WHITE, NULL, 0, 0, 15);
 EnumIndicator<TestEnum> enumInd1(&enumVal1, TestEnumNames, 3);
 EnumControl<TestEnum> enumCtrl1(&enumVal1, TestEnumNames, 3);
 Icon enumCtrl1Icon(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-ContainerStackDefault stack_enumCtrl1(STACK_LAYOUT_HORIZONTAL_TOP);
+ContainerStack stack_enumCtrl1(STACK_LAYOUT_HORIZONTAL_TOP);
 EnumControl<TestEnum> enumCtrl2(&enumVal1, TestEnumNames, 3);
 Icon enumCtrl2Icon(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_enumCtrl2(STACK_LAYOUT_HORIZONTAL_CENTER);
-ContainerStackDefault stack_enum(STACK_LAYOUT_VERTICAL_CENTER);
-ContainerListDefault list1;
+ContainerStack stack_enumCtrl2(STACK_LAYOUT_HORIZONTAL_CENTER);
+ContainerStack stack_enum(STACK_LAYOUT_VERTICAL_CENTER);
+ContainerList list1;
 
-Label<10> labelNum(ELEMENT_MARGIN, Y_ROW1, "Numerics", COLOR_WHITE);
+Label labelNum("Numerics", COLOR_WHITE, NULL, ELEMENT_MARGIN, Y_ROW1, 10);
 NumericIndicator<int> numInd2(ELEMENT_MARGIN, Y_ROW2, &numVal2, "A", 5000, 0);
 NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 2);
 NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed);
 ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, &numVal1, -500, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20);
-ContainerPageDefault page_numeric;
+ContainerPage page_numeric;
 
-Label<10> labelButtons(ELEMENT_MARGIN, Y_ROW1, "Buttons", COLOR_WHITE);
-ButtonControlDefault buttonReset(ELEMENT_MARGIN, Y_ROW2, 0, 0, "Reset", NULL, &OnButtonReset);
-ButtonControlDefault buttonShowTestError(ELEMENT_MARGIN, Y_ROW4, 0, 0, "Show Error", NULL, &OnShowError);
-MessageDialogDefault msgReset(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Reset sucessful.", MSG_INFO, MSG_BTN_OK, NULL, &OnMsgOk);
-MessageDialogDefault msgTestWarning(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Warning message.\nWith Newline.", MSG_WARNING, MSG_BTN_OK, NULL, &OnMsgOk);
-MessageDialogDefault msgTestError(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
-ContainerPageDefault page_dialogs;
+Label labelButtons("Buttons", COLOR_WHITE, NULL, ELEMENT_MARGIN, Y_ROW1, 10);
+ButtonControl buttonReset(ELEMENT_MARGIN, Y_ROW2, 0, 0, "Reset", NULL, &OnButtonReset);
+ButtonControl buttonShowTestError(ELEMENT_MARGIN, Y_ROW4, 0, 0, "Show Error", NULL, &OnShowError);
+MessageDialog msgReset(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Reset sucessful.", MSG_INFO, MSG_BTN_OK, NULL, &OnMsgOk);
+MessageDialog msgTestWarning(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Warning message.\nWith Newline.", MSG_WARNING, MSG_BTN_OK, NULL, &OnMsgOk);
+MessageDialog msgTestError(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
+ContainerPage page_dialogs;
 
-Label<10> labelGrid("Grid", COLOR_WHITE);
-Label<10> labelGridSide("Grid Side");
+Label labelGrid("Grid", COLOR_WHITE);
+Label labelGridSide("Grid Side");
 Icon icon1(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon2(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon3(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
@@ -90,24 +90,24 @@ Icon icon6(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon7(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon8(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
 Icon icon9(ui_icon_speed_width, ui_icon_speed_height, ui_icon_speed_bits);
-ContainerGrid<11, 5, 5, true, true> grid_icons;
+ContainerGrid grid_icons(11, 5, 5, true, true);
 
-Label<10> labelTab1("#1", COLOR_WHITE);
+Label labelTab1("#1", COLOR_WHITE);
 Icon iconTab1(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_Tab1Header(STACK_LAYOUT_HORIZONTAL_CENTER);
-Label<10> labelTab2("#2", COLOR_WHITE);
+ContainerStack stack_Tab1Header(STACK_LAYOUT_HORIZONTAL_CENTER);
+Label labelTab2("#2", COLOR_WHITE);
 Icon iconTab2(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_Tab2Header(STACK_LAYOUT_HORIZONTAL_CENTER);
-Label<10> labelTab3("#3", COLOR_WHITE);
+ContainerStack stack_Tab2Header(STACK_LAYOUT_HORIZONTAL_CENTER);
+Label labelTab3("#3", COLOR_WHITE);
 Icon iconTab3(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_Tab3Header(STACK_LAYOUT_HORIZONTAL_CENTER);
-Label<10> labelTab4("#4", COLOR_WHITE);
+ContainerStack stack_Tab3Header(STACK_LAYOUT_HORIZONTAL_CENTER);
+Label labelTab4("#4", COLOR_WHITE);
 Icon iconTab4(icon_info_width, icon_info_height, icon_info_bits);
-ContainerStackDefault stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER);
-TabControlDefault tabControl(0, 35, DISPLAY_WIDTH, DISPLAY_HEIGHT - 35, TAB_POSITION_TOP);
+ContainerStack stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER);
+TabControl tabControl(0, 35, DISPLAY_WIDTH, DISPLAY_HEIGHT - 35, TAB_POSITION_TOP);
 
-ContainerPageDefault mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-LabelDefault labelUILib(0, 0, "UI LIB", &FreeMono18pt7b, COLOR_ORANGE);
+ContainerPage mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+Label labelUILib("UI LIB", COLOR_ORANGE, &FreeMono18pt7b);
 
 void OnBoolVal1Changed(void* context)
 {

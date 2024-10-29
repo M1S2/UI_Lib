@@ -20,19 +20,18 @@ struct PageItemConfig
 
 /**
  * class for a container that is showing all items at a time.
- * @tparam maxItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
  */
-template <uint8_t maxItems>
-class ContainerPage : public Container<maxItems>
+class ContainerPage : public Container
 {
 	private:
-		PageItemConfig _itemConfiguration[maxItems];	/**< Configuration data for all items inside the page. */
+		PageItemConfig* _itemConfiguration;		/**< Configuration data for all items inside the page. */
 
 	public:
 		/**
 		 * Constructor of the ContainerPage.
+		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
 		 */
-		ContainerPage();
+		ContainerPage(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS);
 		
 		/**
 		 * Constructor of the ContainerPage.
@@ -40,8 +39,9 @@ class ContainerPage : public Container<maxItems>
 		 * @param locY Y Location of the upper left corner of the ContainerPage
 		 * @param width Drawing width of the ContainerPage
 		 * @param height Drawing height of the ContainerPage
+		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
 		 */
-		ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height);
+		ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS);
 
 		/**
 		 * Method used for drawing of the ContainerPage.
@@ -79,9 +79,5 @@ class ContainerPage : public Container<maxItems>
 		 */
 		virtual void RecalculateLayout() override;
 };
-
-/********************************************************************************************************************************************/
-
-typedef ContainerPage<MAX_CONTAINER_ITEMS> ContainerPageDefault;		/**< Type definition for a ContainerPage using the default settings. */
 
 #endif /* CONTAINERPAGE_H_ */

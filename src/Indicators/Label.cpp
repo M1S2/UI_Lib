@@ -5,76 +5,17 @@
 #include "Indicators/Label.h"
 #include <string.h>
 
-template <int StringLength>
-Label<StringLength>::Label(const char* text) : UIElement(UI_INDICATOR)
+Label::Label(const char* text, uint16_t color, const GFXfont* font, uint16_t locX, uint16_t locY, uint16_t maxStringLength) : UIElement(locX, locY, UI_INDICATOR)
 {
+	Text = new char[maxStringLength];
+	_maxStringLength = maxStringLength;
 	SetText(text);
-	_font = NULL;
-	_wasColorSet = false;
-}
-
-template <int StringLength>
-Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text) : UIElement(locX, locY, UI_INDICATOR)
-{
-	SetText(text);
-	_font = NULL;
-	_wasColorSet = false;
-}
-
-template <int StringLength>
-Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, uint16_t color) : UIElement(locX, locY, UI_INDICATOR)
-{
-	SetText(text);
-	_font = NULL;
 	_color = color;
-	_wasColorSet = true;
-}
-
-template <int StringLength>
-Label<StringLength>::Label(const char* text, const GFXfont* font, uint16_t color) : UIElement(UI_INDICATOR)
-{
-	SetText(text);
 	_font = font;
-	_color = color;
-	_wasColorSet = true;
 }
 
-template <int StringLength>
-Label<StringLength>::Label(const char* text, const GFXfont* font) : UIElement(UI_INDICATOR)
+void Label::Draw(bool redraw)
 {
-	SetText(text);
-	_font = font;
-	_wasColorSet = false;
-}
-
-template <int StringLength>
-Label<StringLength>::Label(const char* text, uint16_t color) : UIElement(UI_INDICATOR)
-{
-	SetText(text);
-	_font = NULL;
-	_color = color;
-	_wasColorSet = true;
-}
-
-template <int StringLength>
-Label<StringLength>::Label(uint16_t locX, uint16_t locY, const char* text, const GFXfont* font, uint16_t color) : UIElement(locX, locY, UI_INDICATOR)
-{
-	SetText(text);
-	_font = font;
-	_color = color;
-	_wasColorSet = true;
-}
-
-template <int StringLength>
-void Label<StringLength>::Draw(bool redraw)
-{
-	if(!_wasColorSet)
-	{
-		// Initialize the color with the foreground color from the UiManager if the color wasn't set in the constructor
-		_color = UiManager.ColorForeground;
-		_wasColorSet = true;
-	}
-
 	if (Visible)
 	{
 		if(redraw || !_lastDrawnVisible)
@@ -92,7 +33,7 @@ void Label<StringLength>::Draw(bool redraw)
 				font_y_offset = h;
 			}
 			UiManager.Gfx->setCursor(LocX + UiManager.ElementMargin, LocY + UiManager.ElementMargin + font_y_offset);
-			UiManager.Gfx->setTextColor(_color);
+			UiManager.Gfx->setTextColor((_color == LABEL_COLOR_NOTSET ? UiManager.ColorForeground : _color));
 			UiManager.Gfx->print(Text);
 			
 			if(_font !=NULL) 
@@ -109,15 +50,13 @@ void Label<StringLength>::Draw(bool redraw)
 	}
 }
 
-template <int StringLength>
-void Label<StringLength>::SetText(const char* text)
+void Label::SetText(const char* text)
 {
-	strncpy(Text, text, StringLength);		// Copy a maximum number of StringLength characters to the Text buffer. If text is shorter, the array is zero padded.
-	Text[StringLength - 1] = '\0';			// The Text buffer must contain at least one termination character ('\0') at the end to protect from overflow.
+	strncpy(Text, text, _maxStringLength);	// Copy a maximum number of StringLength characters to the Text buffer. If text is shorter, the array is zero padded.
+	Text[_maxStringLength - 1] = '\0';		// The Text buffer must contain at least one termination character ('\0') at the end to protect from overflow.
 }
 
-template <int StringLength>
-void Label<StringLength>::RecalculateDimensions()
+void Label::RecalculateDimensions()
 {
 	if(_font != NULL)
 	{

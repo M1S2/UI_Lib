@@ -5,15 +5,13 @@
 #include "Containers/ContainerStack.h"
 #include "Core/UI_Manager.h"
 
-template <uint8_t maxItems>
-ContainerStack<maxItems>::ContainerStack(StackLayout_t stackLayout)
+ContainerStack::ContainerStack(StackLayout_t stackLayout, uint8_t maxNumItems) : Container(maxNumItems)
 {
 	this->Type = UI_CONTAINER;
 	_stackLayout = stackLayout;
 }
 
-template <uint8_t maxItems>
-ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout)
+ContainerStack::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout, uint8_t maxNumItems) : Container(maxNumItems)
 {
 	this->Type = UI_CONTAINER;
 	this->LocX = locX;
@@ -23,8 +21,7 @@ ContainerStack<maxItems>::ContainerStack(uint16_t locX, uint16_t locY, uint16_t 
 	_stackLayout = stackLayout;
 }
 
-template <uint8_t maxItems>
-void ContainerStack<maxItems>::Draw(bool redraw)
+void ContainerStack::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
@@ -41,8 +38,7 @@ void ContainerStack<maxItems>::Draw(bool redraw)
 	}
 }
 
-template <uint8_t maxItems>
-bool ContainerStack<maxItems>::KeyInput(Keys_t key)
+bool ContainerStack::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
@@ -55,8 +51,7 @@ bool ContainerStack<maxItems>::KeyInput(Keys_t key)
 	}
 }
 
-template <uint8_t maxItems>
-void ContainerStack<maxItems>::InitItems()
+void ContainerStack::InitItems()
 {
 	this->_selectedItemIndex = 0;
 	if (this->GetSelectedItem()->Type != UI_CONTROL || this->GetSelectedItem()->Visible == false)
@@ -65,8 +60,7 @@ void ContainerStack<maxItems>::InitItems()
 	}
 }
 
-template <uint8_t maxItems>
-void ContainerStack<maxItems>::RecalculateDimensions()
+void ContainerStack::RecalculateDimensions()
 {
 	uint16_t x, y, w, h;
 	this->GetItemsBoundingBox(&x, &y, &w, &h);
@@ -74,8 +68,7 @@ void ContainerStack<maxItems>::RecalculateDimensions()
 	this->Height = h;
 }
 
-template <uint8_t maxItems>
-void ContainerStack<maxItems>::RecalculateLayout()
+void ContainerStack::RecalculateLayout()
 {
 	uint16_t largestItemDimension = 0;			// Width of the largest item if STACK_LAYOUT_VERTICAL, Height of the largest item if STACK_LAYOUT_HORIZONTAL
 	for(int i = 0; i < this->_numItems; i++)

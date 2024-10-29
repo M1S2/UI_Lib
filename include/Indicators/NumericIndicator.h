@@ -8,12 +8,13 @@
 
 #include "../Core/UIElement.h"
 
+#define DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH		15						/**< Default max string length for a numeric indicator. */
+
 /**
  * Class for a numeric indicator that is only showing a numeric variable value.
  * @tparam T Type of numeric variable handled by this indicator. This can be e.g. float or int.
- * @tparam stringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
  */
-template <class T, int stringBufferLength = 15>
+template <class T>
 class NumericIndicator : public UIElement
 {
 	private:
@@ -27,7 +28,7 @@ class NumericIndicator : public UIElement
 		uint8_t numNonFractionalDigits(T number);
 		
 		const char* _unitPrefix;						/**< Current display prefix character ("m", "k", "M") */
-		char _stringDrawBuffer[stringBufferLength];		/**< Buffer holding the string that is drawn to the screen. This is only recalculated on the firstPage and if the value has changed. `char stringBufferLen = _numDigits + 1 + strlen(_unitPrefix) + strlen(_baseUnit) + 1;` */
+		char* _stringDrawBuffer;						/**< Buffer holding the string that is drawn to the screen. This is only recalculated on the firstPage and if the value has changed. `char stringBufferLen = _numDigits + 1 + strlen(_unitPrefix) + strlen(_baseUnit) + 1;` */
 		
 	protected:
 		const char* _baseUnit;							/**< Base unit that is appended to the calculated prefix. E.g. "V" for voltage values. To use the "%" sign as unit, you have to use "%%" as string. */
@@ -48,8 +49,9 @@ class NumericIndicator : public UIElement
 		 * @param baseUnit Base unit that is appended to the calculated prefix. E.g. "V" for voltage values. To use the "%" sign as unit, you have to use "%%" as string.
 		 * @param maxValue Maximum value that can be shown by this numeric indicator. It is used to determine the number of non-fractional digits.
 		 * @param numFractionalDigits Number of fractional digits that are shown by this indicator. E.g. 1.234 V has 3 fractional digits.
+		 * @param maxStringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
 		 */
-		NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits);
+		NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
 	
 		/**
 		 * Constructor of the NumericIndicator.
@@ -59,9 +61,22 @@ class NumericIndicator : public UIElement
 		 * @param baseUnit Base unit that is appended to the calculated prefix. E.g. "V" for voltage values. To use the "%" sign as unit, you have to use "%%" as string.
 		 * @param maxValue Maximum value that can be shown by this numeric indicator. It is used to determine the number of non-fractional digits.
 		 * @param numFractionalDigits Number of fractional digits that are shown by this indicator. E.g. 1.234 V has 3 fractional digits.
+		 * @param maxStringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
 		 */
-		NumericIndicator(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits);
+		NumericIndicator(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
 		
+		/**
+		 * Destructor of the NumericIndicator
+		 */
+		~NumericIndicator()
+		{
+			if(_stringDrawBuffer)
+			{
+				free(_stringDrawBuffer);
+				_stringDrawBuffer = NULL;
+			}
+		}
+
 		/**
 		 * Method used for drawing of the NumericIndicator.
 		 */
