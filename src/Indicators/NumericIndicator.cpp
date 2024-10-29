@@ -107,7 +107,7 @@ void NumericIndicator<T, stringBufferLength>::Draw(bool redraw)
 
 			//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item
 			char formatStringBuffer[15];
-			sprintf(formatStringBuffer, "%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
+			sprintf(formatStringBuffer, "%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), max(0, _numFractionalDigits + _unitPrefixPower), _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less); limit the number of factional characters to zero (no negative values)
 			sprintf(_stringDrawBuffer, formatStringBuffer, fabs(_displayValue));
 
 			uint16_t minus_width;
@@ -137,9 +137,10 @@ void NumericIndicator<T, stringBufferLength>::RecalculateDimensions()
 	
 	calculateDisplayValue(_maxValue);
 	_unitPrefix = "m";			// make sure to set the _unitPrefix to a value != "" to take this width into account
+
 	//https://stackoverflow.com/questions/5932214/printf-string-variable-length-item	
 	char formatStringBuffer[15];
-	sprintf(formatStringBuffer, "-%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), _numFractionalDigits + _unitPrefixPower, _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less)
+	sprintf(formatStringBuffer, "-%%0%d.%df%s%s", _numDigits + (_numFractionalDigits > 0 ? 1 : 0), max(0, _numFractionalDigits + _unitPrefixPower), _unitPrefix, _baseUnit);       // if _numFractionalDigits is 0, no decimal point is used (one character less); limit the number of factional characters to zero (no negative values)
 	sprintf(_stringDrawBuffer, formatStringBuffer, 0.0f);		// calculate the length of a string with all zeroes ("0" is a wide characters)
 
 	uint16_t minus_width;

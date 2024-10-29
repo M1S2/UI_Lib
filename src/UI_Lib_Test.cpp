@@ -66,7 +66,7 @@ ContainerListDefault list1;
 
 Label<10> labelNum(ELEMENT_MARGIN, Y_ROW1, "Numerics", COLOR_WHITE);
 NumericIndicator<int> numInd2(ELEMENT_MARGIN, Y_ROW2, &numVal2, "A", 5000, 0);
-NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 3);
+NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 2);
 NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed);
 ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, &numVal1, -500, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20);
 ContainerPageDefault page_numeric;
