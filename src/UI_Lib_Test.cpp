@@ -35,9 +35,8 @@ void OnShowError(void* context);
 #define COLOR_WHITE		RGB565(0xFF, 0xFF, 0xFF)
 #define COLOR_ORANGE	RGB565(0xFF, 0x88, 0x00)
 
-#define TAB_WIDTH	70
-#define X_COLUMN1	(TAB_WIDTH + 5)
-#define X_COLUMN2	(X_COLUMN1 + 50)
+#define X_COLUMN1	ELEMENT_MARGIN
+#define X_COLUMN2	125
 #define Y_ROW1		5
 #define Y_ROW2		35
 #define Y_ROW3		65
@@ -64,8 +63,9 @@ ContainerStack stack_enumCtrl2(STACK_LAYOUT_HORIZONTAL_CENTER);
 ContainerStack stack_enum(STACK_LAYOUT_VERTICAL_CENTER);
 ContainerList list1;
 
-Label labelNum("Numerics", COLOR_WHITE, NULL, ELEMENT_MARGIN, Y_ROW1, 10);
-NumericIndicator<int> numInd2(ELEMENT_MARGIN, Y_ROW2, &numVal2, "A", 5000, 0);
+Label labelNum("Numerics", COLOR_WHITE, NULL, X_COLUMN1, Y_ROW1, 10);
+NumericIndicator<int> numInd2(X_COLUMN1, Y_ROW2, &numVal2, "x", 5000, 0);
+Label lbl_numInd2_Text("Text...", LABEL_COLOR_NOTSET, NULL, X_COLUMN1, Y_ROW3);
 NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 2);
 NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed);
 ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, &numVal1, -500, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20);
@@ -122,7 +122,11 @@ void OnBoolVal2Changed(void* context)
 
 void OnNumVal1Changed(void* context)
 {
-	numVal2++;	
+	numVal2++;
+
+	char buffer[20];
+	itoa(numVal2, buffer, 10);
+	lbl_numInd2_Text.SetText(buffer);
 }
 
 void OnButtonReset(void* context)
@@ -180,6 +184,7 @@ UIElement* build_screen_numeric()
 	page_numeric.AddItem(&numCtrl1);
 	page_numeric.AddItem(&numInd2);
 	page_numeric.AddItem(&progress1);
+	page_numeric.AddItem(&lbl_numInd2_Text);
 	page_numeric.InitItems();
 	return &page_numeric;
 }

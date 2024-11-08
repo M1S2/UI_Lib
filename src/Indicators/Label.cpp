@@ -18,10 +18,17 @@ void Label::Draw(bool redraw)
 {
 	if (Visible)
 	{
-		if(redraw || !_lastDrawnVisible)
+		if(redraw || !_lastDrawnVisible || WasTextChangedSinceLastDraw)
 		{
 			_lastDrawnVisible = true;
+
 			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
+
+			if(WasTextChangedSinceLastDraw)
+			{
+				RecalculateDimensions();
+			}
+			WasTextChangedSinceLastDraw = false;
 
 			int font_y_offset = UiManager.FontHeight - 2 * UiManager.ElementPadding;
 			if(_font != NULL) 
@@ -54,6 +61,7 @@ void Label::SetText(const char* text)
 {
 	strncpy(Text, text, _maxStringLength);	// Copy a maximum number of StringLength characters to the Text buffer. If text is shorter, the array is zero padded.
 	Text[_maxStringLength - 1] = '\0';		// The Text buffer must contain at least one termination character ('\0') at the end to protect from overflow.
+	WasTextChangedSinceLastDraw = true;
 }
 
 void Label::RecalculateDimensions()

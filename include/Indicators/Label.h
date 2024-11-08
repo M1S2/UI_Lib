@@ -24,6 +24,7 @@ class Label : public UIElement
 
 	public:
 		char* Text;									/**< Character buffer holding the string drawn by the Label. */
+		bool WasTextChangedSinceLastDraw;			/**< Flag indicating if the Text was changed since the last draw. This is set to true by the SetText() method and back to false after drawing. */
 
 		/**
 		 * Constructor of the Label.
