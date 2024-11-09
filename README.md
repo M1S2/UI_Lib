@@ -30,6 +30,49 @@ At this point, nothing is displayed yet. There is no visual tree assigned (and c
 
 Now the user interface is shown but no user inputs are processed. You have to feed the `UiManager.KeyInput` function whenever a key was pressed. Rotary encoder inputs should also be encoded as key presses (KEYUP, KEYDOWN, KEYOK).
 
+## Example
+```C++
+#include "Core/UI_Manager.h"
+#include "Core/UI_Elements.h"
+
+bool boolVal1;
+Label labelBool("Boolean");
+BoolIndicator boolInd1(&boolVal1);
+BoolControl boolCtrl1(&boolVal1, &boolVal1);
+ContainerStack stack_boolean;
+
+// Call this method to build a simple Visual Tree and attach it to the UI_Manager
+void UI_Test_BuildTree()
+{
+	stack_boolean.AddItem(&labelBool);
+	stack_boolean.AddItem(&boolInd1);
+	stack_boolean.AddItem(&boolCtrl1);
+	stack_boolean.InitItems();
+	UiManager.ChangeVisualTreeRoot(&stack_boolean);
+}
+
+// Call this method from outside to initialize the UI_Lib
+void UI_Test_Init(Adafruit_GFX* gfx)
+{
+	UiManager.SetColors(RGB565(0x00, 0x00, 0x00), RGB565(0x00, 0xF7, 0x00), RGB565(0x00, 0x00, 0x00));
+	UiManager.Init(gfx);
+}
+
+// Call this method to redraw the screen
+void UI_Test_Draw()
+{
+	UiManager.Draw();
+}
+
+// Call this method to send user inputs (keys, encoder actions) to the UI_Manager
+void UI_Test_KeyInput(Keys_t key)
+{
+	UiManager.KeyInput(key);
+}
+```
+
+A more detailed example can be found in `UI_Lib_Test.cpp`
+
 ## Available components
 This section lists all available UI elements (containers, controls, indicators). Base classes are not listed here.
 
@@ -50,6 +93,10 @@ This section lists all available UI elements (containers, controls, indicators).
 	- Supports children: Yes (adding with `ContainerStack::AddItem` function)
 	- Supported user inputs: 
 		- KEYUP and KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
+- TabControl: This control can be used to show a tab control with each tab page holding one UI element. Each tab header is also holding one UI element.
+	- Supports children: Yes (adding with `TabControl::AddItem` function)
+	- Supported user inputs:
+		- KEYLEFT and KEYRIGHT to go to the previous/next tab page. 
 
 ### Controls
 - BoolControl: This control can be used to toggle the value of an boolean variable. 
@@ -78,10 +125,6 @@ This section lists all available UI elements (containers, controls, indicators).
 		- KEYCOMMA is used as x1 key at the moment (change to the base unit, *1) (only supported in edit mode).
 		- KEYMINUS to toggle from positive to negative value (only supported in edit mode).
 		- KEY0 to KEY9 to change the value of the digit at the cursor position to the corresponding value (only supported in edit mode).
-- TabControl: This control can be used to show a tab control with each tab page holding one UI element.
-	- Supports children: Yes (adding with TabControl::AddTab function)
-	- Supported user inputs:
-		- KEYLEFT and KEYRIGHT to go to the previous/next tab page. 
 
 ### Indicators
 - BoolIndicator: This indicator can be used to display the value of an boolean variable ("ON" or "OFF"). 
@@ -169,6 +212,13 @@ There are two private variables:
 - `UI_Manager::_visualTreeRoot`: This is the entry point into the visual tree (representing the layout of the user interface). It can be any object of type UIElement (no matter if it is a container, control or indicator).
 - `UI_Manager::_focusElement`: Each `UIElement` has a property `UIElement::ActiveChild` which is a pointer to the active child element of the element. Only elements with children use this property to track which item should be displayed or operated. Simple controls and indicators (without children support) have set this property to NULL (they are called leaf elements). The `UI_Manager::_focusElement` is found by traversing down the visual tree trough all active childs until an element without a child (`UIElement::ActiveChild == NULL`, leaf element) is reached.
 
+### Margin / Padding / Coordinates
+
+The following picture shows the used definitions for the `LocX` and `LocY` coordinates and the `Width` and `Height` of each `UIElement`.
+The `ElementMargin` is the distance from the outer border of the control to the focus frame. The `ElementPadding` is the distance from the focus frame to the element content.
+
+![MarginPaddingCoordinatesOverview](Doc/MarginPaddingCoordinatesOverview.jpg)
+
 ### Drawing
 If the visual tree root of the `UI_Manager` is NULL (not set by `UI_Manager::ChangeVisualTreeRoot`) nothing is drawn by the `UI_Manager::Draw` function.
 
@@ -182,45 +232,3 @@ If the `UI_Manager::KeyInput` function is called, the received key is first send
 After each key input, the `UI_Manager::_focusElement` is recalculated.
 
 ![VisualTreeKeyHandling](Doc/VisualTreeKeyHandling.jpg)
-
-## Example
-```C++
-#include "Core/UI_Manager.h"
-#include "Core/UI_Elements.h"
-
-bool boolVal1;
-Label<10> labelBool("Boolean");
-BoolIndicator boolInd1(&boolVal1);
-BoolControl boolCtrl1(&boolVal1, &boolVal1);
-ContainerStackDefault stack_boolean;
-
-// Call this method to build a simple Visual Tree and attach it to the UI_Manager
-void UI_Test_BuildTree()
-{
-	stack_boolean.AddItem(&labelBool);
-	stack_boolean.AddItem(&boolInd1);
-	stack_boolean.AddItem(&boolCtrl1);
-	stack_boolean.InitItems();
-	UiManager.ChangeVisualTreeRoot(&stack_boolean);
-}
-
-// Call this method from outside to initialize the UI_Lib
-void UI_Test_Init(Adafruit_GFX* gfx)
-{
-	UiManager.Init(gfx);
-}
-
-// Call this method to redraw the screen
-void UI_Test_Draw()
-{
-	UiManager.Draw(gfx);
-}
-
-// Call this method to send user inputs (keys, encoder actions) to the UI_Manager
-void UI_Test_KeyInput(Keys_t key)
-{
-	UiManager.KeyInput(key);
-}
-```
-
-A more detailed example can be found in `UI_Lib_Test.cpp`

@@ -246,7 +246,7 @@ void UI_Test_BuildTree()
 
 void UI_Test_Init(Adafruit_GFX* gfx)
 {
-	// Use the global UiManager object and don't create a new instace !!!
+	// Use the global UiManager object to access the singleton class.
 	UiManager.SetColors(RGB565(0x00, 0x00, 0x00), RGB565(0x00, 0xF7, 0x00), RGB565(0x00, 0x00, 0x00));
 	UiManager.Init(gfx);
 	//UiManager.SetFont(&FreeSerifItalic12pt7b);
