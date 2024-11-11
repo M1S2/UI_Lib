@@ -8,6 +8,10 @@ The library uses a Visual Tree concept that is similar to the C# WPF UI organiza
 There is always one single tree root element that has nested children. 
 There are UI elements that can have multiple children (e.g. pages) or elements that are "leaf" elements not supporting nested children (e.g. numeric controls).
 
+![UI_Lib_Test boolean page](Doc/UI_Lib_Test_BooleanPage.jpg)
+
+More example images can be found in the [Doc folder](Doc).
+
 ![Visual Tree](Doc/VisualTree.jpg)
 
 ## Initialization / Setup
@@ -30,7 +34,7 @@ At this point, nothing is displayed yet. There is no visual tree assigned (and c
 
 Now the user interface is shown but no user inputs are processed. You have to feed the `UiManager.KeyInput` function whenever a key was pressed. Rotary encoder inputs should also be encoded as key presses (KEYUP, KEYDOWN, KEYOK).
 
-## Example
+## Simple Example
 ```C++
 #include "Core/UI_Manager.h"
 #include "Core/UI_Elements.h"
