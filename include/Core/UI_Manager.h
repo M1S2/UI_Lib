@@ -97,6 +97,6 @@ class UI_Manager
 		bool KeyInput(Keys_t key);
 };
 
-extern UI_Manager UiManager;
+extern UI_Manager UiManager;			/**< Access object for the singleton instance of the UI_Manager */
 
 #endif /* UI_MANAGER_H_ */

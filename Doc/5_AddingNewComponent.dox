@@ -1,0 +1,66 @@
+/*! @page page_5_addingnewcomponent 5 - Adding a new component
+
+Before adding a new component, decide if it will be a container, control or indicator. Then create new .cpp and .h files in the corresponding folder inside the `UI_Lib` folder.
+Also add an include for the .h file to the `UI_Elements.h` file.
+
+@section headerfile_sec .h File
+All user interface elements must be derived from the `UIElement` class that contains some common parameters like location and size of the element. This class also requires the new element to implement a `UI_Manager::Draw` function that is used to display the element on screen. Also a `UI_Manager::KeyInput` function is defined that can be implemented optional (for controls, indicators don't need user interaction).
+
+The following code snippet shows an example class declaration for an new empty UI element (control).
+\code{.cpp}
+#ifndef NEWCONTROL_H_
+#define NEWCONTROL_H_
+#include "../Core/UIElement.h"
+
+class NewControl : public UIElement
+{
+protected:
+	bool* _valuePointer;
+	bool _valueDraw;
+
+public:
+	NewControl(unsigned char locX, unsigned char locY, bool* valuePointer);
+	virtual void Draw(bool redraw) override;
+	virtual bool KeyInput(Keys_t key) override;
+};
+
+#endif /* NEWCONTROL_H_ */ 
+\endcode
+
+@section sourcefile_sec .cpp File
+The following code snippet shows an example class definition for the new empty UIElement (control) from above.
+
+Call the `UIElement` constructor from this constructor and decide if the element is a container, control or indicator.
+In the `UI_Manager::KeyInput` function handle each key that is supported by the element and return true to indicate that the key was handled. If you return false from `UI_Manager::KeyInput` function, the key is propagated to the parent element by the UI_Lib Core.
+
+\code{.cpp}
+#include "NewControl.h"
+
+NewControl::NewControl(unsigned char locX, unsigned char locY, bool* valuePointer) : UIElement(locX, locY, UI_CONTROL)
+{
+	// Do further constructor tasks here
+}
+
+void NewControl::Draw(bool redraw)
+{
+	if (Visible)
+	{
+		// Draw the UI element using the Adafruit_GFX functions
+	}
+}
+
+bool NewControl::KeyInput(Keys_t key)
+{
+	switch (key)
+	{
+		// Handle all keys that the UI element supports here and return true, if the key was handled
+		case KEYOK:
+			return true;
+		default:
+			// Return false if the key wasn't handled. Then it gets propagated to the parent element
+			return false;
+	}
+}
+\endcode
+
+ */

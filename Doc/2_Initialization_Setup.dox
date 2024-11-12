@@ -1,0 +1,22 @@
+/*! @page page_2_initializationsetup 2 - Initialization / Setup
+
+The Adafruit GFX library is used for LCD handling:
+
+[GitHub - adafruit/Adafruit-GFX-Library](https://github.com/adafruit/Adafruit-GFX-Library)
+
+To initialize the UI_Lib:
+- Create an Adafruit display object depending on the used display.
+- Init the display object accordingly.
+- Call the `UI_Manager::Init` function of the `UI_Manager` (use the `UiManager` instance delivered with the library) with the created Adafruit_GFX object. 
+- Configure the colors you want to use with the `UI_Manager::SetColors` method. It is also possible to set the colors individually with the `UI_Manager::ColorBackground`, `UI_Manager::ColorForeground` and `UI_Manager::ColorForegroundEditMode` properties.
+- Configure the font you want to use with the `UI_Manager::SetFont` method.
+
+At this point, nothing is displayed yet. There is no visual tree assigned (and created) that can be shown, so create one:
+- Create objects of all UI elements that you want to use to build the user interface.
+- Link all objects to their parent objects (e.g. add a numeric control to the item collection of a page, add the page to a tab control, ...) by using the appropriate functions of the parent controls.
+- Connect the root of the visual tree to the `UI_Manager` by using the `UI_Manager::ChangeVisualTreeRoot` method.
+- Call the `UI_Manager::Draw` method with the previously created display object. You can also draw to a canvas here.
+
+Now the user interface is shown but no user inputs are processed. You have to feed the `UI_Manager::KeyInput` function whenever a key was pressed. Rotary encoder inputs should also be encoded as key presses (KEYUP, KEYDOWN, KEYOK).
+
+ */

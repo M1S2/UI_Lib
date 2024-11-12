@@ -1,0 +1,45 @@
+/*! @page page_3_simpleexample 3 - Simple Example
+
+\code{.cpp}
+#include "Core/UI_Manager.h"
+#include "Core/UI_Elements.h"
+
+bool boolVal1;
+Label labelBool("Boolean");
+BoolIndicator boolInd1(&boolVal1);
+BoolControl boolCtrl1(&boolVal1, &boolVal1);
+ContainerStack stack_boolean;
+
+// Call this method to build a simple Visual Tree and attach it to the UI_Manager
+void UI_Test_BuildTree()
+{
+	stack_boolean.AddItem(&labelBool);
+	stack_boolean.AddItem(&boolInd1);
+	stack_boolean.AddItem(&boolCtrl1);
+	stack_boolean.InitItems();
+	UiManager.ChangeVisualTreeRoot(&stack_boolean);
+}
+
+// Call this method from outside to initialize the UI_Lib
+void UI_Test_Init(Adafruit_GFX* gfx)
+{
+	UiManager.SetColors(RGB565(0x00, 0x00, 0x00), RGB565(0x00, 0xF7, 0x00), RGB565(0x00, 0x00, 0x00));
+	UiManager.Init(gfx);
+}
+
+// Call this method to redraw the screen
+void UI_Test_Draw()
+{
+	UiManager.Draw();
+}
+
+// Call this method to send user inputs (keys, encoder actions) to the UI_Manager
+void UI_Test_KeyInput(Keys_t key)
+{
+	UiManager.KeyInput(key);
+}
+\endcode
+
+A more detailed example can be found in `https://github.com/M1S2/UI_Lib/blob/master/examples/UI_Lib_Test.cpp`
+
+ */

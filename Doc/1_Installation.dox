@@ -1,0 +1,11 @@
+/*! @page page_1_installation 1 - Installation
+
+This library is hosted on the platformio registry. To include it into a project build with platformio:
+1. Open platformio.ini, a project configuration file located in the root of PlatformIO project.
+2. Add the following line to the lib_deps option of [env:] section (replace the version by the required one):
+```
+m1s2/UI_LIB@^1.0.0
+```
+3. Build a project, PlatformIO will automatically install dependencies.
+
+ */
