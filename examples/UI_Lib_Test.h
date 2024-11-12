@@ -6,8 +6,7 @@
 #ifndef UI_LIB_TEST_H_
 #define UI_LIB_TEST_H_
 
-#include "Core/UI_Manager.h"
-#include "Core/UI_Elements.h"
+#include "UI_Lib.h"
 
 void UI_Test_Init(Adafruit_GFX* gfx);
 void UI_Test_BuildTree();

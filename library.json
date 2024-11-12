@@ -1,6 +1,6 @@
 {
     "name": "UI_LIB",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "description": "This is a user interface library for graphical LCDs. It offers many different controls and indicators that can be nested depending on the element types.",
     "keywords": "graphical, LCD, user interface",
     "repository":
@@ -10,9 +10,10 @@
     },
     "authors":
     {
-      "name": "Markus Scheich"
+      "name": "M1S2"
     },
     "license": "MIT",
+    "headers": "UI_Lib.h",
     "dependencies": 
     {
       "adafruit/Adafruit GFX Library": "^1.11.10"

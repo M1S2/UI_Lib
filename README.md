@@ -15,7 +15,7 @@ There are UI elements that can have multiple children (e.g. pages) or elements t
 
 More example images can be found in the [Doc/Images folder](https://github.com/M1S2/UI_Lib/blob/master/Doc/Images).
 
-![Visual Tree](https://github.com/M1S2/UI_Lib/blob/master/Doc/VisualTree.jpg)
+![Visual Tree](https://github.com/M1S2/UI_Lib/blob/master/Doc/Images/VisualTree.jpg)
 
 
 For more informations visit the detailed documentation: https://m1s2.github.io/UI_Lib

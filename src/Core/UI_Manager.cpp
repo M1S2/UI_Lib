@@ -3,7 +3,6 @@
  */ 
 
 #include "Core/UI_Manager.h"
-#include "Core/UI_Elements.h"
 
 UI_Manager UiManager = UI_Manager::getInstance();
 
