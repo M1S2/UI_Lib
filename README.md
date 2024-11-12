@@ -1,4 +1,7 @@
 # UI_Lib
+[![PlatformIO Registry](https://badges.registry.platformio.org/packages/m1s2/library/UI_LIB.svg)](https://registry.platformio.org/libraries/m1s2/UI_LIB)
+[![GitHub Release Version](https://img.shields.io/github/v/release/M1S2/UI_LIB)](https://github.com/M1S2/UI_LIB/releases/latest)
+[![GitHub License](https://img.shields.io/github/license/M1S2/UI_LIB)](https://github.com/M1S2/UI_LIB/blob/master/LICENSE.md)
 
 This is a user interface library for graphical LCDs. 
 It offers many different controls and indicators that can be nested depending on the element types. 
@@ -8,11 +11,20 @@ The library uses a Visual Tree concept that is similar to the C# WPF UI organiza
 There is always one single tree root element that has nested children. 
 There are UI elements that can have multiple children (e.g. pages) or elements that are "leaf" elements not supporting nested children (e.g. numeric controls).
 
-![UI_Lib_Test boolean page](Doc/UI_Lib_Test_BooleanPage.jpg)
+![UI_Lib_Test boolean page](https://github.com/M1S2/UI_Lib/blob/master/Doc/UI_Lib_Test_BooleanPage.jpg)
 
-More example images can be found in the [Doc folder](Doc).
+More example images can be found in the [Doc folder](https://github.com/M1S2/UI_Lib/blob/master/Doc).
 
-![Visual Tree](Doc/VisualTree.jpg)
+![Visual Tree](https://github.com/M1S2/UI_Lib/blob/master/Doc/VisualTree.jpg)
+
+## Installation
+This library is hosted on the platformio registry. To include it into a project build with platformio:
+1. Open platformio.ini, a project configuration file located in the root of PlatformIO project.
+2. Add the following line to the lib_deps option of [env:] section (replace the version by the required one):
+```
+m1s2/UI_LIB@^1.0.0
+```
+3. Build a project, PlatformIO will automatically install dependencies.
 
 ## Initialization / Setup
 The Adafruit GFX library is used for LCD handling:
@@ -221,18 +233,18 @@ There are two private variables:
 The following picture shows the used definitions for the `LocX` and `LocY` coordinates and the `Width` and `Height` of each `UIElement`.
 The `ElementMargin` is the distance from the outer border of the control to the focus frame. The `ElementPadding` is the distance from the focus frame to the element content.
 
-![MarginPaddingCoordinatesOverview](Doc/MarginPaddingCoordinatesOverview.jpg)
+![MarginPaddingCoordinatesOverview](https://github.com/M1S2/UI_Lib/blob/master/Doc/MarginPaddingCoordinatesOverview.jpg)
 
 ### Drawing
 If the visual tree root of the `UI_Manager` is NULL (not set by `UI_Manager::ChangeVisualTreeRoot`) nothing is drawn by the `UI_Manager::Draw` function.
 
 Otherwise a frame is drawn around the `UI_Manager::_focusElement` (only if it is visible and is no indicator). Then the `UI_Manager::Draw` function of the `UIElement` assigned to `UI_Manager::_visualTreeRoot` is called. The element draws itself and (if it's not a leaf element, e.g. if it's a container) calls the `UI_Manager::Draw` functions of one or multiple child elements (depending on the container type). These child elements also draw themselves and possible further child elements. So the visual tree is traversed down until no child elements are left.
 
-![VisualTreeDrawing](Doc/VisualTreeDrawing.jpg)
+![VisualTreeDrawing](https://github.com/M1S2/UI_Lib/blob/master/Doc/VisualTreeDrawing.jpg)
 
 ### Key Input Handling
 If the `UI_Manager::KeyInput` function is called, the received key is first send to the `UI_Manager::KeyInput` function of the `UI_Manager::_focusElement`. If this function returns true, the key was handled (and supported) by the control and nothing has to be done. If the function returns false, the key wasn't handled (not supported or no `UI_Manager::KeyInput` function wasn't defined like with indicators). The key is then send to the `UI_Manager::KeyInput` function of the parent element of the `UI_Manager::_focusElement`. If this returns true nothing must be done, otherwise the key is again send to the parent element. The key bubbles up the tree until the key is handled or the root of the visual tree is reached.
 
 After each key input, the `UI_Manager::_focusElement` is recalculated.
 
-![VisualTreeKeyHandling](Doc/VisualTreeKeyHandling.jpg)
+![VisualTreeKeyHandling](https://github.com/M1S2/UI_Lib/blob/master/Doc/VisualTreeKeyHandling.jpg)
