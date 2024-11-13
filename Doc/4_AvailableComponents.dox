@@ -6,51 +6,51 @@ This section lists all available UI elements (containers, controls, indicators).
 - ContainerList: This container can be used to show one children at a time. The user can scroll though all items one by one. A scroll bar is indicating the position of the currently shown item in the list of items.  
 	- Supports children: Yes (adding with `ContainerList::AddItem` function)
 	- Supported user inputs: 
-		- KEYUP and KEYDOWN to scroll though the items. 
+		- ::KEYUP and ::KEYDOWN to scroll though the items. 
 - ContainerPage: This container can be used to show all children at the same time. This can be used to draw e.g. multiple controls and indicators on the same page.
 	- Supports children: Yes (adding with `ContainerPage::AddItem` function)
 	- Supported user inputs: 
-		- KEYUP and KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
+		- ::KEYUP and ::KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
 - ContainerGrid: This container can be used to show all children at the same time in a grid layout.
 	- Supports children: Yes (adding with `ContainerGrid::AddItem` function)
 	- Supported user inputs: 
-		- KEYUP and KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
+		- ::KEYUP and ::KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
 - ContainerStack: This container can be used to show all children at the same time stacked horizontal or vertical.
 	- Supports children: Yes (adding with `ContainerStack::AddItem` function)
 	- Supported user inputs: 
-		- KEYUP and KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
+		- ::KEYUP and ::KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
 - TabControl: This control can be used to show a tab control with each tab page holding one UI element. Each tab header is also holding one UI element.
 	- Supports children: Yes (adding with `TabControl::AddItem` function)
 	- Supported user inputs:
-		- KEYLEFT and KEYRIGHT to go to the previous/next tab page. 
+		- ::KEYLEFT and ::KEYRIGHT to go to the previous/next tab page. 
 
 @section controls_sec Controls
 - BoolControl: This control can be used to toggle the value of an boolean variable. 
 	- Supports children: No
 	- Supported user inputs: 
-		- KEYOK to toggle the boolean value.
+		- ::KEYOK to toggle the boolean value.
 - ButtonControl: This control can be used to display a button that the user can press. When pressed, a callback function is executed.
 	- Supports children: No
 	- Supported user inputs: 
-		- KEYOK to press the button and execute the callback function.
+		- ::KEYOK to press the button and execute the callback function.
 - EnumControl: This control can be used to choose a value from an enumeration.
 	- Supports children: No
 	- Supported user inputs: 
-		- KEYOK to toggle between edit and display mode. 
-		- KEYUP and KEYDOWN to change to the next/previous enumeration value (only supported in edit mode).
+		- ::KEYOK to toggle between edit and display mode. 
+		- ::KEYUP and ::KEYDOWN to change to the next/previous enumeration value (only supported in edit mode).
 - MessageDialog: This control can be used to show a message dialog including a severity icon (info, warning, error), a message text and 0, 1 or 2 buttons (OK, Cancel).
 	- Supports children: No
 	- Supported user inputs: The user inputs are internally redirected to the ContainerPage that is managing the buttons.
 - NumericControl: This control can be used to change the value of a numeric variable.
 	- Supports children: No
 	- Supported user inputs: 
-		- KEYOK to toggle between edit and display mode. 
-		- KEYLEFT and KEYRIGHT to move the cursor left/right (only supported in edit mode).
-		- KEYUP and KEYDOWN to increase/decrease the digit at the cursor position (only supported in edit mode).
-		- KEYKILO, KEYMILLI to change to kilo (*1000) or milli (/1000) of the current value (only supported in edit mode).
-		- KEYCOMMA is used as x1 key at the moment (change to the base unit, *1) (only supported in edit mode).
-		- KEYMINUS to toggle from positive to negative value (only supported in edit mode).
-		- KEY0 to KEY9 to change the value of the digit at the cursor position to the corresponding value (only supported in edit mode).
+		- ::KEYOK to toggle between edit and display mode. 
+		- ::KEYLEFT and ::KEYRIGHT to move the cursor left/right (only supported in edit mode).
+		- ::KEYUP and ::KEYDOWN to increase/decrease the digit at the cursor position (only supported in edit mode).
+		- ::KEYKILO, ::KEYMILLI to change to kilo (*1000) or milli (/1000) of the current value (only supported in edit mode).
+		- ::KEYX1 change to the base unit, *1 (only supported in edit mode).
+		- ::KEYMINUS to toggle from positive to negative value (only supported in edit mode).
+		- ::KEY0 to ::KEY9 to change the value of the digit at the cursor position to the corresponding value (only supported in edit mode).
 
 @section indicators_sec Indicators
 - BoolIndicator: This indicator can be used to display the value of an boolean variable ("ON" or "OFF"). 

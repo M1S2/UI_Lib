@@ -11,20 +11,20 @@ There are two private variables:
 The following picture shows the used definitions for the `UIElement::LocX` and `UIElement::LocY` coordinates and the `UIElement::Width` and `UIElement::Height` of each `UIElement`.
 The `UI_Manager::ElementMargin` is the distance from the outer border of the control to the focus frame. The `UI_Manager::ElementPadding` is the distance from the focus frame to the element content.
 
-@image html MarginPaddingCoordinatesOverview.jpg
+@image html Images/MarginPaddingCoordinatesOverview.jpg
 
 @section drawing_sec Drawing
 If the visual tree root of the `UI_Manager` is NULL (not set by `UI_Manager::ChangeVisualTreeRoot`) nothing is drawn by the `UI_Manager::Draw` function.
 
 Otherwise a frame is drawn around the `UI_Manager::_focusElement` (only if it is visible and is no indicator). Then the `UI_Manager::Draw` function of the `UIElement` assigned to `UI_Manager::_visualTreeRoot` is called. The element draws itself and (if it's not a leaf element, e.g. if it's a container) calls the `UI_Manager::Draw` functions of one or multiple child elements (depending on the container type). These child elements also draw themselves and possible further child elements. So the visual tree is traversed down until no child elements are left.
 
-@image html VisualTreeDrawing.jpg "VisualTreeDrawing"
+@image html Images/VisualTreeDrawing.jpg "VisualTreeDrawing"
 
 @section keyinputhandling_sec Key Input Handling
 If the `UI_Manager::KeyInput` function is called, the received key is first send to the `UI_Manager::KeyInput` function of the `UI_Manager::_focusElement`. If this function returns true, the key was handled (and supported) by the control and nothing has to be done. If the function returns false, the key wasn't handled (not supported or no `UI_Manager::KeyInput` function wasn't defined like with indicators). The key is then send to the `UI_Manager::KeyInput` function of the parent element of the `UI_Manager::_focusElement`. If this returns true nothing must be done, otherwise the key is again send to the parent element. The key bubbles up the tree until the key is handled or the root of the visual tree is reached.
 
 After each key input, the `UI_Manager::_focusElement` is recalculated.
 
-@image html VisualTreeKeyHandling.jpg "VisualTreeKeyHandling"
+@image html Images/VisualTreeKeyHandling.jpg "VisualTreeKeyHandling"
 
  */

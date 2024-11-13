@@ -16,9 +16,9 @@
 #define DEFAULT_MAX_MSG_STRING_LENGTH		55			/**< Default string length for the message dialog text. */
 #define DEFAULT_MSG_BUTTON_HEIGHT			20			/**< Default height for the message box buttons */
 
-#define MSG_INFO_COLOR		RGB565(0x00, 0x66, 0xCC)
-#define MSG_WARNING_COLOR	RGB565(0xFF, 0xFF, 0x00)
-#define MSG_ERR_COLOR		RGB565(0xFF, 0x00, 0x00)
+#define MSG_INFO_COLOR		RGB565(0x00, 0x66, 0xCC)	/**< Color for the info icon in the message box */
+#define MSG_WARNING_COLOR	RGB565(0xFF, 0xFF, 0x00)	/**< Color for the warning icon in the message box */
+#define MSG_ERR_COLOR		RGB565(0xFF, 0x00, 0x00)	/**< Color for the error icon in the message box */
 
 /**
  * Available message dialog severity types.

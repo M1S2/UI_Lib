@@ -9,11 +9,11 @@ The library uses a Visual Tree concept that is similar to the C# WPF UI organiza
 There is always one single tree root element that has nested children. 
 There are UI elements that can have multiple children (e.g. pages) or elements that are "leaf" elements not supporting nested children (e.g. numeric controls).
 
-@image html UI_Lib_Test_BooleanPage.jpg "UI_Lib_Test boolean page" width=400
+@image html Images/UI_Lib_Test_BooleanPage.jpg "UI_Lib_Test boolean page" width=400
 
 More example images can be found in the [Doc folder](https://github.com/M1S2/UI_Lib/blob/master/Doc).
 
-@image html VisualTree.jpg "Visual Tree" width=400
+@image html Images/VisualTree.jpg "Visual Tree" width=400
 
 For the source code visit the repository at https://github.com/M1S2/UI_Lib.
 

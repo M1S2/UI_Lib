@@ -25,8 +25,8 @@ class ContainerList : public Container
 		/**
 		 * Constructor of the ContainerList.
 		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
-		 * @tparam scrollBarWidth Width in pixel of the scroll bar on the right side of the container
- 		 * @tparam scrollBarMargin Margin in pixel between the scroll bar frame and the container list outline
+		 * @param scrollBarWidth Width in pixel of the scroll bar on the right side of the container
+ 		 * @param scrollBarMargin Margin in pixel between the scroll bar frame and the container list outline
 		 */
 		ContainerList(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t scrollBarWidth = DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH, uint8_t scrollBarMargin = DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN);
 
@@ -37,8 +37,8 @@ class ContainerList : public Container
 		 * @param width Drawing width of the ContainerList
 		 * @param height Drawing height of the ContainerList
 		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
-		 * @tparam scrollBarWidth Width in pixel of the scroll bar on the right side of the container
- 		 * @tparam scrollBarMargin Margin in pixel between the scroll bar frame and the container list outline
+		 * @param scrollBarWidth Width in pixel of the scroll bar on the right side of the container
+ 		 * @param scrollBarMargin Margin in pixel between the scroll bar frame and the container list outline
 		 */
 		ContainerList(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t scrollBarWidth = DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH, uint8_t scrollBarMargin = DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN);
 		

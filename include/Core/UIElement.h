@@ -14,7 +14,7 @@
 #include "Fonts/FreeSans12pt7b.h"
 
 // https://forum.arduino.cc/t/solved-rgb-in-rgb565-umwandeln-und-mit-0x-in-eine-variable-schreiben/1146991/2
-#define RGB565(r, g, b) ((((r)& 0xF8) << 8) | (((g) & 0xFC) << 3) | (((b) & 0xF8) >> 3))
+#define RGB565(r, g, b) ((((r)& 0xF8) << 8) | (((g) & 0xFC) << 3) | (((b) & 0xF8) >> 3))		/**< Macro that can be used to convert a RGB888 color to the RGB565 format. Input the r, g, b values as 8-bit values. */
 
 /**
  * Abstract base class for all user interface elements (controls, indicators, containers).

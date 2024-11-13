@@ -11,7 +11,7 @@
 #define UI_LIB_DEFAULT_COLOR_BACKGROUND				RGB565(0x00, 0x00, 0x00)			/**< Default Background color (black) */
 #define UI_LIB_DEFAULT_COLOR_FOREGROUND				RGB565(0xFF, 0xFF, 0xFF)			/**< Default UIElement foreground color (white) */	
 #define UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE	UI_LIB_DEFAULT_COLOR_BACKGROUND		/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
-#define UI_LIB_DEFAULT_FONT 						&FreeSans12pt7b
+#define UI_LIB_DEFAULT_FONT 						&FreeSans12pt7b						/**< Default font used for all UIElements. */
 #define UI_LIB_DEFAULT_ELEMENT_MARGIN				1									/**< Space without content around every UIElement. This is part of the UIElement size. */
 #define UI_LIB_DEFAULT_ELEMENT_PADDING				2									/**< Space between the outline of every UIElement and the internal content. This is part of the UIElement size. */
 
@@ -65,7 +65,7 @@ class UI_Manager
 		 * Set all colors.
 		 * @param colorBackground Background color
 		 * @param colorForeground UIElement color
-		 * @param colorForegroundEditModeDefault UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color.
+		 * @param colorForegroundEditMode UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color.
 		 */
 		void SetColors(uint16_t colorBackground, uint16_t colorForeground, uint16_t colorForegroundEditMode);
 
