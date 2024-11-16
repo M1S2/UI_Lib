@@ -113,3 +113,11 @@ bool UI_Manager::KeyInput(Keys_t key)
 	setFocusToLeaf();
 	return keyProcessed;
 }
+
+bool UI_Manager::TouchInput(uint16_t x, uint16_t y)
+{
+	if (_visualTreeRoot == NULL) { return false; }
+	bool touchProcessed = _visualTreeRoot->TouchInput(x, y);
+	setFocusToLeaf();
+	return touchProcessed;
+}

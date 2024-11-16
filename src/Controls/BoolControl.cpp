@@ -52,6 +52,16 @@ bool BoolControl::KeyInput(Keys_t key)
 	}
 }
 
+bool BoolControl::TouchInput(uint16_t x, uint16_t y)
+{
+	if(HitTest(x, y))
+	{
+		ToggleValue();
+		return true;
+	}
+	return false;
+}
+
 void BoolControl::ToggleValue()
 {
 	(*_valuePointer) = !(*_valuePointer);

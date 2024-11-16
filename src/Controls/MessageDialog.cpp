@@ -50,8 +50,23 @@ bool MessageDialog::KeyInput(Keys_t key)
 	return _page.KeyInput(key);
 }
 
+bool MessageDialog::TouchInput(uint16_t x, uint16_t y)
+{
+	if(HitTest(x, y))
+	{
+		return _page.TouchInput(x, y);
+	}
+	return false;
+}
+
 void MessageDialog::RecalculateDimensions()
 {
 	_buttonOk.RecalculateDimensions();
 	_buttonCancel.RecalculateDimensions();
+	_page.RecalculateDimensions();
+}
+
+void MessageDialog::RecalculateLayout()
+{
+	_page.RecalculateLayout();
 }

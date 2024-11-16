@@ -51,6 +51,23 @@ bool ContainerPage::KeyInput(Keys_t key)
 	}
 }
 
+bool ContainerPage::TouchInput(uint16_t x, uint16_t y)
+{
+	if(HitTest(x, y))
+	{
+		for (int i = 0; i < this->_numItems; i++)
+		{
+			bool touchResult = this->_items[i]->TouchInput(x, y);
+			if(touchResult)
+			{
+				this->ActiveChild = this->_items[i];
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 void ContainerPage::InitItems()
 {
 	this->_selectedItemIndex = 0;
@@ -93,4 +110,5 @@ void ContainerPage::RecalculateLayout()
 		currentItem->RecalculateLayout();
 		currentItem->RecalculateDimensions();
 	}
+	this->RecalculateDimensions();
 }

@@ -86,9 +86,22 @@ class MessageDialog : public UIElement
 		virtual bool KeyInput(Keys_t key) override;
 
 		/**
+		 * Process a touch input at the given point (x, y)
+		 * @param x X-Coordinate of the touched point
+		 * @param y Y-Coordinate of the touched point
+		 * @return true if the touch was processed; false if not.
+		 */
+		virtual bool TouchInput(uint16_t x, uint16_t y) override;
+		
+		/**
 		 * Recalculate the Height and Width of the UIElement
 		 */
 		virtual void RecalculateDimensions() override;
+
+		/**
+		 * Recalculate the UIElement layout (containers update the X- and Y-Location of all their items, all other items can do other layout update stuff)
+		 */
+		virtual void RecalculateLayout() override;
 };
 
 #endif /* MESSAGEDIALOG_H_ */

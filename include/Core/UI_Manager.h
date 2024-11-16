@@ -95,6 +95,14 @@ class UI_Manager
 		 * @return true if the key was processed; false if no control in the visual tree has processed the key.
 		 */
 		bool KeyInput(Keys_t key);
+
+		/**
+		 * Process a touch input at the given point (x, y)
+		 * @param x X-Coordinate of the touched point
+		 * @param y Y-Coordinate of the touched point
+		 * @return true if the touch was processed; false if not.
+		 */
+		bool TouchInput(uint16_t x, uint16_t y);
 };
 
 extern UI_Manager UiManager;			/**< Access object for the singleton instance of the UI_Manager */

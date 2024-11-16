@@ -66,6 +66,16 @@ bool ButtonControl::KeyInput(Keys_t key)
 	}
 }
 
+bool ButtonControl::TouchInput(uint16_t x, uint16_t y)
+{
+	if(HitTest(x, y))
+	{
+		if (_onClick != NULL) { _onClick(_controlContext); return true; }
+		else { return false; }
+	}
+	return false;
+}
+
 void ButtonControl::RecalculateDimensions()
 {
 	Height = UiManager.FontHeight + 2 * UiManager.ElementPadding + 2 * UiManager.ElementMargin + 2;

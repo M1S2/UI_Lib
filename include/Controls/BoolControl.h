@@ -51,6 +51,14 @@ class BoolControl : public BoolIndicator
 		virtual bool KeyInput(Keys_t key) override;
 
 		/**
+		 * Process a touch input at the given point (x, y)
+		 * @param x X-Coordinate of the touched point
+		 * @param y Y-Coordinate of the touched point
+		 * @return true if the touch was processed; false if not.
+		 */
+		virtual bool TouchInput(uint16_t x, uint16_t y) override;
+
+		/**
 		 * Toggle the value of the boolean variable referenced by the valuePointer.
 		 */
 		void ToggleValue();

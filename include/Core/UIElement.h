@@ -78,6 +78,14 @@ class UIElement
 		virtual bool KeyInput(Keys_t key) { return false; }
 
 		/**
+		 * Process a touch input at the given point (x, y)
+		 * @param x X-Coordinate of the touched point
+		 * @param y Y-Coordinate of the touched point
+		 * @return true if the touch was processed; false if not.
+		 */
+		virtual bool TouchInput(uint16_t x, uint16_t y) { return false; }
+
+		/**
 		 * Recalculate the Height and Width of the UIElement
 		 */
 		virtual void RecalculateDimensions() = 0;
@@ -86,6 +94,17 @@ class UIElement
 		 * Recalculate the UIElement layout (containers update the X- and Y-Location of all their items, all other items can do other layout update stuff)
 		 */
 		virtual void RecalculateLayout() { }
+
+		/**
+		 * Check if the given point (x, y) is inside this UIElement
+		 * @param x X-Coordinate of the point to test
+		 * @param y Y-Coordinate of the point to test
+		 * @return true, if the given point is inside the UIElement (including the frame) and the element is visible; otherwise false
+		 */
+		bool HitTest(uint16_t x, uint16_t y)
+		{
+			return (x >= LocX) && (x <= (LocX + Width)) && (y >= LocY) && (y <= (LocY + Height)) && Visible;
+		}
 };
 
 #endif /* UIELEMENT_H_ */
