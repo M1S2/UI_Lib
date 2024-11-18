@@ -105,6 +105,40 @@ bool TabControl::KeyInput(Keys_t key)
 	}
 }
 
+bool TabControl::TouchInput(uint16_t x, uint16_t y)
+{
+	if(HitTest(x, y))
+	{
+		bool touchInsideHeaderRegion = false;
+		switch (_tabPosition)
+		{
+			case TAB_POSITION_LEFT: touchInsideHeaderRegion = (x <= (LocX + TabRegionSize)); break;
+			case TAB_POSITION_TOP: touchInsideHeaderRegion = (y <= (LocY + TabRegionSize)); break;
+			default: touchInsideHeaderRegion = false; break;
+		}
+
+		if(touchInsideHeaderRegion)
+		{
+			for(int i = 0; i < this->_numItems; i++)
+			{
+				if(_headers[i] != NULL && _headers[i]->HitTest(x, y))
+				{
+					SelectTab(i);
+					return true;
+				}
+			}
+		}
+		else
+		{
+			if(this->GetSelectedItem() != NULL) 
+			{
+				return this->GetSelectedItem()->TouchInput(x, y);
+			}
+		}
+	}
+	return false;
+}
+
 bool TabControl::AddItem(UIElement* header, UIElement* tabContent)
 {
 	_headers[this->_numItems] = header;

@@ -57,7 +57,15 @@ class EnumControl : public EnumIndicator<T>
 		 * @return true if the key was processed; false if not.
 		 */
 		virtual bool KeyInput(Keys_t key) override;
-			
+		
+		/**
+		 * Process a touch input at the given point (x, y)
+		 * @param x X-Coordinate of the touched point
+		 * @param y Y-Coordinate of the touched point
+		 * @return true if the touch was processed; false if not.
+		 */
+		virtual bool TouchInput(uint16_t x, uint16_t y) override;
+
 		/**
 		 * Set the value of the controlled enumeration variable to the previous enum value.
 		 * If the current value is the first one, the control selects the last enum value to implement a circular behaviour.

@@ -92,6 +92,35 @@ bool ContainerList::KeyInput(Keys_t key)
 	}
 }
 
+bool ContainerList::TouchInput(uint16_t x, uint16_t y)
+{
+	if(HitTest(x, y))
+	{
+		uint16_t scrollBarLeft = this->LocX + this->Width - _scrollBarWidth - _scrollBarMargin;
+		bool touchInsideScrollbarRegionUpperHalf = ((x >= scrollBarLeft) && (y <= (LocY + Height / 2)));
+		bool touchInsideScrollbarRegionLowerHalf = ((x >= scrollBarLeft) && (y > (LocY + Height / 2)));
+
+		if(touchInsideScrollbarRegionUpperHalf)
+		{
+			this->PreviousItem();
+			return true;
+		}
+		else if(touchInsideScrollbarRegionLowerHalf)
+		{
+			this->NextItem();
+			return true;
+		}
+		else
+		{
+			if(this->GetSelectedItem() != NULL)
+			{
+				return this->GetSelectedItem()->TouchInput(x, y);
+			}
+		}
+	}
+	return false;
+}
+
 void ContainerList::RecalculateDimensions()
 {
 	if(this->Parent != NULL)

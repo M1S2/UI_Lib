@@ -77,6 +77,28 @@ bool EnumControl<T>::KeyInput(Keys_t key)
 }
 
 template <class T>
+bool EnumControl<T>::TouchInput(uint16_t x, uint16_t y)
+{
+	if(this->HitTest(x, y))
+	{
+		bool touchWasInRightHalf = (x >= (this->LocX + this->Width / 2));
+		bool previousEditMode = IsEditMode;
+		IsEditMode = true;			// Make sure that the control is set to edit mode (otherwise the NextValue() and PreviousValue() methods don't have any effect)
+		if(touchWasInRightHalf)
+		{
+			NextValue();
+		}
+		else
+		{
+			PreviousValue();
+		}
+		IsEditMode = previousEditMode;
+		return true;
+	}
+	return false;
+}
+
+template <class T>
 bool EnumControl<T>::PreviousValue()
 {
 	if (IsEditMode)
