@@ -119,5 +119,30 @@ bool UI_Manager::TouchInput(uint16_t x, uint16_t y)
 	if (_visualTreeRoot == NULL) { return false; }
 	bool touchProcessed = _visualTreeRoot->TouchInput(x, y);
 	setFocusToLeaf();
+
+	// The focus element change to an UIElement other than the one that was in edit mode before
+	if(_focusElement != _lastElementInEditMode && _lastElementInEditMode != NULL)
+	{
+		_lastElementInEditMode->IsInEditMode = false;
+	}
+	
 	return touchProcessed;
+}
+
+void UI_Manager::UpdateIsInEditModeElement(UIElement* element, bool newEditModeState)
+{
+	if(element == NULL) { return; }
+	if(_lastElementInEditMode != NULL)
+	{
+		_lastElementInEditMode->IsInEditMode = false;		// Disable the edit mode in the last element
+	}
+	element->IsInEditMode = newEditModeState;				// Set the edit mode in the current element
+	if(newEditModeState)
+	{
+		_lastElementInEditMode = element;
+	}
+	else
+	{
+		_lastElementInEditMode = NULL;
+	}
 }

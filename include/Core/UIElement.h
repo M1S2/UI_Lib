@@ -31,6 +31,7 @@ class UIElement
 		uint16_t Width;				/**< Drawing width of the UIElement */
 		uint16_t Height;			/**< Drawing height of the UIElement */
 		bool Visible;				/**< The UIElement is only drawn if the visibility is set to true */
+		bool IsInEditMode;			/**< Is the UIElement in edit mode? This property is only used by some controls. Use the UI_Manager::UpdateIsInEditModeElement() method to change this value to make sure, only one UIElement has this property set to true! */
 		UIElement* Parent;			/**< Parent UIElement that this UIElement belongs to */
 		UIElement* ActiveChild;		/**< Child element that is currently active (receiving all key inputs). This property is only set for elements that contain children (mostly containers). Simple controls or indicators should set this to NULL. */
 
@@ -41,6 +42,7 @@ class UIElement
 		UIElement(UIElementType type)
 		{
 			Visible = true;
+			IsInEditMode = false;
 			Type = type;
 			ActiveChild = NULL;
 		}
@@ -56,6 +58,7 @@ class UIElement
 			LocX = locX;
 			LocY = locY;
 			Visible = true;
+			IsInEditMode = false;
 			Type = type;
 			ActiveChild = NULL;
 		}

@@ -25,6 +25,8 @@ class UI_Manager
 		UIElement* _focusElement;					/**< Element that has the focus (it is highlited and receives all key inputs). */
 		UIElement* _lastDrawnFocusElement;			/**< Last drawn focus element. */
 		
+		UIElement* _lastElementInEditMode = NULL;
+
 		/**
 		 * Traverse down the visual tree until an element without a child is reached and focus this element.
 		 */
@@ -103,6 +105,15 @@ class UI_Manager
 		 * @return true if the touch was processed; false if not.
 		 */
 		bool TouchInput(uint16_t x, uint16_t y);
+
+		/**
+		 * Update the IsInEditMode property of the given UIElement to the given newEditModeState.
+		 * This method makes sure that the IsInEditMode property of the UIElement that was previously modified using this method is deactivated.
+		 * So only one UIElement can have the IsInEditMode property active at a time.
+		 * @param element UIElement for which the IsInEditMode property is modified.
+		 * @param newEditModeState New Value for the IsInEditMode property.
+		 */
+		void UpdateIsInEditModeElement(UIElement* element, bool newEditModeState);
 };
 
 extern UI_Manager UiManager;			/**< Access object for the singleton instance of the UI_Manager */

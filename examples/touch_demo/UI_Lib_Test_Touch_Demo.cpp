@@ -105,7 +105,7 @@ ContainerStack stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER);
 TabControl tabControl(0, 35, DISPLAY_WIDTH, DISPLAY_HEIGHT - 35, TAB_POSITION_TOP);
 
 ContainerPage mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-Label labelUILib("UI LIB", COLOR_ORANGE, &FreeMono18pt7b);
+Label labelUILib("UI LIB TOUCH", COLOR_ORANGE, &FreeMono18pt7b);
 
 void OnBoolVal1Changed(void* context)
 {

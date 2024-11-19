@@ -10,7 +10,6 @@ template <class T>
 NumericControl<T>::NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), uint8_t maxStringBufferLength) : NumericIndicator<T>(valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
 {
 	this->Type = UI_CONTROL;
-	IsEditMode = false;
 	_lastDrawnEditMode = false;
 	CurrentDigitPosition = 0;
 	_minValue = minValue;
@@ -22,7 +21,6 @@ template <class T>
 NumericControl<T>::NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), uint8_t maxStringBufferLength) : NumericIndicator<T>(locX, locY, valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
 {
 	this->Type = UI_CONTROL;
-	IsEditMode = false;
 	_lastDrawnEditMode = false;
 	CurrentDigitPosition = 0;
 	_minValue = minValue;
@@ -35,15 +33,15 @@ void NumericControl<T>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
-		redraw = redraw || (this->_lastValueDraw != *this->_valuePointer) || (IsEditMode != _lastDrawnEditMode) || (CurrentDigitPosition != _lastDrawnCurrentDigitPosition) || !this->_lastDrawnVisible;
+		redraw = redraw || (this->_lastValueDraw != *this->_valuePointer) || (this->IsInEditMode != _lastDrawnEditMode) || (CurrentDigitPosition != _lastDrawnCurrentDigitPosition) || !this->_lastDrawnVisible;
 		if(redraw)
 		{
 			this->_lastDrawnVisible = true;
-			_lastDrawnEditMode = IsEditMode;
+			_lastDrawnEditMode = this->IsInEditMode;
 			_lastDrawnCurrentDigitPosition = CurrentDigitPosition;
 			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 
-			if (IsEditMode)
+			if (this->IsInEditMode)
 			{
 				UiManager.Gfx->fillRect(this->LocX + UiManager.ElementMargin, this->LocY + UiManager.ElementMargin, this->Width - 2 * UiManager.ElementMargin, this->Height - 2 * UiManager.ElementMargin, UiManager.ColorForeground);
 				UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
@@ -55,7 +53,7 @@ void NumericControl<T>::Draw(bool redraw)
 			
 			NumericIndicator<T>::Draw(redraw);
 			
-			if(IsEditMode)
+			if(this->IsInEditMode)
 			{	
 				uint16_t character_width, character_space_width, dot_width, minus_width;
 				UiManager.Gfx->getTextBounds("0", 0, 0, nullptr, nullptr, &character_width, nullptr);
@@ -142,7 +140,7 @@ bool NumericControl<T>::KeyInput(Keys_t key)
 template <class T>
 bool NumericControl<T>::KeyKilo()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		float multiplicator = pow(10, 3 - this->_unitPrefixPower);
 		(*this->_valuePointer) = coerceValue((*this->_valuePointer) * multiplicator);
@@ -156,7 +154,7 @@ bool NumericControl<T>::KeyKilo()
 template <class T>
 bool NumericControl<T>::KeyMilli()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		float multiplicator = pow(10, -3 - this->_unitPrefixPower);
 		(*this->_valuePointer) = coerceValue((*this->_valuePointer) * multiplicator);
@@ -170,7 +168,7 @@ bool NumericControl<T>::KeyMilli()
 template <class T>
 bool NumericControl<T>::KeyX1()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		float multiplicator = pow(10, 0 - this->_unitPrefixPower);
 		(*this->_valuePointer) = coerceValue((*this->_valuePointer) * multiplicator);
@@ -184,7 +182,7 @@ bool NumericControl<T>::KeyX1()
 template <class T>
 bool NumericControl<T>::KeyMinus()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		(*this->_valuePointer) = coerceValue(-(*this->_valuePointer));
 		
@@ -197,7 +195,7 @@ bool NumericControl<T>::KeyMinus()
 template <class T>
 bool NumericControl<T>::KeyNumeric(Keys_t key)
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		T oldValue = *this->_valuePointer;
 		
@@ -218,7 +216,7 @@ bool NumericControl<T>::KeyNumeric(Keys_t key)
 template <class T>
 bool NumericControl<T>::ValueUp()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		float deltaValue = pow(10, CurrentDigitPosition);
 		(*this->_valuePointer) = coerceValue((*this->_valuePointer) + deltaValue);
@@ -232,7 +230,7 @@ bool NumericControl<T>::ValueUp()
 template <class T>
 bool NumericControl<T>::ValueDown()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		float deltaValue = pow(10, CurrentDigitPosition);
 		(*this->_valuePointer) = coerceValue((*this->_valuePointer) - deltaValue);
@@ -246,7 +244,7 @@ bool NumericControl<T>::ValueDown()
 template <class T>
 bool NumericControl<T>::CursorLeft()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		if (CurrentDigitPosition < (this->_numDigits - this->_numFractionalDigits - 1))
 		{
@@ -260,7 +258,7 @@ bool NumericControl<T>::CursorLeft()
 template <class T>
 bool NumericControl<T>::CursorRight()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		if (CurrentDigitPosition > -this->_numFractionalDigits)
 		{
@@ -274,5 +272,5 @@ bool NumericControl<T>::CursorRight()
 template <class T>
 void NumericControl<T>::ToggleEditMode()
 {
-	IsEditMode = !IsEditMode;
+	UiManager.UpdateIsInEditModeElement(this, !this->IsInEditMode);
 }

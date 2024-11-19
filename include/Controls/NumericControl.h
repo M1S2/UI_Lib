@@ -41,7 +41,6 @@ class NumericControl : public NumericIndicator<T>
 		void(*_onValueChanged)(void* controlContext);	/**< Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed. */
 		
 	public:
-		bool IsEditMode;								/**< Is the control in edit mode? All keys are only supported in edit mode. */
 		int8_t CurrentDigitPosition;					/**< Position of the currently controlled digit. Range from (-_numFractionalDigits) to (_numDigits - _numFractionalDigits - 1) */
 
 		/**

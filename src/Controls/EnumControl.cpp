@@ -26,14 +26,14 @@ void EnumControl<T>::Draw(bool redraw)
 {
 	if (this->Visible)
 	{
-		redraw = redraw || (this->_lastValueDraw != *this->_valuePointer) || (IsEditMode != _lastDrawnEditMode) || !this->_lastDrawnVisible;
+		redraw = redraw || (this->_lastValueDraw != *this->_valuePointer) || (this->IsInEditMode != _lastDrawnEditMode) || !this->_lastDrawnVisible;
 		if(redraw)
 		{
 			this->_lastDrawnVisible = true;
-			_lastDrawnEditMode = IsEditMode;
+			_lastDrawnEditMode = this->IsInEditMode;
 			UiManager.Gfx->fillRect(this->LocX, this->LocY, this->Width, this->Height, UiManager.ColorBackground);
 			
-			if (IsEditMode)
+			if (this->IsInEditMode)
 			{
 				UiManager.Gfx->fillRect(this->LocX + UiManager.ElementMargin, this->LocY + UiManager.ElementMargin, this->Width - 2 * UiManager.ElementMargin, this->Height - 2 * UiManager.ElementMargin, UiManager.ColorForeground);
 				UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
@@ -45,7 +45,7 @@ void EnumControl<T>::Draw(bool redraw)
 					
 			EnumIndicator<T>::Draw(redraw);
 			
-			if(IsEditMode) 
+			if(this->IsInEditMode) 
 			{ 
 				// Reset text color back to default foreground
 				UiManager.Gfx->setTextColor(UiManager.ColorForeground);
@@ -82,8 +82,8 @@ bool EnumControl<T>::TouchInput(uint16_t x, uint16_t y)
 	if(this->HitTest(x, y))
 	{
 		bool touchWasInRightHalf = (x >= (this->LocX + this->Width / 2));
-		bool previousEditMode = IsEditMode;
-		IsEditMode = true;			// Make sure that the control is set to edit mode (otherwise the NextValue() and PreviousValue() methods don't have any effect)
+		bool previousEditMode = this->IsInEditMode;
+		this->IsInEditMode = true;			// Make sure that the control is set to edit mode (otherwise the NextValue() and PreviousValue() methods don't have any effect)
 		if(touchWasInRightHalf)
 		{
 			NextValue();
@@ -92,7 +92,7 @@ bool EnumControl<T>::TouchInput(uint16_t x, uint16_t y)
 		{
 			PreviousValue();
 		}
-		IsEditMode = previousEditMode;
+		this->IsInEditMode = previousEditMode;
 		return true;
 	}
 	return false;
@@ -101,7 +101,7 @@ bool EnumControl<T>::TouchInput(uint16_t x, uint16_t y)
 template <class T>
 bool EnumControl<T>::PreviousValue()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		if (*this->_valuePointer > 0) { (*((int*)this->_valuePointer))--; }
 		else if(*this->_valuePointer == 0) { (*this->_valuePointer) = (T)(this->_numEnumValues - 1); }
@@ -115,7 +115,7 @@ bool EnumControl<T>::PreviousValue()
 template <class T>
 bool EnumControl<T>::NextValue()
 {
-	if (IsEditMode)
+	if (this->IsInEditMode)
 	{
 		if(*this->_valuePointer < (this->_numEnumValues - 1)) { (*((int*)this->_valuePointer))++; }
 		else if(*this->_valuePointer >= (this->_numEnumValues - 1)) { (*this->_valuePointer) = (T)0; }
@@ -129,5 +129,5 @@ bool EnumControl<T>::NextValue()
 template <class T>
 void EnumControl<T>::ToggleEditMode()
 {
-	IsEditMode = !IsEditMode;
+	UiManager.UpdateIsInEditModeElement(this, !this->IsInEditMode);
 }

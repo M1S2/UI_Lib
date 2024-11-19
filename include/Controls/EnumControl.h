@@ -21,8 +21,6 @@ class EnumControl : public EnumIndicator<T>
 		bool _lastDrawnEditMode;						/**< The EditMode that was last drawn. Used to detect changes in the edit mode. */
 		
 	public:
-		bool IsEditMode;								/**< Is the control in edit mode? All keys are only supported in edit mode. */
-	
 		/**
 		 * Constructor of the EnumControl.
 		 * @param valuePointer Pointer to the enumeration variable that is shown and manipulated by this control.
