@@ -138,6 +138,29 @@ bool NumericControl<T>::KeyInput(Keys_t key)
 }
 
 template <class T>
+bool NumericControl<T>::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
+{
+	if(this->HitTest(x, y))
+	{
+		switch (touchType)
+		{
+			case TOUCH_NORMAL:
+			{
+				// NOT HANDLED YET...
+				return false;
+			}
+			case TOUCH_LONG:
+			{
+				ToggleEditMode();
+				return true;
+			}
+			default: break;
+		}
+	}
+	return false;
+}
+
+template <class T>
 bool NumericControl<T>::KeyKilo()
 {
 	if (this->IsInEditMode)

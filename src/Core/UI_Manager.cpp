@@ -114,10 +114,10 @@ bool UI_Manager::KeyInput(Keys_t key)
 	return keyProcessed;
 }
 
-bool UI_Manager::TouchInput(uint16_t x, uint16_t y)
+bool UI_Manager::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 {
 	if (_visualTreeRoot == NULL) { return false; }
-	bool touchProcessed = _visualTreeRoot->TouchInput(x, y);
+	bool touchProcessed = _visualTreeRoot->TouchInput(x, y, touchType);
 	setFocusToLeaf();
 
 	// The focus element change to an UIElement other than the one that was in edit mode before

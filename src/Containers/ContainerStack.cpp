@@ -51,13 +51,13 @@ bool ContainerStack::KeyInput(Keys_t key)
 	}
 }
 
-bool ContainerStack::TouchInput(uint16_t x, uint16_t y)
+bool ContainerStack::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 {
 	if(HitTest(x, y))
 	{
 		for (int i = 0; i < this->_numItems; i++)
 		{
-			bool touchResult = this->_items[i]->TouchInput(x, y);
+			bool touchResult = this->_items[i]->TouchInput(x, y, touchType);
 			if(touchResult)
 			{
 				this->ActiveChild = this->_items[i];

@@ -12,7 +12,7 @@ void UI_Test_Init(Adafruit_GFX* gfx);
 void UI_Test_BuildTree();
 void UI_Test_Draw();
 void UI_Test_KeyInput(Keys_t key);
-void UI_Test_TouchInput(uint16_t x, uint16_t y);
+void UI_Test_TouchInput(uint16_t x, uint16_t y, TouchTypes touchType);
 
 /**** UI Icon Speed *****/
 #define ui_icon_speed_width 16

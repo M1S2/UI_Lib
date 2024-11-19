@@ -102,9 +102,10 @@ class UI_Manager
 		 * Process a touch input at the given point (x, y)
 		 * @param x X-Coordinate of the touched point
 		 * @param y Y-Coordinate of the touched point
+		 * @param touchType Type of the touch
 		 * @return true if the touch was processed; false if not.
 		 */
-		bool TouchInput(uint16_t x, uint16_t y);
+		bool TouchInput(uint16_t x, uint16_t y, TouchTypes touchType);
 
 		/**
 		 * Update the IsInEditMode property of the given UIElement to the given newEditModeState.

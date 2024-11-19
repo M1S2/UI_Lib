@@ -261,7 +261,7 @@ void UI_Test_KeyInput(Keys_t key)
 	UiManager.KeyInput(key);
 }
 
-void UI_Test_TouchInput(uint16_t x, uint16_t y)
+void UI_Test_TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 {
-	UiManager.TouchInput(x, y);
+	UiManager.TouchInput(x, y, touchType);
 }

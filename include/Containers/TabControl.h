@@ -80,9 +80,10 @@ s		 * @return true if the key was processed; false if not.
 		 * Process a touch input at the given point (x, y)
 		 * @param x X-Coordinate of the touched point
 		 * @param y Y-Coordinate of the touched point
+		 * @param touchType Type of the touch
 		 * @return true if the touch was processed; false if not.
 		 */
-		virtual bool TouchInput(uint16_t x, uint16_t y) override;
+		virtual bool TouchInput(uint16_t x, uint16_t y, TouchTypes touchType) override;
 
 		/**
 		 * Add a new tab to the tab control.

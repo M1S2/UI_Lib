@@ -16,92 +16,149 @@ TS_Display ts_display;
 
 void setup()
 {
-  Serial.begin(9600);
-  Serial.println("ILI9341 Test!"); 
+    Serial.begin(9600);
+    Serial.println("ILI9341 Test!"); 
  
-  tft.begin();
-  tft.setRotation(1);
+    tft.begin();
+    tft.setRotation(1);
 
-  ts.begin();
-  ts.setRotation(tft.getRotation());
+    ts.begin();
+    ts.setRotation(tft.getRotation());
 
-  ts_display.begin(&ts, &tft);
-  /*
-  TS_LR_X: 440  TS_LR_Y: 380  TS_UL_X: 3904  TS_UL_Y: 3792
-  UL corner (0, 0) maps to touchscreen (3904, 3792)
-  LR corner (319, 239) maps to touchscreen (451, 395)
-  */
-  ts_display.setTS_calibration(440, 380, 3904, 3792);
+    ts_display.begin(&ts, &tft);
+    /*
+    TS_LR_X: 440  TS_LR_Y: 380  TS_UL_X: 3904  TS_UL_Y: 3792
+    UL corner (0, 0) maps to touchscreen (3904, 3792)
+    LR corner (319, 239) maps to touchscreen (451, 395)
+    */
+    ts_display.setTS_calibration(440, 380, 3904, 3792);
 
-  UI_Test_Init(&tft);
-  UI_Test_BuildTree();
+    UI_Test_Init(&tft);
+    UI_Test_BuildTree();
 
-  UI_Test_Draw();
+    UI_Test_Draw();
 }
+
+#define LONG_TOUCH_DELAY_MS     750
+unsigned long touchStartTime = 0;
+//bool isFirstTouchAfterRelease = true;
+//bool wasLongTouchAlreadyReported = false;
+
+enum TouchEventStates
+{
+  TOUCH_EVENTS_WAIT_FOR_TOUCH,
+  TOUCH_EVENTS_WAIT_LONG_TOUCH_DELAY,
+  TOUCH_EVENTS_LONG_TOUCH_DETECTED
+};
+TouchEventStates touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
 
 void loop()
 {
-  int16_t x, y, pres, px, py;
-  eTouchEvent touchEvent = ts_display.getTouchEvent(x, y, pres, &px, &py);
-  switch(touchEvent)
-  {
-  case TS_TOUCH_EVENT:
-    char buffer[100];
-    sprintf(buffer, "TOUCH EVENT at (%d,%d), pressure=%d, touchscreen at (%d, %d)\n", x, y, pres, px, py);
-    //Serial.println(buffer);
+    int16_t x, y, pres, px, py;
+    eTouchEvent touchEvent = ts_display.getTouchEvent(x, y, pres, &px, &py);
 
-    //tft.fillScreen(ILI9341_WHITE);
-    // Draw a plus sign at a specified TFT location.
-    tft.drawFastVLine(x, y-10, 21, ILI9341_BLUE);
-    tft.drawFastHLine(x-10, y, 21, ILI9341_BLUE);
-
-    UI_Test_TouchInput(x, y);
-    break;
-
-  case TS_RELEASE_EVENT:
-    //Serial.println("RELEASE EVENT");
-    break;
-  }
-
-
-  // check for incoming serial data:
-  if (Serial.available() > 0)
-  {
-    // read incoming serial data:
-    char inChar = Serial.read();
-
-    bool processed = true;
-    switch (inChar)
+    switch (touchEventState)
     {
-      case '0': UI_Test_KeyInput(KEY0); break;
-      case '1': UI_Test_KeyInput(KEY1); break;
-      case '2': UI_Test_KeyInput(KEY2); break;
-      case '3': UI_Test_KeyInput(KEY3); break;
-      case '4': UI_Test_KeyInput(KEY4); break;
-      case '5': UI_Test_KeyInput(KEY5); break;
-      case '6': UI_Test_KeyInput(KEY6); break;
-      case '7': UI_Test_KeyInput(KEY7); break;
-      case '8': UI_Test_KeyInput(KEY8); break;
-      case '9': UI_Test_KeyInput(KEY9); break;
-      case 'l': UI_Test_KeyInput(KEYLEFT); break;
-      case 'r': UI_Test_KeyInput(KEYRIGHT); break;
-      case 'u': UI_Test_KeyInput(KEYUP); break;
-      case 'd': UI_Test_KeyInput(KEYDOWN); break;
-      case 'o': UI_Test_KeyInput(KEYOK); break;
-      case 'm': UI_Test_KeyInput(KEYMILLI); break;
-      case 'k': UI_Test_KeyInput(KEYKILO); break;
-      case '-': UI_Test_KeyInput(KEYMINUS); break;
-      case 'x': UI_Test_KeyInput(KEYX1); break;
-      default: processed = false; break;
+        case TOUCH_EVENTS_WAIT_FOR_TOUCH:
+            if(touchEvent == TS_TOUCH_EVENT || touchEvent == TS_TOUCH_PRESENT)
+            {
+                touchStartTime = millis();
+                touchEventState = TOUCH_EVENTS_WAIT_LONG_TOUCH_DELAY;
+            }
+            break;
+        case TOUCH_EVENTS_WAIT_LONG_TOUCH_DELAY:
+            if(touchEvent == TS_RELEASE_EVENT || touchEvent == TS_NO_TOUCH)
+            {
+                // Normal touch
+                UI_Test_TouchInput(x, y, TOUCH_NORMAL);
+                touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
+            }
+            else if(millis() - touchStartTime >= LONG_TOUCH_DELAY_MS)
+            {
+                // Long touch
+                UI_Test_TouchInput(x, y, TOUCH_LONG);
+                touchEventState = TOUCH_EVENTS_LONG_TOUCH_DETECTED;
+            }
+            break;
+        case TOUCH_EVENTS_LONG_TOUCH_DETECTED:
+            if(touchEvent == TS_RELEASE_EVENT || touchEvent == TS_NO_TOUCH)
+            {
+                touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
+            }
+            break;
+        default: break;
     }
 
-    if(processed == true)
+    /*switch(touchEvent)
     {
-      UI_Test_Draw();
-    }  
-  }
-  
-  UI_Test_Draw();
+        case TS_TOUCH_EVENT:
+            //char buffer[100];
+            //sprintf(buffer, "TOUCH EVENT at (%d,%d), pressure=%d, touchscreen at (%d, %d)\n", x, y, pres, px, py);
+            //Serial.println(buffer);
+
+            // Draw a plus sign at a specified TFT location.
+            tft.drawFastVLine(x, y-10, 21, ILI9341_BLUE);
+            tft.drawFastHLine(x-10, y, 21, ILI9341_BLUE);
+
+            UI_Test_TouchInput(x, y, TOUCH_NORMAL);
+            break;
+        case TS_RELEASE_EVENT:
+            isFirstTouchAfterRelease = true;
+            break;
+        case TS_TOUCH_PRESENT:
+            if(isFirstTouchAfterRelease)
+            {
+                touchStartTime = millis();
+                isFirstTouchAfterRelease = false;
+                wasLongTouchAlreadyReported = false;
+            }
+            if(millis() - touchStartTime > LONG_TOUCH_DELAY_MS && !wasLongTouchAlreadyReported)
+            {
+                Serial.println("\nLONG TOUCH");
+                UI_Test_TouchInput(x, y, TOUCH_LONG);
+                wasLongTouchAlreadyReported = true;
+            }
+            break;
+    }*/
+
+    // check for incoming serial data:
+    if (Serial.available() > 0)
+    {
+        // read incoming serial data:
+        char inChar = Serial.read();
+
+        bool processed = true;
+        switch (inChar)
+        {
+            case '0': UI_Test_KeyInput(KEY0); break;
+            case '1': UI_Test_KeyInput(KEY1); break;
+            case '2': UI_Test_KeyInput(KEY2); break;
+            case '3': UI_Test_KeyInput(KEY3); break;
+            case '4': UI_Test_KeyInput(KEY4); break;
+            case '5': UI_Test_KeyInput(KEY5); break;
+            case '6': UI_Test_KeyInput(KEY6); break;
+            case '7': UI_Test_KeyInput(KEY7); break;
+            case '8': UI_Test_KeyInput(KEY8); break;
+            case '9': UI_Test_KeyInput(KEY9); break;
+            case 'l': UI_Test_KeyInput(KEYLEFT); break;
+            case 'r': UI_Test_KeyInput(KEYRIGHT); break;
+            case 'u': UI_Test_KeyInput(KEYUP); break;
+            case 'd': UI_Test_KeyInput(KEYDOWN); break;
+            case 'o': UI_Test_KeyInput(KEYOK); break;
+            case 'm': UI_Test_KeyInput(KEYMILLI); break;
+            case 'k': UI_Test_KeyInput(KEYKILO); break;
+            case '-': UI_Test_KeyInput(KEYMINUS); break;
+            case 'x': UI_Test_KeyInput(KEYX1); break;
+            default: processed = false; break;
+        }
+
+        if(processed == true)
+        {
+            UI_Test_Draw();
+        }  
+    }
+    
+    UI_Test_Draw();
 }
 
 #endif

@@ -66,9 +66,9 @@ bool ButtonControl::KeyInput(Keys_t key)
 	}
 }
 
-bool ButtonControl::TouchInput(uint16_t x, uint16_t y)
+bool ButtonControl::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 {
-	if(HitTest(x, y))
+	if(HitTest(x, y) && touchType == TOUCH_NORMAL)
 	{
 		if (_onClick != NULL) { _onClick(_controlContext); return true; }
 		else { return false; }

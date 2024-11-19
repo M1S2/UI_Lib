@@ -92,7 +92,7 @@ bool ContainerList::KeyInput(Keys_t key)
 	}
 }
 
-bool ContainerList::TouchInput(uint16_t x, uint16_t y)
+bool ContainerList::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 {
 	if(HitTest(x, y))
 	{
@@ -114,7 +114,7 @@ bool ContainerList::TouchInput(uint16_t x, uint16_t y)
 		{
 			if(this->GetSelectedItem() != NULL)
 			{
-				return this->GetSelectedItem()->TouchInput(x, y);
+				return this->GetSelectedItem()->TouchInput(x, y, touchType);
 			}
 		}
 	}
