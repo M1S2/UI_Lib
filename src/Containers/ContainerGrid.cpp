@@ -415,4 +415,5 @@ void ContainerGrid::RecalculateLayout()
 			currentItem->RecalculateDimensions();
 		}
 	}
+	this->RecalculateDimensions();
 }

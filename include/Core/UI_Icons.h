@@ -20,4 +20,8 @@ extern const unsigned char icon_warning_bits[] PROGMEM;	    /**< Data array of t
 #define icon_error_height 16								/**< Height of the error icon. */
 extern const unsigned char icon_error_bits[] PROGMEM;	    /**< Data array of the error icon. */
 
+#define icon_pencil_width 16                                /**< Width of the pencil icon. */
+#define icon_pencil_height 16                               /**< Height of the pencil icon. */
+extern const unsigned char icon_pencil_bits[] PROGMEM;      /**< Data array of the pencil icon. */
+
 #endif /* UI_ICONS_H_ */

@@ -4,10 +4,11 @@
 
 #include "Controls/NumericControl.h"
 #include "Core/UI_Manager.h"
+#include "Core/UI_Icons.h"
 #include <math.h>
 
 template <class T>
-NumericControl<T>::NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), uint8_t maxStringBufferLength) : NumericIndicator<T>(valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
+NumericControl<T>::NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), VirtualKeys* virtualKeys, uint8_t maxStringBufferLength) : NumericIndicator<T>(valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
 {
 	this->Type = UI_CONTROL;
 	_lastDrawnEditMode = false;
@@ -15,10 +16,11 @@ NumericControl<T>::NumericControl(T* valuePointer, const char* baseUnit, T minVa
 	_minValue = minValue;
 	_controlContext = controlContext;
 	_onValueChanged = onValueChanged;
+	_virtualKeys = virtualKeys;
 }
 
 template <class T>
-NumericControl<T>::NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), uint8_t maxStringBufferLength) : NumericIndicator<T>(locX, locY, valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
+NumericControl<T>::NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), VirtualKeys* virtualKeys, uint8_t maxStringBufferLength) : NumericIndicator<T>(locX, locY, valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
 {
 	this->Type = UI_CONTROL;
 	_lastDrawnEditMode = false;
@@ -26,6 +28,7 @@ NumericControl<T>::NumericControl(uint16_t locX, uint16_t locY, T* valuePointer,
 	_minValue = minValue;
 	_controlContext = controlContext;
 	_onValueChanged = onValueChanged;
+	_virtualKeys = virtualKeys;
 }
 
 template <class T>
@@ -46,7 +49,7 @@ void NumericControl<T>::Draw(bool redraw)
 				UiManager.Gfx->fillRect(this->LocX + UiManager.ElementMargin, this->LocY + UiManager.ElementMargin, this->Width - 2 * UiManager.ElementMargin, this->Height - 2 * UiManager.ElementMargin, UiManager.ColorForeground);
 				UiManager.Gfx->setTextColor(UiManager.ColorForegroundEditMode);
 			}	
-			else 
+			else
 			{
 				UiManager.Gfx->drawFastHLine(this->LocX + UiManager.ElementMargin + 1, this->LocY + this->Height - UiManager.ElementMargin - UiManager.ElementPadding, this->Width - 2 * UiManager.ElementMargin - 2, UiManager.ColorForeground); 
 			}
@@ -70,6 +73,11 @@ void NumericControl<T>::Draw(bool redraw)
 
 				// Reset text color back to default foreground
 				UiManager.Gfx->setTextColor(UiManager.ColorForeground);
+
+				if(_virtualKeys != NULL && !UiManager.AreVirtualKeysShown)
+				{
+					UiManager.Gfx->drawXBitmap(this->LocX + this->Width - 2 * UiManager.ElementMargin - UiManager.ElementPadding - icon_pencil_width, this->LocY + (this->Height / 2) - (icon_pencil_height / 2), icon_pencil_bits, icon_pencil_width, icon_pencil_height, UiManager.ColorForegroundEditMode);
+				}
 			}
 		}
 	}
@@ -146,7 +154,12 @@ bool NumericControl<T>::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 		{
 			case TOUCH_NORMAL:
 			{
-				// NOT HANDLED YET...
+				bool touchWasOnEditIcon = this->IsInEditMode && (_virtualKeys != NULL) && !UiManager.AreVirtualKeysShown && (x >= (this->LocX + (this->Width / 2)));
+				if(touchWasOnEditIcon)
+				{
+					_virtualKeys->ShowVirtualKeys(this);
+					return true;
+				}
 				return false;
 			}
 			case TOUCH_LONG:
@@ -296,4 +309,16 @@ template <class T>
 void NumericControl<T>::ToggleEditMode()
 {
 	UiManager.UpdateIsInEditModeElement(this, !this->IsInEditMode);
+}
+
+template <class T>
+void NumericControl<T>::RecalculateDimensions()
+{
+	NumericIndicator<T>::RecalculateDimensions();
+
+	if(_virtualKeys != NULL)
+	{
+		// If the NumericControl has a virtual keyboard assigned, reserve place for a region to show an edit icon
+		this->Width += icon_pencil_width;
+	}
 }

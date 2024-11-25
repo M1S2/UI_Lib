@@ -18,10 +18,9 @@ class ButtonControl : public UIElement
 	private:
 		char* _buttonText;									/**< Character buffer holding the string drawn by the button as text. */
 
-		void* _controlContext;								/**< Context pointer that is returned with the _onClick function pointer */
-		void(*_onClick)(void* controlContext);				/**< Function pointer for _onClick event. This function is called when the button is clicked. */
-
 	public:
+		void* ControlContext;								/**< Context pointer that is returned with the _onClick function pointer */
+		void(*OnClick)(void* controlContext);				/**< Function pointer for _onClick event. This function is called when the button is clicked. */
 		
 		/**
 		 * Constructor of the ButtonControl.

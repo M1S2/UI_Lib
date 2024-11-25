@@ -25,6 +25,7 @@
 #include "Containers/TabControl.h"
 #include "Controls/ButtonControl.h"
 #include "Controls/MessageDialog.h"
+#include "Controls/VirtualKeys.h"
 
 #include "../src/Indicators/EnumIndicator.cpp"
 #include "../src/Controls/EnumControl.cpp"

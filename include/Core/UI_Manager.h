@@ -25,7 +25,7 @@ class UI_Manager
 		UIElement* _focusElement;					/**< Element that has the focus (it is highlited and receives all key inputs). */
 		UIElement* _lastDrawnFocusElement;			/**< Last drawn focus element. */
 		
-		UIElement* _lastElementInEditMode = NULL;
+		UIElement* _lastElementInEditMode = NULL;	/**< Last UI_Element that has the IsInEditMode property set. If no UI_Element is in edit mode, this is NULL. */
 
 		/**
 		 * Traverse down the visual tree until an element without a child is reached and focus this element.
@@ -45,7 +45,8 @@ class UI_Manager
 		uint16_t ElementPadding;					/**< Space between the outline of every UIElement and the internal content. This is part of the UIElement size. */
 		bool CompleteRedrawRequested;				/**< True, if the tree root was currently changed. This is set to false on the first draw then. */
 		Adafruit_GFX* Gfx;							/**< Graphics object */
-		
+		bool AreVirtualKeysShown;					/**< True, if the Virtual keys are shown */
+
 		/**
 		 * Get the singleton instance of the UI_Manager class.
 		 * Usage:
@@ -89,6 +90,12 @@ class UI_Manager
 		 */
 		void ChangeVisualTreeRoot(UIElement* visualTreeRoot);
 		
+		/**
+		 * Return the root element of the visual tree.
+		 * @return Visual tree root element.
+		 */
+		UIElement* GetVisualTreeRoot();
+
 		/**
 		 * Forward the given key to the _focusElement.
 		 * If the element type of the _focusElement doesn't support the key type, the key is forwarded to the parent of the _focusElement.

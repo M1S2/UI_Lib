@@ -43,6 +43,13 @@ void OnShowError(void* context);
 
 #define ELEMENT_MARGIN	10
 
+void OnVirtKeyPressed(Keys_t key)
+{
+	Serial.print("Virtual key = ");
+	Serial.println(key);
+}
+VirtualKeys virtKeys(OnVirtKeyPressed);
+
 Label labelBool("Boolean", COLOR_WHITE, NULL, 0, 0, 10);
 BoolIndicator boolInd1(&boolVal1);
 BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
@@ -65,7 +72,7 @@ Label labelNum("Numerics", COLOR_WHITE, NULL, X_COLUMN1, Y_ROW1, 10);
 NumericIndicator<int> numInd2(X_COLUMN1, Y_ROW2, &numVal2, "x", 5000, 0);
 Label lbl_numInd2_Text("Text...", LABEL_COLOR_NOTSET, NULL, X_COLUMN1, Y_ROW3);
 NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 2);
-NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed);
+NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed, &virtKeys);
 ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, &numVal1, -500, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20);
 ContainerPage page_numeric;
 

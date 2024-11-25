@@ -11,8 +11,8 @@ ButtonControl::ButtonControl(const char* buttonText, void* controlContext, void(
 	_buttonText = new char[maxStringLength]();
 	strncpy(_buttonText, buttonText, maxStringLength);	// Copy a maximum number of StringLength characters to the _buttonText buffer. If text is shorter, the array is zero padded.
 	_buttonText[maxStringLength - 1] = '\0';			// The _buttonText buffer must contain at least one termination character ('\0') at the end to protect from overflow.
-	_controlContext = controlContext;
-	_onClick = onClick;
+	ControlContext = controlContext;
+	OnClick = onClick;
 }
 
 ButtonControl::ButtonControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, const char* buttonText, void* controlContext, void(*onClick)(void* controlContext), int maxStringLength) : UIElement(locX, locY, UI_CONTROL)
@@ -22,8 +22,8 @@ ButtonControl::ButtonControl(uint16_t locX, uint16_t locY, uint16_t width, uint1
 	_buttonText = new char[maxStringLength]();
 	strncpy(_buttonText, buttonText, maxStringLength);	// Copy a maximum number of StringLength characters to the _buttonText buffer. If text is shorter, the array is zero padded.
 	_buttonText[maxStringLength - 1] = '\0';			// The _buttonText buffer must contain at least one termination character ('\0') at the end to protect from overflow.
-	_controlContext = controlContext;
-	_onClick = onClick;
+	ControlContext = controlContext;
+	OnClick = onClick;
 }
 
 void ButtonControl::Draw(bool redraw)
@@ -43,7 +43,7 @@ void ButtonControl::Draw(bool redraw)
 			UiManager.Gfx->drawFastVLine(LocX + UiManager.ElementMargin + 1, LocY + Height - UiManager.ElementMargin - 7, 5, UiManager.ColorForeground);
 			UiManager.Gfx->drawFastHLine(LocX + Width - UiManager.ElementMargin - 7, LocY + Height - UiManager.ElementMargin - 2, 5, UiManager.ColorForeground);		// Lower right corner		
 			UiManager.Gfx->drawFastVLine(LocX + Width - UiManager.ElementMargin - 2, LocY + Height - UiManager.ElementMargin - 6, 5, UiManager.ColorForeground);
-			UiManager.Gfx->setCursor(LocX + UiManager.ElementMargin + 1, LocY + Height - UiManager.ElementMargin - 2 * UiManager.ElementPadding - 2);
+			UiManager.Gfx->setCursor(LocX + UiManager.ElementMargin + UiManager.ElementPadding + 1, LocY + Height - UiManager.ElementMargin - UiManager.ElementPadding - 2);
 			UiManager.Gfx->print(_buttonText);
 		}
 	}
@@ -59,7 +59,7 @@ bool ButtonControl::KeyInput(Keys_t key)
 	switch (key)
 	{
 		case KEYOK:
-			if (_onClick != NULL) { _onClick(_controlContext); return true; }
+			if (OnClick != NULL) { OnClick(ControlContext); return true; }
 			else { return false; }
 		default:
 			return false;
@@ -70,7 +70,7 @@ bool ButtonControl::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 {
 	if(HitTest(x, y) && touchType == TOUCH_NORMAL)
 	{
-		if (_onClick != NULL) { _onClick(_controlContext); return true; }
+		if (OnClick != NULL) { OnClick(ControlContext); return true; }
 		else { return false; }
 	}
 	return false;

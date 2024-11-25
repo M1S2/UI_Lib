@@ -7,6 +7,7 @@
 #define NUMERICCONTROL_H_
 
 #include "../Indicators/NumericIndicator.h"
+#include "VirtualKeys.h"
 
 /**
  * Class for a numeric control that is showing a numeric variable value and offers the possibility to edit the value.
@@ -40,6 +41,8 @@ class NumericControl : public NumericIndicator<T>
 		void* _controlContext;							/**< Context pointer that is returned with the _onValueChanged function pointer */
 		void(*_onValueChanged)(void* controlContext);	/**< Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed. */
 		
+		VirtualKeys* _virtualKeys;						/**< Pointer to a VirtualKeys UIElement. This can be used to edit the NumericControl via touch. */
+
 	public:
 		int8_t CurrentDigitPosition;					/**< Position of the currently controlled digit. Range from (-_numFractionalDigits) to (_numDigits - _numFractionalDigits - 1) */
 
@@ -52,9 +55,10 @@ class NumericControl : public NumericIndicator<T>
 		 * @param numFractionalDigits Number of fractional digits that are shown by this control. E.g. 1.234 V has 3 fractional digits.
 		 * @param controlContext Context pointer that is returned with the _onValueChanged function pointer
 		 * @param onValueChanged Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed.
+		 * @param virtualKeys Pointer to a VirtualKeys UIElement. This can be used to edit the NumericControl via touch.
 		 * @param maxStringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
 		 */
-		NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
+		NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL, VirtualKeys* virtualKeys = NULL, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
 		
 		/**
 		 * Constructor of the NumericControl.
@@ -67,9 +71,10 @@ class NumericControl : public NumericIndicator<T>
 		 * @param numFractionalDigits Number of fractional digits that are shown by this control. E.g. 1.234 V has 3 fractional digits.
 		 * @param controlContext Context pointer that is returned with the _onValueChanged function pointer
 		 * @param onValueChanged Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed.
+		 * @param virtualKeys Pointer to a VirtualKeys UIElement. This can be used to edit the NumericControl via touch.
 		 * @param maxStringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
 		 */
-		NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
+		NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL, VirtualKeys* virtualKeys = NULL, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
 
 		/**
 		 * Method used for drawing of the NumericControl.
@@ -152,6 +157,11 @@ s		 * @return true if the key was processed; false if not.
 		 * Some keys are only supported in edit mode.
 		 */
 		void ToggleEditMode();
+
+		/**
+		 * Recalculate the Height and Width of the UIElement
+		 */
+		virtual void RecalculateDimensions() override;
 };
 
 #endif /* NUMERICCONTROL_H_ */
