@@ -11,9 +11,10 @@
 #define UI_LIB_DEFAULT_COLOR_BACKGROUND				RGB565(0x00, 0x00, 0x00)			/**< Default Background color (black) */
 #define UI_LIB_DEFAULT_COLOR_FOREGROUND				RGB565(0xFF, 0xFF, 0xFF)			/**< Default UIElement foreground color (white) */	
 #define UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE	UI_LIB_DEFAULT_COLOR_BACKGROUND		/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
+#define UI_LIB_DEFAULT_COLOR_FOCUS_FRAME			UI_LIB_DEFAULT_COLOR_FOREGROUND		/**< Default Focus frame color */
 #define UI_LIB_DEFAULT_FONT 						&FreeSans12pt7b						/**< Default font used for all UIElements. */
-#define UI_LIB_DEFAULT_ELEMENT_MARGIN				1									/**< Space without content around every UIElement. This is part of the UIElement size. */
-#define UI_LIB_DEFAULT_ELEMENT_PADDING				2									/**< Space between the outline of every UIElement and the internal content. This is part of the UIElement size. */
+#define UI_LIB_DEFAULT_ELEMENT_MARGIN				2									/**< Space without content around every UIElement. This is part of the UIElement size. */
+#define UI_LIB_DEFAULT_ELEMENT_PADDING				3									/**< Space between the outline of every UIElement and the internal content. This is part of the UIElement size. */
 
 /**
  * Class that is used to handle the drawing and key handling of all UI_Elements.
@@ -39,6 +40,7 @@ class UI_Manager
 		uint16_t ColorBackground;					/**< Background color (black) */
 		uint16_t ColorForeground;					/**< UIElement color (green) */	
 		uint16_t ColorForegroundEditMode;			/**< Default UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. */	
+		uint16_t ColorFocusFrame;					/**< Color of the focus frame */
 		const GFXfont* Font;						/**< Default font used when no other font is assigned */
 		uint16_t FontHeight;						/**< Maximum height of the Font (height of the string "Ag"). This parameter is recalculated when the SetFont() method is used. */
 		uint16_t ElementMargin;						/**< Space without content around every UIElement. This is part of the UIElement size. */
@@ -69,8 +71,9 @@ class UI_Manager
 		 * @param colorBackground Background color
 		 * @param colorForeground UIElement color
 		 * @param colorForegroundEditMode UIElement foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color.
+		 * @param colorFocusFrame Color of the focus frame
 		 */
-		void SetColors(uint16_t colorBackground, uint16_t colorForeground, uint16_t colorForegroundEditMode);
+		void SetColors(uint16_t colorBackground = UI_LIB_DEFAULT_COLOR_BACKGROUND, uint16_t colorForeground = UI_LIB_DEFAULT_COLOR_FOREGROUND, uint16_t colorForegroundEditMode = UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE, uint16_t colorFocusFrame = UI_LIB_DEFAULT_COLOR_FOCUS_FRAME);
 
 		/**
 		 * Set the Font property and recalculate the FontHeight based on this font

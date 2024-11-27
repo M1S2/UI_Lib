@@ -34,15 +34,7 @@ void ButtonControl::Draw(bool redraw)
 		{
 			_lastDrawnVisible = true;
 			UiManager.Gfx->fillRect(LocX, LocY, Width, Height, UiManager.ColorBackground);
-			
-			UiManager.Gfx->drawFastHLine(LocX + UiManager.ElementMargin + 1, LocY + UiManager.ElementMargin + 1, 5, UiManager.ColorForeground);					// Upper left corner
-			UiManager.Gfx->drawFastVLine(LocX + UiManager.ElementMargin + 1, LocY + UiManager.ElementMargin + 1, 5, UiManager.ColorForeground);
-			UiManager.Gfx->drawFastHLine(LocX + Width - UiManager.ElementMargin - 7, LocY + UiManager.ElementMargin + 1, 5, UiManager.ColorForeground);			// Upper right corner
-			UiManager.Gfx->drawFastVLine(LocX + Width - UiManager.ElementMargin - 2, LocY + UiManager.ElementMargin + 1, 5, UiManager.ColorForeground);
-			UiManager.Gfx->drawFastHLine(LocX + UiManager.ElementMargin + 1, LocY + Height - UiManager.ElementMargin - 2, 5, UiManager.ColorForeground);				// Lower left corner
-			UiManager.Gfx->drawFastVLine(LocX + UiManager.ElementMargin + 1, LocY + Height - UiManager.ElementMargin - 7, 5, UiManager.ColorForeground);
-			UiManager.Gfx->drawFastHLine(LocX + Width - UiManager.ElementMargin - 7, LocY + Height - UiManager.ElementMargin - 2, 5, UiManager.ColorForeground);		// Lower right corner		
-			UiManager.Gfx->drawFastVLine(LocX + Width - UiManager.ElementMargin - 2, LocY + Height - UiManager.ElementMargin - 6, 5, UiManager.ColorForeground);
+			UiManager.Gfx->drawRect(LocX + UiManager.ElementMargin, LocY + UiManager.ElementMargin, Width - 2 * UiManager.ElementMargin, Height - 2 * UiManager.ElementMargin, UiManager.ColorForeground); 
 			UiManager.Gfx->setCursor(LocX + UiManager.ElementMargin + UiManager.ElementPadding + 1, LocY + Height - UiManager.ElementMargin - UiManager.ElementPadding - 2);
 			UiManager.Gfx->print(_buttonText);
 		}

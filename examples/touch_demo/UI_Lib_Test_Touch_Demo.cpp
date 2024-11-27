@@ -31,7 +31,9 @@ void OnShowError(void* context);
 #define DISPLAY_HEIGHT	240
 
 #define COLOR_WHITE		RGB565(0xFF, 0xFF, 0xFF)
+#define COLOR_BLACK		RGB565(0x00, 0x00, 0x00)
 #define COLOR_ORANGE	RGB565(0xFF, 0x88, 0x00)
+#define COLOR_GREEN		RGB565(0x00, 0xF7, 0x00)
 
 #define X_COLUMN1	ELEMENT_MARGIN
 #define X_COLUMN2	125
@@ -252,7 +254,7 @@ void UI_Test_BuildTree()
 void UI_Test_Init(Adafruit_GFX* gfx)
 {
 	// Use the global UiManager object to access the singleton class.
-	UiManager.SetColors(RGB565(0x00, 0x00, 0x00), RGB565(0x00, 0xF7, 0x00), RGB565(0x00, 0x00, 0x00));
+	UiManager.SetColors(COLOR_BLACK, COLOR_GREEN, COLOR_BLACK, COLOR_WHITE);
 	UiManager.Init(gfx);
 	//UiManager.SetFont(&FreeSerifItalic12pt7b);
 	//UiManager.SetFont(&FreeMono18pt7b);

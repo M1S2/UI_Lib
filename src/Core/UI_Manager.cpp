@@ -12,7 +12,7 @@ UI_Manager::UI_Manager()
 	_focusElement = NULL;
 	_lastDrawnFocusElement = NULL;
 
-	SetColors(UI_LIB_DEFAULT_COLOR_BACKGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND, UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE);
+	SetColors();		// use default colors
 
 	Font = UI_LIB_DEFAULT_FONT;
 	ElementMargin = UI_LIB_DEFAULT_ELEMENT_MARGIN;
@@ -28,11 +28,12 @@ void UI_Manager::Init(Adafruit_GFX* gfx)
 	SetFont(Font);
 }
 
-void UI_Manager::SetColors(uint16_t colorBackground, uint16_t colorForeground, uint16_t colorForegroundEditMode)
+void UI_Manager::SetColors(uint16_t colorBackground, uint16_t colorForeground, uint16_t colorForegroundEditMode, uint16_t colorFocusFrame)
 {
 	ColorBackground = colorBackground;
 	ColorForeground = colorForeground;
 	ColorForegroundEditMode = colorForegroundEditMode;
+	ColorFocusFrame = colorFocusFrame;
 }
 
 void UI_Manager::SetFont(const GFXfont* font)
@@ -57,14 +58,25 @@ void UI_Manager::Draw()
 	
 	if(_lastDrawnFocusElement != _focusElement)
 	{
-		UiManager.Gfx->drawRect(_lastDrawnFocusElement->LocX + UiManager.ElementMargin, _lastDrawnFocusElement->LocY + UiManager.ElementMargin, _lastDrawnFocusElement->Width - 2 * UiManager.ElementMargin, _lastDrawnFocusElement->Height - 2 * UiManager.ElementMargin, ColorBackground); 
+		UiManager.Gfx->drawRect(_lastDrawnFocusElement->LocX + UiManager.ElementMargin - 2, _lastDrawnFocusElement->LocY + UiManager.ElementMargin - 2, _lastDrawnFocusElement->Width - 2 * UiManager.ElementMargin + 4, _lastDrawnFocusElement->Height - 2 * UiManager.ElementMargin + 4, ColorBackground); 
 	}
 
 	_visualTreeRoot->Draw(CompleteRedrawRequested);
 	
 	if(_focusElement != NULL && _focusElement->Visible && _focusElement->Type != UI_INDICATOR) 
-	{ 
-		UiManager.Gfx->drawRect(_focusElement->LocX + UiManager.ElementMargin, _focusElement->LocY + UiManager.ElementMargin, _focusElement->Width - 2 * UiManager.ElementMargin, _focusElement->Height - 2 * UiManager.ElementMargin, ColorForeground); 
+	{
+		// Upper left corner
+		UiManager.Gfx->drawFastHLine(_focusElement->LocX + UiManager.ElementMargin - 2, _focusElement->LocY + UiManager.ElementMargin - 2, 5, UiManager.ColorFocusFrame);
+		UiManager.Gfx->drawFastVLine(_focusElement->LocX + UiManager.ElementMargin - 2, _focusElement->LocY + UiManager.ElementMargin - 2, 5, UiManager.ColorFocusFrame);
+		// Upper right corner
+		UiManager.Gfx->drawFastHLine(_focusElement->LocX + _focusElement->Width - UiManager.ElementMargin - 4, _focusElement->LocY + UiManager.ElementMargin - 2, 5, UiManager.ColorFocusFrame);
+		UiManager.Gfx->drawFastVLine(_focusElement->LocX + _focusElement->Width - UiManager.ElementMargin + 1, _focusElement->LocY + UiManager.ElementMargin - 2, 5, UiManager.ColorFocusFrame);
+		// Lower left corner
+		UiManager.Gfx->drawFastHLine(_focusElement->LocX + UiManager.ElementMargin - 2, _focusElement->LocY + _focusElement->Height - UiManager.ElementMargin + 1, 5, UiManager.ColorFocusFrame);
+		UiManager.Gfx->drawFastVLine(_focusElement->LocX + UiManager.ElementMargin - 2, _focusElement->LocY + _focusElement->Height - UiManager.ElementMargin - 4, 5, UiManager.ColorFocusFrame);
+		// Lower right corner
+		UiManager.Gfx->drawFastHLine(_focusElement->LocX + _focusElement->Width - UiManager.ElementMargin - 4, _focusElement->LocY + _focusElement->Height - UiManager.ElementMargin + 1, 5, UiManager.ColorFocusFrame);		
+		UiManager.Gfx->drawFastVLine(_focusElement->LocX + _focusElement->Width - UiManager.ElementMargin + 1, _focusElement->LocY + _focusElement->Height - UiManager.ElementMargin - 3, 5, UiManager.ColorFocusFrame);
 	}
 	_lastDrawnFocusElement = _focusElement;
 
