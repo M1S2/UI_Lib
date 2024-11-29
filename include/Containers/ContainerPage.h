@@ -27,21 +27,16 @@ class ContainerPage : public Container
 		PageItemConfig* _itemConfiguration;		/**< Configuration data for all items inside the page. */
 
 	public:
+
 		/**
 		 * Constructor of the ContainerPage.
 		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
-		 */
-		ContainerPage(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS);
-		
-		/**
-		 * Constructor of the ContainerPage.
 		 * @param locX X Location of the upper left corner of the ContainerPage 
 		 * @param locY Y Location of the upper left corner of the ContainerPage
 		 * @param width Drawing width of the ContainerPage
 		 * @param height Drawing height of the ContainerPage
-		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
-		 */
-		ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS);
+		  */
+		ContainerPage(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint16_t locX = 0, uint16_t locY = 0, uint16_t width = 0, uint16_t height = 0);
 
 		/**
 		 * Method used for drawing of the ContainerPage.

@@ -56,25 +56,11 @@ class NumericControl : public NumericIndicator<T>
 		 * @param controlContext Context pointer that is returned with the _onValueChanged function pointer
 		 * @param onValueChanged Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed.
 		 * @param virtualKeys Pointer to a VirtualKeys UIElement. This can be used to edit the NumericControl via touch.
-		 * @param maxStringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
-		 */
-		NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL, VirtualKeys* virtualKeys = NULL, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
-		
-		/**
-		 * Constructor of the NumericControl.
 		 * @param locX X Location of the upper left corner of the NumericControl 
 		 * @param locY Y Location of the upper left corner of the NumericControl
-		 * @param valuePointer Pointer to the numeric variable that is shown and manipulated by this control.
-		 * @param baseUnit Base unit that is appended to the calculated prefix. E.g. "V" for voltage values. To use the "%" sign as unit, you have to use "%%" as string.
-		 * @param minValue Minimum value that can be handled by this numeric control.
-		 * @param maxValue Maximum value that can be shown by this numeric control. It is used to determine the number of non-fractional digits.
-		 * @param numFractionalDigits Number of fractional digits that are shown by this control. E.g. 1.234 V has 3 fractional digits.
-		 * @param controlContext Context pointer that is returned with the _onValueChanged function pointer
-		 * @param onValueChanged Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed.
-		 * @param virtualKeys Pointer to a VirtualKeys UIElement. This can be used to edit the NumericControl via touch.
 		 * @param maxStringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
 		 */
-		NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL, VirtualKeys* virtualKeys = NULL, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
+		NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL, VirtualKeys* virtualKeys = NULL, uint16_t locX = 0, uint16_t locY = 0, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
 
 		/**
 		 * Method used for drawing of the NumericControl.

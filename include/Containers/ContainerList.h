@@ -22,25 +22,18 @@ class ContainerList : public Container
 		uint8_t _scrollBarMargin;			/**< Margin in pixel between the scroll bar frame and the container list outline */
 
 	public:
+
 		/**
 		 * Constructor of the ContainerList.
 		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
 		 * @param scrollBarWidth Width in pixel of the scroll bar on the right side of the container
  		 * @param scrollBarMargin Margin in pixel between the scroll bar frame and the container list outline
-		 */
-		ContainerList(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t scrollBarWidth = DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH, uint8_t scrollBarMargin = DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN);
-
-		/**
-		 * Constructor of the ContainerList.
 		 * @param locX X Location of the upper left corner of the ContainerList 
 		 * @param locY Y Location of the upper left corner of the ContainerList
 		 * @param width Drawing width of the ContainerList
 		 * @param height Drawing height of the ContainerList
-		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
-		 * @param scrollBarWidth Width in pixel of the scroll bar on the right side of the container
- 		 * @param scrollBarMargin Margin in pixel between the scroll bar frame and the container list outline
 		 */
-		ContainerList(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t scrollBarWidth = DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH, uint8_t scrollBarMargin = DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN);
+		ContainerList(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t scrollBarWidth = DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH, uint8_t scrollBarMargin = DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN, uint16_t locX = 0, uint16_t locY = 0, uint16_t width = 0, uint16_t height = 0);
 		
 		/**
 		 * Method used for drawing of the ContainerList.

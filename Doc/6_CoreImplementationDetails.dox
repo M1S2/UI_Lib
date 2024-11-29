@@ -1,30 +1,59 @@
 /*! @page page_6_coreimplementationdetails 6 - Core Implementation details
 
-This section gives a short overview of the `UI_Manager` implementation.
+This section gives a short overview of the UI_Manager implementation.
 
-There are two private variables:
-- `UI_Manager::_visualTreeRoot`: This is the entry point into the visual tree (representing the layout of the user interface). It can be any object of type UIElement (no matter if it is a container, control or indicator).
-- `UI_Manager::_focusElement`: Each `UIElement` has a property `UIElement::ActiveChild` which is a pointer to the active child element of the element. Only elements with children use this property to track which item should be displayed or operated. Simple controls and indicators (without children support) have set this property to NULL (they are called leaf elements). The `UI_Manager::_focusElement` is found by traversing down the visual tree trough all active childs until an element without a child (`UIElement::ActiveChild == NULL`, leaf element) is reached.
+@section drawingvisualtreeroot_sec Drawing / Visual Tree Root
+The UI_Manager::_visualTreeRoot private variable holds the entry point into the visual tree (representing the layout of the user interface). It can be any object of type UIElement (no matter if it is a container, control or indicator).
 
-@section marginpaddingcoordinates_sec Margin / Padding / Coordinates
+If the visual tree root of the UI_Manager is NULL (not set by UI_Manager::ChangeVisualTreeRoot) nothing is drawn by the UI_Manager::Draw function.
 
-The following picture shows the used definitions for the `UIElement::LocX` and `UIElement::LocY` coordinates and the `UIElement::Width` and `UIElement::Height` of each `UIElement`.
-The `UI_Manager::ElementMargin` is the distance from the outer border of the control to the focus frame. The `UI_Manager::ElementPadding` is the distance from the focus frame to the element content.
-
-@image html Images/MarginPaddingCoordinatesOverview.jpg
-
-@section drawing_sec Drawing
-If the visual tree root of the `UI_Manager` is NULL (not set by `UI_Manager::ChangeVisualTreeRoot`) nothing is drawn by the `UI_Manager::Draw` function.
-
-Otherwise a frame is drawn around the `UI_Manager::_focusElement` (only if it is visible and is no indicator). Then the `UI_Manager::Draw` function of the `UIElement` assigned to `UI_Manager::_visualTreeRoot` is called. The element draws itself and (if it's not a leaf element, e.g. if it's a container) calls the `UI_Manager::Draw` functions of one or multiple child elements (depending on the container type). These child elements also draw themselves and possible further child elements. So the visual tree is traversed down until no child elements are left.
+Otherwise a frame is drawn around the UI_Manager::_focusElement (only if it is visible and is no indicator). Then the UI_Manager::Draw function of the UIElement assigned to UI_Manager::_visualTreeRoot is called. The element draws itself and (if it's not a leaf element, e.g. if it's a container) calls the UI_Manager::Draw functions of one or multiple child elements (depending on the container type). These child elements also draw themselves and possible further child elements. So the visual tree is traversed down until no child elements are left.
 
 @image html Images/VisualTreeDrawing.jpg "VisualTreeDrawing"
 
-@section keyinputhandling_sec Key Input Handling
-If the `UI_Manager::KeyInput` function is called, the received key is first send to the `UI_Manager::KeyInput` function of the `UI_Manager::_focusElement`. If this function returns true, the key was handled (and supported) by the control and nothing has to be done. If the function returns false, the key wasn't handled (not supported or no `UI_Manager::KeyInput` function wasn't defined like with indicators). The key is then send to the `UI_Manager::KeyInput` function of the parent element of the `UI_Manager::_focusElement`. If this returns true nothing must be done, otherwise the key is again send to the parent element. The key bubbles up the tree until the key is handled or the root of the visual tree is reached.
+@section focuselement_sec Focus Element
+Each UIElement has a property UIElement::ActiveChild which is a pointer to the active child element of the element. Only elements with children use this property to track which item should be displayed or operated. Simple controls and indicators (without children support) have set this property to NULL (they are called leaf elements). The UI_Manager::_focusElement is found by traversing down the visual tree trough all active childs until an element without a child (UIElement::ActiveChild == NULL, leaf element) is reached.
 
-After each key input, the `UI_Manager::_focusElement` is recalculated.
+@section marginpaddingcoordinates_sec Margin / Padding / Coordinates
+
+The following picture shows the used definitions for the UIElement::LocX and UIElement::LocY coordinates and the UIElement::Width and UIElement::Height of each UIElement.
+The UI_Manager::ElementMargin is the distance from the outer border of the control to the focus frame. The UI_Manager::ElementPadding is the distance from the focus frame to the element content.
+
+@image html Images/MarginPaddingCoordinatesOverview.jpg
+
+@section layoutcalculation_sec Layout Calculation
+Each UIElement provides two methods to calculate the complete layout:
+- UIElement::RecalculateDimensions: Recalculate the UIElement::Width and UIElement::Height of the UIElement here. For indicators or controls it could be enough to get the text size and add the UI_Manager::ElementPadding and UI_Manager::ElementMargin (each twice, see the previous chapter for how the UIElement::Width and UIElement::Height are defined). For containers e.g. calculate the items bounding box using Container::GetItemsBoundingBox and set the UIElement::Width and UIElement::Height accordingly. It really depends on the type of UIElement.
+- UIElement::RecalculateLayout: Recalculate the complete UIElement layout. All simple indicators or controls don't need to implement this method. It is more important for containers to update the UIElement::LocX and UIElement::LocY of all their items. The logic highly depends on the type of container. It is recommended to call the UIElement::RecalculateDimensions method of the container at the end of the containers UIElement::RecalculateLayout method.
+
+@section keyinputhandling_sec Key Input Handling
+If the UI_Manager::KeyInput function is called, the received key is first send to the UIElement::KeyInput function of the UI_Manager::_focusElement. If this function returns true, the key was handled (and supported) by the control and nothing has to be done. If the function returns false, the key wasn't handled (not supported or no UIElement::KeyInput function wasn't defined like with indicators). The key is then send to the UIElement::KeyInput function of the parent element of the UI_Manager::_focusElement. If this returns true nothing must be done, otherwise the key is again send to the next parent element. The key bubbles up the tree until the key is handled or the root of the visual tree is reached.
+
+After each key input, the UI_Manager::_focusElement is recalculated by the UI_Manager::setFocusToLeaf method.
 
 @image html Images/VisualTreeKeyHandling.jpg "VisualTreeKeyHandling"
+
+@section touchinputhandling_sec Touch Input Handling
+If the UI_Manager::TouchInput function is called, the received touch is send to the UIElement::TouchInput function of the UI_Manager::_visualTreeRoot. This UIElement handles the touch input depending on the touch location, touch type and if it supports touch inputs at all (e.g. touch is not supported if the UIElement::TouchInput function wasn't defined like with indicators). If the element is a container, the touch may be forwarded to the child elements, depending on the touched location.
+
+E.g. if the touch was on the header region of a TabControl, the tab is changed accordingly and the touch was handled. If the touch was inside the content region of the TabControl, the touch is forwarded to the currently selected tab content UIElement. This element also decides how to handle the touch then...
+
+After each touch input, the UI_Manager::_focusElement is recalculated by the UI_Manager::setFocusToLeaf method.
+
+If the UI_Manager::_focusElement changes to an UIElement other than the one that was in edit mode before (UI_Manager::_lastElementInEditMode), the UIElement::IsInEditMode of the UI_Manager::_lastElementInEditMode is set to false.
+
+@section editmode_sec Edit Mode
+Each UIElement has a property UIElement::IsInEditMode. This property is mostly used by controls to indicate if they are in edit mode.
+
+It is only allowed for one UIElement to be in edit mode at the same time (otherwise it won't be clear which element will consum key presses, ...). Use the UI_Manager::UpdateIsInEditModeElement method to change the UIElement::IsInEditMode property (don't edit the property directly). This method tracks the last UIElement with enabled edit mode (UI_Manager::_lastElementInEditMode) and disables the edit mode in this UIElement before enabling the edit mode in the new UIElement. 
+
+The following example call is taken from the NumericControl:
+```
+template <class T>
+void NumericControl<T>::ToggleEditMode()
+{
+	UiManager.UpdateIsInEditModeElement(this, !this->IsInEditMode);
+}
+```
 
  */

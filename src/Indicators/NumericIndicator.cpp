@@ -66,19 +66,7 @@ uint8_t NumericIndicator<T>::numNonFractionalDigits(T number)
 }
 
 template <class T>
-NumericIndicator<T>::NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint8_t maxStringBufferLength) : UIElement(UI_INDICATOR)
-{
-	_stringDrawBuffer = new char[maxStringBufferLength]();
-	_valuePointer = valuePointer;
-	_baseUnit = baseUnit;
-	_unitPrefix = "";
-	_maxValue = maxValue;
-	_numFractionalDigits = numFractionalDigits;
-	_numDigits = _numFractionalDigits + numNonFractionalDigits(maxValue);
-}
-
-template <class T>
-NumericIndicator<T>::NumericIndicator(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint8_t maxStringBufferLength) : UIElement(locX, locY, UI_INDICATOR)
+NumericIndicator<T>::NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint16_t locX, uint16_t locY, uint8_t maxStringBufferLength) : UIElement(locX, locY, UI_INDICATOR)
 {
 	_stringDrawBuffer = new char[maxStringBufferLength]();
 	_valuePointer = valuePointer;

@@ -15,19 +15,7 @@ uint16_t ProgressBar<T>::xCoordinateFromValue(T value)
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
 template <class T>
-ProgressBar<T>::ProgressBar(T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement, uint16_t progressbarWidth, uint16_t progressbarHeight): UIElement(UI_INDICATOR)
-{
-	ProgressbarWidth = progressbarWidth;
-	ProgressbarHeight = progressbarHeight;
-	_valuePointer = valuePointer;
-	_minValue = minValue;
-	_maxValue = maxValue;
-	_origin = origin;
-	_tickIncrement = tickIncrement;
-}
-
-template <class T>
-ProgressBar<T>::ProgressBar(uint16_t locX, uint16_t locY, T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement, uint16_t progressbarWidth, uint16_t progressbarHeight): UIElement(locX, locY, UI_INDICATOR)
+ProgressBar<T>::ProgressBar(T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement, uint16_t progressbarWidth, uint16_t progressbarHeight, uint16_t locX, uint16_t locY): UIElement(locX, locY, UI_INDICATOR)
 {
 	ProgressbarWidth = progressbarWidth;
 	ProgressbarHeight = progressbarHeight;

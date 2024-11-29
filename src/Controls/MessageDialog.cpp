@@ -9,8 +9,8 @@ MessageDialog::MessageDialog(uint16_t locX, uint16_t locY, uint16_t width, uint1
 	_page(5),
 	_severityIcon(icon_info_width, icon_info_height, (severity == MSG_INFO ? icon_info_bits : (severity == MSG_WARNING ? icon_warning_bits : icon_error_bits)), (severity == MSG_INFO ? MSG_INFO_COLOR : (severity == MSG_WARNING ? MSG_WARNING_COLOR : MSG_ERR_COLOR)), locX, locY),
 	_message(message, LABEL_COLOR_NOTSET, NULL, locX + icon_info_width + 5, locY, maxMsgLength),
-	_buttonOk(locX + width / 2 - 20 - (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 6, 0, 0, "OK", controlContext, onOkClick, 3),
-	_buttonCancel(locX + width / 2 - 20 + (buttons == MSG_BTN_OK_CANCEL ? 22 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 6, 0, 0, "Cancel", controlContext, onCancelClick, 7)
+	_buttonOk("OK", controlContext, onOkClick, locX + width / 2 - 20 - (buttons == MSG_BTN_OK_CANCEL ? 30 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 6, 3),
+	_buttonCancel("Cancel", controlContext, onCancelClick, locX + width / 2 - 20 + (buttons == MSG_BTN_OK_CANCEL ? 30 : 0), locY + height - DEFAULT_MSG_BUTTON_HEIGHT - 6, 7)
 {
 	Width = width;
 	Height = height;	

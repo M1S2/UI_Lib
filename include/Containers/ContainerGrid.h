@@ -65,22 +65,12 @@ class ContainerGrid : public Container
  		 * @param maxGridColumns Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory.
  		 * @param showGridCells Enable this to draw the grid cells
  		 * @param autoSizingFillLast If true, keep all columns or rows as small as possible except the last one set to auto size; if false, evenly increase the size of all columns or rows set to auto size
-		 */
-		ContainerGrid(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t maxGridRows = DEFAULT_MAX_CONTAINERGRID_ROWS, uint8_t maxGridColumns = DEFAULT_MAX_CONTAINERGRID_COLUMNS, bool showGridCells = false, bool autoSizingFillLast = true);
-
-		/**
-		 * Constructor of the ContainerGrid.
 		 * @param locX X Location of the upper left corner of the ContainerGrid 
 		 * @param locY Y Location of the upper left corner of the ContainerGrid
 		 * @param width Drawing width of the ContainerGrid
 		 * @param height Drawing height of the ContainerGrid
-		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
-		 * @param maxGridRows Maximum number of rows, each container grid can hold. Lower this value if you don't need that much items to save memory.
- 		 * @param maxGridColumns Maximum number of columns, each container grid can hold. Lower this value if you don't need that much items to save memory.
- 		 * @param showGridCells Enable this to draw the grid cells
- 		 * @param autoSizingFillLast If true, keep all columns or rows as small as possible except the last one set to auto size; if false, evenly increase the size of all columns or rows set to auto size
 		 */
-		ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t maxGridRows = DEFAULT_MAX_CONTAINERGRID_ROWS, uint8_t maxGridColumns = DEFAULT_MAX_CONTAINERGRID_COLUMNS, bool showGridCells = false, bool autoSizingFillLast = true);
+		ContainerGrid(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t maxGridRows = DEFAULT_MAX_CONTAINERGRID_ROWS, uint8_t maxGridColumns = DEFAULT_MAX_CONTAINERGRID_COLUMNS, bool showGridCells = false, bool autoSizingFillLast = true, uint16_t locX = 0, uint16_t locY = 0, uint16_t width = 0, uint16_t height = 0);
 
 		/**
 		 * Method used for drawing of the ContainerGrid.

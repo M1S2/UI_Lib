@@ -16,15 +16,17 @@ const char* TestEnumNames[] = { "Test A", "Test B", "Test C" };
 
 bool boolVal1 = false;
 bool boolVal2 = true;
+bool boolValShowIcon = true;
 TestEnum enumVal1;
 float numVal1 = 223.456;
 int numVal2 = 123;
 
-void OnBoolVal1Changed(void* context);
-void OnBoolVal2Changed(void* context);
+void OnBoolValShowIconChanged(void* context);
 void OnNumVal1Changed(void* context);
 void OnButtonReset(void* context);
 void OnMsgOk(void* context);
+void OnMsgCancel(void* context);
+void OnShowWarning(void* context);
 void OnShowError(void* context);
 
 #define DISPLAY_WIDTH	320
@@ -54,8 +56,10 @@ VirtualKeys virtKeys(OnVirtKeyPressed);
 
 Label labelBool("Boolean", COLOR_WHITE, NULL, 0, 0, 10);
 BoolIndicator boolInd1(&boolVal1);
-BoolControl boolCtrl1(&boolVal1, &boolVal1, &OnBoolVal1Changed);
-BoolControl boolCtrl2(&boolVal2, &boolVal2, &OnBoolVal2Changed);
+BoolControl boolCtrl1(&boolVal1);
+BoolIndicator boolInd2(&boolVal2, BOOLINDICATOR_STYLE_CLASSIC);
+BoolControl boolCtrl2(&boolVal2, NULL, NULL, BOOLCONTROL_STYLE_CLASSIC);
+BoolControl boolCtrlEnableIcon(&boolValShowIcon, &boolValShowIcon, &OnBoolValShowIconChanged, BOOLCONTROL_STYLE_CHECKBOX, 100, 10);
 Icon boolIcon(settings_window_width, settings_window_height, settings_window_bits, COLOR_ORANGE, 100, 30);
 ContainerStack stack_boolean(STACK_LAYOUT_VERTICAL_LEFT);
 ContainerPage page_boolean;
@@ -71,20 +75,21 @@ ContainerStack stack_enum(STACK_LAYOUT_VERTICAL_CENTER);
 ContainerList list1(2, 20);
 
 Label labelNum("Numerics", COLOR_WHITE, NULL, X_COLUMN1, Y_ROW1, 10);
-NumericIndicator<int> numInd2(X_COLUMN1, Y_ROW2, &numVal2, "x", 5000, 0);
+NumericIndicator<int> numInd2(&numVal2, "x", 5000, 0, X_COLUMN1, Y_ROW2);
 Label lbl_numInd2_Text("Text...", LABEL_COLOR_NOTSET, NULL, X_COLUMN1, Y_ROW3);
-NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 2);
-NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed, &virtKeys);
-ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, &numVal1, -500, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20);
+NumericIndicator<float> numInd1(&numVal1, "V", 2000, 2, X_COLUMN2, Y_ROW2);
+NumericControl<float> numCtrl1(&numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed, &virtKeys, X_COLUMN2, Y_ROW3);
+ProgressBar<float> progress1(&numVal1, -500, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20, X_COLUMN2, Y_ROW4);
 ContainerPage page_numeric;
 
 Label labelButtons("Buttons", COLOR_WHITE, NULL, ELEMENT_MARGIN, Y_ROW1, 10);
-ButtonControl buttonReset(ELEMENT_MARGIN, Y_ROW2, 0, 0, "Reset", NULL, &OnButtonReset);
-ButtonControl buttonShowTestError(ELEMENT_MARGIN, Y_ROW4, 0, 0, "Show Error", NULL, &OnShowError);
-MessageDialog msgReset(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Reset sucessful.", MSG_INFO, MSG_BTN_OK, NULL, &OnMsgOk);
+ButtonControl buttonReset("Reset", NULL, &OnButtonReset);
+ButtonControl buttonShowTestWarning("Show Warning", NULL, &OnShowWarning);
+ButtonControl buttonShowTestError("Show Error", NULL, &OnShowError);
+MessageDialog msgReset(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Reset sucessful.", MSG_INFO, MSG_BTN_OK_CANCEL, NULL, &OnMsgOk, &OnMsgCancel);
 MessageDialog msgTestWarning(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Warning message.\nWith Newline.", MSG_WARNING, MSG_BTN_OK, NULL, &OnMsgOk);
 MessageDialog msgTestError(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
-ContainerPage page_dialogs;
+ContainerStack stack_dialogs(STACK_LAYOUT_VERTICAL_LEFT);
 
 Label labelGrid("Grid", COLOR_WHITE);
 Label labelGridSide("Grid Side");
@@ -113,15 +118,10 @@ Icon iconTab4(icon_info_width, icon_info_height, icon_info_bits);
 ContainerStack stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER);
 TabControl tabControl(0, 35, DISPLAY_WIDTH, DISPLAY_HEIGHT - 35, TAB_POSITION_TOP);
 
-ContainerPage mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+ContainerPage mainPage(2, 0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 Label labelUILib("UI LIB TOUCH", COLOR_ORANGE, &FreeMono18pt7b);
 
-void OnBoolVal1Changed(void* context)
-{
-	UiManager.ChangeVisualTreeRoot(&msgTestWarning);
-}
-
-void OnBoolVal2Changed(void* context)
+void OnBoolValShowIconChanged(void* context)
 {
 	bool boolVal = *((bool*)context);
 	boolIcon.Visible = boolVal;
@@ -146,6 +146,11 @@ void OnButtonReset(void* context)
 	UiManager.ChangeVisualTreeRoot(&msgReset);
 }
 
+void OnShowWarning(void* context)
+{
+	UiManager.ChangeVisualTreeRoot(&msgTestWarning);
+}
+
 void OnShowError(void* context)
 {
 	UiManager.ChangeVisualTreeRoot(&msgTestError);
@@ -156,15 +161,22 @@ void OnMsgOk(void* context)
 	UiManager.ChangeVisualTreeRoot(&mainPage);	
 }
 
+void OnMsgCancel(void* context)
+{
+	UiManager.ChangeVisualTreeRoot(&mainPage);	
+}
+
 UIElement* build_screen_boolean_enum()
 {
 	stack_boolean.AddItem(&labelBool);
 	stack_boolean.AddItem(&boolInd1);
 	stack_boolean.AddItem(&boolCtrl1);
+	stack_boolean.AddItem(&boolInd2);
 	stack_boolean.AddItem(&boolCtrl2);
 	stack_boolean.InitItems();
 	page_boolean.AddItem(&stack_boolean);
 	page_boolean.AddItem(&boolIcon);
+	page_boolean.AddItem(&boolCtrlEnableIcon);
 	page_boolean.InitItems();
 
 	stack_enumCtrl1.AddItem(&enumCtrl1Icon);
@@ -198,11 +210,12 @@ UIElement* build_screen_numeric()
 
 UIElement* build_screen_dialogs()
 {
-	page_dialogs.AddItem(&labelButtons);
-	page_dialogs.AddItem(&buttonReset);
-	page_dialogs.AddItem(&buttonShowTestError);
-	page_dialogs.InitItems();
-	return &page_dialogs;
+	stack_dialogs.AddItem(&labelButtons);
+	stack_dialogs.AddItem(&buttonReset);
+	stack_dialogs.AddItem(&buttonShowTestWarning);
+	stack_dialogs.AddItem(&buttonShowTestError);
+	stack_dialogs.InitItems();
+	return &stack_dialogs;
 }
 
 UIElement* build_screen_grid()

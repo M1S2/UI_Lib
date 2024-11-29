@@ -21,27 +21,18 @@ class EnumControl : public EnumIndicator<T>
 		bool _lastDrawnEditMode;						/**< The EditMode that was last drawn. Used to detect changes in the edit mode. */
 		
 	public:
-		/**
-		 * Constructor of the EnumControl.
-		 * @param valuePointer Pointer to the enumeration variable that is shown and manipulated by this control.
-		 * @param enumNames Pointer to an array of char pointers containing the display names for all enumeration values. The number of elements in this array must be at least the number of enum values.
-		 * @param numEnumValues Number of enumeration values. This number must match the real number of enum values in T.
-		 * @param controlContext Context pointer that is returned with the _onValueChanged function pointer
-		 * @param onValueChanged Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed.
-		 */
-		EnumControl(T* valuePointer, const char** enumNames, uint8_t numEnumValues, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL);
 
 		/**
 		 * Constructor of the EnumControl.
-		 * @param locX X Location of the upper left corner of the EnumControl 
-		 * @param locY Y Location of the upper left corner of the EnumControl
 		 * @param valuePointer Pointer to the enumeration variable that is shown and manipulated by this control.
 		 * @param enumNames Pointer to an array of char pointers containing the display names for all enumeration values. The number of elements in this array must be at least the number of enum values.
 		 * @param numEnumValues Number of enumeration values. This number must match the real number of enum values in T.
 		 * @param controlContext Context pointer that is returned with the _onValueChanged function pointer
 		 * @param onValueChanged Function pointer for _onValueChanged event. This function is called when the value of the valuePointer is changed.
+		 * @param locX X Location of the upper left corner of the EnumControl 
+		 * @param locY Y Location of the upper left corner of the EnumControl
 		 */
-		EnumControl(uint16_t locX, uint16_t locY, T* valuePointer, const char** enumNames, uint8_t numEnumValues, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL);
+		EnumControl(T* valuePointer, const char** enumNames, uint8_t numEnumValues, void* controlContext = NULL, void(*onValueChanged)(void* controlContext) = NULL, uint16_t locX = 0, uint16_t locY = 0);
 
 		/**
 		 * Method used for drawing of the EnumControl.

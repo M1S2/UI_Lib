@@ -62,22 +62,10 @@ class ProgressBar : public UIElement
 		 * @param tickIncrement Distance between tick lines drawn above the progress bar. Set this to 0 (or negative) to disable ticks.
 		 * @param progressbarWidth Drawing width of the ProgressBar (without min and max texts and tick markers)
 		 * @param progressbarHeight Drawing height of the ProgressBar (without min and max texts and tick markers)
-		 */
-		ProgressBar(T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement, uint16_t progressbarWidth = 80, uint16_t progressbarHeight = 10);
-		
-		/**
-		 * Constructor of the ProgressBar.
 		 * @param locX X Location of the upper left corner of the ProgressBar 
-		* @param locY Y Location of the upper left corner of the ProgressBar
-		* @param valuePointer Pointer to the numeric variable that is used by this indicator.
-		* @param minValue Minimum value that can be shown by the progress bar. It is used to calculate the filled area.
-		* @param maxValue Maximum value that can be shown by the progress bar. It is used to calculate the filled area.
-		* @param origin Origin position of this progress bar. See the ProgressBarOrigin enumeration for more details on the different options.
-		* @param tickIncrement Distance between tick lines drawn above the progress bar. Set this to 0 (or negative) to disable ticks.
-		* @param progressbarWidth Drawing width of the ProgressBar (without min and max texts and tick markers)
-		* @param progressbarHeight Drawing height of the ProgressBar (without min and max texts and tick markers)
-		*/
-		ProgressBar(uint16_t locX, uint16_t locY, T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement, uint16_t progressbarWidth = 80, uint16_t progressbarHeight = 10);
+		 * @param locY Y Location of the upper left corner of the ProgressBar
+		 */
+		ProgressBar(T* valuePointer, T minValue, T maxValue, ProgressBarOrigin_t origin, T tickIncrement, uint16_t progressbarWidth = 80, uint16_t progressbarHeight = 10, uint16_t locX = 0, uint16_t locY = 0);
 		
 		/**
 		 * Method used for drawing of the ProgressBar.

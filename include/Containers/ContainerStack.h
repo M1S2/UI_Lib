@@ -35,19 +35,12 @@ class ContainerStack : public Container
 		 * Constructor of the ContainerStack.
 		 * @param stackLayout Stack layout
 		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
-		 */
-		ContainerStack(StackLayout_t stackLayout = STACK_LAYOUT_VERTICAL_LEFT, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS);
-
-		/**
-		 * Constructor of the ContainerStack.
 		 * @param locX X Location of the upper left corner of the ContainerStack 
 		 * @param locY Y Location of the upper left corner of the ContainerStack
 		 * @param width Drawing width of the ContainerStack
 		 * @param height Drawing height of the ContainerStack
-		 * @param stackLayout Stack layout
-		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
 		 */
-		ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout = STACK_LAYOUT_VERTICAL_LEFT, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS);
+		ContainerStack(StackLayout_t stackLayout = STACK_LAYOUT_VERTICAL_LEFT, uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint16_t locX = 0, uint16_t locY = 0, uint16_t width = 0, uint16_t height = 0);
 
 		/**
 		 * Method used for drawing of the ContainerStack.

@@ -5,23 +5,8 @@
 #include "Containers/ContainerGrid.h"
 #include "Core/UI_Manager.h"
 
-ContainerGrid::ContainerGrid(uint8_t maxNumItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells, bool autoSizingFillLast) : Container(maxNumItems)
+ContainerGrid::ContainerGrid(uint8_t maxNumItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells, bool autoSizingFillLast, uint16_t locX, uint16_t locY, uint16_t width, uint16_t height) : Container(maxNumItems)
 {
-	this->Type = UI_CONTAINER;
-	_maxGridRows = maxGridRows;
-	_maxGridColumns = maxGridColumns;
-	_showGridCells = showGridCells;
-	_autoSizingFillLast = autoSizingFillLast;
-	_initialRowHeights = new uint16_t[maxGridRows]();
-	_initialColumnWidths = new uint16_t[maxGridColumns]();
-	_rowHeights = new uint16_t[maxGridRows]();
-	_columnWidths = new uint16_t[maxGridColumns]();
-	_itemConfiguration = new GridItemConfig[maxNumItems]();
-}
-
-ContainerGrid::ContainerGrid(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems, uint8_t maxGridRows, uint8_t maxGridColumns, bool showGridCells, bool autoSizingFillLast) : Container(maxNumItems)
-{
-	this->Type = UI_CONTAINER;
 	this->LocX = locX;
 	this->LocY = locY;
 	this->Width = width;

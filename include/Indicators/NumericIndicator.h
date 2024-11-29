@@ -42,28 +42,18 @@ class NumericIndicator : public UIElement
 		int8_t _unitPrefixPower;						/**< Current display prefix power (m = -3, k = 3, M = 6) */
 
 	public:
-
-		/**
-		 * Constructor of the NumericIndicator.
-		 * @param valuePointer Pointer to the numeric variable that is shown by this indicator.
-		 * @param baseUnit Base unit that is appended to the calculated prefix. E.g. "V" for voltage values. To use the "%" sign as unit, you have to use "%%" as string.
-		 * @param maxValue Maximum value that can be shown by this numeric indicator. It is used to determine the number of non-fractional digits.
-		 * @param numFractionalDigits Number of fractional digits that are shown by this indicator. E.g. 1.234 V has 3 fractional digits.
-		 * @param maxStringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
-		 */
-		NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
 	
 		/**
 		 * Constructor of the NumericIndicator.
-		 * @param locX X Location of the upper left corner of the NumericIndicator 
-		 * @param locY Y Location of the upper left corner of the NumericIndicator
 		 * @param valuePointer Pointer to the numeric variable that is shown by this indicator.
 		 * @param baseUnit Base unit that is appended to the calculated prefix. E.g. "V" for voltage values. To use the "%" sign as unit, you have to use "%%" as string.
 		 * @param maxValue Maximum value that can be shown by this numeric indicator. It is used to determine the number of non-fractional digits.
 		 * @param numFractionalDigits Number of fractional digits that are shown by this indicator. E.g. 1.234 V has 3 fractional digits.
+ 		 * @param locX X Location of the upper left corner of the NumericIndicator 
+		 * @param locY Y Location of the upper left corner of the NumericIndicator
 		 * @param maxStringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
 		 */
-		NumericIndicator(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
+		NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint16_t locX, uint16_t locY, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
 		
 		/**
 		 * Destructor of the NumericIndicator

@@ -5,16 +5,9 @@
 #include "Containers/ContainerPage.h"
 #include "Core/UI_Manager.h"
 
-ContainerPage::ContainerPage(uint8_t maxNumItems) : Container(maxNumItems)
+ContainerPage::ContainerPage(uint8_t maxNumItems, uint16_t locX, uint16_t locY, uint16_t width, uint16_t height) : Container(maxNumItems)
 {
 	_itemConfiguration = new PageItemConfig[maxNumItems]();
-	this->Type = UI_CONTAINER;
-}
-
-ContainerPage::ContainerPage(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems) : Container(maxNumItems)
-{
-	_itemConfiguration = new PageItemConfig[maxNumItems]();
-	this->Type = UI_CONTAINER;
 	this->LocX = locX;
 	this->LocY = locY;
 	this->Width = width;

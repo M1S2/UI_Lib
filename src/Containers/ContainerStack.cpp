@@ -5,15 +5,8 @@
 #include "Containers/ContainerStack.h"
 #include "Core/UI_Manager.h"
 
-ContainerStack::ContainerStack(StackLayout_t stackLayout, uint8_t maxNumItems) : Container(maxNumItems)
+ContainerStack::ContainerStack(StackLayout_t stackLayout, uint8_t maxNumItems, uint16_t locX, uint16_t locY, uint16_t width, uint16_t height) : Container(maxNumItems)
 {
-	this->Type = UI_CONTAINER;
-	_stackLayout = stackLayout;
-}
-
-ContainerStack::ContainerStack(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, StackLayout_t stackLayout, uint8_t maxNumItems) : Container(maxNumItems)
-{
-	this->Type = UI_CONTAINER;
 	this->LocX = locX;
 	this->LocY = locY;
 	this->Width = width;

@@ -6,15 +6,7 @@
 #include "Core/UI_Manager.h"
 
 template <class T>
-EnumControl<T>::EnumControl(T* valuePointer, const char** enumNames, uint8_t numEnumValues, void* controlContext, void(*onValueChanged)(void* controlContext)) : EnumIndicator<T>(valuePointer, enumNames, numEnumValues)
-{
-	this->Type = UI_CONTROL;
-	_controlContext = controlContext;
-	_onValueChanged = onValueChanged;
-}
-
-template <class T>
-EnumControl<T>::EnumControl(uint16_t locX, uint16_t locY, T* valuePointer, const char** enumNames, uint8_t numEnumValues, void* controlContext, void(*onValueChanged)(void* controlContext)) : EnumIndicator<T>(locX, locY, valuePointer, enumNames, numEnumValues)
+EnumControl<T>::EnumControl(T* valuePointer, const char** enumNames, uint8_t numEnumValues, void* controlContext, void(*onValueChanged)(void* controlContext), uint16_t locX, uint16_t locY) : EnumIndicator<T>(valuePointer, enumNames, numEnumValues, locX, locY)
 {
 	this->Type = UI_CONTROL;
 	_controlContext = controlContext;

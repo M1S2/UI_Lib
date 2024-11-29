@@ -38,8 +38,20 @@ void UI_Test_KeyInput(Keys_t key)
 {
 	UiManager.KeyInput(key);
 }
+
+// Call this method to send touch inputs to the UI_Manager
+void UI_Test_TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
+{
+	UiManager.TouchInput(x, y, touchType);
+}
 \endcode
 
-A more detailed example can be found in `https://github.com/M1S2/UI_Lib/blob/master/examples/UI_Lib_Test.cpp`
+A more detailed example can be found in 
+
+https://github.com/M1S2/UI_Lib/blob/master/examples/full_graphics_demo/UI_Lib_Test.cpp
+
+or
+
+https://github.com/M1S2/UI_Lib/blob/master/examples/touch_demo/UI_Lib_Test_Touch_Demo.cpp
 
  */

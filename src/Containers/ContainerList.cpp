@@ -5,17 +5,8 @@
 #include "Containers/ContainerList.h"
 #include "Core/UI_Manager.h"
 
-ContainerList::ContainerList(uint8_t maxNumItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin) : Container(maxNumItems)
+ContainerList::ContainerList(uint8_t maxNumItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin, uint16_t locX, uint16_t locY, uint16_t width, uint16_t height) : Container(maxNumItems)
 {
-	this->Type = UI_CONTAINER;
-	_lastDrawnItemIndex = -1;
-	_scrollBarWidth = scrollBarWidth;
-	_scrollBarMargin = scrollBarMargin;
-}
-
-ContainerList::ContainerList(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, uint8_t maxNumItems, uint8_t scrollBarWidth, uint8_t scrollBarMargin) : Container(maxNumItems)
-{
-	this->Type = UI_CONTAINER;
 	this->LocX = locX;
 	this->LocY = locY;
 	this->Width = width;

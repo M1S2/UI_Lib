@@ -8,19 +8,7 @@
 #include <math.h>
 
 template <class T>
-NumericControl<T>::NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), VirtualKeys* virtualKeys, uint8_t maxStringBufferLength) : NumericIndicator<T>(valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
-{
-	this->Type = UI_CONTROL;
-	_lastDrawnEditMode = false;
-	CurrentDigitPosition = 0;
-	_minValue = minValue;
-	_controlContext = controlContext;
-	_onValueChanged = onValueChanged;
-	_virtualKeys = virtualKeys;
-}
-
-template <class T>
-NumericControl<T>::NumericControl(uint16_t locX, uint16_t locY, T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), VirtualKeys* virtualKeys, uint8_t maxStringBufferLength) : NumericIndicator<T>(locX, locY, valuePointer, baseUnit, maxValue, numFractionalDigits, maxStringBufferLength)
+NumericControl<T>::NumericControl(T* valuePointer, const char* baseUnit, T minValue, T maxValue, int numFractionalDigits, void* controlContext, void(*onValueChanged)(void* controlContext), VirtualKeys* virtualKeys, uint16_t locX, uint16_t locY, uint8_t maxStringBufferLength) : NumericIndicator<T>(valuePointer, baseUnit, maxValue, numFractionalDigits, locX, locY, maxStringBufferLength)
 {
 	this->Type = UI_CONTROL;
 	_lastDrawnEditMode = false;
