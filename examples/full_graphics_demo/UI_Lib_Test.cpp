@@ -64,16 +64,16 @@ ContainerStack stack_enum(STACK_LAYOUT_VERTICAL_CENTER);
 ContainerList list1;
 
 Label labelNum("Numerics", COLOR_WHITE, NULL, X_COLUMN1, Y_ROW1, 10);
-NumericIndicator<int> numInd2(X_COLUMN1, Y_ROW2, &numVal2, "x", 5000, 0);
+NumericIndicator<int> numInd2(&numVal2, "x", 5000, 0, X_COLUMN1, Y_ROW2);
 Label lbl_numInd2_Text("Text...", LABEL_COLOR_NOTSET, NULL, X_COLUMN1, Y_ROW3);
-NumericIndicator<float> numInd1(X_COLUMN2, Y_ROW2, &numVal1, "V", 2000, 2);
-NumericControl<float> numCtrl1(X_COLUMN2, Y_ROW3, &numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed);
-ProgressBar<float> progress1(X_COLUMN2, Y_ROW4, &numVal1, -500, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20);
+NumericIndicator<float> numInd1(&numVal1, "V", 2000, 2, X_COLUMN2, Y_ROW2);
+NumericControl<float> numCtrl1(&numVal1, "V", -500, 2000, 3, &numVal1, &OnNumVal1Changed, NULL, X_COLUMN2, Y_ROW3);
+ProgressBar<float> progress1(&numVal1, -500, 2000, PROGRESSBAR_ORIGIN_ZERO, 250, 70, 20, X_COLUMN2, Y_ROW4);
 ContainerPage page_numeric;
 
 Label labelButtons("Buttons", COLOR_WHITE, NULL, ELEMENT_MARGIN, Y_ROW1, 10);
-ButtonControl buttonReset(ELEMENT_MARGIN, Y_ROW2, 0, 0, "Reset", NULL, &OnButtonReset);
-ButtonControl buttonShowTestError(ELEMENT_MARGIN, Y_ROW4, 0, 0, "Show Error", NULL, &OnShowError);
+ButtonControl buttonReset("Reset", NULL, &OnButtonReset, ELEMENT_MARGIN, Y_ROW2);
+ButtonControl buttonShowTestError("Show Error", NULL, &OnShowError, ELEMENT_MARGIN, Y_ROW4);
 MessageDialog msgReset(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Reset sucessful.", MSG_INFO, MSG_BTN_OK, NULL, &OnMsgOk);
 MessageDialog msgTestWarning(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Warning message.\nWith Newline.", MSG_WARNING, MSG_BTN_OK, NULL, &OnMsgOk);
 MessageDialog msgTestError(ELEMENT_MARGIN, ELEMENT_MARGIN, DISPLAY_WIDTH - 2 * ELEMENT_MARGIN, DISPLAY_HEIGHT - 2 * ELEMENT_MARGIN, "Error message.", MSG_ERROR, MSG_BTN_OK, NULL, &OnMsgOk);
@@ -104,7 +104,7 @@ ContainerStack stack_Tab3Header(STACK_LAYOUT_HORIZONTAL_CENTER);
 Label labelTab4("#4", COLOR_WHITE);
 Icon iconTab4(icon_info_width, icon_info_height, icon_info_bits);
 ContainerStack stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER);
-TabControl tabControl(0, 35, DISPLAY_WIDTH, DISPLAY_HEIGHT - 35, TAB_POSITION_TOP);
+ContainerTabs containerTabs(0, 35, DISPLAY_WIDTH, DISPLAY_HEIGHT - 35, TAB_POSITION_TOP);
 
 ContainerPage mainPage(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 Label labelUILib("UI LIB", COLOR_ORANGE, &FreeMono18pt7b);
@@ -224,7 +224,7 @@ UIElement* build_screen_grid()
 
 void UI_Test_BuildTree()
 {
-	mainPage.AddItem(&tabControl);
+	mainPage.AddItem(&containerTabs);
 	mainPage.AddItem(&labelUILib);
 	
 	stack_Tab1Header.AddItem(&iconTab1);
@@ -235,11 +235,11 @@ void UI_Test_BuildTree()
 	stack_Tab3Header.AddItem(&labelTab3);
 	stack_Tab4Header.AddItem(&iconTab4);
 	stack_Tab4Header.AddItem(&labelTab4);
-	tabControl.AddItem(&stack_Tab1Header, build_screen_boolean_enum());
-	tabControl.AddItem(&stack_Tab2Header, build_screen_numeric());
-	tabControl.AddItem(&stack_Tab3Header, build_screen_dialogs());
-	tabControl.AddItem(&stack_Tab4Header, build_screen_grid());
-	tabControl.SelectTab(0);
+	containerTabs.AddItem(&stack_Tab1Header, build_screen_boolean_enum());
+	containerTabs.AddItem(&stack_Tab2Header, build_screen_numeric());
+	containerTabs.AddItem(&stack_Tab3Header, build_screen_dialogs());
+	containerTabs.AddItem(&stack_Tab4Header, build_screen_grid());
+	containerTabs.SelectTab(0);
 	
 	UiManager.ChangeVisualTreeRoot(&mainPage);	
 }

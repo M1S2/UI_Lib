@@ -13,7 +13,7 @@ To initialize the UI_Lib:
 
 At this point, nothing is displayed yet. There is no visual tree assigned (and created) that can be shown, so create one:
 - Create objects of all UI elements that you want to use to build the user interface.
-- Link all objects to their parent objects (e.g. add a NumericControl to the item collection of a ContainerPage, add the ContainerPage to a TabControl, ...) by using the appropriate functions of the parent controls.
+- Link all objects to their parent objects (e.g. add a NumericControl to the item collection of a ContainerPage, add the ContainerPage to a ContainerTabs, ...) by using the appropriate functions of the parent controls.
 - Connect the root of the visual tree to the UI_Manager by using the UI_Manager::ChangeVisualTreeRoot method.
 - Call the UI_Manager::Draw method whenever you want to update the screen. The library decides if something changed and if the screen needs to be redrawn (to reduce flickering).
 

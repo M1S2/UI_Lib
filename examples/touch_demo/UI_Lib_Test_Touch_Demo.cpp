@@ -116,7 +116,7 @@ ContainerStack stack_Tab3Header(STACK_LAYOUT_HORIZONTAL_CENTER);
 Label labelTab4("#4", COLOR_WHITE);
 Icon iconTab4(icon_info_width, icon_info_height, icon_info_bits);
 ContainerStack stack_Tab4Header(STACK_LAYOUT_HORIZONTAL_CENTER);
-TabControl tabControl(0, 35, DISPLAY_WIDTH, DISPLAY_HEIGHT - 35, TAB_POSITION_TOP);
+ContainerTabs containerTabs(0, 35, DISPLAY_WIDTH, DISPLAY_HEIGHT - 35, TAB_POSITION_TOP);
 
 ContainerPage mainPage(2, 0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 Label labelUILib("UI LIB TOUCH", COLOR_ORANGE, &FreeMono18pt7b);
@@ -244,7 +244,7 @@ UIElement* build_screen_grid()
 
 void UI_Test_BuildTree()
 {
-	mainPage.AddItem(&tabControl);
+	mainPage.AddItem(&containerTabs);
 	mainPage.AddItem(&labelUILib);
 	
 	stack_Tab1Header.AddItem(&iconTab1);
@@ -255,11 +255,11 @@ void UI_Test_BuildTree()
 	stack_Tab3Header.AddItem(&labelTab3);
 	stack_Tab4Header.AddItem(&iconTab4);
 	stack_Tab4Header.AddItem(&labelTab4);
-	tabControl.AddItem(&stack_Tab1Header, build_screen_boolean_enum());
-	tabControl.AddItem(&stack_Tab2Header, build_screen_numeric());
-	tabControl.AddItem(&stack_Tab3Header, build_screen_dialogs());
-	tabControl.AddItem(&stack_Tab4Header, build_screen_grid());
-	tabControl.SelectTab(0);
+	containerTabs.AddItem(&stack_Tab1Header, build_screen_boolean_enum());
+	containerTabs.AddItem(&stack_Tab2Header, build_screen_numeric());
+	containerTabs.AddItem(&stack_Tab3Header, build_screen_dialogs());
+	containerTabs.AddItem(&stack_Tab4Header, build_screen_grid());
+	containerTabs.SelectTab(0);
 	
 	UiManager.ChangeVisualTreeRoot(&mainPage);	
 }

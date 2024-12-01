@@ -1,15 +1,15 @@
 /**
- * @file	TabControl.h
+ * @file	ContainerTabs.h
  * @brief	Containing a class for a tab control that is showing a vertical or horizontal tab layout and can hold child elements.
  */ 
 
-#ifndef TABCONTROL_H_
-#define TABCONTROL_H_
+#ifndef ContainerTabs_H_
+#define ContainerTabs_H_
 
 #include "Container.h"
 
-#define DEFAULT_MAX_TABCONTROL_TABS			5		/**< Maximum number of tabs that are supported. */
-#define DEFAULT_TABCONTROL_TABHEADER_MARGIN	2		/**< Margin around the tab page tabs. */
+#define DEFAULT_MAX_ContainerTabs_TABS			5		/**< Maximum number of tabs that are supported. */
+#define DEFAULT_ContainerTabs_TABHEADER_MARGIN	2		/**< Margin around the tab page tabs. */
 
 /**
  * Available tab positions.
@@ -23,7 +23,7 @@ typedef enum TabPositions
 /**
  * Class for a tab control that is showing a tab layout and can hold child elements.
  */
-class TabControl : public Container
+class ContainerTabs : public Container
 {
 	private:
 		UIElement** _headers;										/**< Array with all tab page tab header elements. */
@@ -38,33 +38,33 @@ class TabControl : public Container
 		uint16_t TabRegionSize;										/**< Width or height of the Tabs in pixel. */
 
 		/**
-		 * Constructor of the TabControl.
-		 * @param width Drawing width of the TabControl
-		 * @param height Drawing height of the TabControl
+		 * Constructor of the ContainerTabs.
+		 * @param width Drawing width of the ContainerTabs
+		 * @param height Drawing height of the ContainerTabs
 		 * @param tabPosition Position of the tabs.
 		 * @param controlContext Context pointer that is returned with the _onSelectedTabChanged function pointer
 		 * @param onSelectedTabChanged Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed.
 		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
 		 * @param tabHeaderMargin Margin around the tab page tabs.
 		 */
-		TabControl(uint16_t width, uint16_t height, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL, uint8_t maxNumItems = DEFAULT_MAX_TABCONTROL_TABS, uint8_t tabHeaderMargin = DEFAULT_TABCONTROL_TABHEADER_MARGIN);
+		ContainerTabs(uint16_t width, uint16_t height, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL, uint8_t maxNumItems = DEFAULT_MAX_ContainerTabs_TABS, uint8_t tabHeaderMargin = DEFAULT_ContainerTabs_TABHEADER_MARGIN);
 	
 		/**
-		 * Constructor of the TabControl.
-		 * @param locX X Location of the upper left corner of the TabControl 
-		 * @param locY Y Location of the upper left corner of the TabControl
-		 * @param width Drawing width of the TabControl
-		 * @param height Drawing height of the TabControl
+		 * Constructor of the ContainerTabs.
+		 * @param locX X Location of the upper left corner of the ContainerTabs 
+		 * @param locY Y Location of the upper left corner of the ContainerTabs
+		 * @param width Drawing width of the ContainerTabs
+		 * @param height Drawing height of the ContainerTabs
 		 * @param tabPosition Position of the tabs.
 		 * @param controlContext Context pointer that is returned with the _onSelectedTabChanged function pointer
 		 * @param onSelectedTabChanged Function pointer for _onSelectedTabChanged event. This function is called when the selected tab is changed.
 		 * @param maxNumItems Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory.
 		 * @param tabHeaderMargin Margin around the tab page tabs.
 		 */
-		TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL, uint8_t maxNumItems = DEFAULT_MAX_TABCONTROL_TABS, uint8_t tabHeaderMargin = DEFAULT_TABCONTROL_TABHEADER_MARGIN);
+		ContainerTabs(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL, uint8_t maxNumItems = DEFAULT_MAX_ContainerTabs_TABS, uint8_t tabHeaderMargin = DEFAULT_ContainerTabs_TABHEADER_MARGIN);
 	
 		/**
-		 * Method used for drawing of the TabControl.
+		 * Method used for drawing of the ContainerTabs.
 		 */
 		virtual void Draw(bool redraw) override;
 		
@@ -105,7 +105,7 @@ s		 * @return true if the key was processed; false if not.
 		int GetSelectedTabIndex();
 
 		/**
-		 * Get the size of the content region of the TabControl
+		 * Get the size of the content region of the ContainerTabs
 		 * @param w Pointer used to give back the content region width
 		 * @param h Pointer used to give back the content region height
 		 */
@@ -122,4 +122,4 @@ s		 * @return true if the key was processed; false if not.
 		virtual void RecalculateLayout() override;
 };
 
-#endif /* TABCONTROL_H_ */
+#endif /* ContainerTabs_H_ */

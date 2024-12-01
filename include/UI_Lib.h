@@ -22,7 +22,7 @@
 #include "Containers/ContainerList.h"
 #include "Containers/ContainerGrid.h"
 #include "Containers/ContainerStack.h"
-#include "Containers/TabControl.h"
+#include "Containers/ContainerTabs.h"
 #include "Controls/ButtonControl.h"
 #include "Controls/MessageDialog.h"
 #include "Controls/VirtualKeys.h"

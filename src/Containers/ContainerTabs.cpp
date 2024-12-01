@@ -1,12 +1,12 @@
 /*
- * TabControl.cpp
+ * ContainerTabs.cpp
  */ 
 
-#include "Containers/TabControl.h"
+#include "Containers/ContainerTabs.h"
 #include "Core/UI_Manager.h"
 #include <string.h>
 
-TabControl::TabControl(uint16_t width, uint16_t height, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext), uint8_t maxNumItems, uint8_t tabHeaderMargin) : Container(maxNumItems)
+ContainerTabs::ContainerTabs(uint16_t width, uint16_t height, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext), uint8_t maxNumItems, uint8_t tabHeaderMargin) : Container(maxNumItems)
 {
 	this->Width = width;
 	this->Height = height;
@@ -18,7 +18,7 @@ TabControl::TabControl(uint16_t width, uint16_t height, TabPositions_t tabPositi
 	_headers = new UIElement*[maxNumItems]();
 }
 
-TabControl::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext), uint8_t maxNumItems, uint8_t tabHeaderMargin) : Container(maxNumItems)
+ContainerTabs::ContainerTabs(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, TabPositions_t tabPosition, void* controlContext, void(*onSelectedTabChanged)(void* controlContext), uint8_t maxNumItems, uint8_t tabHeaderMargin) : Container(maxNumItems)
 {
 	this->Width = width;
 	this->Height = height;
@@ -32,7 +32,7 @@ TabControl::TabControl(uint16_t locX, uint16_t locY, uint16_t width, uint16_t he
 	_headers = new UIElement*[maxNumItems]();
 }
 
-void TabControl::Draw(bool redraw) 
+void ContainerTabs::Draw(bool redraw) 
 {
 	if (this->Visible)
 	{
@@ -90,7 +90,7 @@ void TabControl::Draw(bool redraw)
 	}
 }
 
-bool TabControl::KeyInput(Keys_t key)
+bool ContainerTabs::KeyInput(Keys_t key)
 {
 	switch (key)
 	{
@@ -105,7 +105,7 @@ bool TabControl::KeyInput(Keys_t key)
 	}
 }
 
-bool TabControl::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
+bool ContainerTabs::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 {
 	if(HitTest(x, y))
 	{
@@ -139,7 +139,7 @@ bool TabControl::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 	return false;
 }
 
-bool TabControl::AddItem(UIElement* header, UIElement* tabContent)
+bool ContainerTabs::AddItem(UIElement* header, UIElement* tabContent)
 {
 	_headers[this->_numItems] = header;
 	header->RecalculateDimensions();		
@@ -151,7 +151,7 @@ bool TabControl::AddItem(UIElement* header, UIElement* tabContent)
 	return true;
 }
 
-void TabControl::SelectTab(int index)
+void ContainerTabs::SelectTab(int index)
 {	
 	this->_selectedItemIndex = index;
 	if (this->_selectedItemIndex >= this->_numItems) { this->_selectedItemIndex = 0; }
@@ -162,12 +162,12 @@ void TabControl::SelectTab(int index)
 	if (_onSelectedTabChanged != NULL) { _onSelectedTabChanged(_controlContext); }
 }
 
-int TabControl::GetSelectedTabIndex()
+int ContainerTabs::GetSelectedTabIndex()
 {
 	return this->_selectedItemIndex;
 }
 
-void TabControl::GetContentRegionSize(uint16_t* w, uint16_t* h)
+void ContainerTabs::GetContentRegionSize(uint16_t* w, uint16_t* h)
 {
 	switch (_tabPosition)
 	{
@@ -183,26 +183,26 @@ void TabControl::GetContentRegionSize(uint16_t* w, uint16_t* h)
 	}
 }
 
-void TabControl::RecalculateDimensions()
+void ContainerTabs::RecalculateDimensions()
 {
 	if(this->Width == 0 && this->Height == 0)
 	{
 		if(this->Parent != NULL)
 		{
-			// Strech the TabControl to fill up the full parent container space
+			// Strech the ContainerTabs to fill up the full parent container space
 			this->Width = this->Parent->Width;
 			this->Height = this->Parent->Height;
 		}
 		else
 		{
-			// The TabControl is the top most control, size it to fill the complete screen
+			// The ContainerTabs is the top most control, size it to fill the complete screen
 			this->Width = UiManager.Gfx->width();
 			this->Height = UiManager.Gfx->height();
 		}
 	}
 }
 
-void TabControl::RecalculateLayout()
+void ContainerTabs::RecalculateLayout()
 {
 	uint16_t maxHeaderWidth = 0, maxHeaderHeight = 0;
 	for (int i = 0; i < this->_numItems; i++)

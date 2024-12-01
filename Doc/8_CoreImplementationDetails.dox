@@ -36,7 +36,7 @@ After each key input, the UI_Manager::_focusElement is recalculated by the UI_Ma
 @section touchinputhandling_sec Touch Input Handling
 If the UI_Manager::TouchInput function is called, the received touch is send to the UIElement::TouchInput function of the UI_Manager::_visualTreeRoot. This UIElement handles the touch input depending on the touch location, touch type and if it supports touch inputs at all (e.g. touch is not supported if the UIElement::TouchInput function wasn't defined like with indicators). If the element is a container, the touch may be forwarded to the child elements, depending on the touched location.
 
-E.g. if the touch was on the header region of a TabControl, the tab is changed accordingly and the touch was handled. If the touch was inside the content region of the TabControl, the touch is forwarded to the currently selected tab content UIElement. This element also decides how to handle the touch then...
+E.g. if the touch was on the header region of a ContainerTabs, the tab is changed accordingly and the touch was handled. If the touch was inside the content region of the ContainerTabs, the touch is forwarded to the currently selected tab content UIElement. This element also decides how to handle the touch then...
 
 After each touch input, the UI_Manager::_focusElement is recalculated by the UI_Manager::setFocusToLeaf method.
 

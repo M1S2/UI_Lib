@@ -44,15 +44,15 @@ The ContainerStack can be used to show all children at the same time stacked hor
 
 @image html Images/UIElement_Containers/UIElement_ContainerStack.jpg "ContainerStack" width=150
 
-@section tabcontrol_sec TabControl
-The TabControl can be used to show a tab control with each tab page holding one UI element. Each tab header is also holding one UI element.
-- Supports children: Yes (adding with TabControl::AddItem function)
+@section containertabs_sec ContainerTabs
+The ContainerTabs can be used to show a tab control with each tab page holding one UI element. Each tab header is also holding one UI element.
+- Supports children: Yes (adding with ContainerTabs::AddItem function)
 - Supported key inputs:
 	- ::KEYLEFT and ::KEYRIGHT to go to the previous/next tab page.
 - Supported touch inputs:
 	- ::TOUCH_NORMAL or ::TOUCH_LONG inside header region: Select the tab based on the touched header
 	- ::TOUCH_NORMAL or ::TOUCH_LONG outside header region: Tunnel touch to currently displayed UI_Element
 
-@image html Images/UIElement_Containers/UIElement_TabControl.jpg "TabControl" width=300
+@image html Images/UIElement_Containers/UIElement_ContainerTabs.jpg "ContainerTabs" width=300
 
  */
