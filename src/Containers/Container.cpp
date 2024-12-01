@@ -29,6 +29,19 @@ bool Container::AddItem(UIElement* item)
 	return true;
 }
 
+void Container::ClearAllItems()
+{
+	for(int i = 0; i < _numItems; i++)
+	{
+		_items[i]->Parent = NULL;
+	}
+
+	ActiveChild = NULL;
+	delete _items;
+	_items = new UIElement*[_maxNumItems]();
+	_numItems = 0;
+}
+
 bool Container::NextItem()
 {
 	if (_selectedItemIndex >= _numItems - 1)

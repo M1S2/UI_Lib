@@ -32,28 +32,6 @@ VirtualKeys::VirtualKeys(void(*onVirtualKeyPressed)(Keys_t key)) : UIElement(UI_
     _buttonExitVirtualKeys("EXIT", this, _onButtonExitVirtualKeysClick)
 {
     OnVirtualKeyPressed = onVirtualKeyPressed;
-
-    _grid.AddItem(&_button7, 0, 1, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_button8, 1, 1, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_button9, 2, 1, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonKilo, 3, 1, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonUp, 4, 1, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_button4, 0, 2, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_button5, 1, 2, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_button6, 2, 2, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonMilli, 3, 2, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonOk, 4, 2, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_button1, 0, 3, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_button2, 1, 3, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_button3, 2, 3, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonMinus, 3, 3, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonDown, 4, 3, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonLeft, 0, 4, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_button0, 1, 4, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonRight, 2, 4, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonX1, 3, 4, GRID_CELL_ALIGNMENT_MIDDLE);
-    _grid.AddItem(&_buttonExitVirtualKeys, 4, 4, GRID_CELL_ALIGNMENT_MIDDLE);
-
     ActiveChild = &_grid;
 }
 
@@ -83,6 +61,28 @@ void VirtualKeys::ShowVirtualKeys(UIElement* targetElement)
         // Save old visual tree root for later return
         _previousVisualTreeRoot = UiManager.GetVisualTreeRoot();
         _targetElement = targetElement;
+
+        _grid.ClearAllItems();
+        _grid.AddItem(&_button7, 0, 1, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_button8, 1, 1, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_button9, 2, 1, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonKilo, 3, 1, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonUp, 4, 1, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_button4, 0, 2, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_button5, 1, 2, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_button6, 2, 2, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonMilli, 3, 2, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonOk, 4, 2, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_button1, 0, 3, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_button2, 1, 3, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_button3, 2, 3, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonMinus, 3, 3, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonDown, 4, 3, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonLeft, 0, 4, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_button0, 1, 4, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonRight, 2, 4, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonX1, 3, 4, GRID_CELL_ALIGNMENT_MIDDLE);
+        _grid.AddItem(&_buttonExitVirtualKeys, 4, 4, GRID_CELL_ALIGNMENT_MIDDLE);
         _grid.AddItem(_targetElement, 0, 0, GRID_CELL_ALIGNMENT_MIDDLE, 5);
         _grid.InitItems();
     

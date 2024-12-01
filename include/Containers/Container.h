@@ -58,6 +58,11 @@ class Container : public UIElement
 		bool AddItem(UIElement* item);
 
 		/**
+		 * Clear all items in the container.
+		 */
+		void ClearAllItems();
+
+		/**
 		 * Select the next item in the container.
 		 * @return true if there was a next item (if the selected item wasn't the last one).
 		 */
