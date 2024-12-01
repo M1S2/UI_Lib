@@ -23,7 +23,9 @@ See the following pages for more informations.
 - @ref page_1_installation
 - @ref page_2_initializationsetup
 - @ref page_3_simpleexample
-- @ref page_4_availablecomponents
-- @ref page_5_addingnewcomponent
-- @ref page_6_coreimplementationdetails
+- @ref page_4_availablecontainers
+- @ref page_5_availablecontrols
+- @ref page_6_availableindicators
+- @ref page_7_addingnewcomponent
+- @ref page_8_coreimplementationdetails
 */

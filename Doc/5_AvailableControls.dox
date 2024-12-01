@@ -1,0 +1,100 @@
+/*! @page page_5_availablecontrols 5 - Available Controls
+
+This section lists all available controls. Base classes are not listed here.
+
+@section boolcontrol_sec BoolControl
+The BoolControl can be used to toggle the value of an boolean variable. This control offers different style (classic "ON"/"OFF", toggle switch, check box).
+- Supports children: No
+- Supported key inputs: 
+	- ::KEYOK to toggle the boolean value.
+- Supported touch inputs:
+	- ::TOUCH_NORMAL: Toggle the boolean value (like ::KEYOK)
+
+<table>
+	<tr>
+		<td> @image html Images/UIElement_Controls/UIElement_BoolControl_Style_ToggleSwitch_Off.jpg "ToggleSwitch Style (off)" height=50 </td>
+		<td> @image html Images/UIElement_Controls/UIElement_BoolControl_Style_ToggleSwitch_On.jpg "ToggleSwitch Style (on)" height=50 </td>
+	</tr>
+	<tr>
+		<td> @image html Images/UIElement_Controls/UIElement_BoolControl_Style_Classic_Off.jpg "Classic Style (off)" height=50 </td>
+		<td> @image html Images/UIElement_Controls/UIElement_BoolControl_Style_Classic_On.jpg "Classic Style (on)" height=50 </td>
+	</tr>
+	<tr>
+		<td> @image html Images/UIElement_Controls/UIElement_BoolControl_Style_Checkbox_Off.jpg "Checkbox Style (off)" height=50 </td>
+		<td> @image html Images/UIElement_Controls/UIElement_BoolControl_Style_Checkbox_On.jpg "Checkbox Style (on)" height=50 </td>
+	</tr>
+</table>
+
+@section buttoncontrol_sec ButtonControl
+The ButtonControl can be used to display a button that the user can press. When pressed, a callback function is executed.
+- Supports children: No
+- Supported key inputs: 
+	- ::KEYOK to press the button and execute the callback function.
+- Supported touch inputs:
+	- ::TOUCH_NORMAL: Press the button and execute the callback function (like ::KEYOK)
+
+@image html Images/UIElement_Controls/UIElement_ButtonControl.jpg "ButtonControl" height=50
+
+@section enumcontrol_sec EnumControl
+The EnumControl can be used to choose a value from an enumeration.
+- Supports children: No
+- Supported key inputs: 
+	- ::KEYOK to toggle between edit and display mode. 
+	- ::KEYUP and ::KEYDOWN to change to the next/previous enumeration value (only supported in edit mode).
+- Supported touch inputs:
+	- ::TOUCH_NORMAL in left half of control while in edit mode: Change to previous enumeration value (like ::KEYDOWN)
+	- ::TOUCH_NORMAL in right half of control while in edit mode: Change to next enumeration value (like ::KEYUP)
+	- ::TOUCH_LONG: Toggle between edit and display mode (like ::KEYOK)
+
+<table>
+	<tr>
+		<td> @image html Images/UIElement_Controls/UIElement_EnumControl.jpg "EnumControl" height=50 </td>
+		<td> @image html Images/UIElement_Controls/UIElement_EnumControl_EditMode.jpg "EnumControl in edit mode" height=50 </td>
+	</tr>
+</table>
+
+@section messagedialog_sec MessageDialog
+The MessageDialog control can be used to show a message dialog including a severity icon (info, warning, error), a message text and 0, 1 or 2 buttons (OK, Cancel).
+- Supports children: No
+- Supported key inputs: The user inputs are internally redirected to the ContainerPage that is managing the buttons.
+- Supported touch inputs: The touch inputs are internally redirected to the ContainerPage that is managing the buttons.
+
+<table>
+	<tr>
+		<td> @image html Images/UIElement_Controls/UIElement_MessageDialog_Info.jpg "MessageDialog (info)" width=300 </td>
+		<td> @image html Images/UIElement_Controls/UIElement_MessageDialog_Warning.jpg "MessageDialog (warning)" width=300 </td>
+		<td> @image html Images/UIElement_Controls/UIElement_MessageDialog_Error.jpg "MessageDialog (error)" width=300 </td>
+	</tr>
+</table>
+
+@section numericcontrol_sec NumericControl
+The NumericControl can be used to change the value of a numeric variable.
+- Supports children: No
+- Supported key inputs: 
+	- ::KEYOK to toggle between edit and display mode. 
+	- ::KEYLEFT and ::KEYRIGHT to move the cursor left/right (only supported in edit mode).
+	- ::KEYUP and ::KEYDOWN to increase/decrease the digit at the cursor position (only supported in edit mode).
+	- ::KEYKILO, ::KEYMILLI to change to kilo (*1000) or milli (/1000) of the current value (only supported in edit mode).
+	- ::KEYX1 change to the base unit, *1 (only supported in edit mode).
+	- ::KEYMINUS to toggle from positive to negative value (only supported in edit mode).
+	- ::KEY0 to ::KEY9 to change the value of the digit at the cursor position to the corresponding value (only supported in edit mode).
+- Supported touch inputs:
+	- ::TOUCH_NORMAL on left half of control (edit icon) while in edit mode: Open a virtual keypad to edit the control value like with key inputs
+	- ::TOUCH_LONG: Toggle between edit and display mode (like ::KEYOK)
+
+<table>
+	<tr>
+		<td> @image html Images/UIElement_Controls/UIElement_NumericControl.jpg "NumericControl" height=50 </td>
+		<td> @image html Images/UIElement_Controls/UIElement_NumericControl_EditMode.jpg "NumericControl in edit mode" height=50 </td>
+	</tr>
+</table>
+
+@section virtualkeys_sec VirtualKeys
+The VirtualKeys control can be used to emulate key presses via touch inputs. It displays one UI_Element that receives all emulated key presses and a matrix with many BoolControl elements to input key presses.
+- Supports children: No
+- Supported key inputs: The user inputs are internally redirected to the ContainerGrid that is managing the buttons.
+- Supported touch inputs: The touch inputs are internally redirected to the ContainerGrid that is managing the buttons.
+
+@image html Images/UIElement_Controls/UIElement_VirtualKeys.jpg "VirtualKeys" width=300
+
+ */

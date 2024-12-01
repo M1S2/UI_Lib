@@ -1,4 +1,4 @@
-/*! @page page_5_addingnewcomponent 5 - Adding a new component
+/*! @page page_7_addingnewcomponent 7 - Adding a new component
 
 Before adding a new component, decide if it will be a container, control or indicator. Then create new .cpp and .h files in the corresponding folder inside the `UI_Lib` folder.
 Also add an include for the .h file to the UI_Lib.h file.

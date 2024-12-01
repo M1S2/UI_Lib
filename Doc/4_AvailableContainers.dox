@@ -1,0 +1,58 @@
+/*! @page page_4_availablecontainers 4 - Available Containers
+
+This section lists all available containers. Base classes are not listed here.
+
+@section containerlist_sec ContainerList
+The ContainerList can be used to show one children at a time. The user can scroll though all items one by one. A scroll bar is indicating the position of the currently shown item in the list of items.  
+- Supports children: Yes (adding with ContainerList::AddItem function)
+- Supported key inputs: 
+	- ::KEYUP and ::KEYDOWN to scroll through the items.
+- Supported touch inputs:
+	- ::TOUCH_NORMAL or ::TOUCH_LONG in upper half of scroll bar: Scroll up one element in the list (like ::KEYUP)
+	- ::TOUCH_NORMAL or ::TOUCH_LONG in lower half of scroll bar: Scroll down one element in the list (like ::KEYDOWN)
+	- ::TOUCH_NORMAL or ::TOUCH_LONG outside scroll bar: Tunnel touch to currently displayed UI_Element
+
+@image html Images/UIElement_Containers/UIElement_ContainerList.jpg "ContainerList" width=300
+
+@section containerpage_sec ContainerPage
+The ContainerPage can be used to show all children at the same time. This can be used to draw e.g. multiple controls and indicators on the same page.
+- Supports children: Yes (adding with ContainerPage::AddItem function)
+- Supported key inputs: 
+	- ::KEYUP and ::KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
+- Supported touch inputs:
+	- ::TOUCH_NORMAL or ::TOUCH_LONG: Tunnel touch to all child elements one after another. Break if one child element has handled the touch.
+
+@image html Images/UIElement_Containers/UIElement_ContainerPage.jpg "ContainerPage" width=300
+
+@section containergrid_sec ContainerGrid
+The ContainerGrid can be used to show all children at the same time in a grid layout.
+- Supports children: Yes (adding with ContainerGrid::AddItem function)
+- Supported key inputs: 
+	- ::KEYUP and ::KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
+- Supported touch inputs:
+	- ::TOUCH_NORMAL or ::TOUCH_LONG: Tunnel touch to all child elements one after another. Break if one child element has handled the touch.
+
+@image html Images/UIElement_Containers/UIElement_ContainerGrid.jpg "ContainerGrid" width=300
+
+@section containerstack_sec ContainerStack
+The ContainerStack can be used to show all children at the same time stacked horizontal or vertical.
+- Supports children: Yes (adding with ContainerStack::AddItem function)
+- Supported key inputs: 
+	- ::KEYUP and ::KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
+- Supported touch inputs:
+	- ::TOUCH_NORMAL or ::TOUCH_LONG: Tunnel touch to all child elements one after another. Break if one child element has handled the touch.
+
+@image html Images/UIElement_Containers/UIElement_ContainerStack.jpg "ContainerStack" width=150
+
+@section tabcontrol_sec TabControl
+The TabControl can be used to show a tab control with each tab page holding one UI element. Each tab header is also holding one UI element.
+- Supports children: Yes (adding with TabControl::AddItem function)
+- Supported key inputs:
+	- ::KEYLEFT and ::KEYRIGHT to go to the previous/next tab page.
+- Supported touch inputs:
+	- ::TOUCH_NORMAL or ::TOUCH_LONG inside header region: Select the tab based on the touched header
+	- ::TOUCH_NORMAL or ::TOUCH_LONG outside header region: Tunnel touch to currently displayed UI_Element
+
+@image html Images/UIElement_Containers/UIElement_TabControl.jpg "TabControl" width=300
+
+ */

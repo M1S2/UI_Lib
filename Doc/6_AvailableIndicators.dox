@@ -1,0 +1,67 @@
+/*! @page page_6_availableindicators 6 - Available Indicators
+
+This section lists all available indicators. Base classes are not listed here.
+
+@section boolindicator_sec BoolIndicator
+The BoolIndicator indicator can be used to display the value of an boolean variable. This indicator offers different style (classic "ON"/"OFF", LED).
+- Supports children: No
+- Supported key inputs: None
+- Supported touch inputs: None
+
+<table>
+	<tr>
+		<td> @image html Images/UIElement_Indicators/UIElement_BoolIndicator_Style_Led_Off.jpg "Led Style (off)" height=50 </td>
+		<td> @image html Images/UIElement_Indicators/UIElement_BoolIndicator_Style_Led_On.jpg "Led Style (on)" height=50 </td>
+	</tr>
+	<tr>
+		<td> @image html Images/UIElement_Indicators/UIElement_BoolIndicator_Style_Classic_Off.jpg "Classic Style (off)" height=50 </td>
+		<td> @image html Images/UIElement_Indicators/UIElement_BoolIndicator_Style_Classic_On.jpg "Classic Style (on)" height=50 </td>
+	</tr>
+</table>
+
+@section enumindicator_sec EnumIndicator
+The EnumIndicator indicator can be used to display the value from an enumeration variable.
+- Supports children: No
+- Supported key inputs: None
+- Supported touch inputs: None
+
+@image html Images/UIElement_Indicators/UIElement_EnumIndicator.jpg "EnumIndicator" height=50
+
+@section icon_sec Icon
+The Icon indicator can be used to show an icon on the user interface. The icons must be in the .xbm format and located in the program memory (using the PROGMEM attribute).
+- Supports children: No
+- Supported key inputs: None
+- Supported touch inputs: None
+
+@image html Images/UIElement_Indicators/UIElement_Icon.jpg "Icon" height=50
+
+@section label_sec Label
+The Label indicator can be used to show a string on the user interface. The Label supports multiline strings (containing line breaks) and different fonts.
+- Supports children: No
+- Supported key inputs: None
+- Supported touch inputs: None
+
+<table>
+	<tr>
+		<td> @image html Images/UIElement_Indicators/UIElement_Label.jpg "Label" height=50 </td>
+		<td> @image html Images/UIElement_Indicators/UIElement_Label_otherFont.jpg "Another label with another font" height=50 </td>
+	</tr>
+</table>
+
+@section numericindicator_sec NumericIndicator
+The NumericIndicator can be used to display the value of a numeric variable. The value is displayed in prefixed format if possible (e.g. 1000 is displayed as 1k)
+- Supports children: No
+- Supported key inputs: None
+- Supported touch inputs: None
+
+@image html Images/UIElement_Indicators/UIElement_NumericIndicator.jpg "NumericIndicator" height=50
+
+@section progressbar_sec ProgressBar
+The ProgressBar indicator can be used to display a progress bar. It supports different fill modes (origin left, origin right, origin zero) and ticks.
+- Supports children: No
+- Supported key inputs: None
+- Supported touch inputs: None
+
+@image html Images/UIElement_Indicators/UIElement_ProgressBar.jpg "ProgressBar" height=50
+
+ */
