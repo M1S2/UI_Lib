@@ -5,16 +5,7 @@
 
 #define TFT_DC 9
 #define TFT_CS 10
-
-// Use hardware SPI
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
-
-//#define TFT_MOSI  51
-//#define TFT_CLK   52
-//#define TFT_RST   8
-//#define TFT_MISO  -1
-// Use software SPI (slower!)
-//Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_MOSI, TFT_CLK, TFT_RST, TFT_MISO);
 
 void setup()
 {
@@ -30,7 +21,7 @@ void setup()
   UI_Test_Draw();
 }
 
-void loop()
+void key_handling()
 {
   // check for incoming serial data:
   if (Serial.available() > 0)
@@ -68,6 +59,11 @@ void loop()
       UI_Test_Draw();
     }  
   }
+}
+
+void loop()
+{
+  key_handling();
   
   UI_Test_Draw();
 }

@@ -1,5 +1,5 @@
 /*
- * UI_Lib_Test.cpp
+ * UI_Lib_Test_Touch_Demo.cpp
  *
  */ 
 
