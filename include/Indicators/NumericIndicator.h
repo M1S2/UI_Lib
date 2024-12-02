@@ -60,11 +60,8 @@ class NumericIndicator : public UIElement
 		 */
 		~NumericIndicator()
 		{
-			if(_stringDrawBuffer)
-			{
-				free(_stringDrawBuffer);
-				_stringDrawBuffer = NULL;
-			}
+			delete _stringDrawBuffer;
+			_stringDrawBuffer = NULL;
 		}
 
 		/**

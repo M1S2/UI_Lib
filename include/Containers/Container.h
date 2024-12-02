@@ -29,6 +29,15 @@ class Container : public UIElement
 		Container(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS);
 
 		/**
+		 * Destructor of the Container
+		 */
+		~Container()
+		{
+			delete _items;
+			_items = NULL;
+		}
+
+		/**
 		 * Virtual method used for drawing of the container UIElement.
 		 */
 		virtual void Draw() { }  //= 0;

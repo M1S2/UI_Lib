@@ -42,11 +42,8 @@ class Label : public UIElement
 		 */
 		~Label()
 		{
-			if(Text)
-			{
-				free(Text);
-				Text = NULL;
-			}
+			delete Text;
+			Text = NULL;
 		}
 
 		/**

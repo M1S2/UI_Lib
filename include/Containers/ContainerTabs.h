@@ -63,6 +63,15 @@ class ContainerTabs : public Container
 		 */
 		ContainerTabs(uint16_t locX, uint16_t locY, uint16_t width, uint16_t height, TabPositions_t tabPosition = TAB_POSITION_LEFT, void* controlContext = NULL, void(*onSelectedTabChanged)(void* controlContext) = NULL, uint8_t maxNumItems = DEFAULT_MAX_ContainerTabs_TABS, uint8_t tabHeaderMargin = DEFAULT_ContainerTabs_TABHEADER_MARGIN);
 	
+			/**
+		 * Destructor of the ContainerTabs
+		 */
+		~ContainerTabs()
+		{
+			delete _headers;
+			_headers = NULL;
+		}
+
 		/**
 		 * Method used for drawing of the ContainerTabs.
 		 */

@@ -39,6 +39,15 @@ class ContainerPage : public Container
 		ContainerPage(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint16_t locX = 0, uint16_t locY = 0, uint16_t width = 0, uint16_t height = 0);
 
 		/**
+		 * Destructor of the ContainerPage
+		 */
+		~ContainerPage()
+		{
+			delete _itemConfiguration;
+			_itemConfiguration = NULL;
+		}
+
+		/**
 		 * Method used for drawing of the ContainerPage.
 		 */
 		virtual void Draw(bool redraw) override;

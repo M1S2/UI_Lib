@@ -73,6 +73,23 @@ class ContainerGrid : public Container
 		ContainerGrid(uint8_t maxNumItems = DEFAULT_MAX_CONTAINER_ITEMS, uint8_t maxGridRows = DEFAULT_MAX_CONTAINERGRID_ROWS, uint8_t maxGridColumns = DEFAULT_MAX_CONTAINERGRID_COLUMNS, bool showGridCells = false, bool autoSizingFillLast = true, uint16_t locX = 0, uint16_t locY = 0, uint16_t width = 0, uint16_t height = 0);
 
 		/**
+		 * Destructor of the ContainerGrid
+		 */
+		~ContainerGrid()
+		{
+			delete _initialRowHeights;
+			delete _initialColumnWidths;
+			delete _rowHeights;
+			delete _columnWidths;
+			delete _itemConfiguration;
+			_initialRowHeights = NULL;
+			_initialColumnWidths = NULL;
+			_rowHeights = NULL;
+			_columnWidths = NULL;
+			_itemConfiguration = NULL;
+		}
+
+		/**
 		 * Method used for drawing of the ContainerGrid.
 		 */
 		virtual void Draw(bool redraw) override;

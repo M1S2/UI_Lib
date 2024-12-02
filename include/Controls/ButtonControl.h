@@ -34,15 +34,12 @@ class ButtonControl : public UIElement
 		ButtonControl(const char* buttonText, void* controlContext = NULL, void(*onClick)(void* controlContext) = NULL, uint16_t locX = 0, uint16_t locY = 0, int maxStringLength = DEFAULT_BUTTON_STRING_LENGTH);
 
 		/**
-		 * Destructor of the Label
+		 * Destructor of the ButtonControl
 		 */
 		~ButtonControl()
 		{
-			if(_buttonText)
-			{
-				free(_buttonText);
-				_buttonText = NULL;
-			}
+			delete _buttonText;
+			_buttonText = NULL;
 		}
 
 		/**
