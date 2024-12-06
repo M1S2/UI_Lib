@@ -53,7 +53,7 @@ class NumericIndicator : public UIElement
 		 * @param locY Y Location of the upper left corner of the NumericIndicator
 		 * @param maxStringBufferLength Length for the internally used _stringDrawBuffer. Make sure this is large enough to hold all character displayed by this element + 1 termination character '\0' (e.g. "1234.56mV" needs at least a length of 10; 9 characters + 1 termination character).
 		 */
-		NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint16_t locX, uint16_t locY, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
+		NumericIndicator(T* valuePointer, const char* baseUnit, T maxValue, unsigned char numFractionalDigits, uint16_t locX = 0, uint16_t locY = 0, uint8_t maxStringBufferLength = DEFAULT_NUMERIC_INDICATOR_STRING_LENGTH);
 		
 		/**
 		 * Destructor of the NumericIndicator

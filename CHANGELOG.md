@@ -1,5 +1,10 @@
 # UI_Lib Changelog
 
+## [v2.0.1]
+
+- Small bugfix for NumericIndicator (make locX and locY optional)
+- Corrected some images, updated XPT2046_Touchscreen_TT to v1.8.1 (used by examples)
+
 ## [v2.0.0]
 
 - Added touch support for all UIElements
