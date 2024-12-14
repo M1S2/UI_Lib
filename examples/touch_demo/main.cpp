@@ -6,7 +6,8 @@
 
 #define TFT_DC 9
 #define TFT_CS 10
-#define TOUCH_CS_PIN  7
+#define TOUCH_CS_PIN 7
+#define TOUCH_IRQ_PIN 6
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);    // Use hardware SPI
 XPT2046_Touchscreen ts(TOUCH_CS_PIN);
@@ -17,6 +18,8 @@ void setup()
     Serial.begin(9600);
     Serial.println("ILI9341 Test!"); 
  
+    pinMode(TOUCH_IRQ_PIN, INPUT);
+
     tft.begin();
     tft.setRotation(1);
 
@@ -50,39 +53,42 @@ TouchEventStates touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
 
 void touch_handling()
 {
-    int16_t x, y, pres, px, py;
-    eTouchEvent touchEvent = ts_display.getTouchEvent(x, y, pres, &px, &py);
+    if(!digitalRead(TOUCH_IRQ_PIN) || touchEventState != TOUCH_EVENTS_WAIT_FOR_TOUCH)
+	{
+        int16_t x, y, pres, px, py;
+        eTouchEvent touchEvent = ts_display.getTouchEvent(x, y, pres, &px, &py);
 
-    switch (touchEventState)
-    {
-        case TOUCH_EVENTS_WAIT_FOR_TOUCH:
-            if(touchEvent == TS_TOUCH_EVENT || touchEvent == TS_TOUCH_PRESENT)
-            {
-                touchStartTime = millis();
-                touchEventState = TOUCH_EVENTS_WAIT_LONG_TOUCH_DELAY;
-            }
-            break;
-        case TOUCH_EVENTS_WAIT_LONG_TOUCH_DELAY:
-            if(touchEvent == TS_RELEASE_EVENT || touchEvent == TS_NO_TOUCH)
-            {
-                // Normal touch
-                UI_Test_TouchInput(x, y, TOUCH_NORMAL);
-                touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
-            }
-            else if(millis() - touchStartTime >= LONG_TOUCH_DELAY_MS)
-            {
-                // Long touch
-                UI_Test_TouchInput(x, y, TOUCH_LONG);
-                touchEventState = TOUCH_EVENTS_LONG_TOUCH_DETECTED;
-            }
-            break;
-        case TOUCH_EVENTS_LONG_TOUCH_DETECTED:
-            if(touchEvent == TS_RELEASE_EVENT || touchEvent == TS_NO_TOUCH)
-            {
-                touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
-            }
-            break;
-        default: break;
+        switch (touchEventState)
+        {
+            case TOUCH_EVENTS_WAIT_FOR_TOUCH:
+                if(touchEvent == TS_TOUCH_EVENT || touchEvent == TS_TOUCH_PRESENT)
+                {
+                    touchStartTime = millis();
+                    touchEventState = TOUCH_EVENTS_WAIT_LONG_TOUCH_DELAY;
+                }
+                break;
+            case TOUCH_EVENTS_WAIT_LONG_TOUCH_DELAY:
+                if(touchEvent == TS_RELEASE_EVENT || touchEvent == TS_NO_TOUCH)
+                {
+                    // Normal touch
+                    UI_Test_TouchInput(x, y, TOUCH_NORMAL);
+                    touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
+                }
+                else if(millis() - touchStartTime >= LONG_TOUCH_DELAY_MS)
+                {
+                    // Long touch
+                    UI_Test_TouchInput(x, y, TOUCH_LONG);
+                    touchEventState = TOUCH_EVENTS_LONG_TOUCH_DETECTED;
+                }
+                break;
+            case TOUCH_EVENTS_LONG_TOUCH_DETECTED:
+                if(touchEvent == TS_RELEASE_EVENT || touchEvent == TS_NO_TOUCH)
+                {
+                    touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
+                }
+                break;
+            default: break;
+        }
     }
 }
 
