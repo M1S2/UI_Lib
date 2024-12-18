@@ -1,6 +1,6 @@
 {
     "name": "UI_LIB",
-    "version": "[NO_RELEASE]",
+    "version": "2.0.2",
     "description": "This is a user interface library for graphical LCDs. It offers many different controls and indicators that can be nested depending on the element types.",
     "keywords": "graphical, LCD, user interface",
     "repository":
