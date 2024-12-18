@@ -92,7 +92,7 @@ bool BoolControl::KeyInput(Keys_t key)
 
 bool BoolControl::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 {
-	if(HitTest(x, y) && touchType == TOUCH_NORMAL)
+	if(HitTest(x, y))
 	{
 		ToggleValue();
 		return true;

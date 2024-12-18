@@ -1,5 +1,10 @@
 # UI_Lib Changelog
 
+## [v2.0.2]
+
+- Fixed small TouchInput bug (some controls were not selected on touch)
+- Using touch IRQ pin in touch_demo example
+
 ## [v2.0.1]
 
 - Small bugfix for NumericIndicator (make locX and locY optional)

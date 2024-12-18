@@ -146,9 +146,8 @@ bool NumericControl<T>::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 				if(touchWasOnEditIcon)
 				{
 					_virtualKeys->ShowVirtualKeys(this);
-					return true;
 				}
-				return false;
+				return true;
 			}
 			case TOUCH_LONG:
 			{

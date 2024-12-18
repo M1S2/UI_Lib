@@ -49,10 +49,10 @@ bool ButtonControl::KeyInput(Keys_t key)
 
 bool ButtonControl::TouchInput(uint16_t x, uint16_t y, TouchTypes touchType)
 {
-	if(HitTest(x, y) && touchType == TOUCH_NORMAL)
+	if(HitTest(x, y))
 	{
-		if (OnClick != NULL) { OnClick(ControlContext); return true; }
-		else { return false; }
+		if (OnClick != NULL) { OnClick(ControlContext); }
+		return true;
 	}
 	return false;
 }
