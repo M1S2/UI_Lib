@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>UI_Lib: monitor_printf Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/UI_Lib" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">UI_Lib
+   &#160;<span id="projectnumber">72ce69578e8be5d48bbbef556a75af20b3ffed38</span>
+   </div>
+   <div id="projectbrief">This is a user interface library for graphical LCDs. It offers many different controls and indicators that can be nested depending on the element types.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classmonitor__printf.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classmonitor__printf-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">monitor_printf Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a38d53bf4e2d993c314f19eadb9609fdc" id="r_a38d53bf4e2d993c314f19eadb9609fdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38d53bf4e2d993c314f19eadb9609fdc">monitor_printf</a> (HardwareSerial *serial=NULL)</td></tr>
+<tr class="separator:a38d53bf4e2d993c314f19eadb9609fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3185b7631b171b9e7dbdab664e2c900" id="r_ab3185b7631b171b9e7dbdab664e2c900"><td class="memItemLeft" align="right" valign="top"><a id="ab3185b7631b171b9e7dbdab664e2c900" name="ab3185b7631b171b9e7dbdab664e2c900"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~monitor_printf</b> ()</td></tr>
+<tr class="memdesc:ab3185b7631b171b9e7dbdab664e2c900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Release buffer memory. <br /></td></tr>
+<tr class="separator:ab3185b7631b171b9e7dbdab664e2c900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeed1bb8aa5f7fe52c74981e276bb6ea2" id="r_aeed1bb8aa5f7fe52c74981e276bb6ea2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeed1bb8aa5f7fe52c74981e276bb6ea2">begin</a> (HardwareSerial *serial=NULL, unsigned long baud=115200, byte config=SERIAL_8N1)</td></tr>
+<tr class="memdesc:aeed1bb8aa5f7fe52c74981e276bb6ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize <a class="el" href="classmonitor__printf.html">monitor_printf</a> object.  <br /></td></tr>
+<tr class="separator:aeed1bb8aa5f7fe52c74981e276bb6ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4880fc60eee2c552da9f7b86d0dff60a" id="r_a4880fc60eee2c552da9f7b86d0dff60a"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4880fc60eee2c552da9f7b86d0dff60a">isEnabled</a> (void)</td></tr>
+<tr class="memdesc:a4880fc60eee2c552da9f7b86d0dff60a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current enable state.  <br /></td></tr>
+<tr class="separator:a4880fc60eee2c552da9f7b86d0dff60a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21c8529971e1943a21cfd578ee4c26ea" id="r_a21c8529971e1943a21cfd578ee4c26ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21c8529971e1943a21cfd578ee4c26ea">setEnabled</a> (bool enable)</td></tr>
+<tr class="memdesc:a21c8529971e1943a21cfd578ee4c26ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set enable state.  <br /></td></tr>
+<tr class="separator:a21c8529971e1943a21cfd578ee4c26ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a638479c8fa872650b36b58155923428e" id="r_a638479c8fa872650b36b58155923428e"><td class="memItemLeft" align="right" valign="top">const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a638479c8fa872650b36b58155923428e">getBufSize</a> (void)</td></tr>
+<tr class="memdesc:a638479c8fa872650b36b58155923428e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current buffer size.  <br /></td></tr>
+<tr class="separator:a638479c8fa872650b36b58155923428e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3499b13c25aa032249cb8f6d9b74f9fc" id="r_a3499b13c25aa032249cb8f6d9b74f9fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3499b13c25aa032249cb8f6d9b74f9fc">setBufSize</a> (uint16_t buf_size)</td></tr>
+<tr class="memdesc:a3499b13c25aa032249cb8f6d9b74f9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set buffer size.  <br /></td></tr>
+<tr class="separator:a3499b13c25aa032249cb8f6d9b74f9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd41b51a33c97ef3a7bc095562e36cec" id="r_abd41b51a33c97ef3a7bc095562e36cec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd41b51a33c97ef3a7bc095562e36cec">printf</a> (const char *format,...)</td></tr>
+<tr class="memdesc:abd41b51a33c97ef3a7bc095562e36cec"><td class="mdescLeft">&#160;</td><td class="mdescRight">print string to serial monitor using printf-style format string.  <br /></td></tr>
+<tr class="separator:abd41b51a33c97ef3a7bc095562e36cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a68c02c438e549bd4d64b6e5e3c9f2738" id="r_a68c02c438e549bd4d64b6e5e3c9f2738"><td class="memItemLeft" align="right" valign="top"><a id="a68c02c438e549bd4d64b6e5e3c9f2738" name="a68c02c438e549bd4d64b6e5e3c9f2738"></a>
+HardwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><b>_serial</b></td></tr>
+<tr class="separator:a68c02c438e549bd4d64b6e5e3c9f2738"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46bab2fdb4eae35c1d2991f6135dace1" id="r_a46bab2fdb4eae35c1d2991f6135dace1"><td class="memItemLeft" align="right" valign="top"><a id="a46bab2fdb4eae35c1d2991f6135dace1" name="a46bab2fdb4eae35c1d2991f6135dace1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_enabled</b></td></tr>
+<tr class="separator:a46bab2fdb4eae35c1d2991f6135dace1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23edffd37f17497f677437b86a6fa0bd" id="r_a23edffd37f17497f677437b86a6fa0bd"><td class="memItemLeft" align="right" valign="top"><a id="a23edffd37f17497f677437b86a6fa0bd" name="a23edffd37f17497f677437b86a6fa0bd"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>_buf_size</b></td></tr>
+<tr class="separator:a23edffd37f17497f677437b86a6fa0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab71d8551c6cc7b294b365532883ca85c" id="r_ab71d8551c6cc7b294b365532883ca85c"><td class="memItemLeft" align="right" valign="top"><a id="ab71d8551c6cc7b294b365532883ca85c" name="ab71d8551c6cc7b294b365532883ca85c"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>_buf</b></td></tr>
+<tr class="separator:ab71d8551c6cc7b294b365532883ca85c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a38d53bf4e2d993c314f19eadb9609fdc" name="a38d53bf4e2d993c314f19eadb9609fdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38d53bf4e2d993c314f19eadb9609fdc">&#9670;&#160;</a></span>monitor_printf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">monitor_printf::monitor_printf </td>
+          <td>(</td>
+          <td class="paramtype">HardwareSerial *</td>          <td class="paramname"><span class="paramname"><em>serial</em></span><span class="paramdefsep"> = </span><span class="paramdefval">NULL</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">@brief    Constructor.
+@param    serial  Pointer to HardwareSerial object for the serial port to be
+                  printf-ed to, or NULL to defer setting the port until
+                  begin() is called.
+@note     Example:
+            #include &lt;monitor_printf.h&gt;
+</pre><p> Set this to 1 to enable debug output to the serial monitor. Set this to 0 when releasing code to use without the IDE, USB port, and serial monitor. #define USE_MONITOR_PORT 1 Define the port to be used by the global instance named "the_serial_monitor". #if USE_MONITOR_PORT #define MONITOR_PORT &amp;Serial // Enable printf output to the serial monitor port identified by variable "Serial". #else #define MONITOR_PORT NULL // Disable printf output when using WITHOUT the IDE, USB port, and serial monitor. #endif</p>
+<p>void setup() { monitor.begin(MONITOR_PORT, 9600); monitor.printf("Printing to monitor, can you see it?\n"); } void loop() { monitor.printf("Numbers from 1 to 10:\n"); for (uint8_t i = 0; i &lt; 10; i++) monitor.printf(" %d", i); monitor.printf("\n"); delay(10000); } </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aeed1bb8aa5f7fe52c74981e276bb6ea2" name="aeed1bb8aa5f7fe52c74981e276bb6ea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeed1bb8aa5f7fe52c74981e276bb6ea2">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void monitor_printf::begin </td>
+          <td>(</td>
+          <td class="paramtype">HardwareSerial *</td>          <td class="paramname"><span class="paramname"><em>serial</em></span><span class="paramdefsep"> = </span><span class="paramdefval">NULL</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>baud</em></span><span class="paramdefsep"> = </span><span class="paramdefval">115200</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte</td>          <td class="paramname"><span class="paramname"><em>config</em></span><span class="paramdefsep"> = </span><span class="paramdefval">SERIAL_8N1</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize <a class="el" href="classmonitor__printf.html">monitor_printf</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serial</td><td>Pointer to HardwareSerial object for the serial port to be printf-ed to, or NULL to keep the port that was set with the constructor 'serial' argument. </td></tr>
+    <tr><td class="paramname">baud</td><td>serial port speed in bits/second. </td></tr>
+    <tr><td class="paramname">config</td><td>SERIAL_ constant defining data, parity, and stop bits. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>When 'serial' is not NULL, this initializes the HardwareSerial object with baud and config, empties the Serial input buffer, does short delays to ensure smooth operation, and enables printfs. If 'serial' is NULL, that initialization is not done and printfs remain disabled. </dd>
+<dd>
+Use NULL for your standard monitor serial port when running WITHOUT A USB connection (in your final system with no USB), else your system will hang because the "Serial" object doesn't exist in that case. </dd></dl>
+
+</div>
+</div>
+<a id="a638479c8fa872650b36b58155923428e" name="a638479c8fa872650b36b58155923428e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a638479c8fa872650b36b58155923428e">&#9670;&#160;</a></span>getBufSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint16_t monitor_printf::getBufSize </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get current buffer size. </p>
+<dl class="section return"><dt>Returns</dt><dd>Buffer size in chars including 1 for final nul, 0 if no buffer. </dd></dl>
+
+</div>
+</div>
+<a id="a4880fc60eee2c552da9f7b86d0dff60a" name="a4880fc60eee2c552da9f7b86d0dff60a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4880fc60eee2c552da9f7b86d0dff60a">&#9670;&#160;</a></span>isEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool monitor_printf::isEnabled </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get current enable state. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if enabled, false if disabled. </dd></dl>
+
+</div>
+</div>
+<a id="abd41b51a33c97ef3a7bc095562e36cec" name="abd41b51a33c97ef3a7bc095562e36cec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd41b51a33c97ef3a7bc095562e36cec">&#9670;&#160;</a></span>printf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void monitor_printf::printf </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>print string to serial monitor using printf-style format string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>Format string just like for <a class="el" href="#abd41b51a33c97ef3a7bc095562e36cec" title="print string to serial monitor using printf-style format string.">printf()</a>. Note that some specifiers may not be supported under some versions and settings of some hardware platforms. </td></tr>
+    <tr><td class="paramname">...</td><td>The values to be printed, each corresponding to format string % specifiers or their arguments. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>If the buffer size (buf_size arguments above) is not large enough to hold the string resulting from the printf formatting, it is automatically reallocated here to a large enough size. </dd></dl>
+
+</div>
+</div>
+<a id="a3499b13c25aa032249cb8f6d9b74f9fc" name="a3499b13c25aa032249cb8f6d9b74f9fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3499b13c25aa032249cb8f6d9b74f9fc">&#9670;&#160;</a></span>setBufSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void monitor_printf::setBufSize </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>buf_size</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set buffer size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buf_size</td><td>Buffer size in characters including 1 for final nul, or 0 to only deallocate current buffer, if any. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>It is not necessary for the user to call this function, as the buffer size is managed automatically, see <a class="el" href="#abd41b51a33c97ef3a7bc095562e36cec" title="print string to serial monitor using printf-style format string.">printf()</a> note. </dd></dl>
+
+</div>
+</div>
+<a id="a21c8529971e1943a21cfd578ee4c26ea" name="a21c8529971e1943a21cfd578ee4c26ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21c8529971e1943a21cfd578ee4c26ea">&#9670;&#160;</a></span>setEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void monitor_printf::setEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set enable state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true to enable printing, false makes printf do nothing. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/github/workspace/examples/touch_calibration/<a class="el" href="monitor__printf_8h_source.html">monitor_printf.h</a></li>
+<li>/github/workspace/examples/touch_calibration/<b>monitor_printf.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classmonitor__printf.html">monitor_printf</a></li>
+    <li class="footer">Generated on Wed Dec 18 2024 17:52:35 for UI_Lib by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>
