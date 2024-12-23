@@ -1,7 +1,7 @@
 #include "SPI.h"
 #include "Adafruit_GFX.h"
 #include "Adafruit_ILI9341.h"
-#include <TS_Display.h>
+#include "XPT2046.h"
 #include "UI_Lib_Test_Touch_Demo.h"
 
 #define TFT_DC 9
@@ -9,30 +9,34 @@
 #define TOUCH_CS_PIN 7
 #define TOUCH_IRQ_PIN 6
 
+#define DISPLAY_WIDTH  320
+#define DISPLAY_HEIGHT 240
+
+/*
+A: 0.0917605
+B: 0.0002037
+C: -20.2002980
+D: -0.0003954
+E: 0.0693526
+F: -23.8954410 */
+XPT2046::Calibration CALIBRATION = {0.0917605,0.0002037,-20.2002980,-0.0003954,0.0693526,-23.8954410,320,240};
+
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);    // Use hardware SPI
-XPT2046_Touchscreen ts(TOUCH_CS_PIN);
-TS_Display ts_display;
+XPT2046 ts(TOUCH_CS_PIN, TOUCH_IRQ_PIN);
 
 void setup()
 {
-    Serial.begin(9600);
+    Serial.begin(115200);
     Serial.println("ILI9341 Test!"); 
- 
-    pinMode(TOUCH_IRQ_PIN, INPUT);
 
     tft.begin();
     tft.setRotation(1);
 
     ts.begin();
+    ts.setSampleCount(1);
+    ts.setDebounceTimeout(0);       // !!! It is important to set this to 0 to make the state machine in the touch_handling() work !!!
+    ts.setCalibration(CALIBRATION);
     ts.setRotation(tft.getRotation());
-
-    ts_display.begin(&ts, &tft);
-    /*
-    TS_LR_X: 440  TS_LR_Y: 380  TS_UL_X: 3904  TS_UL_Y: 3792
-    UL corner (0, 0) maps to touchscreen (3904, 3792)
-    LR corner (319, 239) maps to touchscreen (451, 395)
-    */
-    ts_display.setTS_calibration(440, 380, 3904, 3792);
 
     UI_Test_Init(&tft);
     UI_Test_BuildTree();
@@ -53,36 +57,39 @@ TouchEventStates touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
 
 void touch_handling()
 {
-    if(!digitalRead(TOUCH_IRQ_PIN) || touchEventState != TOUCH_EVENTS_WAIT_FOR_TOUCH)
-	{
-        int16_t x, y, pres, px, py;
-        eTouchEvent touchEvent = ts_display.getTouchEvent(x, y, pres, &px, &py);
+    static XPT2046::Point touchedPoint;
 
+    bool isTouched = ts.touched();
+    if(isTouched || touchEventState != TOUCH_EVENTS_WAIT_FOR_TOUCH)
+	{
         switch (touchEventState)
         {
             case TOUCH_EVENTS_WAIT_FOR_TOUCH:
-                if(touchEvent == TS_TOUCH_EVENT || touchEvent == TS_TOUCH_PRESENT)
+                if(isTouched)
                 {
                     touchStartTime = millis();
+                    touchedPoint = ts.getTouchPosition();
                     touchEventState = TOUCH_EVENTS_WAIT_LONG_TOUCH_DELAY;
                 }
                 break;
             case TOUCH_EVENTS_WAIT_LONG_TOUCH_DELAY:
-                if(touchEvent == TS_RELEASE_EVENT || touchEvent == TS_NO_TOUCH)
+                if(!isTouched)
                 {
                     // Normal touch
-                    UI_Test_TouchInput(x, y, TOUCH_NORMAL);
+                    Serial.println("Normal: x=" + String(touchedPoint.x, 10) + " y=" + String(touchedPoint.y, 10));
+                    UI_Test_TouchInput(touchedPoint.x, touchedPoint.y, TOUCH_NORMAL);
                     touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
                 }
                 else if(millis() - touchStartTime >= LONG_TOUCH_DELAY_MS)
                 {
                     // Long touch
-                    UI_Test_TouchInput(x, y, TOUCH_LONG);
+                    Serial.println("Long: x=" + String(touchedPoint.x, 10) + " y=" + String(touchedPoint.y, 10));
+                    UI_Test_TouchInput(touchedPoint.x, touchedPoint.y, TOUCH_LONG);
                     touchEventState = TOUCH_EVENTS_LONG_TOUCH_DETECTED;
                 }
                 break;
             case TOUCH_EVENTS_LONG_TOUCH_DETECTED:
-                if(touchEvent == TS_RELEASE_EVENT || touchEvent == TS_NO_TOUCH)
+                if(!isTouched)
                 {
                     touchEventState = TOUCH_EVENTS_WAIT_FOR_TOUCH;
                 }
