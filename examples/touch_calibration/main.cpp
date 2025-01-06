@@ -1,4 +1,3 @@
-// https://github.com/median-dispersion/XPT2046-Driver/tree/5f85ef05b9be919df8eda40df692933b3b9e7eb7/examples/3PointCalibration
 /*
 
   This sketch performs a 3 point calibration on a touchscreen that uses the XPT2046 controller.
@@ -9,17 +8,22 @@
   1. Change the User configuration (#define) to your needs
   2. Compile and upload the sketch
   3. Tap the touch targets
-  4. Copy the calculated calibration matrix from the serial console
+  4. Copy the calculated calibration matrix from the Serial Monitor (115200 Baud)
   5. Check the calibration with the crosshair on screen
 
   For an example of how to use the resulting calibration matrix in your sketch, look at:
   Examples > XPT2046 Driver > TouchscreenUsage
 
-  Median Dispersion 2024
+  Median Dispersion 2025
   https://github.com/median-dispersion/XPT2046-Driver
+  Release 1.0.2 (Commit ID: 7607973)
 
+  Adaptions made by M1S2:
+  - Removed canvas
+  - Adapted pins and display rotation
 */
 
+#include "Arduino.h"
 #include "XPT2046.h"
 #include "Adafruit_GFX.h"
 #include "Adafruit_ILI9341.h"
@@ -40,16 +44,16 @@
 #define DISPLAY_LED_PIN -1 // Some displays might not have this pin, -1 disables this option
 
 // Define the display's width and height in px
-// If the display is rotated by 90° or 270°, switch the width and height value
-#define DISPLAY_WIDTH  320
-#define DISPLAY_HEIGHT 240
+// If the display is rotated by 90° or 270°, these values will automatically be swapped
+#define DISPLAY_WIDTH  240
+#define DISPLAY_HEIGHT 320
 
 // Define display rotation
 // 0 = 0°, 1 = 90°, 2 = 180°, 3 = 270°
 #define DISPLAY_ROTATION 1
 
 // Define how many calibration samples should be taken before averaging them
-// i.e., how often to touch the 3 touch target for before calculating the calibration matrix
+// i.e., how often to touch the 3 touch targets before calculating the calibration matrix
 #define CALIBRATION_SAMPLES 3
 
 //-------------------------------------------------------------------------------------------------
@@ -58,35 +62,35 @@
 // Create touchscreen object
 XPT2046 touchscreen(TOUCH_CS_PIN, TOUCH_IRQ_PIN);
 
-// Create display object depending on if the display has the DISPLAY_RST_PIN
+// Create display object depending on whether the display has the DISPLAY_RST_PIN
 #if DISPLAY_RST_PIN == -1
   Adafruit_ILI9341 display(DISPLAY_CS_PIN, DISPLAY_DC_PIN);
 #else
   Adafruit_ILI9341 display(DISPLAY_CS_PIN, DISPLAY_DC_PIN, DISPLAY_RST_PIN);
 #endif
 
-bool    calibrated = false; // Flag for checking if touchscreen is calibrated
-uint8_t samples    = 0;     // Current sample being taken
-uint8_t target     = 0;     // Current target being displayed
-bool    released   = true;  // Flag for checking if touchscreen has been released
+// Depending on screen rotation, swap width and height
+#if (DISPLAY_ROTATION == 0) || (DISPLAY_ROTATION == 2)
 
-// Calibration matrix
-XPT2046::Calibration calibration; 
+  const uint16_t displayWidth  = DISPLAY_WIDTH;
+  const uint16_t displayHeight = DISPLAY_HEIGHT;
 
-// Touch targets
-XPT2046::Point targets[3] = {
-  {(uint16_t)(DISPLAY_WIDTH * 0.7), 15},
-  {DISPLAY_WIDTH - 15, DISPLAY_HEIGHT- 15},
-  {15, (uint16_t)(DISPLAY_HEIGHT * 0.5)}
-};
+#elif (DISPLAY_ROTATION == 1) || (DISPLAY_ROTATION == 3)
 
-// Measurements of the touch positions
-struct Point64 {uint64_t x; uint64_t y;} measurements[3*CALIBRATION_SAMPLES];
+  const uint16_t displayWidth  = DISPLAY_HEIGHT;
+  const uint16_t displayHeight = DISPLAY_WIDTH;
 
-void drawTarget(XPT2046::Point position);
-void drawCalibratedScreen(XPT2046::Point position);
-void calculateCalibrationMatrix();
-void printCalibrationMatrix();
+#endif
+
+//-------------------------------------------------------------------------------------------------
+// Function prototypes
+
+void calibrateTouchscreen();
+void measureTouchTargets(XPT2046::Point *targets, XPT2046::Point (&measurements)[3]);
+void drawTouchTarget(XPT2046::Point position);
+void calculateCalibrationMatrix(XPT2046::Point *targets, XPT2046::Point *measurements, XPT2046::Calibration &calibration);
+void printCalibrationMatrix(XPT2046::Calibration calibration);
+void drawTouchPosition(XPT2046::Point position);
 
 // ================================================================================================
 // Setup
@@ -128,12 +132,14 @@ void setup() {
 
   #endif
 
-  // Set the calibration matrix width and height to the display's width and height
-  calibration.width  = DISPLAY_WIDTH;
-  calibration.height = DISPLAY_HEIGHT;
+  // Calibrate the touchscreen
+  calibrateTouchscreen();
 
-  // Draw the first touch target on screen
-  drawTarget(targets[target]);
+  // Rest debounce timeout to make the touchscreen more responsive
+  touchscreen.setDebounceTimeout(0);
+
+  // Draw a crosshair at the center of the screen
+  drawTouchPosition({displayWidth / 2, displayHeight / 2});
 
 }
 
@@ -142,85 +148,122 @@ void setup() {
 // ================================================================================================
 void loop() {
 
-  // If touchscreen is not calibrated
-  if (!calibrated) {
+  // Check if the touchscreen is being touched
+  if (touchscreen.touched()) {
 
-    // Check if samples taken are less than the number of total calibration samples
-    if (samples < CALIBRATION_SAMPLES) {
+    // Get the touch position
+    XPT2046::Point position = touchscreen.getTouchPosition();
 
-      // If current target is in the list of targets
-      if (target < sizeof(targets) / sizeof(targets[0])) {
+    // Check if touch position is valid
+    if (touchscreen.valid(position)) {
 
-        // If the touchscreen is being touched and the previous touch event has been released
+      // Draw the touch position on screen
+      drawTouchPosition(position);
+
+    }
+
+  }
+
+}
+
+// ================================================================================================
+// Calibrate the touchscreen
+// ================================================================================================
+void calibrateTouchscreen() {
+
+  // Array of touch targets
+  XPT2046::Point targets[3] = {
+
+    {(uint16_t)(displayWidth * 0.43), (uint16_t)(displayHeight * 0.05)},
+    {(uint16_t)(displayWidth * 0.94), (uint16_t)(displayHeight * 0.54)},
+    {(uint16_t)(displayWidth * 0.04), (uint16_t)(displayHeight * 0.96)}
+
+  };
+  
+  // Array of touch measurements
+  XPT2046::Point measurements[3] = {
+
+    0,
+    0,
+    0
+
+  };
+
+  // Calibration matrix
+  XPT2046::Calibration calibration;
+
+  // Measure the touch positions of the touch targets
+  measureTouchTargets(targets, measurements);
+
+  // Calculate the calibration matrix
+  calculateCalibrationMatrix(targets, measurements, calibration);
+
+  // Print the calibration matrix result to the Serial Monitor
+  printCalibrationMatrix(calibration);
+  
+  // Apply the touchscreen calibration matrix
+  touchscreen.setCalibration(calibration);
+
+}
+
+// ================================================================================================
+// Measure the touch positions of the touch targets
+// ================================================================================================
+void measureTouchTargets(XPT2046::Point *targets, XPT2046::Point (&measurements)[3]) {
+
+  // An array of 64 bit points containing the sum of the measurement samples
+  struct Point64 {uint64_t x; uint64_t y;} accumulativeMeasurements[3] = {};
+
+  // For the number of samples
+  for (uint8_t sample = 0; sample < CALIBRATION_SAMPLES; sample++) {
+
+    // For all targets
+    for (uint8_t target = 0; target < 3; target++) {
+
+      // Draw a touch target
+      drawTouchTarget(targets[target]);
+
+      // Touch position
+      XPT2046::Point position;
+
+      // Wait for a touch event
+      while (true) {
+        
+        // If a touch event occurred and the previous touch event was released
         if (touchscreen.touched() && touchscreen.released()) {
           
           // Get the touch position
-          XPT2046::Point position = touchscreen.getTouchPosition();
+          position = touchscreen.getTouchPosition();
 
-          // Add the X and Y position to the accumulative X and Y position for that measurement
-          measurements[target].x += position.x;
-          measurements[target].y += position.y;
+          // Check if the touch position is valid
+          if (touchscreen.valid(position)) {
 
-          // Increase to the next target
-          target++;
-
-          // If still in the list of targets
-          if (target < sizeof(targets) / sizeof(targets[0])) {
-            
-            // Draw the next target
-            drawTarget(targets[target]);
+            // Break the waiting loop
+            break;
 
           }
 
         }
-      
-      // If current target number is not in the list of targets
-      } else {
-        
-        // Reset to the first target
-        target = 0;
 
-        // Draw the first target
-        drawTarget(targets[target]);
-
-        // Increase the number of samples taken
-        samples++;
+        // Keep watchdog happy :)
+        yield();
 
       }
 
-    // If sampling process has finished
-    } else {
-      
-      // Calculate the calibration matrix
-      calculateCalibrationMatrix();
-
-      // Print the calibration matrix result to the serial console
-      printCalibrationMatrix();
-
-      // Set the touchscreen calibration to the calculated matrix
-      touchscreen.setCalibration(calibration);
-
-      // Rest debounce timeout to make the touchscreen more responsive
-      touchscreen.setDebounceTimeout(0);
-
-      // Set the calibration flag to true
-      calibrated = true;
-
-      // Draw the info screen
-      drawCalibratedScreen({DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2});
+      // Add the touch position to the sum of a touch measurement
+      accumulativeMeasurements[target].x += position.x;
+      accumulativeMeasurements[target].y += position.y;
 
     }
 
-  // If touchscreen is calibrated
-  } else {
+  }
 
-    // Check if the touchscreen is being touched
-    if (touchscreen.touched()) {
+  // For all measurements
+  for (uint8_t measurement = 0; measurement < 3; measurement++) {
 
-      // Draw the info screen and crosshair
-      drawCalibratedScreen(touchscreen.getTouchPosition());
-
-    }
+    // Average the measurement sums and store them in the array of measurements
+    measurements[measurement].x = accumulativeMeasurements[measurement].x / CALIBRATION_SAMPLES;
+    measurements[measurement].y = accumulativeMeasurements[measurement].y / CALIBRATION_SAMPLES;
 
   }
 
@@ -229,12 +272,12 @@ void loop() {
 // ================================================================================================
 // Draw a touch target on screen
 // ================================================================================================
-void drawTarget(XPT2046::Point position) {
+void drawTouchTarget(XPT2046::Point position) {
 
   // Clear the frame buffer
   display.fillScreen(ILI9341_BLACK);
 
-  // Draw circle
+  // Draw a touch circle
   display.drawLine(position.x - 5, position.y, position.x + 5, position.y, ILI9341_WHITE);
   display.drawLine(position.x, position.y - 5, position.x, position.y + 5, ILI9341_WHITE);
   display.drawCircle(position.x, position.y, 5, ILI9341_WHITE);
@@ -243,22 +286,18 @@ void drawTarget(XPT2046::Point position) {
   String message = "Please touch the target...";
 
   // Message bounding box values
-  int16_t textX;
-  int16_t textY;
-  uint16_t textWidth;
-  uint16_t textHeight;
+  int16_t textX, textY;
+  uint16_t textWidth, textHeight;
 
   // Get message bounding box
   display.getTextBounds(message, 0, 0, &textX, &textY, &textWidth, &textHeight);
 
   // Calculate center of screen for message
-  int16_t cursorX = (DISPLAY_WIDTH - textWidth) / 2;
-  int16_t cursorY = (DISPLAY_HEIGHT - textHeight) / 2;
+  int16_t cursorX = (displayWidth - textWidth) / 2;
+  int16_t cursorY = (displayHeight - textHeight) / 2;
 
-  // Set text color
+  // Set text color and cursor position
   display.setTextColor(ILI9341_WHITE);
-
-  // Set cursor position
   display.setCursor(cursorX, cursorY);
 
   // Draw the message to the frame buffer
@@ -266,70 +305,34 @@ void drawTarget(XPT2046::Point position) {
 }
 
 // ================================================================================================
-// Draw the info screen and crosshair
-// ================================================================================================
-void drawCalibratedScreen(XPT2046::Point position) {
-
-  // Clear the frame buffer
-  display.fillScreen(ILI9341_BLACK);
-
-  // Create the status message
-  String status = "A: " + String(calibration.A, 7)   + "\n" +
-                  "B: " + String(calibration.B, 7)   + "\n" +
-                  "C: " + String(calibration.C, 7)   + "\n" +
-                  "D: " + String(calibration.D, 7)   + "\n" +
-                  "E: " + String(calibration.E, 7)   + "\n" +
-                  "F: " + String(calibration.F, 7)   + "\n" +
-                  "W: " + String(calibration.width)  + "\n" +
-                  "H: " + String(calibration.height) + "\n" +
-                  "X: " + String(position.x)               + "\n" +
-                  "Y: " + String(position.y);
-
-  // Set the text color to white
-  display.setTextColor(ILI9341_WHITE);
-
-  // Set the cursor to the top left position
-  display.setCursor(0, 0);
-
-  // Press the status massage
-  display.print(status);
-
-  // Draw crosshair
-  display.drawLine(0, position.y, DISPLAY_WIDTH, position.y, ILI9341_RED);
-  display.drawLine(position.x, 0, position.x, DISPLAY_HEIGHT, ILI9341_RED);
-  display.drawCircle(position.x, position.y, 5, ILI9341_RED);
-
-}
-
-// ================================================================================================
 // Calculate the calibration matrix
 // ================================================================================================
-void calculateCalibrationMatrix() {
+void calculateCalibrationMatrix(XPT2046::Point *targets, XPT2046::Point *measurements, XPT2046::Calibration &calibration) {
 
-  // Get the summed up measurement results and average them
-  float measurementX1 = measurements[0].x / CALIBRATION_SAMPLES;
-  float measurementX2 = measurements[1].x / CALIBRATION_SAMPLES;
-  float measurementX3 = measurements[2].x / CALIBRATION_SAMPLES;
-  float measurementY1 = measurements[0].y / CALIBRATION_SAMPLES;
-  float measurementY2 = measurements[1].y / CALIBRATION_SAMPLES;
-  float measurementY3 = measurements[2].y / CALIBRATION_SAMPLES;
+  // Explicitly cast targets into floats to prevent narrow conversion issues
+  float target0X = targets[0].x;
+  float target0Y = targets[0].y;
+  float target1X = targets[1].x;
+  float target1Y = targets[1].y;
+  float target2X = targets[2].x;
+  float target2Y = targets[2].y;
 
-  // Get the target pixel coordinates
-  float targetX1 = targets[0].x;
-  float targetX2 = targets[1].x;
-  float targetX3 = targets[2].x;
-  float targetY1 = targets[0].y;
-  float targetY2 = targets[1].y;
-  float targetY3 = targets[2].y;
+  // Explicitly cast measurements into floats to prevent narrow conversion issues
+  float measurement0X = measurements[0].x;
+  float measurement0Y = measurements[0].y;
+  float measurement1X = measurements[1].x;
+  float measurement1Y = measurements[1].y;
+  float measurement2X = measurements[2].x;
+  float measurement2Y = measurements[2].y;
 
   // Calculate the determinant
-  float determinant = (measurementX1 - measurementX3) * (measurementY2 - measurementY3) - (measurementX2 - measurementX3) * (measurementY1 - measurementY3);
+  double determinant = (measurement0X * (measurement1Y - measurement2Y) + measurement1X * (measurement2Y - measurement0Y) + measurement2X * (measurement0Y - measurement1Y));
 
   // Prevent division by 0
   if (determinant == 0) {
 
     // Print error message
-    Serial.println("[ERROR] Division by zero, calibration cannot be performed with these points!");
+    Serial.println("[ERROR] Division by zero, calibration cannot be performed with these targets!");
 
     // Halt execution
     while(true) { yield(); }
@@ -337,19 +340,22 @@ void calculateCalibrationMatrix() {
   }
 
   // Calculate the calibration matrix coefficients
-  calibration.A = ((targetX1 - targetX3) * (measurementY2 - measurementY3) - (targetX2 - targetX3) * (measurementY1 - measurementY3)) / determinant;
-  calibration.B = ((targetX2 - targetX3) * (measurementX1 - measurementX3) - (targetX1 - targetX3) * (measurementX2 - measurementX3)) / determinant;
-  calibration.C = (targetX1 * (measurementX2 * measurementY3 - measurementX3 * measurementY2) + targetX2 * (measurementX3 * measurementY1 - measurementX1 * measurementY3) + targetX3 * (measurementX1 * measurementY2 - measurementX2 * measurementY1)) / determinant;
-  calibration.D = ((targetY1 - targetY3) * (measurementY2 - measurementY3) - (targetY2 - targetY3) * (measurementY1 - measurementY3)) / determinant;
-  calibration.E = ((targetY2 - targetY3) * (measurementX1 - measurementX3) - (targetY1 - targetY3) * (measurementX2 - measurementX3)) / determinant;
-  calibration.F = (targetY1 * (measurementX2 * measurementY3 - measurementX3 * measurementY2) + targetY2 * (measurementX3 * measurementY1 - measurementX1 * measurementY3) + targetY3 * (measurementX1 * measurementY2 - measurementX2 * measurementY1)) / determinant;
+  calibration.A = ((target0X * (measurement1Y - measurement2Y) + target1X * (measurement2Y - measurement0Y) + target2X * (measurement0Y - measurement1Y)) / determinant);
+  calibration.B = ((target0X * (measurement2X - measurement1X) + target1X * (measurement0X - measurement2X) + target2X * (measurement1X - measurement0X)) / determinant);
+  calibration.C = ((target0X * (measurement1X * measurement2Y - measurement2X * measurement1Y) + target1X * (measurement2X * measurement0Y - measurement0X * measurement2Y) + target2X * (measurement0X * measurement1Y - measurement1X * measurement0Y)) / determinant);
+  calibration.D = ((target0Y * (measurement1Y - measurement2Y) + target1Y * (measurement2Y - measurement0Y) + target2Y * (measurement0Y - measurement1Y)) / determinant);
+  calibration.E = ((target0Y * (measurement2X - measurement1X) + target1Y * (measurement0X - measurement2X) + target2Y * (measurement1X - measurement0X)) / determinant);
+  calibration.F = ((target0Y * (measurement1X * measurement2Y - measurement2X * measurement1Y) + target1Y * (measurement2X * measurement0Y - measurement0X * measurement2Y) + target2Y * (measurement0X * measurement1Y - measurement1X * measurement0Y)) / determinant);
+  calibration.width = displayWidth;
+  calibration.height = displayHeight;
+  calibration.rotation = DISPLAY_ROTATION;
 
 }
 
 // ================================================================================================
-// Print the calibration matrix result to the serial console
+// Print the calibration matrix result to the Serial Monitor
 // ================================================================================================
-void printCalibrationMatrix() {
+void printCalibrationMatrix(XPT2046::Calibration calibration) {
 
   Serial.println("\n\nCalibration matrix coefficients");
   Serial.println("===============================\n");
@@ -360,18 +366,47 @@ void printCalibrationMatrix() {
   Serial.println("D: " + String(calibration.D, 7));
   Serial.println("E: " + String(calibration.E, 7));
   Serial.println("F: " + String(calibration.F, 7));
+  Serial.println("W: " + String(calibration.width));
+  Serial.println("H: " + String(calibration.height));
+  Serial.println("R: " + String(calibration.rotation));
 
-  Serial.println("");
+  Serial.println("\nUse this line to calibrate the touchscreen in your sketch:\n");
 
   Serial.println("XPT2046::Calibration calibration = {" + 
-    String(calibration.A, 7)   + "," + 
-    String(calibration.B, 7)   + "," + 
-    String(calibration.C, 7)   + "," +
-    String(calibration.D, 7)   + "," +
-    String(calibration.E, 7)   + "," +
-    String(calibration.F, 7)   + "," +
-    String(calibration.width)  + "," +
-    String(calibration.height) +
+    String(calibration.A, 7)     + "," + 
+    String(calibration.B, 7)     + "," + 
+    String(calibration.C, 7)     + "," +
+    String(calibration.D, 7)     + "," +
+    String(calibration.E, 7)     + "," +
+    String(calibration.F, 7)     + "," +
+    String(calibration.width)    + "," +
+    String(calibration.height)   + "," +
+    String(calibration.rotation) +
   "};\n");
 
+}
+
+// ================================================================================================
+// Draw the touch position on screen
+// ================================================================================================
+void drawTouchPosition(XPT2046::Point position) {
+
+  // Create a position string
+  String positionString = "X: " + String(position.x) + "\n" +
+                          "Y: " + String(position.y);
+
+  // Clear the frame buffer
+  display.fillScreen(ILI9341_BLACK);
+
+  // Set the text color and cursor
+  display.setTextColor(ILI9341_WHITE);
+  display.setCursor(0, 0);
+
+  // Draw the position string to the frame buffer
+  display.print(positionString);
+
+  // Draw a crosshair at the touch position
+  display.drawLine(0, position.y, displayWidth, position.y, ILI9341_RED);
+  display.drawLine(position.x, 0, position.x, displayHeight, ILI9341_RED);
+  display.drawCircle(position.x, position.y, 5, ILI9341_RED);
 }

@@ -13,13 +13,17 @@
 #define DISPLAY_HEIGHT 240
 
 /*
-A: 0.0917605
-B: 0.0002037
-C: -20.2002980
-D: -0.0003954
-E: 0.0693526
-F: -23.8954410 */
-XPT2046::Calibration CALIBRATION = {0.0917605,0.0002037,-20.2002980,-0.0003954,0.0693526,-23.8954410,320,240};
+A: 0.0916671
+B: -0.0004169
+C: -18.9931370
+D: 0.0001501
+E: 0.0678279
+F: -22.0341150
+W: 320
+H: 240
+R: 1
+*/
+XPT2046::Calibration CALIBRATION = {0.0916671,-0.0004169,-18.9931370,0.0001501,0.0678279,-22.0341150,320,240,1};
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);    // Use hardware SPI
 XPT2046 ts(TOUCH_CS_PIN, TOUCH_IRQ_PIN);
@@ -34,8 +38,9 @@ void setup()
 
     ts.begin();
     ts.setSampleCount(1);
-    ts.setDebounceTimeout(0);       // !!! It is important to set this to 0 to make the state machine in the touch_handling() work !!!
+    ts.setDebounceTimeout(10);
     ts.setCalibration(CALIBRATION);
+    ts.setPowerDown(false);
     ts.setRotation(tft.getRotation());
 
     UI_Test_Init(&tft);
