@@ -11,6 +11,8 @@ The ContainerList can be used to show one children at a time. The user can scrol
 	- ::TOUCH_NORMAL or ::TOUCH_LONG in upper half of scroll bar: Scroll up one element in the list (like ::KEYUP)
 	- ::TOUCH_NORMAL or ::TOUCH_LONG in lower half of scroll bar: Scroll down one element in the list (like ::KEYDOWN)
 	- ::TOUCH_NORMAL or ::TOUCH_LONG outside scroll bar: Tunnel touch to currently displayed UI_Element
+- Dynamic memory allocation (sum of the following sizes):
+	+ `maxNumItems * sizeof(UIElement)` (_items)
 
 @image html Images/UIElement_Containers/UIElement_ContainerList.jpg "ContainerList" width=300
 
@@ -21,6 +23,9 @@ The ContainerPage can be used to show all children at the same time. This can be
 	- ::KEYUP and ::KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
 - Supported touch inputs:
 	- ::TOUCH_NORMAL or ::TOUCH_LONG: Tunnel touch to all child elements one after another. Break if one child element has handled the touch.
+- Dynamic memory allocation (sum of the following sizes):
+	+ `maxNumItems * sizeof(UIElement)` (_items)
+	+ `maxNumItems * sizeof(PageItemConfig)` (_itemConfiguration)
 
 @image html Images/UIElement_Containers/UIElement_ContainerPage.jpg "ContainerPage" width=300
 
@@ -31,6 +36,13 @@ The ContainerGrid can be used to show all children at the same time in a grid la
 	- ::KEYUP and ::KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
 - Supported touch inputs:
 	- ::TOUCH_NORMAL or ::TOUCH_LONG: Tunnel touch to all child elements one after another. Break if one child element has handled the touch.
+- Dynamic memory allocation (sum of the following sizes):
+	+ `maxNumItems * sizeof(UIElement)` (_items)
+	+ `maxGridRows * sizeof(uint16_t)` (_initialRowHeights)
+	+ `maxGridColumns * sizeof(uint16_t)` (_initialColumnWidths)
+	+ `maxGridRows * sizeof(uint16_t)` (_rowHeights)
+	+ `maxGridColumns * sizeof(uint16_t)` (_columnWidths)
+	+ `maxNumItems * sizeof(GridItemConfig)` (_itemConfiguration)
 
 @image html Images/UIElement_Containers/UIElement_ContainerGrid.jpg "ContainerGrid" width=300
 
@@ -41,6 +53,8 @@ The ContainerStack can be used to show all children at the same time stacked hor
 	- ::KEYUP and ::KEYDOWN to select the next/previous control in the list of items. Indicators are ignored (not selected).
 - Supported touch inputs:
 	- ::TOUCH_NORMAL or ::TOUCH_LONG: Tunnel touch to all child elements one after another. Break if one child element has handled the touch.
+- Dynamic memory allocation (sum of the following sizes):
+	+ `maxNumItems * sizeof(UIElement)` (_items)
 
 @image html Images/UIElement_Containers/UIElement_ContainerStack.jpg "ContainerStack" width=150
 
@@ -52,7 +66,10 @@ The ContainerTabs can be used to show a tab control with each tab page holding o
 - Supported touch inputs:
 	- ::TOUCH_NORMAL or ::TOUCH_LONG inside header region: Select the tab based on the touched header
 	- ::TOUCH_NORMAL or ::TOUCH_LONG outside header region: Tunnel touch to currently displayed UI_Element
-
+- Dynamic memory allocation (sum of the following sizes):
+	+ `maxNumItems * sizeof(UIElement)` (_items)
+	+ `maxNumItems * sizeof(UIElement)` (_headers)
+	
 @image html Images/UIElement_Containers/UIElement_ContainerTabs.jpg "ContainerTabs" width=300
 
  */

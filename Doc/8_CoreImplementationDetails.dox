@@ -56,4 +56,8 @@ void NumericControl<T>::ToggleEditMode()
 }
 ```
 
+@section memory_allocation_sec Memory Allocation
+Some of the UIElement objects use the `new` keyword to allocate memory for some internal data structures. Make sure to take this into account because this memory isn't visible at compile time!
+The memory is allocated in the constructors of the UIElement objects at run time.
+
  */

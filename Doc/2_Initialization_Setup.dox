@@ -12,7 +12,7 @@ To initialize the UI_Lib:
 - Optional: Configure the font you want to use with the UI_Manager::SetFont method.
 
 At this point, nothing is displayed yet. There is no visual tree assigned (and created) that can be shown, so create one:
-- Create objects of all UI elements that you want to use to build the user interface.
+- Create objects of all UI elements that you want to use to build the user interface (CAUTION: some UIElement objects use dynamic memory allocation using the new keyword. More details can be found in the core implementation page).
 - Link all objects to their parent objects (e.g. add a NumericControl to the item collection of a ContainerPage, add the ContainerPage to a ContainerTabs, ...) by using the appropriate functions of the parent controls.
 - Connect the root of the visual tree to the UI_Manager by using the UI_Manager::ChangeVisualTreeRoot method.
 - Call the UI_Manager::Draw method whenever you want to update the screen. The library decides if something changed and if the screen needs to be redrawn (to reduce flickering).

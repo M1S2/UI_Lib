@@ -7,6 +7,7 @@ The BoolIndicator indicator can be used to display the value of an boolean varia
 - Supports children: No
 - Supported key inputs: None
 - Supported touch inputs: None
+- Dynamic memory allocation: None
 
 <table>
 	<tr>
@@ -24,6 +25,7 @@ The EnumIndicator indicator can be used to display the value from an enumeration
 - Supports children: No
 - Supported key inputs: None
 - Supported touch inputs: None
+- Dynamic memory allocation: None
 
 @image html Images/UIElement_Indicators/UIElement_EnumIndicator.jpg "EnumIndicator" height=50
 
@@ -32,6 +34,7 @@ The Icon indicator can be used to show an icon on the user interface. The icons 
 - Supports children: No
 - Supported key inputs: None
 - Supported touch inputs: None
+- Dynamic memory allocation: None
 
 @image html Images/UIElement_Indicators/UIElement_Icon.jpg "Icon" height=50
 
@@ -40,6 +43,8 @@ The Label indicator can be used to show a string on the user interface. The Labe
 - Supports children: No
 - Supported key inputs: None
 - Supported touch inputs: None
+- Dynamic memory allocation (sum of the following sizes):
+	+ `maxStringLength * sizeof(char)` (Text)
 
 <table>
 	<tr>
@@ -53,6 +58,8 @@ The NumericIndicator can be used to display the value of a numeric variable. The
 - Supports children: No
 - Supported key inputs: None
 - Supported touch inputs: None
+- Dynamic memory allocation (sum of the following sizes):
+	+ `maxStringBufferLength * sizeof(char)` (_stringDrawBuffer)
 
 @image html Images/UIElement_Indicators/UIElement_NumericIndicator.jpg "NumericIndicator" height=50
 
@@ -61,6 +68,7 @@ The ProgressBar indicator can be used to display a progress bar. It supports dif
 - Supports children: No
 - Supported key inputs: None
 - Supported touch inputs: None
+- Dynamic memory allocation: None
 
 @image html Images/UIElement_Indicators/UIElement_ProgressBar.jpg "ProgressBar" height=50
 
