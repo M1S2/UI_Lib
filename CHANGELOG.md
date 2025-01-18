@@ -1,5 +1,10 @@
 # UI_Lib Changelog
 
+## [v2.0.3]
+
+- Added requirements for dynamic memory allocation to documentation (#7), decreased size for virtual key buttons
+- Changed driver for XPT2046 touch controller in examples (to reduce the number of SPI transfers)
+
 ## [v2.0.2]
 
 - Fixed small TouchInput bug (some controls were not selected on touch)
