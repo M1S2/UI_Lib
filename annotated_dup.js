@@ -1,0 +1,26 @@
+var annotated_dup =
+[
+    [ "BoolControl", "class_bool_control.html", "class_bool_control" ],
+    [ "BoolIndicator", "class_bool_indicator.html", "class_bool_indicator" ],
+    [ "ButtonControl", "class_button_control.html", "class_button_control" ],
+    [ "Container", "class_container.html", "class_container" ],
+    [ "ContainerGrid", "class_container_grid.html", "class_container_grid" ],
+    [ "ContainerList", "class_container_list.html", "class_container_list" ],
+    [ "ContainerPage", "class_container_page.html", "class_container_page" ],
+    [ "ContainerStack", "class_container_stack.html", "class_container_stack" ],
+    [ "ContainerTabs", "class_container_tabs.html", "class_container_tabs" ],
+    [ "EnumControl", "class_enum_control.html", "class_enum_control" ],
+    [ "EnumIndicator", "class_enum_indicator.html", "class_enum_indicator" ],
+    [ "GridItemConfig", "struct_grid_item_config.html", "struct_grid_item_config" ],
+    [ "Icon", "class_icon.html", "class_icon" ],
+    [ "Label", "class_label.html", "class_label" ],
+    [ "MessageDialog", "class_message_dialog.html", "class_message_dialog" ],
+    [ "NumericControl", "class_numeric_control.html", "class_numeric_control" ],
+    [ "NumericIndicator", "class_numeric_indicator.html", "class_numeric_indicator" ],
+    [ "PageItemConfig", "struct_page_item_config.html", "struct_page_item_config" ],
+    [ "ProgressBar", "class_progress_bar.html", "class_progress_bar" ],
+    [ "UI_Manager", "class_u_i___manager.html", "class_u_i___manager" ],
+    [ "UIElement", "class_u_i_element.html", "class_u_i_element" ],
+    [ "VirtualKeys", "class_virtual_keys.html", "class_virtual_keys" ],
+    [ "XPT2046", "class_x_p_t2046.html", "class_x_p_t2046" ]
+];

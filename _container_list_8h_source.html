@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>UI_Lib: /github/workspace/include/Containers/ContainerList.h Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/UI_Lib" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">UI_Lib
+   &#160;<span id="projectnumber">a1366e08a59cc549a65fa26081e6409aa12f26d5</span>
+   </div>
+   <div id="projectbrief">This is a user interface library for graphical LCDs. It offers many different controls and indicators that can be nested depending on the element types.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_container_list_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">ContainerList.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_container_list_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef CONTAINERLIST_H_</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define CONTAINERLIST_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_container_8h.html">Container.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="_container_list_8h.html#a379cce20d44d450f5d58cc553b3bb80e">   11</a></span><span class="preprocessor">#define DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH       10      </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="_container_list_8h.html#ab6c746ba68a62439723686ddbef5ffa7">   12</a></span><span class="preprocessor">#define DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN      2       </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_container_list.html">   17</a></span><span class="keyword">class </span><a class="code hl_function" href="class_container_list.html#ad83b767d460b474cb0886aea53d10bdb">ContainerList</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_container.html#aac805a2aac75f0842890abb4567ec2b0">Container</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_container_list.html#a9ae7553610d12b8d0887ed01ad7e8d54">   20</a></span>        uint8_t <a class="code hl_variable" href="class_container_list.html#a9ae7553610d12b8d0887ed01ad7e8d54">_lastDrawnItemIndex</a>;     </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_container_list.html#a29e4271c85005266319f705ee76d4347">   21</a></span>        uint8_t <a class="code hl_variable" href="class_container_list.html#a29e4271c85005266319f705ee76d4347">_scrollBarWidth</a>;         </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_container_list.html#a2c6e38a48e55d84410289b97aeec4df2">   22</a></span>        uint8_t <a class="code hl_variable" href="class_container_list.html#a2c6e38a48e55d84410289b97aeec4df2">_scrollBarMargin</a>;           </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <a class="code hl_function" href="class_container_list.html#ad83b767d460b474cb0886aea53d10bdb">ContainerList</a>(uint8_t maxNumItems = <a class="code hl_define" href="_container_8h.html#ab97d93a622df672c426f8a55fd96d93b">DEFAULT_MAX_CONTAINER_ITEMS</a>, uint8_t scrollBarWidth = <a class="code hl_define" href="_container_list_8h.html#a379cce20d44d450f5d58cc553b3bb80e">DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH</a>, uint8_t scrollBarMargin = <a class="code hl_define" href="_container_list_8h.html#ab6c746ba68a62439723686ddbef5ffa7">DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN</a>, uint16_t locX = 0, uint16_t locY = 0, uint16_t width = 0, uint16_t height = 0);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_container.html#a8851bae2458a50283103022450eddc27">Draw</a>(<span class="keywordtype">bool</span> redraw) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_container_list.html#a08765826ca6b028c690ce61317eb05f5">KeyInput</a>(<a class="code hl_typedef" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_container_list.html#ae31d905490b17271f03020990af6b655">TouchInput</a>(uint16_t x, uint16_t y, <a class="code hl_enumeration" href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a> touchType) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_container_list.html#a8a5212c005590dc3fa18802c97f067bd">RecalculateDimensions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_container_list.html#a52f3c6fc7f86d64b4da751d0a809100c">RecalculateLayout</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif </span><span class="comment">/* CONTAINERLIST_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_container_8h_html"><div class="ttname"><a href="_container_8h.html">Container.h</a></div><div class="ttdoc">Containing the base class for container elements.</div></div>
+<div class="ttc" id="a_container_8h_html_ab97d93a622df672c426f8a55fd96d93b"><div class="ttname"><a href="_container_8h.html#ab97d93a622df672c426f8a55fd96d93b">DEFAULT_MAX_CONTAINER_ITEMS</a></div><div class="ttdeci">#define DEFAULT_MAX_CONTAINER_ITEMS</div><div class="ttdoc">Default maximum number of items, each container can hold.</div><div class="ttdef"><b>Definition</b> Container.h:11</div></div>
+<div class="ttc" id="a_container_list_8h_html_a379cce20d44d450f5d58cc553b3bb80e"><div class="ttname"><a href="_container_list_8h.html#a379cce20d44d450f5d58cc553b3bb80e">DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH</a></div><div class="ttdeci">#define DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH</div><div class="ttdoc">Default width in pixel of the scroll bar on the right side of the container.</div><div class="ttdef"><b>Definition</b> ContainerList.h:11</div></div>
+<div class="ttc" id="a_container_list_8h_html_ab6c746ba68a62439723686ddbef5ffa7"><div class="ttname"><a href="_container_list_8h.html#ab6c746ba68a62439723686ddbef5ffa7">DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN</a></div><div class="ttdeci">#define DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN</div><div class="ttdoc">Default margin in pixel between the scroll bar frame and the container list outline.</div><div class="ttdef"><b>Definition</b> ContainerList.h:12</div></div>
+<div class="ttc" id="a_keys_8h_html_a348851d86f0de809935250652e969362"><div class="ttname"><a href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a></div><div class="ttdeci">enum Keys Keys_t</div><div class="ttdoc">Available input keys.</div></div>
+<div class="ttc" id="a_touch_types_8h_html_a89ff69ef314aec62a26ce5d2a11fe026"><div class="ttname"><a href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a></div><div class="ttdeci">TouchTypes</div><div class="ttdoc">Available touch types.</div><div class="ttdef"><b>Definition</b> TouchTypes.h:13</div></div>
+<div class="ttc" id="aclass_container_html_a8851bae2458a50283103022450eddc27"><div class="ttname"><a href="class_container.html#a8851bae2458a50283103022450eddc27">Container::Draw</a></div><div class="ttdeci">virtual void Draw()</div><div class="ttdoc">Virtual method used for drawing of the container UIElement.</div><div class="ttdef"><b>Definition</b> Container.h:43</div></div>
+<div class="ttc" id="aclass_container_html_aac805a2aac75f0842890abb4567ec2b0"><div class="ttname"><a href="class_container.html#aac805a2aac75f0842890abb4567ec2b0">Container::Container</a></div><div class="ttdeci">Container(uint8_t maxNumItems=DEFAULT_MAX_CONTAINER_ITEMS)</div><div class="ttdoc">Constructor of the Container.</div><div class="ttdef"><b>Definition</b> Container.cpp:7</div></div>
+<div class="ttc" id="aclass_container_list_html_a08765826ca6b028c690ce61317eb05f5"><div class="ttname"><a href="class_container_list.html#a08765826ca6b028c690ce61317eb05f5">ContainerList::KeyInput</a></div><div class="ttdeci">virtual bool KeyInput(Keys_t key) override</div><div class="ttdoc">Process the given key.</div><div class="ttdef"><b>Definition</b> ContainerList.cpp:73</div></div>
+<div class="ttc" id="aclass_container_list_html_a29e4271c85005266319f705ee76d4347"><div class="ttname"><a href="class_container_list.html#a29e4271c85005266319f705ee76d4347">ContainerList::_scrollBarWidth</a></div><div class="ttdeci">uint8_t _scrollBarWidth</div><div class="ttdoc">Width in pixel of the scroll bar on the right side of the container.</div><div class="ttdef"><b>Definition</b> ContainerList.h:21</div></div>
+<div class="ttc" id="aclass_container_list_html_a2c6e38a48e55d84410289b97aeec4df2"><div class="ttname"><a href="class_container_list.html#a2c6e38a48e55d84410289b97aeec4df2">ContainerList::_scrollBarMargin</a></div><div class="ttdeci">uint8_t _scrollBarMargin</div><div class="ttdoc">Margin in pixel between the scroll bar frame and the container list outline.</div><div class="ttdef"><b>Definition</b> ContainerList.h:22</div></div>
+<div class="ttc" id="aclass_container_list_html_a52f3c6fc7f86d64b4da751d0a809100c"><div class="ttname"><a href="class_container_list.html#a52f3c6fc7f86d64b4da751d0a809100c">ContainerList::RecalculateLayout</a></div><div class="ttdeci">virtual void RecalculateLayout() override</div><div class="ttdoc">Recalculate the UIElement layout (containers update the X- and Y-Location of all their items,...</div><div class="ttdef"><b>Definition</b> ContainerList.cpp:129</div></div>
+<div class="ttc" id="aclass_container_list_html_a8a5212c005590dc3fa18802c97f067bd"><div class="ttname"><a href="class_container_list.html#a8a5212c005590dc3fa18802c97f067bd">ContainerList::RecalculateDimensions</a></div><div class="ttdeci">virtual void RecalculateDimensions() override</div><div class="ttdoc">Recalculate the Height and Width of the UIElement.</div><div class="ttdef"><b>Definition</b> ContainerList.cpp:115</div></div>
+<div class="ttc" id="aclass_container_list_html_a9ae7553610d12b8d0887ed01ad7e8d54"><div class="ttname"><a href="class_container_list.html#a9ae7553610d12b8d0887ed01ad7e8d54">ContainerList::_lastDrawnItemIndex</a></div><div class="ttdeci">uint8_t _lastDrawnItemIndex</div><div class="ttdoc">Index of the last item.</div><div class="ttdef"><b>Definition</b> ContainerList.h:20</div></div>
+<div class="ttc" id="aclass_container_list_html_ad83b767d460b474cb0886aea53d10bdb"><div class="ttname"><a href="class_container_list.html#ad83b767d460b474cb0886aea53d10bdb">ContainerList::ContainerList</a></div><div class="ttdeci">ContainerList(uint8_t maxNumItems=DEFAULT_MAX_CONTAINER_ITEMS, uint8_t scrollBarWidth=DEFAULT_CONTAINERLIST_SCROLLBAR_WIDTH, uint8_t scrollBarMargin=DEFAULT_CONTAINERLIST_SCROLLBAR_MARGIN, uint16_t locX=0, uint16_t locY=0, uint16_t width=0, uint16_t height=0)</div><div class="ttdoc">Constructor of the ContainerList.</div><div class="ttdef"><b>Definition</b> ContainerList.cpp:8</div></div>
+<div class="ttc" id="aclass_container_list_html_ae31d905490b17271f03020990af6b655"><div class="ttname"><a href="class_container_list.html#ae31d905490b17271f03020990af6b655">ContainerList::TouchInput</a></div><div class="ttdeci">virtual bool TouchInput(uint16_t x, uint16_t y, TouchTypes touchType) override</div><div class="ttdoc">Process a touch input at the given point (x, y)</div><div class="ttdef"><b>Definition</b> ContainerList.cpp:86</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_b14e4f0394ba62ba0dda4584c6111f4e.html">Containers</a></li><li class="navelem"><a class="el" href="_container_list_8h.html">ContainerList.h</a></li>
+    <li class="footer">Generated on Sat Jan 18 2025 17:52:19 for UI_Lib by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

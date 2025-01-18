@@ -1,0 +1,568 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>UI_Lib: ContainerPage Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/UI_Lib" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">UI_Lib
+   &#160;<span id="projectnumber">a1366e08a59cc549a65fa26081e6409aa12f26d5</span>
+   </div>
+   <div id="projectbrief">This is a user interface library for graphical LCDs. It offers many different controls and indicators that can be nested depending on the element types.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_container_page.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_container_page-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ContainerPage Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>class for a container that is showing all items at a time.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_container_page_8h_source.html">ContainerPage.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ContainerPage:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_container_page.png" usemap="#ContainerPage_map" alt=""/>
+  <map id="ContainerPage_map" name="ContainerPage_map">
+<area href="class_container.html" title="Base class for container elements." alt="Container" shape="rect" coords="0,56,96,80"/>
+<area href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers)." alt="UIElement" shape="rect" coords="0,0,96,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a9b8f520659d75a18dc0da99bcd184f32" id="r_a9b8f520659d75a18dc0da99bcd184f32"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b8f520659d75a18dc0da99bcd184f32">ContainerPage</a> (uint8_t maxNumItems=<a class="el" href="_container_8h.html#ab97d93a622df672c426f8a55fd96d93b">DEFAULT_MAX_CONTAINER_ITEMS</a>, uint16_t locX=0, uint16_t locY=0, uint16_t width=0, uint16_t height=0)</td></tr>
+<tr class="memdesc:a9b8f520659d75a18dc0da99bcd184f32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="class_container_page.html" title="class for a container that is showing all items at a time.">ContainerPage</a>.  <br /></td></tr>
+<tr class="separator:a9b8f520659d75a18dc0da99bcd184f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab40342b96e3b2bd5a4dfbf91d130906c" id="r_ab40342b96e3b2bd5a4dfbf91d130906c"><td class="memItemLeft" align="right" valign="top"><a id="ab40342b96e3b2bd5a4dfbf91d130906c" name="ab40342b96e3b2bd5a4dfbf91d130906c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~ContainerPage</b> ()</td></tr>
+<tr class="memdesc:ab40342b96e3b2bd5a4dfbf91d130906c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of the <a class="el" href="class_container_page.html" title="class for a container that is showing all items at a time.">ContainerPage</a>. <br /></td></tr>
+<tr class="separator:ab40342b96e3b2bd5a4dfbf91d130906c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bc4c9730ee8394614a059b0e578a5dd" id="r_a6bc4c9730ee8394614a059b0e578a5dd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bc4c9730ee8394614a059b0e578a5dd">Draw</a> (bool redraw) override</td></tr>
+<tr class="memdesc:a6bc4c9730ee8394614a059b0e578a5dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used for drawing of the <a class="el" href="class_container_page.html" title="class for a container that is showing all items at a time.">ContainerPage</a>.  <br /></td></tr>
+<tr class="separator:a6bc4c9730ee8394614a059b0e578a5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2dcd0f0bb8c605ffd91523163667ef8" id="r_af2dcd0f0bb8c605ffd91523163667ef8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2dcd0f0bb8c605ffd91523163667ef8">KeyInput</a> (<a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key) override</td></tr>
+<tr class="memdesc:af2dcd0f0bb8c605ffd91523163667ef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process the given key.  <br /></td></tr>
+<tr class="separator:af2dcd0f0bb8c605ffd91523163667ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83f2efc34080d45edeac29db90e583a6" id="r_a83f2efc34080d45edeac29db90e583a6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83f2efc34080d45edeac29db90e583a6">TouchInput</a> (uint16_t x, uint16_t y, <a class="el" href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a> touchType) override</td></tr>
+<tr class="memdesc:a83f2efc34080d45edeac29db90e583a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process a touch input at the given point (x, y)  <br /></td></tr>
+<tr class="separator:a83f2efc34080d45edeac29db90e583a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2955fd5e1d1b2c9f45f5a7984707c999" id="r_a2955fd5e1d1b2c9f45f5a7984707c999"><td class="memItemLeft" align="right" valign="top"><a id="a2955fd5e1d1b2c9f45f5a7984707c999" name="a2955fd5e1d1b2c9f45f5a7984707c999"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitItems</b> ()</td></tr>
+<tr class="memdesc:a2955fd5e1d1b2c9f45f5a7984707c999"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method selects the first <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> in the container that is of UI_CONTROL type. <br /></td></tr>
+<tr class="separator:a2955fd5e1d1b2c9f45f5a7984707c999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c425669fd7292ded3b70c358324385e" id="r_a8c425669fd7292ded3b70c358324385e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c425669fd7292ded3b70c358324385e">AddItem</a> (<a class="el" href="class_u_i_element.html">UIElement</a> *item)</td></tr>
+<tr class="memdesc:a8c425669fd7292ded3b70c358324385e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the item to the elements of this container and adapt the save the current relative coordinates.  <br /></td></tr>
+<tr class="separator:a8c425669fd7292ded3b70c358324385e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addb660216198fa52d8418764b779c1b2" id="r_addb660216198fa52d8418764b779c1b2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addb660216198fa52d8418764b779c1b2">RecalculateDimensions</a> () override</td></tr>
+<tr class="memdesc:addb660216198fa52d8418764b779c1b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalculate the Height and Width of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>.  <br /></td></tr>
+<tr class="separator:addb660216198fa52d8418764b779c1b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd0c87469b5ef76a52fbe0eed0be167d" id="r_abd0c87469b5ef76a52fbe0eed0be167d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd0c87469b5ef76a52fbe0eed0be167d">RecalculateLayout</a> () override</td></tr>
+<tr class="memdesc:abd0c87469b5ef76a52fbe0eed0be167d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalculate the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> layout (containers update the X- and Y-Location of all their items, all other items can do other layout update stuff)  <br /></td></tr>
+<tr class="separator:abd0c87469b5ef76a52fbe0eed0be167d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_container"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_container')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_container.html">Container</a></td></tr>
+<tr class="memitem:aac805a2aac75f0842890abb4567ec2b0 inherit pub_methods_class_container" id="r_aac805a2aac75f0842890abb4567ec2b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_container.html#aac805a2aac75f0842890abb4567ec2b0">Container</a> (uint8_t maxNumItems=<a class="el" href="_container_8h.html#ab97d93a622df672c426f8a55fd96d93b">DEFAULT_MAX_CONTAINER_ITEMS</a>)</td></tr>
+<tr class="memdesc:aac805a2aac75f0842890abb4567ec2b0 inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="class_container.html" title="Base class for container elements.">Container</a>.  <br /></td></tr>
+<tr class="separator:aac805a2aac75f0842890abb4567ec2b0 inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9f5d07bfc3defda274aa06091c19f56 inherit pub_methods_class_container" id="r_ae9f5d07bfc3defda274aa06091c19f56"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>~Container</b> ()</td></tr>
+<tr class="memdesc:ae9f5d07bfc3defda274aa06091c19f56 inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of the <a class="el" href="class_container.html" title="Base class for container elements.">Container</a>. <br /></td></tr>
+<tr class="separator:ae9f5d07bfc3defda274aa06091c19f56 inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8851bae2458a50283103022450eddc27 inherit pub_methods_class_container" id="r_a8851bae2458a50283103022450eddc27"><td class="memItemLeft" align="right" valign="top">
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> ()</td></tr>
+<tr class="memdesc:a8851bae2458a50283103022450eddc27 inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual method used for drawing of the container <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. <br /></td></tr>
+<tr class="separator:a8851bae2458a50283103022450eddc27 inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac891a4b65a02ea4add546ca2086b31d5 inherit pub_methods_class_container" id="r_ac891a4b65a02ea4add546ca2086b31d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_container.html#ac891a4b65a02ea4add546ca2086b31d5">GetSelectedItem</a> ()</td></tr>
+<tr class="memdesc:ac891a4b65a02ea4add546ca2086b31d5 inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the selected item.  <br /></td></tr>
+<tr class="separator:ac891a4b65a02ea4add546ca2086b31d5 inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b24ff1271faec120ca713625c9d9b7 inherit pub_methods_class_container" id="r_aa8b24ff1271faec120ca713625c9d9b7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_container.html#aa8b24ff1271faec120ca713625c9d9b7">AddItem</a> (<a class="el" href="class_u_i_element.html">UIElement</a> *item)</td></tr>
+<tr class="memdesc:aa8b24ff1271faec120ca713625c9d9b7 inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new element to the container and activate it as active child.  <br /></td></tr>
+<tr class="separator:aa8b24ff1271faec120ca713625c9d9b7 inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4bdd6b391c3a62433adcef72c9359b8 inherit pub_methods_class_container" id="r_ac4bdd6b391c3a62433adcef72c9359b8"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearAllItems</b> ()</td></tr>
+<tr class="memdesc:ac4bdd6b391c3a62433adcef72c9359b8 inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all items in the container. <br /></td></tr>
+<tr class="separator:ac4bdd6b391c3a62433adcef72c9359b8 inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ab79734844eff9df4a00aa37fe54722 inherit pub_methods_class_container" id="r_a2ab79734844eff9df4a00aa37fe54722"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_container.html#a2ab79734844eff9df4a00aa37fe54722">NextItem</a> ()</td></tr>
+<tr class="memdesc:a2ab79734844eff9df4a00aa37fe54722 inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the next item in the container.  <br /></td></tr>
+<tr class="separator:a2ab79734844eff9df4a00aa37fe54722 inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33cca5c71eee85877b3117fdfef007cf inherit pub_methods_class_container" id="r_a33cca5c71eee85877b3117fdfef007cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_container.html#a33cca5c71eee85877b3117fdfef007cf">PreviousItem</a> ()</td></tr>
+<tr class="memdesc:a33cca5c71eee85877b3117fdfef007cf inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the previous item in the container.  <br /></td></tr>
+<tr class="separator:a33cca5c71eee85877b3117fdfef007cf inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e52473833b4df3b8dd11987eb7b6009 inherit pub_methods_class_container" id="r_a3e52473833b4df3b8dd11987eb7b6009"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_container.html#a3e52473833b4df3b8dd11987eb7b6009">NextControlItem</a> ()</td></tr>
+<tr class="memdesc:a3e52473833b4df3b8dd11987eb7b6009 inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the next item in the container that is of UI_CONTROL type.  <br /></td></tr>
+<tr class="separator:a3e52473833b4df3b8dd11987eb7b6009 inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a297e03f60f8cec5d0c6c11c88d259c3a inherit pub_methods_class_container" id="r_a297e03f60f8cec5d0c6c11c88d259c3a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_container.html#a297e03f60f8cec5d0c6c11c88d259c3a">PreviousControlItem</a> ()</td></tr>
+<tr class="memdesc:a297e03f60f8cec5d0c6c11c88d259c3a inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the previous item in the container that is of UI_CONTROL type.  <br /></td></tr>
+<tr class="separator:a297e03f60f8cec5d0c6c11c88d259c3a inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e90f59277cad9f48fcc816805b4cbf9 inherit pub_methods_class_container" id="r_a6e90f59277cad9f48fcc816805b4cbf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_container.html#a6e90f59277cad9f48fcc816805b4cbf9">GetItemsBoundingBox</a> (uint16_t *x, uint16_t *y, uint16_t *w, uint16_t *h)</td></tr>
+<tr class="memdesc:a6e90f59277cad9f48fcc816805b4cbf9 inherit pub_methods_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a bounding box around all items in the <a class="el" href="class_container.html" title="Base class for container elements.">Container</a>.  <br /></td></tr>
+<tr class="separator:a6e90f59277cad9f48fcc816805b4cbf9 inherit pub_methods_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_u_i_element"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_u_i_element')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_u_i_element.html">UIElement</a></td></tr>
+<tr class="memitem:ad218e0f3c400a7dccc36cfdcc9485a02 inherit pub_methods_class_u_i_element" id="r_ad218e0f3c400a7dccc36cfdcc9485a02"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#ad218e0f3c400a7dccc36cfdcc9485a02">UIElement</a> (<a class="el" href="_u_i_element_type_8h.html#ae610a12890f04f3353a0734c433daa61">UIElementType</a> type)</td></tr>
+<tr class="memdesc:ad218e0f3c400a7dccc36cfdcc9485a02 inherit pub_methods_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>.  <br /></td></tr>
+<tr class="separator:ad218e0f3c400a7dccc36cfdcc9485a02 inherit pub_methods_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5152a2b4aa8e81862ccfc543d1923370 inherit pub_methods_class_u_i_element" id="r_a5152a2b4aa8e81862ccfc543d1923370"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a5152a2b4aa8e81862ccfc543d1923370">UIElement</a> (uint16_t locX, uint16_t locY, <a class="el" href="_u_i_element_type_8h.html#ae610a12890f04f3353a0734c433daa61">UIElementType</a> type)</td></tr>
+<tr class="memdesc:a5152a2b4aa8e81862ccfc543d1923370 inherit pub_methods_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>.  <br /></td></tr>
+<tr class="separator:a5152a2b4aa8e81862ccfc543d1923370 inherit pub_methods_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79ffe78433fc5328bbc08f4db7703899 inherit pub_methods_class_u_i_element" id="r_a79ffe78433fc5328bbc08f4db7703899"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a79ffe78433fc5328bbc08f4db7703899">HitTest</a> (uint16_t x, uint16_t y)</td></tr>
+<tr class="memdesc:a79ffe78433fc5328bbc08f4db7703899 inherit pub_methods_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the given point (x, y) is inside this <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>.  <br /></td></tr>
+<tr class="separator:a79ffe78433fc5328bbc08f4db7703899 inherit pub_methods_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aff66196a823ee23a24db03093c9dcbcc" id="r_aff66196a823ee23a24db03093c9dcbcc"><td class="memItemLeft" align="right" valign="top"><a id="aff66196a823ee23a24db03093c9dcbcc" name="aff66196a823ee23a24db03093c9dcbcc"></a>
+<a class="el" href="struct_page_item_config.html">PageItemConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_itemConfiguration</b></td></tr>
+<tr class="memdesc:aff66196a823ee23a24db03093c9dcbcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration data for all items inside the page. <br /></td></tr>
+<tr class="separator:aff66196a823ee23a24db03093c9dcbcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_class_u_i_element"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_u_i_element')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_u_i_element.html">UIElement</a></td></tr>
+<tr class="memitem:a746759dfc064cc6ec555e22dea235db0 inherit pub_attribs_class_u_i_element" id="r_a746759dfc064cc6ec555e22dea235db0"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="_u_i_element_type_8h.html#ae610a12890f04f3353a0734c433daa61">UIElementType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b></td></tr>
+<tr class="memdesc:a746759dfc064cc6ec555e22dea235db0 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element type (control, indicator, container) <br /></td></tr>
+<tr class="separator:a746759dfc064cc6ec555e22dea235db0 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad29ba0ecfcdd242d1bdc01b0d33e5971 inherit pub_attribs_class_u_i_element" id="r_ad29ba0ecfcdd242d1bdc01b0d33e5971"><td class="memItemLeft" align="right" valign="top">
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>LocX</b></td></tr>
+<tr class="memdesc:ad29ba0ecfcdd242d1bdc01b0d33e5971 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">X Location of the upper left corner of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. <br /></td></tr>
+<tr class="separator:ad29ba0ecfcdd242d1bdc01b0d33e5971 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a6d300441924f2829922684e7eb09af inherit pub_attribs_class_u_i_element" id="r_a9a6d300441924f2829922684e7eb09af"><td class="memItemLeft" align="right" valign="top">
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>LocY</b></td></tr>
+<tr class="memdesc:a9a6d300441924f2829922684e7eb09af inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Y Location of the upper left corner of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. <br /></td></tr>
+<tr class="separator:a9a6d300441924f2829922684e7eb09af inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac19c59c5b844ecd31a1967bc48ceb109 inherit pub_attribs_class_u_i_element" id="r_ac19c59c5b844ecd31a1967bc48ceb109"><td class="memItemLeft" align="right" valign="top">
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>Width</b></td></tr>
+<tr class="memdesc:ac19c59c5b844ecd31a1967bc48ceb109 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing width of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. <br /></td></tr>
+<tr class="separator:ac19c59c5b844ecd31a1967bc48ceb109 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90802208985fc5ef1b42a2e4c705a2bf inherit pub_attribs_class_u_i_element" id="r_a90802208985fc5ef1b42a2e4c705a2bf"><td class="memItemLeft" align="right" valign="top">
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>Height</b></td></tr>
+<tr class="memdesc:a90802208985fc5ef1b42a2e4c705a2bf inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing height of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. <br /></td></tr>
+<tr class="separator:a90802208985fc5ef1b42a2e4c705a2bf inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab37de7203e6ea862bb2be417c199a287 inherit pub_attribs_class_u_i_element" id="r_ab37de7203e6ea862bb2be417c199a287"><td class="memItemLeft" align="right" valign="top">
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Visible</b></td></tr>
+<tr class="memdesc:ab37de7203e6ea862bb2be417c199a287 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> is only drawn if the visibility is set to true. <br /></td></tr>
+<tr class="separator:ab37de7203e6ea862bb2be417c199a287 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d2a556459555bd8a748e57cac45b304 inherit pub_attribs_class_u_i_element" id="r_a0d2a556459555bd8a748e57cac45b304"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a0d2a556459555bd8a748e57cac45b304">IsInEditMode</a></td></tr>
+<tr class="memdesc:a0d2a556459555bd8a748e57cac45b304 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> in edit mode?  <br /></td></tr>
+<tr class="separator:a0d2a556459555bd8a748e57cac45b304 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ea037207a0663f7d0b7e652fcabdb3d inherit pub_attribs_class_u_i_element" id="r_a2ea037207a0663f7d0b7e652fcabdb3d"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Parent</b></td></tr>
+<tr class="memdesc:a2ea037207a0663f7d0b7e652fcabdb3d inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parent <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> that this <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> belongs to. <br /></td></tr>
+<tr class="separator:a2ea037207a0663f7d0b7e652fcabdb3d inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4817b775e14cf849718b2255106a8ceb inherit pub_attribs_class_u_i_element" id="r_a4817b775e14cf849718b2255106a8ceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a4817b775e14cf849718b2255106a8ceb">ActiveChild</a></td></tr>
+<tr class="memdesc:a4817b775e14cf849718b2255106a8ceb inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Child element that is currently active (receiving all key inputs).  <br /></td></tr>
+<tr class="separator:a4817b775e14cf849718b2255106a8ceb inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_container"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_container')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_container.html">Container</a></td></tr>
+<tr class="memitem:ab6de22cde332ed8f62b761032da83112 inherit pro_attribs_class_container" id="r_ab6de22cde332ed8f62b761032da83112"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_container.html#ab6de22cde332ed8f62b761032da83112">_maxNumItems</a></td></tr>
+<tr class="memdesc:ab6de22cde332ed8f62b761032da83112 inherit pro_attribs_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of items, each container can hold.  <br /></td></tr>
+<tr class="separator:ab6de22cde332ed8f62b761032da83112 inherit pro_attribs_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac37a083c9cecdb7fefae1950a71c97c0 inherit pro_attribs_class_container" id="r_ac37a083c9cecdb7fefae1950a71c97c0"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="class_u_i_element.html">UIElement</a> **&#160;</td><td class="memItemRight" valign="bottom"><b>_items</b></td></tr>
+<tr class="memdesc:ac37a083c9cecdb7fefae1950a71c97c0 inherit pro_attribs_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array holding pointers to all <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> that are items of the container. <br /></td></tr>
+<tr class="separator:ac37a083c9cecdb7fefae1950a71c97c0 inherit pro_attribs_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a131104603c3a5500c3843b1830b37013 inherit pro_attribs_class_container" id="r_a131104603c3a5500c3843b1830b37013"><td class="memItemLeft" align="right" valign="top">
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_numItems</b></td></tr>
+<tr class="memdesc:a131104603c3a5500c3843b1830b37013 inherit pro_attribs_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of items in the container (number of valid items in the _items array). <br /></td></tr>
+<tr class="separator:a131104603c3a5500c3843b1830b37013 inherit pro_attribs_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372ffbb1f915f1f4f69abb8213c168c inherit pro_attribs_class_container" id="r_a8372ffbb1f915f1f4f69abb8213c168c"><td class="memItemLeft" align="right" valign="top">
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_selectedItemIndex</b></td></tr>
+<tr class="memdesc:a8372ffbb1f915f1f4f69abb8213c168c inherit pro_attribs_class_container"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the selected container item. <br /></td></tr>
+<tr class="separator:a8372ffbb1f915f1f4f69abb8213c168c inherit pro_attribs_class_container"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_u_i_element"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_u_i_element')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_u_i_element.html">UIElement</a></td></tr>
+<tr class="memitem:a02d53de2500e7d75c42f529eb9298ea2 inherit pro_attribs_class_u_i_element" id="r_a02d53de2500e7d75c42f529eb9298ea2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a02d53de2500e7d75c42f529eb9298ea2">_lastDrawnVisible</a></td></tr>
+<tr class="memdesc:a02d53de2500e7d75c42f529eb9298ea2 inherit pro_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Visible value that was last drawn.  <br /></td></tr>
+<tr class="separator:a02d53de2500e7d75c42f529eb9298ea2 inherit pro_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>class for a container that is showing all items at a time. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9b8f520659d75a18dc0da99bcd184f32" name="a9b8f520659d75a18dc0da99bcd184f32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b8f520659d75a18dc0da99bcd184f32">&#9670;&#160;</a></span>ContainerPage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ContainerPage::ContainerPage </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>maxNumItems</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="_container_8h.html#ab97d93a622df672c426f8a55fd96d93b">DEFAULT_MAX_CONTAINER_ITEMS</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>locX</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>locY</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>width</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>height</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor of the <a class="el" href="class_container_page.html" title="class for a container that is showing all items at a time.">ContainerPage</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxNumItems</td><td>Maximum number of items, each container can hold. Lower this value if you don't need that much items to save memory. </td></tr>
+    <tr><td class="paramname">locX</td><td>X Location of the upper left corner of the <a class="el" href="class_container_page.html" title="class for a container that is showing all items at a time.">ContainerPage</a> </td></tr>
+    <tr><td class="paramname">locY</td><td>Y Location of the upper left corner of the <a class="el" href="class_container_page.html" title="class for a container that is showing all items at a time.">ContainerPage</a> </td></tr>
+    <tr><td class="paramname">width</td><td>Drawing width of the <a class="el" href="class_container_page.html" title="class for a container that is showing all items at a time.">ContainerPage</a> </td></tr>
+    <tr><td class="paramname">height</td><td>Drawing height of the <a class="el" href="class_container_page.html" title="class for a container that is showing all items at a time.">ContainerPage</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8c425669fd7292ded3b70c358324385e" name="a8c425669fd7292ded3b70c358324385e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c425669fd7292ded3b70c358324385e">&#9670;&#160;</a></span>AddItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ContainerPage::AddItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_u_i_element.html">UIElement</a> *</td>          <td class="paramname"><span class="paramname"><em>item</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add the item to the elements of this container and adapt the save the current relative coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>Pointer to the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> that should be added to the container. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if added; otherwise false (if container is full) </dd></dl>
+
+</div>
+</div>
+<a id="a6bc4c9730ee8394614a059b0e578a5dd" name="a6bc4c9730ee8394614a059b0e578a5dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bc4c9730ee8394614a059b0e578a5dd">&#9670;&#160;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ContainerPage::Draw </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>redraw</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method used for drawing of the <a class="el" href="class_container_page.html" title="class for a container that is showing all items at a time.">ContainerPage</a>. </p>
+
+<p>Implements <a class="el" href="class_u_i_element.html#acb51476a140555ec5a3b659671969d27">UIElement</a>.</p>
+
+</div>
+</div>
+<a id="af2dcd0f0bb8c605ffd91523163667ef8" name="af2dcd0f0bb8c605ffd91523163667ef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2dcd0f0bb8c605ffd91523163667ef8">&#9670;&#160;</a></span>KeyInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ContainerPage::KeyInput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process the given key. </p>
+<p>If this element doesn't support the key type, the key is forwarded to the parent. This is done until the key is processed or the root of the visual tree is reached. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Key that should be processed. Supported keys are: KEYUP, KEYDOWN </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the key was processed; false if not. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_container.html#acbc37489eee90466d7412657f8b803d3">Container</a>.</p>
+
+</div>
+</div>
+<a id="addb660216198fa52d8418764b779c1b2" name="addb660216198fa52d8418764b779c1b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addb660216198fa52d8418764b779c1b2">&#9670;&#160;</a></span>RecalculateDimensions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ContainerPage::RecalculateDimensions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Recalculate the Height and Width of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. </p>
+
+<p>Implements <a class="el" href="class_u_i_element.html#a3362875c4a6ab6fae1f439e4e7e549fe">UIElement</a>.</p>
+
+</div>
+</div>
+<a id="abd0c87469b5ef76a52fbe0eed0be167d" name="abd0c87469b5ef76a52fbe0eed0be167d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd0c87469b5ef76a52fbe0eed0be167d">&#9670;&#160;</a></span>RecalculateLayout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ContainerPage::RecalculateLayout </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Recalculate the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> layout (containers update the X- and Y-Location of all their items, all other items can do other layout update stuff) </p>
+
+<p>Reimplemented from <a class="el" href="class_u_i_element.html#a41ea5dcabca8255cd269783b42c80327">UIElement</a>.</p>
+
+</div>
+</div>
+<a id="a83f2efc34080d45edeac29db90e583a6" name="a83f2efc34080d45edeac29db90e583a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83f2efc34080d45edeac29db90e583a6">&#9670;&#160;</a></span>TouchInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ContainerPage::TouchInput </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a></td>          <td class="paramname"><span class="paramname"><em>touchType</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process a touch input at the given point (x, y) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X-Coordinate of the touched point </td></tr>
+    <tr><td class="paramname">y</td><td>Y-Coordinate of the touched point </td></tr>
+    <tr><td class="paramname">touchType</td><td>Type of the touch </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the touch was processed; false if not. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_u_i_element.html#abfb05f2f2b85fc17770fd495c1d6f985">UIElement</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/github/workspace/include/Containers/<a class="el" href="_container_page_8h_source.html">ContainerPage.h</a></li>
+<li>/github/workspace/src/Containers/<b>ContainerPage.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_container_page.html">ContainerPage</a></li>
+    <li class="footer">Generated on Sat Jan 18 2025 17:52:19 for UI_Lib by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

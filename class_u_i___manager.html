@@ -1,0 +1,668 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>UI_Lib: UI_Manager Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/UI_Lib" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">UI_Lib
+   &#160;<span id="projectnumber">a1366e08a59cc549a65fa26081e6409aa12f26d5</span>
+   </div>
+   <div id="projectbrief">This is a user interface library for graphical LCDs. It offers many different controls and indicators that can be nested depending on the element types.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_u_i___manager.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_u_i___manager-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">UI_Manager Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class that is used to handle the drawing and key handling of all UI_Elements.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_u_i___manager_8h_source.html">UI_Manager.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a44dea10eda95e28a4b51b473244400de" id="r_a44dea10eda95e28a4b51b473244400de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44dea10eda95e28a4b51b473244400de">Init</a> (Adafruit_GFX *gfx)</td></tr>
+<tr class="memdesc:a44dea10eda95e28a4b51b473244400de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the <a class="el" href="class_u_i___manager.html" title="Class that is used to handle the drawing and key handling of all UI_Elements.">UI_Manager</a>.  <br /></td></tr>
+<tr class="separator:a44dea10eda95e28a4b51b473244400de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9da4a42b37c6728bd3548cb7a1490335" id="r_a9da4a42b37c6728bd3548cb7a1490335"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9da4a42b37c6728bd3548cb7a1490335">SetColors</a> (uint16_t colorBackground=<a class="el" href="_u_i___manager_8h.html#a1042cad3a1be65302eab5b4de4634762">UI_LIB_DEFAULT_COLOR_BACKGROUND</a>, uint16_t colorForeground=<a class="el" href="_u_i___manager_8h.html#a03d95ed8f06fee9857c6a5499dac0514">UI_LIB_DEFAULT_COLOR_FOREGROUND</a>, uint16_t colorForegroundEditMode=<a class="el" href="_u_i___manager_8h.html#acf2ed0c91c5d7d925d71531a60953711">UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE</a>, uint16_t colorFocusFrame=<a class="el" href="_u_i___manager_8h.html#afb86e913125311754519843e0448d379">UI_LIB_DEFAULT_COLOR_FOCUS_FRAME</a>)</td></tr>
+<tr class="memdesc:a9da4a42b37c6728bd3548cb7a1490335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all colors.  <br /></td></tr>
+<tr class="separator:a9da4a42b37c6728bd3548cb7a1490335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab20ab6010c0e52fb366e497d6ae43855" id="r_ab20ab6010c0e52fb366e497d6ae43855"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab20ab6010c0e52fb366e497d6ae43855">SetFont</a> (const GFXfont *font)</td></tr>
+<tr class="memdesc:ab20ab6010c0e52fb366e497d6ae43855"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Font property and recalculate the FontHeight based on this font.  <br /></td></tr>
+<tr class="separator:ab20ab6010c0e52fb366e497d6ae43855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95235295ad575f3e4a890b008b5244e7" id="r_a95235295ad575f3e4a890b008b5244e7"><td class="memItemLeft" align="right" valign="top"><a id="a95235295ad575f3e4a890b008b5244e7" name="a95235295ad575f3e4a890b008b5244e7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> ()</td></tr>
+<tr class="memdesc:a95235295ad575f3e4a890b008b5244e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the complete visual tree (_visualTreeRoot and all of its children). <br /></td></tr>
+<tr class="separator:a95235295ad575f3e4a890b008b5244e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abccf35fb6c558d87b73ed220133c7c0e" id="r_abccf35fb6c558d87b73ed220133c7c0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abccf35fb6c558d87b73ed220133c7c0e">ChangeVisualTreeRoot</a> (<a class="el" href="class_u_i_element.html">UIElement</a> *visualTreeRoot)</td></tr>
+<tr class="memdesc:abccf35fb6c558d87b73ed220133c7c0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the root element of the visual tree.  <br /></td></tr>
+<tr class="separator:abccf35fb6c558d87b73ed220133c7c0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e43691e5a95ab73911592e73b0e715" id="r_af2e43691e5a95ab73911592e73b0e715"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2e43691e5a95ab73911592e73b0e715">GetVisualTreeRoot</a> ()</td></tr>
+<tr class="memdesc:af2e43691e5a95ab73911592e73b0e715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the root element of the visual tree.  <br /></td></tr>
+<tr class="separator:af2e43691e5a95ab73911592e73b0e715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba65364db4a786162292f4205a934236" id="r_aba65364db4a786162292f4205a934236"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba65364db4a786162292f4205a934236">KeyInput</a> (<a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key)</td></tr>
+<tr class="memdesc:aba65364db4a786162292f4205a934236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward the given key to the _focusElement.  <br /></td></tr>
+<tr class="separator:aba65364db4a786162292f4205a934236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafcb6559e284130179ecb2c58df18b44" id="r_aafcb6559e284130179ecb2c58df18b44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafcb6559e284130179ecb2c58df18b44">TouchInput</a> (uint16_t x, uint16_t y, <a class="el" href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a> touchType)</td></tr>
+<tr class="memdesc:aafcb6559e284130179ecb2c58df18b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process a touch input at the given point (x, y)  <br /></td></tr>
+<tr class="separator:aafcb6559e284130179ecb2c58df18b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb366de370aeb8ca40fcd733e4bdcb56" id="r_aeb366de370aeb8ca40fcd733e4bdcb56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb366de370aeb8ca40fcd733e4bdcb56">UpdateIsInEditModeElement</a> (<a class="el" href="class_u_i_element.html">UIElement</a> *element, bool newEditModeState)</td></tr>
+<tr class="memdesc:aeb366de370aeb8ca40fcd733e4bdcb56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the IsInEditMode property of the given <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> to the given newEditModeState.  <br /></td></tr>
+<tr class="separator:aeb366de370aeb8ca40fcd733e4bdcb56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a62b7c64aa5ec99249036834dd5b4b8eb" id="r_a62b7c64aa5ec99249036834dd5b4b8eb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_u_i___manager.html">UI_Manager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62b7c64aa5ec99249036834dd5b4b8eb">getInstance</a> ()</td></tr>
+<tr class="memdesc:a62b7c64aa5ec99249036834dd5b4b8eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the singleton instance of the <a class="el" href="class_u_i___manager.html" title="Class that is used to handle the drawing and key handling of all UI_Elements.">UI_Manager</a> class.  <br /></td></tr>
+<tr class="separator:a62b7c64aa5ec99249036834dd5b4b8eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a970c8d44164efea0592db01e2fd28cd7" id="r_a970c8d44164efea0592db01e2fd28cd7"><td class="memItemLeft" align="right" valign="top"><a id="a970c8d44164efea0592db01e2fd28cd7" name="a970c8d44164efea0592db01e2fd28cd7"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>ColorBackground</b></td></tr>
+<tr class="memdesc:a970c8d44164efea0592db01e2fd28cd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Background color (black) <br /></td></tr>
+<tr class="separator:a970c8d44164efea0592db01e2fd28cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a842dc2a43a0d8aae3dc84c58bb09252e" id="r_a842dc2a43a0d8aae3dc84c58bb09252e"><td class="memItemLeft" align="right" valign="top"><a id="a842dc2a43a0d8aae3dc84c58bb09252e" name="a842dc2a43a0d8aae3dc84c58bb09252e"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>ColorForeground</b></td></tr>
+<tr class="memdesc:a842dc2a43a0d8aae3dc84c58bb09252e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> color (green) <br /></td></tr>
+<tr class="separator:a842dc2a43a0d8aae3dc84c58bb09252e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a357e07178b37f91f1ab40b820a193f61" id="r_a357e07178b37f91f1ab40b820a193f61"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a357e07178b37f91f1ab40b820a193f61">ColorForegroundEditMode</a></td></tr>
+<tr class="memdesc:a357e07178b37f91f1ab40b820a193f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> foreground color in edit mode (black).  <br /></td></tr>
+<tr class="separator:a357e07178b37f91f1ab40b820a193f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad12c7c23a308a6c27b8a558374c43c14" id="r_ad12c7c23a308a6c27b8a558374c43c14"><td class="memItemLeft" align="right" valign="top"><a id="ad12c7c23a308a6c27b8a558374c43c14" name="ad12c7c23a308a6c27b8a558374c43c14"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>ColorFocusFrame</b></td></tr>
+<tr class="memdesc:ad12c7c23a308a6c27b8a558374c43c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the focus frame. <br /></td></tr>
+<tr class="separator:ad12c7c23a308a6c27b8a558374c43c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a12d59f9566656e7bdd654361499269" id="r_a8a12d59f9566656e7bdd654361499269"><td class="memItemLeft" align="right" valign="top"><a id="a8a12d59f9566656e7bdd654361499269" name="a8a12d59f9566656e7bdd654361499269"></a>
+const GFXfont *&#160;</td><td class="memItemRight" valign="bottom"><b>Font</b></td></tr>
+<tr class="memdesc:a8a12d59f9566656e7bdd654361499269"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default font used when no other font is assigned. <br /></td></tr>
+<tr class="separator:a8a12d59f9566656e7bdd654361499269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a3a931c93d8148de5995b0690744fb2" id="r_a6a3a931c93d8148de5995b0690744fb2"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a3a931c93d8148de5995b0690744fb2">FontHeight</a></td></tr>
+<tr class="memdesc:a6a3a931c93d8148de5995b0690744fb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum height of the Font (height of the string "Ag").  <br /></td></tr>
+<tr class="separator:a6a3a931c93d8148de5995b0690744fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3197ec0943dab5e36eed5b696793546" id="r_ac3197ec0943dab5e36eed5b696793546"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3197ec0943dab5e36eed5b696793546">ElementMargin</a></td></tr>
+<tr class="memdesc:ac3197ec0943dab5e36eed5b696793546"><td class="mdescLeft">&#160;</td><td class="mdescRight">Space without content around every <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>.  <br /></td></tr>
+<tr class="separator:ac3197ec0943dab5e36eed5b696793546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22d65845b2d8e8b205c349b0d78a9f26" id="r_a22d65845b2d8e8b205c349b0d78a9f26"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22d65845b2d8e8b205c349b0d78a9f26">ElementPadding</a></td></tr>
+<tr class="memdesc:a22d65845b2d8e8b205c349b0d78a9f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Space between the outline of every <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> and the internal content.  <br /></td></tr>
+<tr class="separator:a22d65845b2d8e8b205c349b0d78a9f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9088350e51fde7a3990552b7a3cd124f" id="r_a9088350e51fde7a3990552b7a3cd124f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9088350e51fde7a3990552b7a3cd124f">CompleteRedrawRequested</a></td></tr>
+<tr class="memdesc:a9088350e51fde7a3990552b7a3cd124f"><td class="mdescLeft">&#160;</td><td class="mdescRight">True, if the tree root was currently changed.  <br /></td></tr>
+<tr class="separator:a9088350e51fde7a3990552b7a3cd124f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed5095c3a90a32767f5ca8127acadde6" id="r_aed5095c3a90a32767f5ca8127acadde6"><td class="memItemLeft" align="right" valign="top"><a id="aed5095c3a90a32767f5ca8127acadde6" name="aed5095c3a90a32767f5ca8127acadde6"></a>
+Adafruit_GFX *&#160;</td><td class="memItemRight" valign="bottom"><b>Gfx</b></td></tr>
+<tr class="memdesc:aed5095c3a90a32767f5ca8127acadde6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Graphics object. <br /></td></tr>
+<tr class="separator:aed5095c3a90a32767f5ca8127acadde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af39aa2c4ad532ab8dbfcc72ed1ab8c37" id="r_af39aa2c4ad532ab8dbfcc72ed1ab8c37"><td class="memItemLeft" align="right" valign="top"><a id="af39aa2c4ad532ab8dbfcc72ed1ab8c37" name="af39aa2c4ad532ab8dbfcc72ed1ab8c37"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>AreVirtualKeysShown</b></td></tr>
+<tr class="memdesc:af39aa2c4ad532ab8dbfcc72ed1ab8c37"><td class="mdescLeft">&#160;</td><td class="mdescRight">True, if the Virtual keys are shown. <br /></td></tr>
+<tr class="separator:af39aa2c4ad532ab8dbfcc72ed1ab8c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ac95165613ce14072478f05a1279323fa" id="r_ac95165613ce14072478f05a1279323fa"><td class="memItemLeft" align="right" valign="top"><a id="ac95165613ce14072478f05a1279323fa" name="ac95165613ce14072478f05a1279323fa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setFocusToLeaf</b> ()</td></tr>
+<tr class="memdesc:ac95165613ce14072478f05a1279323fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse down the visual tree until an element without a child is reached and focus this element. <br /></td></tr>
+<tr class="separator:ac95165613ce14072478f05a1279323fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab691d7ccaae06e2cb4a68168f6537ef1" id="r_ab691d7ccaae06e2cb4a68168f6537ef1"><td class="memItemLeft" align="right" valign="top"><a id="ab691d7ccaae06e2cb4a68168f6537ef1" name="ab691d7ccaae06e2cb4a68168f6537ef1"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UI_Manager</b> ()</td></tr>
+<tr class="memdesc:ab691d7ccaae06e2cb4a68168f6537ef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="class_u_i___manager.html" title="Class that is used to handle the drawing and key handling of all UI_Elements.">UI_Manager</a>. <br /></td></tr>
+<tr class="separator:ab691d7ccaae06e2cb4a68168f6537ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:afab88e0efeb4d3b7f61b0c0bba759761" id="r_afab88e0efeb4d3b7f61b0c0bba759761"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afab88e0efeb4d3b7f61b0c0bba759761">_visualTreeRoot</a></td></tr>
+<tr class="memdesc:afab88e0efeb4d3b7f61b0c0bba759761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Root element of the visual tree.  <br /></td></tr>
+<tr class="separator:afab88e0efeb4d3b7f61b0c0bba759761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a961eef230700cf22193cf6105e1fefee" id="r_a961eef230700cf22193cf6105e1fefee"><td class="memItemLeft" align="right" valign="top"><a id="a961eef230700cf22193cf6105e1fefee" name="a961eef230700cf22193cf6105e1fefee"></a>
+<a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_focusElement</b></td></tr>
+<tr class="memdesc:a961eef230700cf22193cf6105e1fefee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element that has the focus (it is highlited and receives all key inputs). <br /></td></tr>
+<tr class="separator:a961eef230700cf22193cf6105e1fefee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b1400813d4ba282181af33baeb9fd59" id="r_a2b1400813d4ba282181af33baeb9fd59"><td class="memItemLeft" align="right" valign="top"><a id="a2b1400813d4ba282181af33baeb9fd59" name="a2b1400813d4ba282181af33baeb9fd59"></a>
+<a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_lastDrawnFocusElement</b></td></tr>
+<tr class="memdesc:a2b1400813d4ba282181af33baeb9fd59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last drawn focus element. <br /></td></tr>
+<tr class="separator:a2b1400813d4ba282181af33baeb9fd59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afea248a02e11c776be1501a5fbd1a150" id="r_afea248a02e11c776be1501a5fbd1a150"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afea248a02e11c776be1501a5fbd1a150">_lastElementInEditMode</a> = NULL</td></tr>
+<tr class="memdesc:afea248a02e11c776be1501a5fbd1a150"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last UI_Element that has the IsInEditMode property set.  <br /></td></tr>
+<tr class="separator:afea248a02e11c776be1501a5fbd1a150"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that is used to handle the drawing and key handling of all UI_Elements. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="abccf35fb6c558d87b73ed220133c7c0e" name="abccf35fb6c558d87b73ed220133c7c0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abccf35fb6c558d87b73ed220133c7c0e">&#9670;&#160;</a></span>ChangeVisualTreeRoot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UI_Manager::ChangeVisualTreeRoot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_u_i_element.html">UIElement</a> *</td>          <td class="paramname"><span class="paramname"><em>visualTreeRoot</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change the root element of the visual tree. </p>
+<p>This changes the _visualTreeRoot variable and recalculates the _focusElement. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">visualTreeRoot</td><td><a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> that becomes the new root element of the visual tree. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a62b7c64aa5ec99249036834dd5b4b8eb" name="a62b7c64aa5ec99249036834dd5b4b8eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62b7c64aa5ec99249036834dd5b4b8eb">&#9670;&#160;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_u_i___manager.html">UI_Manager</a> &amp; UI_Manager::getInstance </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the singleton instance of the <a class="el" href="class_u_i___manager.html" title="Class that is used to handle the drawing and key handling of all UI_Elements.">UI_Manager</a> class. </p>
+<p>Usage: <a class="el" href="class_u_i___manager.html" title="Class that is used to handle the drawing and key handling of all UI_Elements.">UI_Manager</a> UiManager = <a class="el" href="#a62b7c64aa5ec99249036834dd5b4b8eb" title="Get the singleton instance of the UI_Manager class.">UI_Manager::getInstance()</a>; </p>
+
+</div>
+</div>
+<a id="af2e43691e5a95ab73911592e73b0e715" name="af2e43691e5a95ab73911592e73b0e715"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e43691e5a95ab73911592e73b0e715">&#9670;&#160;</a></span>GetVisualTreeRoot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_u_i_element.html">UIElement</a> * UI_Manager::GetVisualTreeRoot </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the root element of the visual tree. </p>
+<dl class="section return"><dt>Returns</dt><dd>Visual tree root element. </dd></dl>
+
+</div>
+</div>
+<a id="a44dea10eda95e28a4b51b473244400de" name="a44dea10eda95e28a4b51b473244400de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44dea10eda95e28a4b51b473244400de">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UI_Manager::Init </td>
+          <td>(</td>
+          <td class="paramtype">Adafruit_GFX *</td>          <td class="paramname"><span class="paramname"><em>gfx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the <a class="el" href="class_u_i___manager.html" title="Class that is used to handle the drawing and key handling of all UI_Elements.">UI_Manager</a>. </p>
+<p>This method sets the font and foreground color of the graphic library. </p>
+
+</div>
+</div>
+<a id="aba65364db4a786162292f4205a934236" name="aba65364db4a786162292f4205a934236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba65364db4a786162292f4205a934236">&#9670;&#160;</a></span>KeyInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UI_Manager::KeyInput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Forward the given key to the _focusElement. </p>
+<p>If the element type of the _focusElement doesn't support the key type, the key is forwarded to the parent of the _focusElement. This is done until the key is processed or the root of the visual tree is reached. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Key that should be processed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the key was processed; false if no control in the visual tree has processed the key. </dd></dl>
+
+</div>
+</div>
+<a id="a9da4a42b37c6728bd3548cb7a1490335" name="a9da4a42b37c6728bd3548cb7a1490335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9da4a42b37c6728bd3548cb7a1490335">&#9670;&#160;</a></span>SetColors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UI_Manager::SetColors </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>colorBackground</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="_u_i___manager_8h.html#a1042cad3a1be65302eab5b4de4634762">UI_LIB_DEFAULT_COLOR_BACKGROUND</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>colorForeground</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="_u_i___manager_8h.html#a03d95ed8f06fee9857c6a5499dac0514">UI_LIB_DEFAULT_COLOR_FOREGROUND</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>colorForegroundEditMode</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="_u_i___manager_8h.html#acf2ed0c91c5d7d925d71531a60953711">UI_LIB_DEFAULT_COLOR_FOREGROUND_EDIT_MODE</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>colorFocusFrame</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="_u_i___manager_8h.html#afb86e913125311754519843e0448d379">UI_LIB_DEFAULT_COLOR_FOCUS_FRAME</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set all colors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">colorBackground</td><td>Background color </td></tr>
+    <tr><td class="paramname">colorForeground</td><td><a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> color </td></tr>
+    <tr><td class="paramname">colorForegroundEditMode</td><td><a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> foreground color in edit mode (black). When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. </td></tr>
+    <tr><td class="paramname">colorFocusFrame</td><td>Color of the focus frame </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab20ab6010c0e52fb366e497d6ae43855" name="ab20ab6010c0e52fb366e497d6ae43855"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab20ab6010c0e52fb366e497d6ae43855">&#9670;&#160;</a></span>SetFont()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UI_Manager::SetFont </td>
+          <td>(</td>
+          <td class="paramtype">const GFXfont *</td>          <td class="paramname"><span class="paramname"><em>font</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the Font property and recalculate the FontHeight based on this font. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">font</td><td>New font to use for all UIElements </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aafcb6559e284130179ecb2c58df18b44" name="aafcb6559e284130179ecb2c58df18b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafcb6559e284130179ecb2c58df18b44">&#9670;&#160;</a></span>TouchInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UI_Manager::TouchInput </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a></td>          <td class="paramname"><span class="paramname"><em>touchType</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Process a touch input at the given point (x, y) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X-Coordinate of the touched point </td></tr>
+    <tr><td class="paramname">y</td><td>Y-Coordinate of the touched point </td></tr>
+    <tr><td class="paramname">touchType</td><td>Type of the touch </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the touch was processed; false if not. </dd></dl>
+
+</div>
+</div>
+<a id="aeb366de370aeb8ca40fcd733e4bdcb56" name="aeb366de370aeb8ca40fcd733e4bdcb56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb366de370aeb8ca40fcd733e4bdcb56">&#9670;&#160;</a></span>UpdateIsInEditModeElement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UI_Manager::UpdateIsInEditModeElement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_u_i_element.html">UIElement</a> *</td>          <td class="paramname"><span class="paramname"><em>element</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>newEditModeState</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the IsInEditMode property of the given <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> to the given newEditModeState. </p>
+<p>This method makes sure that the IsInEditMode property of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> that was previously modified using this method is deactivated. So only one <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> can have the IsInEditMode property active at a time. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">element</td><td><a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> for which the IsInEditMode property is modified. </td></tr>
+    <tr><td class="paramname">newEditModeState</td><td>New Value for the IsInEditMode property. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="afea248a02e11c776be1501a5fbd1a150" name="afea248a02e11c776be1501a5fbd1a150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afea248a02e11c776be1501a5fbd1a150">&#9670;&#160;</a></span>_lastElementInEditMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_u_i_element.html">UIElement</a>* UI_Manager::_lastElementInEditMode = NULL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last UI_Element that has the IsInEditMode property set. </p>
+<p>If no UI_Element is in edit mode, this is NULL. </p>
+
+</div>
+</div>
+<a id="afab88e0efeb4d3b7f61b0c0bba759761" name="afab88e0efeb4d3b7f61b0c0bba759761"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afab88e0efeb4d3b7f61b0c0bba759761">&#9670;&#160;</a></span>_visualTreeRoot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_u_i_element.html">UIElement</a>* UI_Manager::_visualTreeRoot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Root element of the visual tree. </p>
+<p>This element and all children are drawn to the screen. </p>
+
+</div>
+</div>
+<a id="a357e07178b37f91f1ab40b820a193f61" name="a357e07178b37f91f1ab40b820a193f61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a357e07178b37f91f1ab40b820a193f61">&#9670;&#160;</a></span>ColorForegroundEditMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t UI_Manager::ColorForegroundEditMode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> foreground color in edit mode (black). </p>
+<p>When some controls are in edit mode, the background is drawn in the foreground color and the text is drawn with this color. </p>
+
+</div>
+</div>
+<a id="a9088350e51fde7a3990552b7a3cd124f" name="a9088350e51fde7a3990552b7a3cd124f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9088350e51fde7a3990552b7a3cd124f">&#9670;&#160;</a></span>CompleteRedrawRequested</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UI_Manager::CompleteRedrawRequested</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>True, if the tree root was currently changed. </p>
+<p>This is set to false on the first draw then. </p>
+
+</div>
+</div>
+<a id="ac3197ec0943dab5e36eed5b696793546" name="ac3197ec0943dab5e36eed5b696793546"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3197ec0943dab5e36eed5b696793546">&#9670;&#160;</a></span>ElementMargin</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t UI_Manager::ElementMargin</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Space without content around every <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. </p>
+<p>This is part of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> size. </p>
+
+</div>
+</div>
+<a id="a22d65845b2d8e8b205c349b0d78a9f26" name="a22d65845b2d8e8b205c349b0d78a9f26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22d65845b2d8e8b205c349b0d78a9f26">&#9670;&#160;</a></span>ElementPadding</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t UI_Manager::ElementPadding</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Space between the outline of every <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> and the internal content. </p>
+<p>This is part of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> size. </p>
+
+</div>
+</div>
+<a id="a6a3a931c93d8148de5995b0690744fb2" name="a6a3a931c93d8148de5995b0690744fb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a3a931c93d8148de5995b0690744fb2">&#9670;&#160;</a></span>FontHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t UI_Manager::FontHeight</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum height of the Font (height of the string "Ag"). </p>
+<p>This parameter is recalculated when the <a class="el" href="#ab20ab6010c0e52fb366e497d6ae43855" title="Set the Font property and recalculate the FontHeight based on this font.">SetFont()</a> method is used. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/github/workspace/include/Core/<a class="el" href="_u_i___manager_8h_source.html">UI_Manager.h</a></li>
+<li>/github/workspace/src/Core/<b>UI_Manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_u_i___manager.html">UI_Manager</a></li>
+    <li class="footer">Generated on Sat Jan 18 2025 17:52:19 for UI_Lib by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

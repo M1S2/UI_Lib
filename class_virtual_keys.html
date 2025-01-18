@@ -1,0 +1,712 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>UI_Lib: VirtualKeys Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/UI_Lib" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">UI_Lib
+   &#160;<span id="projectnumber">a1366e08a59cc549a65fa26081e6409aa12f26d5</span>
+   </div>
+   <div id="projectbrief">This is a user interface library for graphical LCDs. It offers many different controls and indicators that can be nested depending on the element types.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_virtual_keys.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_virtual_keys-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">VirtualKeys Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class for a control that can be used to emulate key presses via touch inputs.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_virtual_keys_8h_source.html">VirtualKeys.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for VirtualKeys:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_virtual_keys.png" usemap="#VirtualKeys_map" alt=""/>
+  <map id="VirtualKeys_map" name="VirtualKeys_map">
+<area href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers)." alt="UIElement" shape="rect" coords="0,0,77,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aa461612d164ab1c7bdc1d80702928879" id="r_aa461612d164ab1c7bdc1d80702928879"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a> (void(*onVirtualKeyPressed)(<a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key)=NULL)</td></tr>
+<tr class="memdesc:aa461612d164ab1c7bdc1d80702928879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="class_virtual_keys.html" title="Class for a control that can be used to emulate key presses via touch inputs.">VirtualKeys</a>.  <br /></td></tr>
+<tr class="separator:aa461612d164ab1c7bdc1d80702928879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87aa568b935e15f66c5e4720c095d536" id="r_a87aa568b935e15f66c5e4720c095d536"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87aa568b935e15f66c5e4720c095d536">ShowVirtualKeys</a> (<a class="el" href="class_u_i_element.html">UIElement</a> *targetElement)</td></tr>
+<tr class="memdesc:a87aa568b935e15f66c5e4720c095d536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the visual tree root to show the virtual keys with the given target element that will be edited.  <br /></td></tr>
+<tr class="separator:a87aa568b935e15f66c5e4720c095d536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95de0cb7e630c6dfa72f7f84705b260a" id="r_a95de0cb7e630c6dfa72f7f84705b260a"><td class="memItemLeft" align="right" valign="top"><a id="a95de0cb7e630c6dfa72f7f84705b260a" name="a95de0cb7e630c6dfa72f7f84705b260a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ExitVirtualKeys</b> ()</td></tr>
+<tr class="memdesc:a95de0cb7e630c6dfa72f7f84705b260a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the virtual keys and change the visual tree root back to the _previousVisualTreeRoot. <br /></td></tr>
+<tr class="separator:a95de0cb7e630c6dfa72f7f84705b260a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accabe1bfb19ef2480ddb8ad47ef831f6" id="r_accabe1bfb19ef2480ddb8ad47ef831f6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accabe1bfb19ef2480ddb8ad47ef831f6">Draw</a> (bool redraw) override</td></tr>
+<tr class="memdesc:accabe1bfb19ef2480ddb8ad47ef831f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used for drawing of the <a class="el" href="class_virtual_keys.html" title="Class for a control that can be used to emulate key presses via touch inputs.">VirtualKeys</a>.  <br /></td></tr>
+<tr class="separator:accabe1bfb19ef2480ddb8ad47ef831f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6b57f6438a06bfb7ed667375e6ecfbf" id="r_ae6b57f6438a06bfb7ed667375e6ecfbf"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6b57f6438a06bfb7ed667375e6ecfbf">KeyInput</a> (<a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key) override</td></tr>
+<tr class="memdesc:ae6b57f6438a06bfb7ed667375e6ecfbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process the given key.  <br /></td></tr>
+<tr class="separator:ae6b57f6438a06bfb7ed667375e6ecfbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3174d380968db571373e857a2ca26f89" id="r_a3174d380968db571373e857a2ca26f89"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3174d380968db571373e857a2ca26f89">TouchInput</a> (uint16_t x, uint16_t y, <a class="el" href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a> touchType) override</td></tr>
+<tr class="memdesc:a3174d380968db571373e857a2ca26f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process a touch input at the given point (x, y)  <br /></td></tr>
+<tr class="separator:a3174d380968db571373e857a2ca26f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6331c91fbd3404f3912f565235b87a33" id="r_a6331c91fbd3404f3912f565235b87a33"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6331c91fbd3404f3912f565235b87a33">RecalculateDimensions</a> () override</td></tr>
+<tr class="memdesc:a6331c91fbd3404f3912f565235b87a33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalculate the Height and Width of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>.  <br /></td></tr>
+<tr class="separator:a6331c91fbd3404f3912f565235b87a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61be19f07d8f10333e1be79987c33366" id="r_a61be19f07d8f10333e1be79987c33366"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61be19f07d8f10333e1be79987c33366">RecalculateLayout</a> () override</td></tr>
+<tr class="memdesc:a61be19f07d8f10333e1be79987c33366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalculate the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> layout (containers update the X- and Y-Location of all their items, all other items can do other layout update stuff)  <br /></td></tr>
+<tr class="separator:a61be19f07d8f10333e1be79987c33366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_u_i_element"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_u_i_element')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_u_i_element.html">UIElement</a></td></tr>
+<tr class="memitem:ad218e0f3c400a7dccc36cfdcc9485a02 inherit pub_methods_class_u_i_element" id="r_ad218e0f3c400a7dccc36cfdcc9485a02"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#ad218e0f3c400a7dccc36cfdcc9485a02">UIElement</a> (<a class="el" href="_u_i_element_type_8h.html#ae610a12890f04f3353a0734c433daa61">UIElementType</a> type)</td></tr>
+<tr class="memdesc:ad218e0f3c400a7dccc36cfdcc9485a02 inherit pub_methods_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>.  <br /></td></tr>
+<tr class="separator:ad218e0f3c400a7dccc36cfdcc9485a02 inherit pub_methods_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5152a2b4aa8e81862ccfc543d1923370 inherit pub_methods_class_u_i_element" id="r_a5152a2b4aa8e81862ccfc543d1923370"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a5152a2b4aa8e81862ccfc543d1923370">UIElement</a> (uint16_t locX, uint16_t locY, <a class="el" href="_u_i_element_type_8h.html#ae610a12890f04f3353a0734c433daa61">UIElementType</a> type)</td></tr>
+<tr class="memdesc:a5152a2b4aa8e81862ccfc543d1923370 inherit pub_methods_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>.  <br /></td></tr>
+<tr class="separator:a5152a2b4aa8e81862ccfc543d1923370 inherit pub_methods_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79ffe78433fc5328bbc08f4db7703899 inherit pub_methods_class_u_i_element" id="r_a79ffe78433fc5328bbc08f4db7703899"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a79ffe78433fc5328bbc08f4db7703899">HitTest</a> (uint16_t x, uint16_t y)</td></tr>
+<tr class="memdesc:a79ffe78433fc5328bbc08f4db7703899 inherit pub_methods_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the given point (x, y) is inside this <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>.  <br /></td></tr>
+<tr class="separator:a79ffe78433fc5328bbc08f4db7703899 inherit pub_methods_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a8497bf5de4a3faa3d2e89fe63659537f" id="r_a8497bf5de4a3faa3d2e89fe63659537f"><td class="memItemLeft" align="right" valign="top"><a id="a8497bf5de4a3faa3d2e89fe63659537f" name="a8497bf5de4a3faa3d2e89fe63659537f"></a>
+void(*&#160;</td><td class="memItemRight" valign="bottom"><b>OnVirtualKeyPressed</b> )(<a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key)</td></tr>
+<tr class="memdesc:a8497bf5de4a3faa3d2e89fe63659537f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer for OnVirtualKeyPressed event. <br /></td></tr>
+<tr class="separator:a8497bf5de4a3faa3d2e89fe63659537f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_class_u_i_element"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_u_i_element')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_u_i_element.html">UIElement</a></td></tr>
+<tr class="memitem:a746759dfc064cc6ec555e22dea235db0 inherit pub_attribs_class_u_i_element" id="r_a746759dfc064cc6ec555e22dea235db0"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="_u_i_element_type_8h.html#ae610a12890f04f3353a0734c433daa61">UIElementType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b></td></tr>
+<tr class="memdesc:a746759dfc064cc6ec555e22dea235db0 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element type (control, indicator, container) <br /></td></tr>
+<tr class="separator:a746759dfc064cc6ec555e22dea235db0 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad29ba0ecfcdd242d1bdc01b0d33e5971 inherit pub_attribs_class_u_i_element" id="r_ad29ba0ecfcdd242d1bdc01b0d33e5971"><td class="memItemLeft" align="right" valign="top">
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>LocX</b></td></tr>
+<tr class="memdesc:ad29ba0ecfcdd242d1bdc01b0d33e5971 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">X Location of the upper left corner of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. <br /></td></tr>
+<tr class="separator:ad29ba0ecfcdd242d1bdc01b0d33e5971 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a6d300441924f2829922684e7eb09af inherit pub_attribs_class_u_i_element" id="r_a9a6d300441924f2829922684e7eb09af"><td class="memItemLeft" align="right" valign="top">
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>LocY</b></td></tr>
+<tr class="memdesc:a9a6d300441924f2829922684e7eb09af inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Y Location of the upper left corner of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. <br /></td></tr>
+<tr class="separator:a9a6d300441924f2829922684e7eb09af inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac19c59c5b844ecd31a1967bc48ceb109 inherit pub_attribs_class_u_i_element" id="r_ac19c59c5b844ecd31a1967bc48ceb109"><td class="memItemLeft" align="right" valign="top">
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>Width</b></td></tr>
+<tr class="memdesc:ac19c59c5b844ecd31a1967bc48ceb109 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing width of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. <br /></td></tr>
+<tr class="separator:ac19c59c5b844ecd31a1967bc48ceb109 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90802208985fc5ef1b42a2e4c705a2bf inherit pub_attribs_class_u_i_element" id="r_a90802208985fc5ef1b42a2e4c705a2bf"><td class="memItemLeft" align="right" valign="top">
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>Height</b></td></tr>
+<tr class="memdesc:a90802208985fc5ef1b42a2e4c705a2bf inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing height of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. <br /></td></tr>
+<tr class="separator:a90802208985fc5ef1b42a2e4c705a2bf inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab37de7203e6ea862bb2be417c199a287 inherit pub_attribs_class_u_i_element" id="r_ab37de7203e6ea862bb2be417c199a287"><td class="memItemLeft" align="right" valign="top">
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Visible</b></td></tr>
+<tr class="memdesc:ab37de7203e6ea862bb2be417c199a287 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> is only drawn if the visibility is set to true. <br /></td></tr>
+<tr class="separator:ab37de7203e6ea862bb2be417c199a287 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d2a556459555bd8a748e57cac45b304 inherit pub_attribs_class_u_i_element" id="r_a0d2a556459555bd8a748e57cac45b304"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a0d2a556459555bd8a748e57cac45b304">IsInEditMode</a></td></tr>
+<tr class="memdesc:a0d2a556459555bd8a748e57cac45b304 inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> in edit mode?  <br /></td></tr>
+<tr class="separator:a0d2a556459555bd8a748e57cac45b304 inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ea037207a0663f7d0b7e652fcabdb3d inherit pub_attribs_class_u_i_element" id="r_a2ea037207a0663f7d0b7e652fcabdb3d"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Parent</b></td></tr>
+<tr class="memdesc:a2ea037207a0663f7d0b7e652fcabdb3d inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parent <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> that this <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> belongs to. <br /></td></tr>
+<tr class="separator:a2ea037207a0663f7d0b7e652fcabdb3d inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4817b775e14cf849718b2255106a8ceb inherit pub_attribs_class_u_i_element" id="r_a4817b775e14cf849718b2255106a8ceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a4817b775e14cf849718b2255106a8ceb">ActiveChild</a></td></tr>
+<tr class="memdesc:a4817b775e14cf849718b2255106a8ceb inherit pub_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">Child element that is currently active (receiving all key inputs).  <br /></td></tr>
+<tr class="separator:a4817b775e14cf849718b2255106a8ceb inherit pub_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a4c712b6ff7fbb74dc38957e2a45c6e03" id="r_a4c712b6ff7fbb74dc38957e2a45c6e03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c712b6ff7fbb74dc38957e2a45c6e03">_handleButtonPress</a> (<a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key)</td></tr>
+<tr class="memdesc:a4c712b6ff7fbb74dc38957e2a45c6e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that is called whenever a button is pressed.  <br /></td></tr>
+<tr class="separator:a4c712b6ff7fbb74dc38957e2a45c6e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a3ca6d983d4307ba21fd59bf2af42017a" id="r_a3ca6d983d4307ba21fd59bf2af42017a"><td class="memItemLeft" align="right" valign="top"><a id="a3ca6d983d4307ba21fd59bf2af42017a" name="a3ca6d983d4307ba21fd59bf2af42017a"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton0Click</b> (void *controlContext)</td></tr>
+<tr class="separator:a3ca6d983d4307ba21fd59bf2af42017a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a638ff31a11cf529eb1c899e61d9bb714" id="r_a638ff31a11cf529eb1c899e61d9bb714"><td class="memItemLeft" align="right" valign="top"><a id="a638ff31a11cf529eb1c899e61d9bb714" name="a638ff31a11cf529eb1c899e61d9bb714"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton1Click</b> (void *controlContext)</td></tr>
+<tr class="separator:a638ff31a11cf529eb1c899e61d9bb714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad88e42ac7f3048d8eb8dcb9f4a1d71bd" id="r_ad88e42ac7f3048d8eb8dcb9f4a1d71bd"><td class="memItemLeft" align="right" valign="top"><a id="ad88e42ac7f3048d8eb8dcb9f4a1d71bd" name="ad88e42ac7f3048d8eb8dcb9f4a1d71bd"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton2Click</b> (void *controlContext)</td></tr>
+<tr class="separator:ad88e42ac7f3048d8eb8dcb9f4a1d71bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56ea5e3f77f9085628a1bcf4a02ff80d" id="r_a56ea5e3f77f9085628a1bcf4a02ff80d"><td class="memItemLeft" align="right" valign="top"><a id="a56ea5e3f77f9085628a1bcf4a02ff80d" name="a56ea5e3f77f9085628a1bcf4a02ff80d"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton3Click</b> (void *controlContext)</td></tr>
+<tr class="separator:a56ea5e3f77f9085628a1bcf4a02ff80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f65d72095e3ed8c0690d46aaa362e9c" id="r_a6f65d72095e3ed8c0690d46aaa362e9c"><td class="memItemLeft" align="right" valign="top"><a id="a6f65d72095e3ed8c0690d46aaa362e9c" name="a6f65d72095e3ed8c0690d46aaa362e9c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton4Click</b> (void *controlContext)</td></tr>
+<tr class="separator:a6f65d72095e3ed8c0690d46aaa362e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63ea9784a731e6fee4fd95dedc6a9014" id="r_a63ea9784a731e6fee4fd95dedc6a9014"><td class="memItemLeft" align="right" valign="top"><a id="a63ea9784a731e6fee4fd95dedc6a9014" name="a63ea9784a731e6fee4fd95dedc6a9014"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton5Click</b> (void *controlContext)</td></tr>
+<tr class="separator:a63ea9784a731e6fee4fd95dedc6a9014"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3764735a51bfba194f3b33ed00c970b" id="r_ad3764735a51bfba194f3b33ed00c970b"><td class="memItemLeft" align="right" valign="top"><a id="ad3764735a51bfba194f3b33ed00c970b" name="ad3764735a51bfba194f3b33ed00c970b"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton6Click</b> (void *controlContext)</td></tr>
+<tr class="separator:ad3764735a51bfba194f3b33ed00c970b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8493ae515b86bd2a3e3c678a8aa0cb17" id="r_a8493ae515b86bd2a3e3c678a8aa0cb17"><td class="memItemLeft" align="right" valign="top"><a id="a8493ae515b86bd2a3e3c678a8aa0cb17" name="a8493ae515b86bd2a3e3c678a8aa0cb17"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton7Click</b> (void *controlContext)</td></tr>
+<tr class="separator:a8493ae515b86bd2a3e3c678a8aa0cb17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee8c90c96ccc289efb224ab8db38c881" id="r_aee8c90c96ccc289efb224ab8db38c881"><td class="memItemLeft" align="right" valign="top"><a id="aee8c90c96ccc289efb224ab8db38c881" name="aee8c90c96ccc289efb224ab8db38c881"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton8Click</b> (void *controlContext)</td></tr>
+<tr class="separator:aee8c90c96ccc289efb224ab8db38c881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7250f1aae726b6dd0ba1817aa0824e4" id="r_ae7250f1aae726b6dd0ba1817aa0824e4"><td class="memItemLeft" align="right" valign="top"><a id="ae7250f1aae726b6dd0ba1817aa0824e4" name="ae7250f1aae726b6dd0ba1817aa0824e4"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButton9Click</b> (void *controlContext)</td></tr>
+<tr class="separator:ae7250f1aae726b6dd0ba1817aa0824e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c4314cf19f5b3c31a3764301a90eaf9" id="r_a1c4314cf19f5b3c31a3764301a90eaf9"><td class="memItemLeft" align="right" valign="top"><a id="a1c4314cf19f5b3c31a3764301a90eaf9" name="a1c4314cf19f5b3c31a3764301a90eaf9"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonLeftClick</b> (void *controlContext)</td></tr>
+<tr class="separator:a1c4314cf19f5b3c31a3764301a90eaf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0b525116e7c23a70a7cdbc542465841" id="r_ad0b525116e7c23a70a7cdbc542465841"><td class="memItemLeft" align="right" valign="top"><a id="ad0b525116e7c23a70a7cdbc542465841" name="ad0b525116e7c23a70a7cdbc542465841"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonRightClick</b> (void *controlContext)</td></tr>
+<tr class="separator:ad0b525116e7c23a70a7cdbc542465841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a33f7db9fe730182a71f9f0a0900785" id="r_a7a33f7db9fe730182a71f9f0a0900785"><td class="memItemLeft" align="right" valign="top"><a id="a7a33f7db9fe730182a71f9f0a0900785" name="a7a33f7db9fe730182a71f9f0a0900785"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonMilliClick</b> (void *controlContext)</td></tr>
+<tr class="separator:a7a33f7db9fe730182a71f9f0a0900785"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a270545414a7f6e5aea776975e2de978e" id="r_a270545414a7f6e5aea776975e2de978e"><td class="memItemLeft" align="right" valign="top"><a id="a270545414a7f6e5aea776975e2de978e" name="a270545414a7f6e5aea776975e2de978e"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonKiloClick</b> (void *controlContext)</td></tr>
+<tr class="separator:a270545414a7f6e5aea776975e2de978e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22df175d619fc67c8a8437bb34aae074" id="r_a22df175d619fc67c8a8437bb34aae074"><td class="memItemLeft" align="right" valign="top"><a id="a22df175d619fc67c8a8437bb34aae074" name="a22df175d619fc67c8a8437bb34aae074"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonX1Click</b> (void *controlContext)</td></tr>
+<tr class="separator:a22df175d619fc67c8a8437bb34aae074"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54ec75349bc788cd90a7931ceaf537b5" id="r_a54ec75349bc788cd90a7931ceaf537b5"><td class="memItemLeft" align="right" valign="top"><a id="a54ec75349bc788cd90a7931ceaf537b5" name="a54ec75349bc788cd90a7931ceaf537b5"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonMinusClick</b> (void *controlContext)</td></tr>
+<tr class="separator:a54ec75349bc788cd90a7931ceaf537b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55f8de228e173c5dafbb14681ebfc622" id="r_a55f8de228e173c5dafbb14681ebfc622"><td class="memItemLeft" align="right" valign="top"><a id="a55f8de228e173c5dafbb14681ebfc622" name="a55f8de228e173c5dafbb14681ebfc622"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonUpClick</b> (void *controlContext)</td></tr>
+<tr class="separator:a55f8de228e173c5dafbb14681ebfc622"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd58088c7e91d3f961c63f7df54c308c" id="r_abd58088c7e91d3f961c63f7df54c308c"><td class="memItemLeft" align="right" valign="top"><a id="abd58088c7e91d3f961c63f7df54c308c" name="abd58088c7e91d3f961c63f7df54c308c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonOkClick</b> (void *controlContext)</td></tr>
+<tr class="separator:abd58088c7e91d3f961c63f7df54c308c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8d49233cec3ec55e83fd38361f4458" id="r_a2c8d49233cec3ec55e83fd38361f4458"><td class="memItemLeft" align="right" valign="top"><a id="a2c8d49233cec3ec55e83fd38361f4458" name="a2c8d49233cec3ec55e83fd38361f4458"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonDownClick</b> (void *controlContext)</td></tr>
+<tr class="separator:a2c8d49233cec3ec55e83fd38361f4458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf4f7750e9b0f8b7f9835e2a85c5b9e6" id="r_adf4f7750e9b0f8b7f9835e2a85c5b9e6"><td class="memItemLeft" align="right" valign="top"><a id="adf4f7750e9b0f8b7f9835e2a85c5b9e6" name="adf4f7750e9b0f8b7f9835e2a85c5b9e6"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>_onButtonExitVirtualKeysClick</b> (void *controlContext)</td></tr>
+<tr class="separator:adf4f7750e9b0f8b7f9835e2a85c5b9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac2fc95f6dc1c6f4f5199c748a574d567" id="r_ac2fc95f6dc1c6f4f5199c748a574d567"><td class="memItemLeft" align="right" valign="top"><a id="ac2fc95f6dc1c6f4f5199c748a574d567" name="ac2fc95f6dc1c6f4f5199c748a574d567"></a>
+<a class="el" href="class_container_grid.html">ContainerGrid</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_grid</b></td></tr>
+<tr class="memdesc:ac2fc95f6dc1c6f4f5199c748a574d567"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grid used to combine all virtual keys. <br /></td></tr>
+<tr class="separator:ac2fc95f6dc1c6f4f5199c748a574d567"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa03f65425fa1f8193a7725c6386d835a" id="r_aa03f65425fa1f8193a7725c6386d835a"><td class="memItemLeft" align="right" valign="top"><a id="aa03f65425fa1f8193a7725c6386d835a" name="aa03f65425fa1f8193a7725c6386d835a"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button0</b></td></tr>
+<tr class="memdesc:aa03f65425fa1f8193a7725c6386d835a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 0. <br /></td></tr>
+<tr class="separator:aa03f65425fa1f8193a7725c6386d835a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6665946535c5c5767b8bf224ec01c4ce" id="r_a6665946535c5c5767b8bf224ec01c4ce"><td class="memItemLeft" align="right" valign="top"><a id="a6665946535c5c5767b8bf224ec01c4ce" name="a6665946535c5c5767b8bf224ec01c4ce"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button1</b></td></tr>
+<tr class="memdesc:a6665946535c5c5767b8bf224ec01c4ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 1. <br /></td></tr>
+<tr class="separator:a6665946535c5c5767b8bf224ec01c4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcb3e7d39e5fd79a95400208e31b99d3" id="r_afcb3e7d39e5fd79a95400208e31b99d3"><td class="memItemLeft" align="right" valign="top"><a id="afcb3e7d39e5fd79a95400208e31b99d3" name="afcb3e7d39e5fd79a95400208e31b99d3"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button2</b></td></tr>
+<tr class="memdesc:afcb3e7d39e5fd79a95400208e31b99d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 2. <br /></td></tr>
+<tr class="separator:afcb3e7d39e5fd79a95400208e31b99d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5924586389ada69fb83427658d81445" id="r_ad5924586389ada69fb83427658d81445"><td class="memItemLeft" align="right" valign="top"><a id="ad5924586389ada69fb83427658d81445" name="ad5924586389ada69fb83427658d81445"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button3</b></td></tr>
+<tr class="memdesc:ad5924586389ada69fb83427658d81445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 3. <br /></td></tr>
+<tr class="separator:ad5924586389ada69fb83427658d81445"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f87bdceb30e5550a3008ffaa8564e3e" id="r_a4f87bdceb30e5550a3008ffaa8564e3e"><td class="memItemLeft" align="right" valign="top"><a id="a4f87bdceb30e5550a3008ffaa8564e3e" name="a4f87bdceb30e5550a3008ffaa8564e3e"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button4</b></td></tr>
+<tr class="memdesc:a4f87bdceb30e5550a3008ffaa8564e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 4. <br /></td></tr>
+<tr class="separator:a4f87bdceb30e5550a3008ffaa8564e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a691b7e15afa9eaaf6577006633d429bb" id="r_a691b7e15afa9eaaf6577006633d429bb"><td class="memItemLeft" align="right" valign="top"><a id="a691b7e15afa9eaaf6577006633d429bb" name="a691b7e15afa9eaaf6577006633d429bb"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button5</b></td></tr>
+<tr class="memdesc:a691b7e15afa9eaaf6577006633d429bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 5. <br /></td></tr>
+<tr class="separator:a691b7e15afa9eaaf6577006633d429bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9b566922164203f979b84cd87ec4024" id="r_aa9b566922164203f979b84cd87ec4024"><td class="memItemLeft" align="right" valign="top"><a id="aa9b566922164203f979b84cd87ec4024" name="aa9b566922164203f979b84cd87ec4024"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button6</b></td></tr>
+<tr class="memdesc:aa9b566922164203f979b84cd87ec4024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 6. <br /></td></tr>
+<tr class="separator:aa9b566922164203f979b84cd87ec4024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a175288e0022575984c9b0f5436b118" id="r_a4a175288e0022575984c9b0f5436b118"><td class="memItemLeft" align="right" valign="top"><a id="a4a175288e0022575984c9b0f5436b118" name="a4a175288e0022575984c9b0f5436b118"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button7</b></td></tr>
+<tr class="memdesc:a4a175288e0022575984c9b0f5436b118"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 7. <br /></td></tr>
+<tr class="separator:a4a175288e0022575984c9b0f5436b118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca074ba89ac3e30710dffba5b43e5409" id="r_aca074ba89ac3e30710dffba5b43e5409"><td class="memItemLeft" align="right" valign="top"><a id="aca074ba89ac3e30710dffba5b43e5409" name="aca074ba89ac3e30710dffba5b43e5409"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button8</b></td></tr>
+<tr class="memdesc:aca074ba89ac3e30710dffba5b43e5409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 8. <br /></td></tr>
+<tr class="separator:aca074ba89ac3e30710dffba5b43e5409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbec479d4a948d7c9c1431a5564f2e61" id="r_afbec479d4a948d7c9c1431a5564f2e61"><td class="memItemLeft" align="right" valign="top"><a id="afbec479d4a948d7c9c1431a5564f2e61" name="afbec479d4a948d7c9c1431a5564f2e61"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_button9</b></td></tr>
+<tr class="memdesc:afbec479d4a948d7c9c1431a5564f2e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button 9. <br /></td></tr>
+<tr class="separator:afbec479d4a948d7c9c1431a5564f2e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96d7b08ef5bf42e7e9c3c9cefc1613af" id="r_a96d7b08ef5bf42e7e9c3c9cefc1613af"><td class="memItemLeft" align="right" valign="top"><a id="a96d7b08ef5bf42e7e9c3c9cefc1613af" name="a96d7b08ef5bf42e7e9c3c9cefc1613af"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonLeft</b></td></tr>
+<tr class="memdesc:a96d7b08ef5bf42e7e9c3c9cefc1613af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button Left. <br /></td></tr>
+<tr class="separator:a96d7b08ef5bf42e7e9c3c9cefc1613af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ce25133368258a328eb546e26ff4356" id="r_a4ce25133368258a328eb546e26ff4356"><td class="memItemLeft" align="right" valign="top"><a id="a4ce25133368258a328eb546e26ff4356" name="a4ce25133368258a328eb546e26ff4356"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonRight</b></td></tr>
+<tr class="memdesc:a4ce25133368258a328eb546e26ff4356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button Right. <br /></td></tr>
+<tr class="separator:a4ce25133368258a328eb546e26ff4356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bc34778f685bcff9a094a9557c715d7" id="r_a7bc34778f685bcff9a094a9557c715d7"><td class="memItemLeft" align="right" valign="top"><a id="a7bc34778f685bcff9a094a9557c715d7" name="a7bc34778f685bcff9a094a9557c715d7"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonMilli</b></td></tr>
+<tr class="memdesc:a7bc34778f685bcff9a094a9557c715d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button Milli. <br /></td></tr>
+<tr class="separator:a7bc34778f685bcff9a094a9557c715d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cb2812b39065873ec5693e0598035dc" id="r_a1cb2812b39065873ec5693e0598035dc"><td class="memItemLeft" align="right" valign="top"><a id="a1cb2812b39065873ec5693e0598035dc" name="a1cb2812b39065873ec5693e0598035dc"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonKilo</b></td></tr>
+<tr class="memdesc:a1cb2812b39065873ec5693e0598035dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button Kilo. <br /></td></tr>
+<tr class="separator:a1cb2812b39065873ec5693e0598035dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e0e015d5923f9691224700102dd076f" id="r_a9e0e015d5923f9691224700102dd076f"><td class="memItemLeft" align="right" valign="top"><a id="a9e0e015d5923f9691224700102dd076f" name="a9e0e015d5923f9691224700102dd076f"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonX1</b></td></tr>
+<tr class="memdesc:a9e0e015d5923f9691224700102dd076f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button x1. <br /></td></tr>
+<tr class="separator:a9e0e015d5923f9691224700102dd076f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b1424b6924b26969085a0aaec7bde65" id="r_a3b1424b6924b26969085a0aaec7bde65"><td class="memItemLeft" align="right" valign="top"><a id="a3b1424b6924b26969085a0aaec7bde65" name="a3b1424b6924b26969085a0aaec7bde65"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonMinus</b></td></tr>
+<tr class="memdesc:a3b1424b6924b26969085a0aaec7bde65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button Minus. <br /></td></tr>
+<tr class="separator:a3b1424b6924b26969085a0aaec7bde65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d25a6f4119306b3f548953d9c6716ff" id="r_a0d25a6f4119306b3f548953d9c6716ff"><td class="memItemLeft" align="right" valign="top"><a id="a0d25a6f4119306b3f548953d9c6716ff" name="a0d25a6f4119306b3f548953d9c6716ff"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonUp</b></td></tr>
+<tr class="memdesc:a0d25a6f4119306b3f548953d9c6716ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button Up. <br /></td></tr>
+<tr class="separator:a0d25a6f4119306b3f548953d9c6716ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab15d935966d6c3741df806bc9f7541f0" id="r_ab15d935966d6c3741df806bc9f7541f0"><td class="memItemLeft" align="right" valign="top"><a id="ab15d935966d6c3741df806bc9f7541f0" name="ab15d935966d6c3741df806bc9f7541f0"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonOk</b></td></tr>
+<tr class="memdesc:ab15d935966d6c3741df806bc9f7541f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button Ok. <br /></td></tr>
+<tr class="separator:ab15d935966d6c3741df806bc9f7541f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02609d98ef4e7bfcf68e5e9959ef2e3e" id="r_a02609d98ef4e7bfcf68e5e9959ef2e3e"><td class="memItemLeft" align="right" valign="top"><a id="a02609d98ef4e7bfcf68e5e9959ef2e3e" name="a02609d98ef4e7bfcf68e5e9959ef2e3e"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonDown</b></td></tr>
+<tr class="memdesc:a02609d98ef4e7bfcf68e5e9959ef2e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button Down. <br /></td></tr>
+<tr class="separator:a02609d98ef4e7bfcf68e5e9959ef2e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa566c5bda4ffbf336a507fc816643d2e" id="r_aa566c5bda4ffbf336a507fc816643d2e"><td class="memItemLeft" align="right" valign="top"><a id="aa566c5bda4ffbf336a507fc816643d2e" name="aa566c5bda4ffbf336a507fc816643d2e"></a>
+<a class="el" href="class_button_control.html">ButtonControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonExitVirtualKeys</b></td></tr>
+<tr class="memdesc:aa566c5bda4ffbf336a507fc816643d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual keys button Exit. <br /></td></tr>
+<tr class="separator:aa566c5bda4ffbf336a507fc816643d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41f85ed2d7dd430c090ab00a387bebbc" id="r_a41f85ed2d7dd430c090ab00a387bebbc"><td class="memItemLeft" align="right" valign="top"><a id="a41f85ed2d7dd430c090ab00a387bebbc" name="a41f85ed2d7dd430c090ab00a387bebbc"></a>
+<a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_targetElement</b></td></tr>
+<tr class="memdesc:a41f85ed2d7dd430c090ab00a387bebbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">UI_Element that is edited by the virtual keys. <br /></td></tr>
+<tr class="separator:a41f85ed2d7dd430c090ab00a387bebbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3629e786204d3a0ad9c929404ace4da" id="r_ad3629e786204d3a0ad9c929404ace4da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_u_i_element.html">UIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3629e786204d3a0ad9c929404ace4da">_previousVisualTreeRoot</a></td></tr>
+<tr class="memdesc:ad3629e786204d3a0ad9c929404ace4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previous visual tree root.  <br /></td></tr>
+<tr class="separator:ad3629e786204d3a0ad9c929404ace4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_class_u_i_element"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_u_i_element')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_u_i_element.html">UIElement</a></td></tr>
+<tr class="memitem:a02d53de2500e7d75c42f529eb9298ea2 inherit pro_attribs_class_u_i_element" id="r_a02d53de2500e7d75c42f529eb9298ea2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_element.html#a02d53de2500e7d75c42f529eb9298ea2">_lastDrawnVisible</a></td></tr>
+<tr class="memdesc:a02d53de2500e7d75c42f529eb9298ea2 inherit pro_attribs_class_u_i_element"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Visible value that was last drawn.  <br /></td></tr>
+<tr class="separator:a02d53de2500e7d75c42f529eb9298ea2 inherit pro_attribs_class_u_i_element"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class for a control that can be used to emulate key presses via touch inputs. </p>
+<p>It displays one UI_Element that receives all emulated key presses and a matrix with many <a class="el" href="class_bool_control.html" title="Class for a boolean control that is showing a boolean variable value and offers the possibility to to...">BoolControl</a> elements to input key presses. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa461612d164ab1c7bdc1d80702928879" name="aa461612d164ab1c7bdc1d80702928879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa461612d164ab1c7bdc1d80702928879">&#9670;&#160;</a></span>VirtualKeys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VirtualKeys::VirtualKeys </td>
+          <td>(</td>
+          <td class="paramtype">void(*</td>          <td class="paramname"><span class="paramname"><em>onVirtualKeyPressed&#160;</em></span>)(<a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key)<span class="paramdefsep"> = </span><span class="paramdefval">NULL</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor of the <a class="el" href="class_virtual_keys.html" title="Class for a control that can be used to emulate key presses via touch inputs.">VirtualKeys</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">onVirtualKeyPressed</td><td>Function pointer for OnVirtualKeyPressed event </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4c712b6ff7fbb74dc38957e2a45c6e03" name="a4c712b6ff7fbb74dc38957e2a45c6e03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c712b6ff7fbb74dc38957e2a45c6e03">&#9670;&#160;</a></span>_handleButtonPress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VirtualKeys::_handleButtonPress </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method that is called whenever a button is pressed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Pressed key </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="accabe1bfb19ef2480ddb8ad47ef831f6" name="accabe1bfb19ef2480ddb8ad47ef831f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accabe1bfb19ef2480ddb8ad47ef831f6">&#9670;&#160;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VirtualKeys::Draw </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>redraw</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method used for drawing of the <a class="el" href="class_virtual_keys.html" title="Class for a control that can be used to emulate key presses via touch inputs.">VirtualKeys</a>. </p>
+
+<p>Implements <a class="el" href="class_u_i_element.html#acb51476a140555ec5a3b659671969d27">UIElement</a>.</p>
+
+</div>
+</div>
+<a id="ae6b57f6438a06bfb7ed667375e6ecfbf" name="ae6b57f6438a06bfb7ed667375e6ecfbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6b57f6438a06bfb7ed667375e6ecfbf">&#9670;&#160;</a></span>KeyInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool VirtualKeys::KeyInput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process the given key. </p>
+<p>If this element doesn't support the key type, the key is forwarded to the parent. This is done until the key is processed or the root of the visual tree is reached. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Key that should be processed. Supported keys are: KEYOK, KEYUP, KEYDOWN </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the key was processed; false if not. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_u_i_element.html#a3dc23618858a8751fd2cc4005320f5e5">UIElement</a>.</p>
+
+</div>
+</div>
+<a id="a6331c91fbd3404f3912f565235b87a33" name="a6331c91fbd3404f3912f565235b87a33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6331c91fbd3404f3912f565235b87a33">&#9670;&#160;</a></span>RecalculateDimensions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VirtualKeys::RecalculateDimensions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Recalculate the Height and Width of the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a>. </p>
+
+<p>Implements <a class="el" href="class_u_i_element.html#a3362875c4a6ab6fae1f439e4e7e549fe">UIElement</a>.</p>
+
+</div>
+</div>
+<a id="a61be19f07d8f10333e1be79987c33366" name="a61be19f07d8f10333e1be79987c33366"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61be19f07d8f10333e1be79987c33366">&#9670;&#160;</a></span>RecalculateLayout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VirtualKeys::RecalculateLayout </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Recalculate the <a class="el" href="class_u_i_element.html" title="Abstract base class for all user interface elements (controls, indicators, containers).">UIElement</a> layout (containers update the X- and Y-Location of all their items, all other items can do other layout update stuff) </p>
+
+<p>Reimplemented from <a class="el" href="class_u_i_element.html#a41ea5dcabca8255cd269783b42c80327">UIElement</a>.</p>
+
+</div>
+</div>
+<a id="a87aa568b935e15f66c5e4720c095d536" name="a87aa568b935e15f66c5e4720c095d536"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87aa568b935e15f66c5e4720c095d536">&#9670;&#160;</a></span>ShowVirtualKeys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VirtualKeys::ShowVirtualKeys </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_u_i_element.html">UIElement</a> *</td>          <td class="paramname"><span class="paramname"><em>targetElement</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change the visual tree root to show the virtual keys with the given target element that will be edited. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetElement</td><td>UI_Element that is edited by the virtual keys. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3174d380968db571373e857a2ca26f89" name="a3174d380968db571373e857a2ca26f89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3174d380968db571373e857a2ca26f89">&#9670;&#160;</a></span>TouchInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool VirtualKeys::TouchInput </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a></td>          <td class="paramname"><span class="paramname"><em>touchType</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process a touch input at the given point (x, y) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X-Coordinate of the touched point </td></tr>
+    <tr><td class="paramname">y</td><td>Y-Coordinate of the touched point </td></tr>
+    <tr><td class="paramname">touchType</td><td>Type of the touch </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the touch was processed; false if not. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_u_i_element.html#abfb05f2f2b85fc17770fd495c1d6f985">UIElement</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad3629e786204d3a0ad9c929404ace4da" name="ad3629e786204d3a0ad9c929404ace4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3629e786204d3a0ad9c929404ace4da">&#9670;&#160;</a></span>_previousVisualTreeRoot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_u_i_element.html">UIElement</a>* VirtualKeys::_previousVisualTreeRoot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Previous visual tree root. </p>
+<p>This is used to change the visual tree root back on exit. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/github/workspace/include/Controls/<a class="el" href="_virtual_keys_8h_source.html">VirtualKeys.h</a></li>
+<li>/github/workspace/src/Controls/<b>VirtualKeys.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_virtual_keys.html">VirtualKeys</a></li>
+    <li class="footer">Generated on Sat Jan 18 2025 17:52:19 for UI_Lib by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>

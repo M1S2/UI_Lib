@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>UI_Lib: /github/workspace/include/Controls/VirtualKeys.h Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/M1S2/UI_Lib" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">UI_Lib
+   &#160;<span id="projectnumber">a1366e08a59cc549a65fa26081e6409aa12f26d5</span>
+   </div>
+   <div id="projectbrief">This is a user interface library for graphical LCDs. It offers many different controls and indicators that can be nested depending on the element types.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_virtual_keys_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">VirtualKeys.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_virtual_keys_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef VIRTUALKEYS_H_</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define VIRTUALKEYS_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_u_i_element_8h.html">../Core/UIElement.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="_container_grid_8h.html">../Containers/ContainerGrid.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_button_control_8h.html">../Controls/ButtonControl.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_virtual_keys.html">   17</a></span><span class="keyword">class </span><a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_u_i_element.html#ad218e0f3c400a7dccc36cfdcc9485a02">UIElement</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#ac2fc95f6dc1c6f4f5199c748a574d567">   20</a></span>        <a class="code hl_class" href="class_container_grid.html">ContainerGrid</a> <a class="code hl_variable" href="class_virtual_keys.html#ac2fc95f6dc1c6f4f5199c748a574d567">_grid</a>;                      </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#aa03f65425fa1f8193a7725c6386d835a">   21</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#aa03f65425fa1f8193a7725c6386d835a">_button0</a>;                        </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a6665946535c5c5767b8bf224ec01c4ce">   22</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a6665946535c5c5767b8bf224ec01c4ce">_button1</a>;                        </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#afcb3e7d39e5fd79a95400208e31b99d3">   23</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#afcb3e7d39e5fd79a95400208e31b99d3">_button2</a>;                        </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#ad5924586389ada69fb83427658d81445">   24</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#ad5924586389ada69fb83427658d81445">_button3</a>;                        </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a4f87bdceb30e5550a3008ffaa8564e3e">   25</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a4f87bdceb30e5550a3008ffaa8564e3e">_button4</a>;                        </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a691b7e15afa9eaaf6577006633d429bb">   26</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a691b7e15afa9eaaf6577006633d429bb">_button5</a>;                        </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#aa9b566922164203f979b84cd87ec4024">   27</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#aa9b566922164203f979b84cd87ec4024">_button6</a>;                        </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a4a175288e0022575984c9b0f5436b118">   28</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a4a175288e0022575984c9b0f5436b118">_button7</a>;                        </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#aca074ba89ac3e30710dffba5b43e5409">   29</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#aca074ba89ac3e30710dffba5b43e5409">_button8</a>;                        </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#afbec479d4a948d7c9c1431a5564f2e61">   30</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#afbec479d4a948d7c9c1431a5564f2e61">_button9</a>;                        </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a96d7b08ef5bf42e7e9c3c9cefc1613af">   31</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a96d7b08ef5bf42e7e9c3c9cefc1613af">_buttonLeft</a>;                  </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a4ce25133368258a328eb546e26ff4356">   32</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a4ce25133368258a328eb546e26ff4356">_buttonRight</a>;                    </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a7bc34778f685bcff9a094a9557c715d7">   33</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a7bc34778f685bcff9a094a9557c715d7">_buttonMilli</a>;                    </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a1cb2812b39065873ec5693e0598035dc">   34</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a1cb2812b39065873ec5693e0598035dc">_buttonKilo</a>;                  </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a9e0e015d5923f9691224700102dd076f">   35</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a9e0e015d5923f9691224700102dd076f">_buttonX1</a>;                  </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a3b1424b6924b26969085a0aaec7bde65">   36</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a3b1424b6924b26969085a0aaec7bde65">_buttonMinus</a>;                    </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a0d25a6f4119306b3f548953d9c6716ff">   37</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a0d25a6f4119306b3f548953d9c6716ff">_buttonUp</a>;                  </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#ab15d935966d6c3741df806bc9f7541f0">   38</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#ab15d935966d6c3741df806bc9f7541f0">_buttonOk</a>;                  </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a02609d98ef4e7bfcf68e5e9959ef2e3e">   39</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#a02609d98ef4e7bfcf68e5e9959ef2e3e">_buttonDown</a>;                  </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#aa566c5bda4ffbf336a507fc816643d2e">   40</a></span>        <a class="code hl_class" href="class_button_control.html">ButtonControl</a> <a class="code hl_variable" href="class_virtual_keys.html#aa566c5bda4ffbf336a507fc816643d2e">_buttonExitVirtualKeys</a>;        </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton0Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcab06c98e0690323281de57d04b23539b6">KEY0</a>); }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton1Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_class" href="class_virtual_keys.html">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcaa2a969defdcf0e12ab262fc2526bbb62">KEY1</a>); }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton2Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca11fd81feb2ad8559d86dfe9752381a92">KEY2</a>); }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton3Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca9563bd59f355b8cdb39727f995c51f33">KEY3</a>); }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton4Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca3557080c72c41527733ed93680371d4c">KEY4</a>); }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton5Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca47b133a7aca2305d517b152058fcc301">KEY5</a>); }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton6Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca0b8152aa41fec0e30d4f7ea3cc1a96e1">KEY6</a>); }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton7Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcac1946776e06805cc7d44e772c25c2750">KEY7</a>); }</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton8Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca7d5c0e0405c1596b2f0972930f09849d">KEY8</a>); }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButton9Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca71c606634586c2ea108c5763b54c7162">KEY9</a>); }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonLeftClick(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca8bfd07187585b57d0eede3cf4b9e6176">KEYLEFT</a>); }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonRightClick(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcabd13b73193452cc00ca1ba9f16d88fb1">KEYRIGHT</a>); }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonMilliClick(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcaab76d92a84a5651e0334259dff00929d">KEYMILLI</a>); }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonKiloClick(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcac6609c10f06c523d85538ca4a77cef00">KEYKILO</a>); }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonX1Click(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcac2785fa4e246ebb004d75c010c1b57be">KEYX1</a>); }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonMinusClick(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca67990ea083b5b464a3ed4410e2445eaf">KEYMINUS</a>); }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonUpClick(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca8179d413773e511bbd7d842903345ad4">KEYUP</a>); }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonOkClick(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca2a197e06b27942b7e9f17182d1d74eb0">KEYOK</a>); }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonDownClick(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;_handleButtonPress(<a class="code hl_enumvalue" href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca6225590ae6caaccd86633209772d5b47">KEYDOWN</a>); }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> _onButtonExitVirtualKeysClick(<span class="keywordtype">void</span>* controlContext) { ((<a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>*)controlContext)-&gt;ExitVirtualKeys(); }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_virtual_keys.html#a4c712b6ff7fbb74dc38957e2a45c6e03">_handleButtonPress</a>(<a class="code hl_typedef" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a41f85ed2d7dd430c090ab00a387bebbc">   67</a></span>        <a class="code hl_function" href="class_u_i_element.html#ad218e0f3c400a7dccc36cfdcc9485a02">UIElement</a>* <a class="code hl_variable" href="class_virtual_keys.html#a41f85ed2d7dd430c090ab00a387bebbc">_targetElement</a>;                   </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#ad3629e786204d3a0ad9c929404ace4da">   68</a></span>        <a class="code hl_function" href="class_u_i_element.html#ad218e0f3c400a7dccc36cfdcc9485a02">UIElement</a>* <a class="code hl_variable" href="class_virtual_keys.html#ad3629e786204d3a0ad9c929404ace4da">_previousVisualTreeRoot</a>;         </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="class_virtual_keys.html#a8497bf5de4a3faa3d2e89fe63659537f">   71</a></span>        void(*<a class="code hl_variable" href="class_virtual_keys.html#a8497bf5de4a3faa3d2e89fe63659537f">OnVirtualKeyPressed</a>)(<a class="code hl_typedef" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key);        </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_function" href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys</a>(<span class="keywordtype">void</span>(*onVirtualKeyPressed)(<a class="code hl_typedef" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key) = NULL);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_virtual_keys.html#a87aa568b935e15f66c5e4720c095d536">ShowVirtualKeys</a>(<a class="code hl_function" href="class_u_i_element.html#ad218e0f3c400a7dccc36cfdcc9485a02">UIElement</a>* targetElement);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_virtual_keys.html#a95de0cb7e630c6dfa72f7f84705b260a">ExitVirtualKeys</a>();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_virtual_keys.html#accabe1bfb19ef2480ddb8ad47ef831f6">Draw</a>(<span class="keywordtype">bool</span> redraw) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_virtual_keys.html#ae6b57f6438a06bfb7ed667375e6ecfbf">KeyInput</a>(<a class="code hl_typedef" href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a> key) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_virtual_keys.html#a3174d380968db571373e857a2ca26f89">TouchInput</a>(uint16_t x, uint16_t y, <a class="code hl_enumeration" href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a> touchType) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_virtual_keys.html#a6331c91fbd3404f3912f565235b87a33">RecalculateDimensions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_virtual_keys.html#a61be19f07d8f10333e1be79987c33366">RecalculateLayout</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>};</div>
+</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">#endif </span><span class="comment">/* VIRTUALKEYS_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_button_control_8h_html"><div class="ttname"><a href="_button_control_8h.html">ButtonControl.h</a></div><div class="ttdoc">Containing a class for a button control that is showing a clickable button used to trigger some actio...</div></div>
+<div class="ttc" id="a_container_grid_8h_html"><div class="ttname"><a href="_container_grid_8h.html">ContainerGrid.h</a></div><div class="ttdoc">Containing a class for a container that is showing all items at a time in a fixed grid layout.</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca0b8152aa41fec0e30d4f7ea3cc1a96e1"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca0b8152aa41fec0e30d4f7ea3cc1a96e1">KEY6</a></div><div class="ttdeci">@ KEY6</div><div class="ttdoc">Number 6 key.</div><div class="ttdef"><b>Definition</b> Keys.h:24</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca11fd81feb2ad8559d86dfe9752381a92"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca11fd81feb2ad8559d86dfe9752381a92">KEY2</a></div><div class="ttdeci">@ KEY2</div><div class="ttdoc">Number 2 key.</div><div class="ttdef"><b>Definition</b> Keys.h:20</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca2a197e06b27942b7e9f17182d1d74eb0"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca2a197e06b27942b7e9f17182d1d74eb0">KEYOK</a></div><div class="ttdeci">@ KEYOK</div><div class="ttdoc">OK (Enter) key.</div><div class="ttdef"><b>Definition</b> Keys.h:36</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca3557080c72c41527733ed93680371d4c"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca3557080c72c41527733ed93680371d4c">KEY4</a></div><div class="ttdeci">@ KEY4</div><div class="ttdoc">Number 4 key.</div><div class="ttdef"><b>Definition</b> Keys.h:22</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca47b133a7aca2305d517b152058fcc301"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca47b133a7aca2305d517b152058fcc301">KEY5</a></div><div class="ttdeci">@ KEY5</div><div class="ttdoc">Number 5 key.</div><div class="ttdef"><b>Definition</b> Keys.h:23</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca6225590ae6caaccd86633209772d5b47"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca6225590ae6caaccd86633209772d5b47">KEYDOWN</a></div><div class="ttdeci">@ KEYDOWN</div><div class="ttdoc">Down arrow key.</div><div class="ttdef"><b>Definition</b> Keys.h:35</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca67990ea083b5b464a3ed4410e2445eaf"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca67990ea083b5b464a3ed4410e2445eaf">KEYMINUS</a></div><div class="ttdeci">@ KEYMINUS</div><div class="ttdoc">Minus (negate) key.</div><div class="ttdef"><b>Definition</b> Keys.h:31</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca71c606634586c2ea108c5763b54c7162"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca71c606634586c2ea108c5763b54c7162">KEY9</a></div><div class="ttdeci">@ KEY9</div><div class="ttdoc">Number 9 key.</div><div class="ttdef"><b>Definition</b> Keys.h:27</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca7d5c0e0405c1596b2f0972930f09849d"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca7d5c0e0405c1596b2f0972930f09849d">KEY8</a></div><div class="ttdeci">@ KEY8</div><div class="ttdoc">Number 8 key.</div><div class="ttdef"><b>Definition</b> Keys.h:26</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca8179d413773e511bbd7d842903345ad4"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca8179d413773e511bbd7d842903345ad4">KEYUP</a></div><div class="ttdeci">@ KEYUP</div><div class="ttdoc">Up arrow key.</div><div class="ttdef"><b>Definition</b> Keys.h:34</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca8bfd07187585b57d0eede3cf4b9e6176"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca8bfd07187585b57d0eede3cf4b9e6176">KEYLEFT</a></div><div class="ttdeci">@ KEYLEFT</div><div class="ttdoc">Left arrow key.</div><div class="ttdef"><b>Definition</b> Keys.h:32</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bca9563bd59f355b8cdb39727f995c51f33"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bca9563bd59f355b8cdb39727f995c51f33">KEY3</a></div><div class="ttdeci">@ KEY3</div><div class="ttdoc">Number 3 key.</div><div class="ttdef"><b>Definition</b> Keys.h:21</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bcaa2a969defdcf0e12ab262fc2526bbb62"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcaa2a969defdcf0e12ab262fc2526bbb62">KEY1</a></div><div class="ttdeci">@ KEY1</div><div class="ttdoc">Number 1 key.</div><div class="ttdef"><b>Definition</b> Keys.h:19</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bcaab76d92a84a5651e0334259dff00929d"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcaab76d92a84a5651e0334259dff00929d">KEYMILLI</a></div><div class="ttdeci">@ KEYMILLI</div><div class="ttdoc">Milli (/1000) key.</div><div class="ttdef"><b>Definition</b> Keys.h:29</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bcab06c98e0690323281de57d04b23539b6"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcab06c98e0690323281de57d04b23539b6">KEY0</a></div><div class="ttdeci">@ KEY0</div><div class="ttdoc">Number 0 key.</div><div class="ttdef"><b>Definition</b> Keys.h:18</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bcabd13b73193452cc00ca1ba9f16d88fb1"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcabd13b73193452cc00ca1ba9f16d88fb1">KEYRIGHT</a></div><div class="ttdeci">@ KEYRIGHT</div><div class="ttdoc">Right arrow key.</div><div class="ttdef"><b>Definition</b> Keys.h:33</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bcac1946776e06805cc7d44e772c25c2750"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcac1946776e06805cc7d44e772c25c2750">KEY7</a></div><div class="ttdeci">@ KEY7</div><div class="ttdoc">Number 7 key.</div><div class="ttdef"><b>Definition</b> Keys.h:25</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bcac2785fa4e246ebb004d75c010c1b57be"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcac2785fa4e246ebb004d75c010c1b57be">KEYX1</a></div><div class="ttdeci">@ KEYX1</div><div class="ttdoc">x1 (*1) key</div><div class="ttdef"><b>Definition</b> Keys.h:30</div></div>
+<div class="ttc" id="a_keys_8h_html_a0ada92b8263d776ca3c779d2a0e031bcac6609c10f06c523d85538ca4a77cef00"><div class="ttname"><a href="_keys_8h.html#a0ada92b8263d776ca3c779d2a0e031bcac6609c10f06c523d85538ca4a77cef00">KEYKILO</a></div><div class="ttdeci">@ KEYKILO</div><div class="ttdoc">Kilo (*1000) key.</div><div class="ttdef"><b>Definition</b> Keys.h:28</div></div>
+<div class="ttc" id="a_keys_8h_html_a348851d86f0de809935250652e969362"><div class="ttname"><a href="_keys_8h.html#a348851d86f0de809935250652e969362">Keys_t</a></div><div class="ttdeci">enum Keys Keys_t</div><div class="ttdoc">Available input keys.</div></div>
+<div class="ttc" id="a_touch_types_8h_html_a89ff69ef314aec62a26ce5d2a11fe026"><div class="ttname"><a href="_touch_types_8h.html#a89ff69ef314aec62a26ce5d2a11fe026">TouchTypes</a></div><div class="ttdeci">TouchTypes</div><div class="ttdoc">Available touch types.</div><div class="ttdef"><b>Definition</b> TouchTypes.h:13</div></div>
+<div class="ttc" id="a_u_i_element_8h_html"><div class="ttname"><a href="_u_i_element_8h.html">UIElement.h</a></div><div class="ttdoc">Containing the abstract base class for all user interface elements (controls, indicators,...</div></div>
+<div class="ttc" id="aclass_button_control_html"><div class="ttname"><a href="class_button_control.html">ButtonControl</a></div><div class="ttdoc">Class for a button control that is showing a clickable button used to trigger some action.</div><div class="ttdef"><b>Definition</b> ButtonControl.h:17</div></div>
+<div class="ttc" id="aclass_container_grid_html"><div class="ttname"><a href="class_container_grid.html">ContainerGrid</a></div><div class="ttdoc">Class for a container that is showing all items at a time in a fixed grid layout.</div><div class="ttdef"><b>Definition</b> ContainerGrid.h:47</div></div>
+<div class="ttc" id="aclass_u_i_element_html_ad218e0f3c400a7dccc36cfdcc9485a02"><div class="ttname"><a href="class_u_i_element.html#ad218e0f3c400a7dccc36cfdcc9485a02">UIElement::UIElement</a></div><div class="ttdeci">UIElement(UIElementType type)</div><div class="ttdoc">Constructor of the UIElement.</div><div class="ttdef"><b>Definition</b> UIElement.h:43</div></div>
+<div class="ttc" id="aclass_virtual_keys_html"><div class="ttname"><a href="class_virtual_keys.html">VirtualKeys</a></div><div class="ttdoc">Class for a control that can be used to emulate key presses via touch inputs.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:18</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a02609d98ef4e7bfcf68e5e9959ef2e3e"><div class="ttname"><a href="class_virtual_keys.html#a02609d98ef4e7bfcf68e5e9959ef2e3e">VirtualKeys::_buttonDown</a></div><div class="ttdeci">ButtonControl _buttonDown</div><div class="ttdoc">Virtual keys button Down.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:39</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a0d25a6f4119306b3f548953d9c6716ff"><div class="ttname"><a href="class_virtual_keys.html#a0d25a6f4119306b3f548953d9c6716ff">VirtualKeys::_buttonUp</a></div><div class="ttdeci">ButtonControl _buttonUp</div><div class="ttdoc">Virtual keys button Up.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:37</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a1cb2812b39065873ec5693e0598035dc"><div class="ttname"><a href="class_virtual_keys.html#a1cb2812b39065873ec5693e0598035dc">VirtualKeys::_buttonKilo</a></div><div class="ttdeci">ButtonControl _buttonKilo</div><div class="ttdoc">Virtual keys button Kilo.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:34</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a3174d380968db571373e857a2ca26f89"><div class="ttname"><a href="class_virtual_keys.html#a3174d380968db571373e857a2ca26f89">VirtualKeys::TouchInput</a></div><div class="ttdeci">virtual bool TouchInput(uint16_t x, uint16_t y, TouchTypes touchType) override</div><div class="ttdoc">Process a touch input at the given point (x, y)</div><div class="ttdef"><b>Definition</b> VirtualKeys.cpp:115</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a3b1424b6924b26969085a0aaec7bde65"><div class="ttname"><a href="class_virtual_keys.html#a3b1424b6924b26969085a0aaec7bde65">VirtualKeys::_buttonMinus</a></div><div class="ttdeci">ButtonControl _buttonMinus</div><div class="ttdoc">Virtual keys button Minus.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:36</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a41f85ed2d7dd430c090ab00a387bebbc"><div class="ttname"><a href="class_virtual_keys.html#a41f85ed2d7dd430c090ab00a387bebbc">VirtualKeys::_targetElement</a></div><div class="ttdeci">UIElement * _targetElement</div><div class="ttdoc">UI_Element that is edited by the virtual keys.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:67</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a4a175288e0022575984c9b0f5436b118"><div class="ttname"><a href="class_virtual_keys.html#a4a175288e0022575984c9b0f5436b118">VirtualKeys::_button7</a></div><div class="ttdeci">ButtonControl _button7</div><div class="ttdoc">Virtual keys button 7.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:28</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a4c712b6ff7fbb74dc38957e2a45c6e03"><div class="ttname"><a href="class_virtual_keys.html#a4c712b6ff7fbb74dc38957e2a45c6e03">VirtualKeys::_handleButtonPress</a></div><div class="ttdeci">void _handleButtonPress(Keys_t key)</div><div class="ttdoc">Method that is called whenever a button is pressed.</div><div class="ttdef"><b>Definition</b> VirtualKeys.cpp:38</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a4ce25133368258a328eb546e26ff4356"><div class="ttname"><a href="class_virtual_keys.html#a4ce25133368258a328eb546e26ff4356">VirtualKeys::_buttonRight</a></div><div class="ttdeci">ButtonControl _buttonRight</div><div class="ttdoc">Virtual keys button Right.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:32</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a4f87bdceb30e5550a3008ffaa8564e3e"><div class="ttname"><a href="class_virtual_keys.html#a4f87bdceb30e5550a3008ffaa8564e3e">VirtualKeys::_button4</a></div><div class="ttdeci">ButtonControl _button4</div><div class="ttdoc">Virtual keys button 4.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:25</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a61be19f07d8f10333e1be79987c33366"><div class="ttname"><a href="class_virtual_keys.html#a61be19f07d8f10333e1be79987c33366">VirtualKeys::RecalculateLayout</a></div><div class="ttdeci">virtual void RecalculateLayout() override</div><div class="ttdoc">Recalculate the UIElement layout (containers update the X- and Y-Location of all their items,...</div><div class="ttdef"><b>Definition</b> VirtualKeys.cpp:125</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a6331c91fbd3404f3912f565235b87a33"><div class="ttname"><a href="class_virtual_keys.html#a6331c91fbd3404f3912f565235b87a33">VirtualKeys::RecalculateDimensions</a></div><div class="ttdeci">virtual void RecalculateDimensions() override</div><div class="ttdoc">Recalculate the Height and Width of the UIElement.</div><div class="ttdef"><b>Definition</b> VirtualKeys.cpp:120</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a6665946535c5c5767b8bf224ec01c4ce"><div class="ttname"><a href="class_virtual_keys.html#a6665946535c5c5767b8bf224ec01c4ce">VirtualKeys::_button1</a></div><div class="ttdeci">ButtonControl _button1</div><div class="ttdoc">Virtual keys button 1.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:22</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a691b7e15afa9eaaf6577006633d429bb"><div class="ttname"><a href="class_virtual_keys.html#a691b7e15afa9eaaf6577006633d429bb">VirtualKeys::_button5</a></div><div class="ttdeci">ButtonControl _button5</div><div class="ttdoc">Virtual keys button 5.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:26</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a7bc34778f685bcff9a094a9557c715d7"><div class="ttname"><a href="class_virtual_keys.html#a7bc34778f685bcff9a094a9557c715d7">VirtualKeys::_buttonMilli</a></div><div class="ttdeci">ButtonControl _buttonMilli</div><div class="ttdoc">Virtual keys button Milli.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:33</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a8497bf5de4a3faa3d2e89fe63659537f"><div class="ttname"><a href="class_virtual_keys.html#a8497bf5de4a3faa3d2e89fe63659537f">VirtualKeys::OnVirtualKeyPressed</a></div><div class="ttdeci">void(* OnVirtualKeyPressed)(Keys_t key)</div><div class="ttdoc">Function pointer for OnVirtualKeyPressed event.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:71</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a87aa568b935e15f66c5e4720c095d536"><div class="ttname"><a href="class_virtual_keys.html#a87aa568b935e15f66c5e4720c095d536">VirtualKeys::ShowVirtualKeys</a></div><div class="ttdeci">void ShowVirtualKeys(UIElement *targetElement)</div><div class="ttdoc">Change the visual tree root to show the virtual keys with the given target element that will be edite...</div><div class="ttdef"><b>Definition</b> VirtualKeys.cpp:57</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a95de0cb7e630c6dfa72f7f84705b260a"><div class="ttname"><a href="class_virtual_keys.html#a95de0cb7e630c6dfa72f7f84705b260a">VirtualKeys::ExitVirtualKeys</a></div><div class="ttdeci">void ExitVirtualKeys()</div><div class="ttdoc">Exit the virtual keys and change the visual tree root back to the _previousVisualTreeRoot.</div><div class="ttdef"><b>Definition</b> VirtualKeys.cpp:101</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a96d7b08ef5bf42e7e9c3c9cefc1613af"><div class="ttname"><a href="class_virtual_keys.html#a96d7b08ef5bf42e7e9c3c9cefc1613af">VirtualKeys::_buttonLeft</a></div><div class="ttdeci">ButtonControl _buttonLeft</div><div class="ttdoc">Virtual keys button Left.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:31</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_a9e0e015d5923f9691224700102dd076f"><div class="ttname"><a href="class_virtual_keys.html#a9e0e015d5923f9691224700102dd076f">VirtualKeys::_buttonX1</a></div><div class="ttdeci">ButtonControl _buttonX1</div><div class="ttdoc">Virtual keys button x1.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:35</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_aa03f65425fa1f8193a7725c6386d835a"><div class="ttname"><a href="class_virtual_keys.html#aa03f65425fa1f8193a7725c6386d835a">VirtualKeys::_button0</a></div><div class="ttdeci">ButtonControl _button0</div><div class="ttdoc">Virtual keys button 0.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:21</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_aa461612d164ab1c7bdc1d80702928879"><div class="ttname"><a href="class_virtual_keys.html#aa461612d164ab1c7bdc1d80702928879">VirtualKeys::VirtualKeys</a></div><div class="ttdeci">VirtualKeys(void(*onVirtualKeyPressed)(Keys_t key)=NULL)</div><div class="ttdoc">Constructor of the VirtualKeys.</div><div class="ttdef"><b>Definition</b> VirtualKeys.cpp:11</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_aa566c5bda4ffbf336a507fc816643d2e"><div class="ttname"><a href="class_virtual_keys.html#aa566c5bda4ffbf336a507fc816643d2e">VirtualKeys::_buttonExitVirtualKeys</a></div><div class="ttdeci">ButtonControl _buttonExitVirtualKeys</div><div class="ttdoc">Virtual keys button Exit.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:40</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_aa9b566922164203f979b84cd87ec4024"><div class="ttname"><a href="class_virtual_keys.html#aa9b566922164203f979b84cd87ec4024">VirtualKeys::_button6</a></div><div class="ttdeci">ButtonControl _button6</div><div class="ttdoc">Virtual keys button 6.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:27</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_ab15d935966d6c3741df806bc9f7541f0"><div class="ttname"><a href="class_virtual_keys.html#ab15d935966d6c3741df806bc9f7541f0">VirtualKeys::_buttonOk</a></div><div class="ttdeci">ButtonControl _buttonOk</div><div class="ttdoc">Virtual keys button Ok.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:38</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_ac2fc95f6dc1c6f4f5199c748a574d567"><div class="ttname"><a href="class_virtual_keys.html#ac2fc95f6dc1c6f4f5199c748a574d567">VirtualKeys::_grid</a></div><div class="ttdeci">ContainerGrid _grid</div><div class="ttdoc">Grid used to combine all virtual keys.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:20</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_aca074ba89ac3e30710dffba5b43e5409"><div class="ttname"><a href="class_virtual_keys.html#aca074ba89ac3e30710dffba5b43e5409">VirtualKeys::_button8</a></div><div class="ttdeci">ButtonControl _button8</div><div class="ttdoc">Virtual keys button 8.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:29</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_accabe1bfb19ef2480ddb8ad47ef831f6"><div class="ttname"><a href="class_virtual_keys.html#accabe1bfb19ef2480ddb8ad47ef831f6">VirtualKeys::Draw</a></div><div class="ttdeci">virtual void Draw(bool redraw) override</div><div class="ttdoc">Method used for drawing of the VirtualKeys.</div><div class="ttdef"><b>Definition</b> VirtualKeys.cpp:44</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_ad3629e786204d3a0ad9c929404ace4da"><div class="ttname"><a href="class_virtual_keys.html#ad3629e786204d3a0ad9c929404ace4da">VirtualKeys::_previousVisualTreeRoot</a></div><div class="ttdeci">UIElement * _previousVisualTreeRoot</div><div class="ttdoc">Previous visual tree root.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:68</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_ad5924586389ada69fb83427658d81445"><div class="ttname"><a href="class_virtual_keys.html#ad5924586389ada69fb83427658d81445">VirtualKeys::_button3</a></div><div class="ttdeci">ButtonControl _button3</div><div class="ttdoc">Virtual keys button 3.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:24</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_ae6b57f6438a06bfb7ed667375e6ecfbf"><div class="ttname"><a href="class_virtual_keys.html#ae6b57f6438a06bfb7ed667375e6ecfbf">VirtualKeys::KeyInput</a></div><div class="ttdeci">virtual bool KeyInput(Keys_t key) override</div><div class="ttdoc">Process the given key.</div><div class="ttdef"><b>Definition</b> VirtualKeys.cpp:110</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_afbec479d4a948d7c9c1431a5564f2e61"><div class="ttname"><a href="class_virtual_keys.html#afbec479d4a948d7c9c1431a5564f2e61">VirtualKeys::_button9</a></div><div class="ttdeci">ButtonControl _button9</div><div class="ttdoc">Virtual keys button 9.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:30</div></div>
+<div class="ttc" id="aclass_virtual_keys_html_afcb3e7d39e5fd79a95400208e31b99d3"><div class="ttname"><a href="class_virtual_keys.html#afcb3e7d39e5fd79a95400208e31b99d3">VirtualKeys::_button2</a></div><div class="ttdeci">ButtonControl _button2</div><div class="ttdoc">Virtual keys button 2.</div><div class="ttdef"><b>Definition</b> VirtualKeys.h:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_f1d8824732654c391e1d0b486cad6876.html">Controls</a></li><li class="navelem"><a class="el" href="_virtual_keys_8h.html">VirtualKeys.h</a></li>
+    <li class="footer">Generated on Sat Jan 18 2025 17:52:19 for UI_Lib by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    toggleButton = document.createElement('doxygen-awesome-dark-mode-toggle')
+    toggleButton.title = "Toggle Light/Dark Mode"
+    document.getElementById("MSearchBox").parentNode.appendChild(toggleButton)
+  })
+</script>
+</body>
+</html>
